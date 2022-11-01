@@ -43,7 +43,7 @@ from django.core.mail import send_mail
 from .helper import send_forget_password_mail
 import uuid
 from django.db.models import Q
-
+from django.template.loader import render_to_string
 
 def login_view(request):
     # sender = ['mkswathisuresh@gmail.com']
@@ -351,9 +351,13 @@ def generateBill(request):
 def search_items(request):
     if request.POST:
         search_Key=request.POST['search_Key']
-        services = Services.objects.filter(Q(service_head__icontains=search_Key)| Q(title__icontains=search_Key) )
-        context = {'services':services}
-    return render(request,'web/index.html',context)
+        services = Services.objects.select_related("service_head").filter(Q(service_head__title__icontains=search_Key)| Q(title__icontains=search_Key) )
+        print(services.count())
+
+        context = {}
+        context ["template"] = render_to_string('web/service-searching.html',{'services':services},request=request)
+
+    return JsonResponse(context)
 
 
 def invoice(request):

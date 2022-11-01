@@ -26,12 +26,12 @@
       {% endfor %}
     </div>
     {% endif %} -->
-
+  
 
 
     <!-- service head display -->
     <section>
-      <div class="row">
+      <div class="row" id="searching">
 
         {% for each_service_head in service_head %}
         <div class="col-lg-2 col-md-2 col-sm-6 col-6 pb-4 ">
@@ -341,52 +341,7 @@
 </script>
 
 
-<script>
-  $('#search-tile').keyup(function () {
-    var search_Key = $('#search-tile').val()
-    // alert(this.value)
-    if (search_Key != '') {
-      var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
-      $.ajax({
-        url: '/search/',
-        type: 'POST',
-        data: {
-          'search_Key': search_Key,
-          csrfmiddlewaretoken: csrftoken
 
-        },
-        success: function (response) {
-          // alert((response.data).length)
-          $("#viewserviceDiv").hide()
-          $('.secondset').hide()
-          var len = (response.data).length
-          // alert(len)
-          var html = ""
-          for (var datas in response.data) {
-            $("#service-list").append('<div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 secondset" >\
-                          <div class="serviceBox">\
-                            <div class="row">\
-                            <img src="'+ response.data[datas].image + '" class="sub-service-img pb-2" alt="">\
-                            <h3 class="title">'+ response.data[datas].title + '</h3>\
-                                  <div>\
-                                    <a href="'+ response.data[datas].link_to_official_website + '" class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>\
-                                    <a href="" class="view-more" >DETAILS</a>\
-                                </div>\
-                              </div>\
-                            </div>\
-                        </div >')
-          }
-        }
-      })
-    }
-    else {
-      Swal.fire(' Please select your jobtype first ')
-
-    }
-
-
-  });
-</script>
 
 
 
