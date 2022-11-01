@@ -3,7 +3,12 @@
 {% load static %}
 {% load humanize %}
 
+<!-- search -->
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
+<!--  -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <!-- partial -->
@@ -11,16 +16,19 @@
   <div class="content-wrapper" id="demo2">
 
 
-    {% if messages %}
+    <!-- {% if messages %}
     <div class="messages text-center success-message" id="sucessful-login-message">
       {% for message in messages %}
       <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
         {{ message }}
-      </div>
+      </div>  
       {% endfor %}
     </div>
-    {% endif %}
+    {% endif %} -->
+
+
+
     <!-- service head display -->
     <section>
       <div class="row">
@@ -53,16 +61,17 @@
     <section class="py-2">
       <div class="alert alert-info">
         <span class="text1">
-          
-            <marquee><b>{{latest_news.news}}</b> 
-              {% if latest_news.link == None %}
-              <span></span>
-              {% else %}
-              <span> <a href="{{latest_news.link}}" rel="noopener noreferrer" target="_blank" class="news">Click Here</a></span>
-              {% endif %}
-            </marquee>
-         
-          
+
+          <marquee><b>{{latest_news.news}}</b>
+            {% if latest_news.link == None %}
+            <span></span>
+            {% else %}
+            <span> <a href="{{latest_news.link}}" rel="noopener noreferrer" target="_blank" class="news">Click
+                Here</a></span>
+            {% endif %}
+          </marquee>
+
+
         </span>
       </div>
     </section>
@@ -75,7 +84,7 @@
       </div>
       <div class="container">
         {% for brand_image in branding_image %}
-          <img src="{{brand_image.image.crop.1000x100}}" id="footerImage" alt="Image">
+        <img src="{{brand_image.image.crop.1000x100}}" id="footerImage" alt="Image">
         {% endfor %}
       </div>
     </div>
@@ -87,33 +96,33 @@
 
         <div class="row">
 
-      {% for posters in new_service_poster %}
-      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-        <div class="container__img-holder">
-          <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
+          {% for posters in new_service_poster %}
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="container__img-holder">
+              <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
 
-          <div class="text-center mt-3">
-            <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-              data-source="{{posters.id | apnumber }}">Click to Download</button>
-          </div>
-          
-          <span>{{posters.title}}</span>
-        </div>
-      </div>
-      {% endfor %}
-      <div class="img-popup">
-        <div class="container" id="resultContainer" style="display: none;">
+              <div class="text-center mt-3">
+                <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
+                  data-source="{{posters.id | apnumber }}">Click to Download</button>
+              </div>
 
-          <img class="img-responsive popup-imagea" id="result" src="" > 
-          <div class="text-center mt-3 poster-download-button">
-            <a id="download" class="btn-sm mx-auto btn btn-success " download>Download</a>
+              <span>{{posters.title}}</span>
+            </div>
           </div>
-        </div>
-        <div class="close-btn">
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      </div>
+          {% endfor %}
+          <div class="img-popup">
+            <div class="container" id="resultContainer" style="display: none;">
+
+              <img class="img-responsive popup-imagea" id="result" src="">
+              <div class="text-center mt-3 poster-download-button">
+                <a id="download" class="btn-sm mx-auto btn btn-success " download>Download</a>
+              </div>
+            </div>
+            <div class="close-btn">
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+          </div>
 
 
 
@@ -124,7 +133,7 @@
     <section class="pt-3">
       <h6 class="pb-4 service-heading">IMPORTANT</h6>
       <div class="container">
-        
+
         <div class="row">
           {% for posters in important_poster %}
 
@@ -132,12 +141,12 @@
           <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="container__img-holder">
               <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-  
+
               <div class="text-center mt-3">
                 <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
                   data-source="{{posters.id | apnumber }}">Click to Download</button>
               </div>
-              
+
               <span>{{posters.title}}</span>
             </div>
           </div>
@@ -145,9 +154,23 @@
           {% endfor %}
         </div>
       </div>
-    
+
 
     </section>
+
+
+    <!-- Searched ProductList start -->
+    <div class="tab-content" id="SearchedProduct">
+      <!-- popular-product start -->
+      <div id="popular-product" class="tab-pane active show">
+        <div class="row" id="rowImageViewDiv">
+        </div>
+      </div>
+    </div>
+
+
+
+
   </div>
   <!-- content-wrapper ends -->
 
@@ -163,13 +186,77 @@
 
 {% block js %}
 
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+
+<!-- <script>
+  $( function() {
+    $( "#search-title" ).autocomplete({
+      source: "/search/"
+    });
+  } );
+  </script> -->
+
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> -->
+<!-- <script>
   $(document).ready(function () {
     $('#sucessful-login-message').fadeOut(3000)
+  })  
+</script> -->
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script>
+  $(document).ready(function () {
+    $('#search-tile').keyup(function () {
+      var search_Key = $('#search-tile').val()
+      if (search_Key != '') {
+        $("#service-list").addClass("d-none");
+        var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+        data = {
+          'search_Key': search_Key,
+          csrfmiddlewaretoken: csrftoken
+        }
+        $.ajax({
+          url: '/search/?service_head=0&service_title=0',
+          type: 'POST',
+          data: data,
+          success: function (response) {
+            $("#rowImageViewDiv").html('')
+            console.log(response)
+            for (var i = 0; i < response.jsonProductList.length; i++) {
+              var html = ''
+              html += '<div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3" id="viewImageDiv">'
+              html += '<div class="serviceBox">'
+              html += '<img src="' + response.jsonProductList[i].image + '" class="sub-service-img pb-2" alt="" />'
+              html += '<h3 class="title">"' +response.jsonProductList[i].title+ '"</h3>'
+              html += '</div>'
+              html += '<a href="'+response.jsonProductList[i].link_to_official_website+'"class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>'
+              html += '<a href="'+  +'"class="view-more" >DETAILS</a>'
+              html += '</div>'
+              html += '</div>'
+              html += '</div>'
+              $("#rowImageViewDiv").append(html);
+            }
+          }
+        });
+      }
+      else {
+        $("#rowImageViewDiv").html('')
+        $("#service-list").removeClass("d-none");
+      }
+
+
+    })
+
   })
 </script> -->
 
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
 <script>
   function downloadImage(elm) {
@@ -254,7 +341,53 @@
 </script>
 
 
+<script>
+  $('#search-tile').keyup(function () {
+    var search_Key = $('#search-tile').val()
+    // alert(this.value)
+    if (search_Key != '') {
+      var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+      $.ajax({
+        url: '/search/',
+        type: 'POST',
+        data: {
+          'search_Key': search_Key,
+          csrfmiddlewaretoken: csrftoken
+
+        },
+        success: function (response) {
+          // alert((response.data).length)
+          $("#viewserviceDiv").hide()
+          $('.secondset').hide()
+          var len = (response.data).length
+          // alert(len)
+          var html = ""
+          for (var datas in response.data) {
+            $("#service-list").append('<div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 secondset" >\
+                          <div class="serviceBox">\
+                            <div class="row">\
+                            <img src="'+ response.data[datas].image + '" class="sub-service-img pb-2" alt="">\
+                            <h3 class="title">'+ response.data[datas].title + '</h3>\
+                                  <div>\
+                                    <a href="'+ response.data[datas].link_to_official_website + '" class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>\
+                                    <a href="" class="view-more" >DETAILS</a>\
+                                </div>\
+                              </div>\
+                            </div>\
+                        </div >')
+          }
+        }
+      })
+    }
+    else {
+      Swal.fire(' Please select your jobtype first ')
+
+    }
+
+
+  });
+</script>
+
 
 
 {% endblock %}
-

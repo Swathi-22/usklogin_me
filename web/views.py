@@ -1,4 +1,5 @@
 import json
+from multiprocessing import context
 import os
 import re
 from services.models import ServiceHeads
@@ -41,6 +42,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.core.mail import send_mail
 from .helper import send_forget_password_mail
 import uuid
+from django.db.models import Q
 
 
 def login_view(request):
@@ -296,21 +298,62 @@ def generateBill(request):
     return render(request, "web/generate-bill.html", context)
 
 
-def searchResult(request):
-    if request.is_ajax():
-        res = None
-        services = request.POST.get("services")
-        service_search = Services.objects.filter(title__icontains=services)
-        if len(service_search) > 0 and len(services) > 0:
-            data = []
-            for i in service_search:
-                items = {"pk": i.pk, "name": i.title}
-                data.append(items)
-            res = data
-        else:
-            res = "No sevice found"
-        return JsonResponse({"data": res})
-    return JsonResponse({})
+# def searchResult(request):
+#     if request.is_ajax():
+#         res = None
+#         services = request.POST.get("services")
+#         service_search = Services.objects.filter(title__icontains=services)
+#         if len(service_search) > 0 and len(services) > 0:
+#             data = []
+#             for i in service_search:
+#                 items = {"pk": i.pk, "name": i.title}
+#                 data.append(items)
+#             res = data
+#         else:
+#             res = "No sevice found"
+#         return JsonResponse({"data": res})
+#     return JsonResponse({})
+
+
+
+# def searchResult(request):
+#     for item in request.GET:
+#         qs = ServiceHeads.objects.filter(title__istartswith=request.GET.get(item))
+#         titles = list()
+#         for terms in qs:
+#             titles.append(terms.title)
+#         return JsonResponse(titles, safe=False)
+#     return render(request,'web/index.html')
+
+
+
+# def search_items(request):
+
+#     if request.POST:
+#         search_Key=request.POST['search_Key']
+#         services = Services.objects.filter(Q(service_head__icontains=search_Key)| Q(title__icontains=search_Key) )
+#         jsonProductList=[]
+#         for service_list in services:
+#             data={
+#                 "id":service_list.id,
+#                 "service_head":service_list.service_head,
+#                 "title":service_list.title,
+#                 "image":service_list.image,
+#                 "link_to_official_website":service_list.link_to_official_website,
+#             }
+#             jsonProductList.append(data)
+
+#         return JsonResponse({"jsonProductList":jsonProductList})
+#     return JsonResponse({"Message":"Only POST method Allowed "})
+
+
+
+def search_items(request):
+    if request.POST:
+        search_Key=request.POST['search_Key']
+        services = Services.objects.filter(Q(service_head__icontains=search_Key)| Q(title__icontains=search_Key) )
+        context = {'services':services}
+    return render(request,'web/index.html',context)
 
 
 def invoice(request):
