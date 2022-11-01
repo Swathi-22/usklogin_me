@@ -1,0 +1,40 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!-- partial -->
+<div class="main-panel " id="demo">
+  <div class="content-wrapper" id="demo2">
+    <div class="row">
+      {% for subservice in services %}
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3">
+        <div class="serviceBox">
+            <img src="{{subservice.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
+            <h3 class="title">{{subservice.title}}</h3>
+          <div>
+            <a href="{{subservice.link_to_official_website}}" class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>
+            <a href="{% url 'services:serviceDetails' subservice.slug %}" class="view-more" >DETAILS</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% comment %}
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+        <div class="serviceBox">
+          <img src="{% static 'web/images/faces/face1.jpg' %}" class="sub-service-img pb-2" alt="">
+           <h3 class="title">Service</h3>
+           <div class="pt-2">
+             <a href="{% url 'services:serviceDetails' %}" class="view-more">View More</a>
+           </div>
+         </div>
+      </div>
+      {% endcomment %}
+    </div>  
+  </div>
+</div>
+
+
+
+{% endblock %}

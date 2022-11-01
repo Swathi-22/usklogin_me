@@ -1,0 +1,41 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="row">
+                {% for docs in documents %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin" >
+                    <div class="file-upload-box">
+                        <a href="">
+                            <div>
+                                <h6 class="text-center form-name pt-3">{{docs.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{docs.image.crop.100x100}}" class="form-image">
+                            </div>
+                            <!-- <p class="text-center">{{docs.file}}</p class="text-center"> -->
+                        </a>
+                        <a href="{{docs.file.url}}"  download="{{docs.file.url}}">
+                            <div class="text-center">
+                                <!-- <div class="download-button text-center ">
+                                    <span class="text-center">Download File</span>
+                                </div> -->
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}

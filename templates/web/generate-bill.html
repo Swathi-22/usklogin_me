@@ -1,0 +1,108 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <div class="row pt-4 " >
+         
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <script>
+    $(document).ready(function () {
+        $('#search-tile').keyup(function () {
+            var search_Key = $('#search-tile').val()
+            var serviecs_name = $('#service_name').val()
+            if (search_Key != '') {
+                $("#services_list").addClass("d-none");
+                var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+                data = {
+                    'search_Key': search_Key,
+                    csrfmiddlewaretoken: csrftoken
+                }
+                $.ajax({
+                    url: '/search/?serviecs_name=' + serviecs_name,
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        $("#rowImageViewDiv").html('')
+                        for (var i = 0; i < response.jsonProductList.length; i++) {
+                            var html = ''
+                            html += '<div class="col-lg-4 col-md-4 col-sm-6 col-6" id="viewImageDiv">',  
+                            html += '<div class="white-button">',
+                            html += '<a href="#" target="_self" class="fl-button"><span class="fl-button-text">'+response.jsonProductList[i].serviecs_name+'</span></a>',
+                            html += '</div>',
+                            html += '</div>' 
+                            $("#rowImageViewDiv").append(html);
+                     }
+                    }
+                });
+            }
+            else {
+                $("#rowImageViewDiv").html('')
+                $("#services_list").removeClass("d-none");
+            }
+                     
+                })
+            })
+</script> -->
+
+<!-- 
+<script>
+    const url = window.location.href
+    const searchForm = document.getElementById('search-form')
+    const searchInput = document.getElementById('search-input')
+    const result = document.getElementById('imageViewDiv')
+    const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+    
+
+    const sendSearchData = (services) => {
+        $.ajax({
+            type: 'POST',
+            url : 'search/',
+            data :{
+                'csrfmiddlewaretoken' : csrf,
+                'services':services,
+            },
+            success : (res) =>{
+                console.log(res.data)
+                const data=res.data
+                
+                if (Array.isArray(data)){
+                    console.log('we have an array')
+                } else {
+                    if (searchInput.value.length > 0){
+                        result.innerHTML = '<b>${data}</b>'
+                    } else {
+                        result.classList.add('not-visible')
+                    }
+                }
+            },
+            error: (err) =>{
+                console.log(err)
+            }
+        })
+    }
+    
+    searchInput.addEventListener('keyup', e=>{
+        console.log(e.target.value)
+ 
+        if (result.classList.add('not-visible')){
+            result.classList.remove('not-visible')  
+        }
+
+
+        sendSearchData(e.target.value)
+    })
+
+</script> -->
+
+
+
+
+{% endblock %}

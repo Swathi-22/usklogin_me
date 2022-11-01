@@ -1,0 +1,45 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="row">
+            {% for bonus_for_usk_agent in agent_bonus %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
+                    <a href="">
+                        <div class="card-bonus">
+                            <div class="card-body-bonus">
+                                <img src="{{bonus_for_usk_agent.image.crop.194x194}}" alt="">
+                            </div>
+                        </div>
+                    </a>
+                    <div class='buttons'>
+                        <div class='left-col'>
+                            <a href="{{bonus_for_usk_agent.link}}" class="access-bonus" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class='right-col-bonus'>
+                            <span class="name-bonus">{{bonus_for_usk_agent.name}}</span>
+                            <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <a href="{{bonus_for_usk_agent.link}}" class="access-bonus" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <a href="" class="name-bonus" rel="noopener noreferrer" target="_blank">{{bonus_for_usk_agent.name}}</a>
+                      </div> -->
+                    <!-- <a href="{{bonus_for_usk_agent.link}}">
+                        <button class="btn-hover-bonus color-6">{{bonus_for_usk_agent.name}}</button>
+                    </a> -->
+                </div>
+             {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}}

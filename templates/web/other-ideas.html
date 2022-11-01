@@ -1,0 +1,46 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="row">
+             {% for ideas in other_ideas %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
+                    <a href="">
+                        <div class="card-idea">
+                            <div class="card-body-idea">
+                                <img src="{{ideas.image.crop.194x194}}" alt="">
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class='buttons'>
+                        <div class='left-col'>
+                            <a href="{{ideas.link}}" class="access-idea" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class='right-col-idea'>
+                            <span class="name-idea">{{ideas.name}}</span>
+                            <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <a href="{{ideas.link}}" class="access-idea" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <a href="" class="name-idea" rel="noopener noreferrer" target="_blank">{{ideas.name}}</a>
+                      </div> -->
+                    <!-- <a href="{{ideas.link}}">
+                        <button class="btn-hover-idea color-6">{{ideas.name}}</button>
+                    </a> -->
+                </div>
+              {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}}

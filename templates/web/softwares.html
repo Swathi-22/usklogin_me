@@ -1,0 +1,46 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="row ">
+                {% for each_software in softwares%}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
+                    <a href="">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{each_software.image.crop.194x194}}" alt="">
+                            </div>
+                        </div>
+                    </a>
+                    <div class='buttons'>
+                        <div class='left-col'>
+                            <a href="{{each_software.link}}" class="access-software" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        </div>
+                        <div class='right-col-software'>
+                            <span class="name-software">{{each_software.name}}</span>
+                            <!-- <a href="" class="name-software" rel="noopener noreferrer" target="_blank"></a> -->
+                        </div>
+                      </div>
+                    <!-- <div>
+                        <a href="{{each_software.link}}" class="access-software" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <a href="" class="name-software" rel="noopener noreferrer" target="_blank">{{each_software.name}}</a>
+                      </div> -->
+                    <!-- <button class="btn-hover-soft color-6">{{each_software.name}}</button>
+                    <a href="{{each_software.link}}">
+                        <button class="btn-hover-soft color-6">ACCESS</button>
+                    </a> -->
+
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}

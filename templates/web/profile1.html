@@ -1,0 +1,83 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+
+        <div class="container">
+           
+            <div class="profile-header">
+                
+            
+                    {% if logined_user.profile_image %}
+                    <img src="{{logined_user.profile_image.url}}" class="profile-picture"/>
+                    {% else %}
+                    <img src="{% static 'web/images/deafult-01.jpg' %}"  class="profile-picture"/>
+                    {% endif %}
+
+                <div class="profile-nav-info">
+                    <h3 class="user-name">{{logined_user.name}}</h3> 
+                    <div class="address">
+                        <p id="state" class="state">{{logined_user.category}}</p>
+                    </div>
+
+                </div>
+
+                <div class=""></div>
+                
+                <div class="edit">
+                    
+                        <button class="chatbtn" id="chatBtn"><i class="fa-solid fa-sack-dollar"></i> Plan</button>
+                        <button class="createbtn" id="Create-post"><i class="fa-solid fa-download"></i> Download
+                            Certificate</button>
+                   
+                    <a href="{% url 'web:profile_update' %}">
+                        
+                        <button class="editbtn" id="chatBtn"><i class="fa fa-edit"></i> Edit</button>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="main-bd">
+                <div class="left-side">
+                    <div class="profile-side">
+                        <p class="mobile-no"><i class="fa fa-phone"></i> {{logined_user.phone}}</p>
+                        <p class="user-mail"><i class="fa fa-envelope"></i> {{logined_user.email}}</p>
+                        <p class="user-mail"><i class="fa-solid fa-shop"></i>{{logined_user.shop_name}}</p>
+                       
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="user-address"><i class="fa-solid fa-location-dot"></i>{{logined_user.shop_address}}</p>
+                                </div>
+                            </div>
+                            
+                    </div>
+
+                </div>
+                <div class="right-side">
+                    <div class="profile-branding-card">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <script>
+    var loadFile = function (event) {
+        var image = document.getElementById("output");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+</script> -->
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="request-form-margin">
+                <div class="request-form-heading mb-3">
+                    <h4>Request Form</h4>
+                </div>
+                <div class="request-form">
+                    <form class="form-content ajax reload" id="form" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <!-- <input type="text" class="form-control" id="name" name="name"> -->
+                            {{forms.name}}
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneno">Phone Number</label>
+                            <!-- <input type="text" class="form-control" id="phoneno" name="phoneno"> -->
+                            {{forms.phone}}
+                        </div>
+                        <div class="form-group">
+                            <label for="Email1">Email address</label>
+                            <!-- <input type="email" class="form-control" id="email"  name="email"> -->
+                            {{forms.email}}
+                        </div>
+                        <div class="form-group">
+                            <label for="Email1">Messages</label>
+                            <!-- <textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea> -->
+                            {{forms.message}}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" name="create">Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

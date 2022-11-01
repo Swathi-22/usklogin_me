@@ -1,0 +1,44 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="row ">
+             {% for each_tools in tools %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
+                    <a href="">
+                        <div class="card-tool">
+                            <div class="card-body-tool">
+                                <img src="{{each_tools.image.crop.194x194}}" alt="">
+                            </div>
+                        </div>
+                    </a>
+                    <div class='buttons'>
+                        <div class='left-col'>
+                            <a href="{{each_tools.link}}" class="access-tool" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        </div>
+                        <div class='right-col-tool'>
+                            <span class="name-tool">{{each_tools.name}}</span>
+                            <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
+                        </div>
+                      </div>
+                    <!-- <div>
+                        <a href="{{each_tools.link}}" class="access-tool" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <a href="" class="name-tool" rel="noopener noreferrer" target="_blank">{{each_tools.name}}</a>
+                      </div> -->
+                    <!-- <a href="{{each_tools.link}}">
+                        <button class="btn-hover-tool color-6">{{each_tools.name}}</button>
+                    </a> -->
+                </div>
+              {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}

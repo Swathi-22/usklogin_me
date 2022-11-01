@@ -1,0 +1,52 @@
+./notification/models.py:26:9: F841 local variable 'task' is assigned to but never used
+./notification/tasks.py:30:5: E722 do not use bare 'except'
+./web/forms.py:3:1: F403 'from .models import *' used; unable to detect undefined names
+./web/forms.py:32:17: F405 'UserRegistration' may be undefined, or defined from star imports: .models
+./web/forms.py:46:17: F405 'SupportRequest' may be undefined, or defined from star imports: .models
+./web/forms.py:59:17: F405 'SupportTicket' may be undefined, or defined from star imports: .models
+./web/forms.py:71:17: F405 'UserRegistration' may be undefined, or defined from star imports: .models
+./web/views.py:4:1: F403 'from services.models import *' used; unable to detect undefined names
+./web/views.py:5:1: F403 'from web.models import *' used; unable to detect undefined names
+./web/views.py:8:1: F403 'from .forms import *' used; unable to detect undefined names
+./web/views.py:18:1: F811 redefinition of unused 'messages' from line 11
+./web/views.py:27:16: F405 'UserRegistration' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:32:17: F405 'Order' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:34:19: F405 'UserRegistration' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:39:49: F405 'PaymentStatus' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:44:28: F405 'PaymentStatus' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:44:69: F405 'PaymentStatus' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:67:17: F405 'UserRegistrationForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:73:17: F405 'UserRegistrationForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:81:15: F405 'UserRegistration' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:82:17: F405 'Order' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:109:17: F405 'Order' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:115:28: F405 'PaymentStatus' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:119:28: F405 'PaymentStatus' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:133:20: F405 'UserRegistration' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:134:17: F405 'UserUpdateForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:141:20: F405 'UserRegistration' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:143:21: F405 'UserUpdateForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:148:21: F405 'UserUpdateForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:159:20: F405 'ServiceHeads' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:160:19: F405 'LatestNews' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:161:26: F405 'NewServicePoster' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:162:24: F405 'ImportantPoster' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:165:20: F405 'UserRegistration' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:185:30: F405 'CommonServicesPoster' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:186:23: F405 'FestivelPoster' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:187:27: F405 'ProfessionalPoster' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:193:16: F405 'Services' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:202:26: F405 'Services' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:221:22: F405 'GenerateForms' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:237:17: F405 'Documents' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:243:17: F405 'Softwares' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:249:13: F405 'Tools' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:255:22: F405 'MarketingTips' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:261:19: F405 'OtherIdeas' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:267:21: F405 'AgencyPortal' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:273:28: F405 'BackOfficeServices' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:279:19: F405 'AgentBonus' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:290:13: F405 'SupportRequestForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:305:34: F405 'FAQ' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:311:13: F405 'SupportTicketForm' may be undefined, or defined from star imports: .forms, services.models, web.models
+./web/views.py:348:5: E722 do not use bare 'except'

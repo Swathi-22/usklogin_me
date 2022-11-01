@@ -1,0 +1,32 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!-- partial -->
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <div class="container">
+            <h5>Frequently Asked Questions</h5>
+
+
+            {% for faq in Frequently_Asked_Questions %}
+            <div class="faq-card">
+                <h6>{{faq.question}}</h6>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-caret-down drop-btn"></i>
+                    <i class="fa-sharp fa-solid fa-circle-xmark cross-btn"></i>
+                </div>
+                <p class="ans">{{faq.answer}}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="app.js" defer></script>
+
+{% endblock %}

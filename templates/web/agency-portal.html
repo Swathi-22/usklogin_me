@@ -1,0 +1,45 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+        <section>
+            <div class="row">
+            {% for portals in agency_portal %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
+                    <a href="">
+                        <div class="card-portal">
+                            <div class="card-body-portal">
+                                <img src="{{portals.image.crop.194x194}}" alt="">
+                            </div>
+                        </div>
+                    </a>
+                    <div class='buttons'>
+                        <div class='left-col'>
+                            <a href="{{portals.link}}" class="access-portal" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class='right-col-portal'>
+                            <span class="name-portal">{{portals.name}}</span>
+                            <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <a href="{{portals.link}}" class="access-portal" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <a href="" class="name-portal" rel="noopener noreferrer" target="_blank">{{portals.name}}</a>
+                      </div> -->
+                    <!-- <a href="{{portals.link}}">
+                        <button class="btn-hover-portal color-6">{{portals.name}}</button>
+                    </a> -->
+                </div>
+             {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+{% endblock %}}
