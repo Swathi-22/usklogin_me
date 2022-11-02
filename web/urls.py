@@ -19,7 +19,6 @@ urlpatterns = [
     path("generate-poster/", views.generatePoster, name="generatePoster"),
     path("generate-bill/", views.generateBill, name="generateBill"),
     path("search/", views.search_items,name="search_items"),
-    path("invoice/", views.invoice, name="invoice"),
     path("generate-form/", views.generateForms, name="generateForms"),
     path("download/", serve, {"document_root": "settings.MEDIA_ROOT"}),
     path("documents/", views.documents, name="documents"),

@@ -1,0 +1,24 @@
+{% extends "invoice/base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+
+    <h2>Here are all user profiles: </h2>
+    <div>
+        <ul>
+            {% for profile in object_list %}
+                <li>{{ profile }}  | <a
+                        href="{% url 'invoices:invoice-update' profile.pk %}">edit</a>
+                    <a href="{% url 'invoices:invoice-delete' profile.pk %}">delete</a>
+                </li>
+            {% empty %}
+                <li>No profile yet.</li>
+            {% endfor %}
+
+        </ul>
+        <p>
+            <a href="{% url 'invoices:invoice-add' %}">add a invoice</a>
+        </p>
+        <a href="{% url 'invoices:customer-add' %}">add a customer</a>
+        <p></p>
+    </div>
+{% endblock %}

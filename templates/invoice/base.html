@@ -1,0 +1,23 @@
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% block title %}USKLOGIN.COM {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext'  type='text/css'>
+    {% block custom_css %}
+    {% endblock custom_css %}
+    <link rel="stylesheet" href="{% static 'invoice/css/style.css' %}">
+    
+</head>
+
+<body>
+<div id="content" class="container">
+    
+        {% block content %}{% endblock %}
+    
+
+</div>
+</body>
+</html>

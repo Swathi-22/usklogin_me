@@ -27,11 +27,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "web",
+    "invoices",
     "services",
     "notification",
     "channels",
     "django_celery_beat",
     "django_celery_results",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 

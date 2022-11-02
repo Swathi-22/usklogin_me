@@ -360,10 +360,6 @@ def search_items(request):
     return JsonResponse(context)
 
 
-def invoice(request):
-    context = {"is_bill": True}
-    return render(request, "web/invoices.html", context)
-
 
 def generateForms(request):
     generate_forms = DownloadForms.objects.all()

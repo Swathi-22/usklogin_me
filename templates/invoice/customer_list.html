@@ -1,0 +1,116 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+
+        
+        <!-- <div>
+        <ul>
+            {% for profile in object_list %}
+                <li>{{ profile.name }}  | <a
+                        href="{% url 'invoices:customer-update' profile.pk %}">edit</a>
+                    <a href="{% url 'invoices:customer-delete' profile.pk %}">delete</a>
+                </li>
+            {% empty %}
+                <li>No profile yet.</li>
+            {% endfor %}
+
+        </ul>
+        <p>
+          <a href="{% url 'invoices:customer-add' %}">add a profile</a>
+        </p>
+        <p>
+          <a href="{% url 'invoices:invoice-list' %}"> add invoices</a>
+        </p>
+
+    </div> -->
+
+        <div class="row ">
+            
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                <h5 class="customer-list-head pb-4">Customer List: </h5>
+                <div style="overflow-x: auto;">
+                    <table id="example" class="table table-striped " style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email Id</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for profile in object_list %}
+                            <tr>
+                                <td>{{ profile.name }}</td>
+                                <td>{{ profile.phone_no }}</td>
+                                <td>{{ profile.email }}</td>
+                                <td>
+                                    <a href="{% url 'invoices:customer-update' profile.pk %}">
+                                        <i class="fa-solid fa-pen-to-square edit-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'invoices:customer-delete' profile.pk %}">
+                                        <i class="fa-solid fa-trash delete-delete"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <td>No profile yet.</td>
+                            {% endfor %}
+                        </tbody>
+    
+                    </table>
+                   
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a href="{% url 'invoices:customer-add' %}">
+                            <div class="add-customer">
+                                <span>Add Customer</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="{% url 'invoices:invoice-list' %}">
+                            <div class="create-invoice">
+                                <span>Create Invoice</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                <h5 class="customer-list-head pb-4">Search Invoice: </h5>
+                <div class="container-2"><span class="icon"><i class="fa fa-search"></i></span>
+  
+                    <!-- Ensure that the input control you want to use is decorated with the data-prefixbox attribute -->
+                    <input type="search" id="search" placeholder="Search..." data-prefixbox="true" />
+                  
+                  </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+{% endblock %}

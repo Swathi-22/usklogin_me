@@ -31,7 +31,7 @@
 
     <!-- service head display -->
     <section>
-      <div class="row" id="searching">
+      <div class="row">
 
         {% for each_service_head in service_head %}
         <div class="col-lg-2 col-md-2 col-sm-6 col-6 pb-4 ">
@@ -187,17 +187,6 @@
 {% block js %}
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
-
-<!-- <script>
-  $( function() {
-    $( "#search-title" ).autocomplete({
-      source: "/search/"
-    });
-  } );
-  </script> -->
-
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> -->
 <!-- <script>
   $(document).ready(function () {
@@ -205,58 +194,6 @@
   })  
 </script> -->
 
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
-<!-- <script>
-  $(document).ready(function () {
-    $('#search-tile').keyup(function () {
-      var search_Key = $('#search-tile').val()
-      if (search_Key != '') {
-        $("#service-list").addClass("d-none");
-        var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
-        data = {
-          'search_Key': search_Key,
-          csrfmiddlewaretoken: csrftoken
-        }
-        $.ajax({
-          url: '/search/?service_head=0&service_title=0',
-          type: 'POST',
-          data: data,
-          success: function (response) {
-            $("#rowImageViewDiv").html('')
-            console.log(response)
-            for (var i = 0; i < response.jsonProductList.length; i++) {
-              var html = ''
-              html += '<div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3" id="viewImageDiv">'
-              html += '<div class="serviceBox">'
-              html += '<img src="' + response.jsonProductList[i].image + '" class="sub-service-img pb-2" alt="" />'
-              html += '<h3 class="title">"' +response.jsonProductList[i].title+ '"</h3>'
-              html += '</div>'
-              html += '<a href="'+response.jsonProductList[i].link_to_official_website+'"class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>'
-              html += '<a href="'+  +'"class="view-more" >DETAILS</a>'
-              html += '</div>'
-              html += '</div>'
-              html += '</div>'
-              $("#rowImageViewDiv").append(html);
-            }
-          }
-        });
-      }
-      else {
-        $("#rowImageViewDiv").html('')
-        $("#service-list").removeClass("d-none");
-      }
-
-
-    })
-
-  })
-</script> -->
-
-
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
 <script>
   function downloadImage(elm) {
