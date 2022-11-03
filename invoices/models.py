@@ -57,5 +57,8 @@ class InvoiceItem(models.Model):
         verbose_name = "InvoiceItem"
         verbose_name_plural = "InvoiceItems"
 
+    def get_absolute_url(self):
+        return reverse("invoice-download", kwargs={"pk": self.pk})
+
     def __str__(self):
         return str(self.services_name)

@@ -1,23 +1,23 @@
-
 from .forms import CustomerForm
 from .forms import InvoiceItemFormset
 from .models import Customer
-from .models import Invoice
+from .models import Invoice, InvoiceItem
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
+from django.views.generic import DetailView
 
 
 class CustomerList(ListView):
     model = Customer
     template_name = "invoice/customer_list.html"
-    
-    def get_context_data(self,*args, **kwargs):
-        context = super().get_context_data(*args,**kwargs)
-        context['is_bill'] = True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["is_bill"] = True
         return context
 
 
@@ -168,3 +168,13 @@ class InvoiceDelete(DeleteView):
     model = Invoice
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_confirm_delete.html"
+
+
+class InvoiceDetailView(DetailView):
+    model = InvoiceItem
+    template_name = "invoice/general_3.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["invoices"] = self.object
+        return context

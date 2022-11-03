@@ -1,6 +1,5 @@
 from . import views
 from django.urls import path
-from django.views.generic import TemplateView
 
 
 app_name = "invoices"
@@ -15,6 +14,6 @@ urlpatterns = [
     path("invoice/add/", views.InvoiceItemCreate.as_view(), name="invoice-add"),
     path("invoice/update/<int:pk>", views.InvoieItemUpdate.as_view(), name="invoice-update"),
     path("invoice/delete/<int:pk>", views.InvoiceDelete.as_view(), name="invoice-delete"),
-    # ####
-    path("demo/", TemplateView.as_view(template_name="invoice/general_3.html")),
+    # #### Download invoices  ###
+    path("invoice/download/<int:pk>", views.InvoiceDetailView.as_view(), name="invoice-download"),
 ]
