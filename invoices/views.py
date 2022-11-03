@@ -3,6 +3,7 @@ from .forms import CustomerForm
 from .forms import InvoiceItemFormset
 from .models import Customer
 from .models import Invoice
+from .models import InvoiceItem
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
