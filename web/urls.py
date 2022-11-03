@@ -36,5 +36,7 @@ urlpatterns = [
     path("terms-and-conditions/", views.termsConditions, name="termsConditions"),
     path("payment/", views.order_payment, name="payment"),
     path("callback/", views.callback, name="callback"),
+    path("download-certificate/",views.certificate_view,name="certificate_view"),
+    path('pdf_download/', views.download_pdf, name="pdf_download"),
     path("logout/", views.logout, name="logout"),
 ]

@@ -24,12 +24,12 @@ class InvoiceItemForm(ModelForm):
         model = InvoiceItem
         fields = ("invoice", "services_name", "services_charge", "username", "password", "descripton", "qty")
         widgets = {
-            "services_name": widgets.Select(attrs={"class": "tm_width_3"}),
-            "services_charge": widgets.NumberInput(attrs={"class": "tm_width_2"}),
-            "username": widgets.TextInput(attrs={"class": "tm_width_3"}),
-            "password": widgets.TextInput(attrs={"class": "tm_width_3"}),
+            "services_name": widgets.Select(attrs={"class": "form-control"}),
+            "services_charge": widgets.NumberInput(attrs={"class": "form-control"}),
+            "username": widgets.TextInput(attrs={"class": "form-control"}),
+            "password": widgets.TextInput(attrs={"class": "form-control"}),
             "descripton": widgets.Textarea(attrs={"class": "form-control"}),
-            "qty": widgets.NumberInput(attrs={"class": "tm_width_1"}),
+            "qty": widgets.NumberInput(attrs={"class": "form-control"}),
         }
 
 

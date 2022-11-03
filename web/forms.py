@@ -39,6 +39,8 @@ class UserRegistrationForm(forms.ModelForm):
             "shop_name": TextInput(attrs={"class": "input-field", "name": "shop_name", "id": "shop_name", "required": "required", "autocomplete": "off"}),
             "shop_address": Textarea(attrs={"class": "input-field", "name": "shop_address", "id": "shop_address", "required": "required", "autocomplete": "off"}),
             "email": EmailInput(attrs={"class": "input-field", "name": "email", "id": "email", "required": "required", "autocomplete": "off"}),
+            "district": TextInput(attrs={"class": "input-field", "name": "district", "id": "district", "required": "required", "autocomplete": "off"}),
+            "pincode": TextInput(attrs={"class": "input-field", "name": "pincode", "id": "pincode", "required": "required", "autocomplete": "off"}),
             "category": Select(attrs={"class": "input-field", "name": "category", "id": "category", "required": "required", "autocomplete": "off"}),
         }
 
@@ -80,6 +82,8 @@ class UserUpdateForm(forms.ModelForm):
             "shop_address": Textarea(attrs={"class": "form-control", "name": "shop_address"}),
             "email": EmailInput(attrs={"class": "form-control", "name": "email"}),
             "phone": TextInput(attrs={"class": "form-control", "name": "phone", "required": "required", "autocomplete": "off"}),
+            "district": TextInput(attrs={"class": "form-control", "name": "district"}),
+            "pincode": TextInput(attrs={"class": "form-control", "name": "pincode"}),
             "category": Select(attrs={"class": "form-control", "name": "category"}),
             "profile_image": FileInput(attrs={"class": "form-control", "name": "image"}),
         }
