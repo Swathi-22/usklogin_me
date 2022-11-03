@@ -1,15 +1,60 @@
-{% extends "invoice/base.html" %}
-{% block title %}{% endblock %}
+{% extends 'web/base.html' %}
 {% block content %}
+{% load static %}
 
-    <h2>Here are all user profiles: </h2>
-    <div>
+<link rel="stylesheet" href="{% static 'invoice/css/bootstrap-table.css' %}">
+<link rel="stylesheet" href="{% static 'invoice/css/bootstrap.min.css' %}">
+
+
+<style>
+    .paginate_button {
+    color: #2C2420;
+    padding: 0px 5px;
+}
+.paginate_button:hover {
+    color: #2C2420;
+    padding: 0px 5px;
+}
+.current{
+    border: 1px solid #C2976D ;
+    padding: 0px 10px;
+    background:#C2976D !important;
+    border-radius: 7px;
+}
+.table {
+    background: linear-gradient(135deg, #EDEDED 0%, #FFFFFF 100%) !important;
+    box-shadow: -2px 2px 4px rgb(194 194 194 / 20%), 2px -2px 4px rgb(194 194 194 / 20%), -2px -2px 4px rgb(255 255 255 / 90%), 2px 2px 5px rgb(194 194 194 / 90%), inset 1px 1px 2px rgb(255 255 255 / 30%), inset -1px -1px 2px rgb(194 194 194 / 50%);
+    border-radius: 3.88604px;
+}
+.border {
+    border-bottom: 1px solid rgba(58, 35, 22, 0.5) !important;
+}
+.td-color{
+    background-color: #FFFFFF;
+    border: none;
+}
+tbody, td, tfoot, th, thead, tr {
+    border: none !important;
+}
+</style>
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+
+        
+        <!-- <div>
         <ul>
             {% for profile in object_list %}
+<<<<<<< HEAD
                 <li>{{ profile }}  | <a
                         href="{% url 'invoices:invoice-update' profile.pk %}">edit</a>
                         <a href="{% url 'invoices:invoice-delete' profile.pk %}">delete</a>
                     <a href="{% url 'invoices:invoice-download' profile.pk %}">Download</a>
+=======
+                <li>{{ profile.name }}  | <a
+                        href="{% url 'invoices:customer-update' profile.pk %}">edit</a>
+                    <a href="{% url 'invoices:customer-delete' profile.pk %}">delete</a>
+>>>>>>> e7a4aedf275665948d4ef7fffeec992f23256cd0
                 </li>
             {% empty %}
                 <li>No profile yet.</li>
@@ -17,9 +62,94 @@
 
         </ul>
         <p>
-            <a href="{% url 'invoices:invoice-add' %}">add a invoice</a>
+          <a href="{% url 'invoices:customer-add' %}">add a profile</a>
         </p>
-        <a href="{% url 'invoices:customer-add' %}">add a customer</a>
-        <p></p>
+        <p>
+          <a href="{% url 'invoices:invoice-list' %}"> add invoices</a>
+        </p>
+
+    </div> -->
+
+        <div class="row ">
+            
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                <h5 class="customer-list-head pb-4">Invoice List: </h5>
+                <div style="overflow-x: auto;">
+                    <table id="example" class="table" style="width:100%;">
+                        <thead>
+                            <tr class="border">
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Invoice No</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody  class="td-color">
+                            {% for profile in object_list %}
+                            <tr>
+                                <td>{{ profile.customer }}</td>
+                                <td>{{ profile.phone_no }}</td>
+                                <td>{{ profile.invoice_no }}</td>
+                                <td>
+                                    <a href="{% url 'invoices:invoice-update' profile.pk %}">
+                                        <i class="fa-solid fa-pen-to-square edit-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'invoices:invoice-delete' profile.pk %}">
+                                        <i class="fa-solid fa-trash delete-delete"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <td>No profile yet.</td>
+                            {% endfor %}
+                        </tbody>
+    
+                    </table>
+                   
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
+                        <a href="{% url 'invoices:invoice-add' %}">
+                            <div class="add-customer">
+                                <span>Add Invoice</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
+                        <a href="{% url 'invoices:customer-add' %}">
+                            <div class="create-invoice">
+                                <span>Add Customer</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                <h5 class="customer-list-head pb-4">Search Invoice: </h5>
+                <div class="container-2"><span class="icon"><i class="fa fa-search"></i></span>
+  
+                    <!-- Ensure that the input control you want to use is decorated with the data-prefixbox attribute -->
+                    <input type="search" id="search" placeholder="Search..." data-prefixbox="true" />
+                  
+                  </div>
+            </div>
+        </div>
+
     </div>
+</div>
+
+
+<script src="{% static 'invoice/js/data-table.js' %}"></script>
+<script src="{% static 'invoice/js/dataTable.min.js' %}"></script>
+<script src="{% static 'invoice/js/jquery.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
 {% endblock %}

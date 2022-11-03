@@ -1,5 +1,6 @@
 {% extends "invoice/base.html" %}
 {% load static %}
+<<<<<<< HEAD
 {%load crispy_forms_tags %}
 
 
@@ -36,6 +37,54 @@
 
         <table class="table">
             {{ invoices_items.management_form }}
+=======
+{%load crispy_forms_tags %} 
+<link rel="shortcut icon" href="{% static 'web/images/FAV.png' %}" />
+<title>USKLOGIN.COM</title>
+{% block title %}{% endblock %}
+<link rel="stylesheet" href="{% static 'invoice/css/style.css' %}">
+
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
+<style>
+    .save-button{
+     border-radius: 10px;
+     border: 1px solid #11831f;
+     padding: 3px 17px;
+     background-color: #11831f;
+     color: #fff;
+     font-weight: 400;
+   }
+   .back{
+       color: #000;
+       text-decoration: none;
+       margin-right: 14px;
+   }
+   </style>
+
+
+    <h2>Ceate Invoice</h2>
+    <hr>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <form action="" method="post">{% csrf_token %}
+            {{ form|crispy }}
+
+       
+                <!-- <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div> -->
+        
+            
+            <table class="table">
+>>>>>>> e7a4aedf275665948d4ef7fffeec992f23256cd0
 
             {% for form in invoices_items.forms %}
             {% if forloop.first %}
@@ -61,6 +110,7 @@
                     {{ field }}
                 </td>
                 {% endfor %}
+<<<<<<< HEAD
             </tr>
             {% endfor %}
         </table>
@@ -87,6 +137,13 @@
             <label class="form-label">Address</label>
             <textarea cols="2" rows="10" class="form-control"></textarea>
         </div>
+=======
+            </table>
+            
+
+            <a href="{% url 'invoices:invoice-list' %}" class="back"><i class="fa-solid fa-arrow-left-long"></i> <span style="color: #000;">Back</span> </a><input type="submit" value="Save" class="save-button"/> 
+        </form>
+>>>>>>> e7a4aedf275665948d4ef7fffeec992f23256cd0
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <input type="submit" value="Save" /> <a href="{% url 'invoices:customer-list' %}">back to the list</a>

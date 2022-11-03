@@ -2,10 +2,41 @@
 {% block content %}
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'invoice/css/bootstrap-table.css' %}">
+<link rel="stylesheet" href="{% static 'invoice/css/bootstrap.min.css' %}">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+<style>
+    .paginate_button {
+    color: #2C2420;
+    padding: 0px 5px;
+}
+.paginate_button:hover {
+    color: #2C2420;
+    padding: 0px 5px;
+}
+.current{
+    border: 1px solid #C2976D ;
+    padding: 0px 10px;
+    background:#C2976D !important;
+    border-radius: 7px;
+}
+.table {
+    background: linear-gradient(135deg, #EDEDED 0%, #FFFFFF 100%) !important;
+    box-shadow: -2px 2px 4px rgb(194 194 194 / 20%), 2px -2px 4px rgb(194 194 194 / 20%), -2px -2px 4px rgb(255 255 255 / 90%), 2px 2px 5px rgb(194 194 194 / 90%), inset 1px 1px 2px rgb(255 255 255 / 30%), inset -1px -1px 2px rgb(194 194 194 / 50%);
+    border-radius: 3.88604px;
+}
+.border {
+    border-bottom: 1px solid rgba(58, 35, 22, 0.5) !important;
+}
+.td-color{
+    background-color: #FFFFFF;
+    border: none;
+}
+tbody, td, tfoot, th, thead, tr {
+    border: none !important;
+}
+</style>
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
@@ -37,9 +68,9 @@
             <div class="col-lg-7 col-md-12 col-sm-12 col-12">
                 <h5 class="customer-list-head pb-4">Customer List: </h5>
                 <div style="overflow-x: auto;">
-                    <table id="example" class="table table-striped " style="width:100%;">
+                    <table id="example" class="table" style="width:100%;">
                         <thead>
-                            <tr>
+                            <tr class="border">
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email Id</th>
@@ -47,7 +78,7 @@
                                 <th>Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  class="td-color">
                             {% for profile in object_list %}
                             <tr>
                                 <td>{{ profile.name }}</td>
@@ -74,14 +105,14 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                         <a href="{% url 'invoices:customer-add' %}">
                             <div class="add-customer">
                                 <span>Add Customer</span>
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                         <a href="{% url 'invoices:invoice-list' %}">
                             <div class="create-invoice">
                                 <span>Create Invoice</span>
@@ -104,9 +135,10 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="{% static 'invoice/js/data-table.js' %}"></script>
+<script src="{% static 'invoice/js/dataTable.min.js' %}"></script>
+<script src="{% static 'invoice/js/jquery.min.js' %}"></script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
