@@ -174,7 +174,7 @@ class InvoiceDetailView(DetailView):
     model = InvoiceItem
     template_name = "invoice/general_3.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["invoices"] = self.object
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["invoices"] = self.object
+    #     return context
