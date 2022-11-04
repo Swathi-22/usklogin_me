@@ -1,12 +1,9 @@
 from .forms import CustomerForm
 from .forms import InvoiceItemFormset
 from .models import Customer
-<<<<<<< HEAD
-from .models import Invoice, InvoiceItem
-=======
+
 from .models import Invoice
 from .models import InvoiceItem
->>>>>>> e7a4aedf275665948d4ef7fffeec992f23256cd0
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView

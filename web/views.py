@@ -49,11 +49,6 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 
 
-
-
-
-
-
 def login_view(request):
     # sender = ['mkswathisuresh@gmail.com']
     # recipient = ['mkswathisuresh@gmail.com']
@@ -120,7 +115,6 @@ def order_payment(request):
         obj = UserRegistration.objects.get(email=email)
         order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
         order.save()
-        
 
         return render(
             request,
@@ -158,26 +152,36 @@ def callback(request):
         else:
             order.status = PaymentStatus.SUCCESS
             order.save()
-            email=order.name.email
-            phone=order.name.phone
-            password=order.name.password
-            send_mail("Registration Completed on USKLOGIN.COM",'Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: '+phone+'\nPassword: '+password+'','mkswathisuresh@gmail.com',[email],fail_silently=False)
-            return render(request, "web/callback.html", context={"status": order.status})  
+            email = order.name.email
+            phone = order.name.phone
+            password = order.name.password
+            send_mail(
+                "Registration Completed on USKLOGIN.COM",
+                "Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: "
+                + phone
+                + "\nPassword: "
+                + password
+                + "",
+                "mkswathisuresh@gmail.com",
+                [email],
+                fail_silently=False,
+            )
+            return render(request, "web/callback.html", context={"status": order.status})
     else:
         return render(request, "web/payment.html")
 
 
 def forgot_password(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
+    if request.method == "POST":
+        email = request.POST.get("email")
         if not UserRegistration.objects.filter(email=email).first():
             messages.warning(request, "User Not Found...")
             return redirect("web:forgot_password")
 
         user_obj = UserRegistration.objects.get(email=email)
         token = str(uuid.uuid4())
-        ChangePassword.objects.create(user=user_obj,forgot_password_token=token)
-        send_forget_password_mail(user_obj.email,token)
+        ChangePassword.objects.create(user=user_obj, forgot_password_token=token)
+        send_forget_password_mail(user_obj.email, token)
         messages.warning(request, "An email is sent")
         return redirect("web:forgot_password")
 
@@ -185,35 +189,35 @@ def forgot_password(request):
     return render(request, "web/forgot-password.html", context)
 
 
+def change_password(request, token):
 
-def change_password(request,token):
-    
     change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
     if change_password_obj.status == True:
         messages.warning(request, "Link expired...")
-        return redirect('web:forgot_password')
+        return redirect("web:forgot_password")
     print(change_password_obj.user.email)
-    user_id=UserRegistration.objects.filter(email=change_password_obj.user.email).first()
+    user_id = UserRegistration.objects.filter(email=change_password_obj.user.email).first()
     print(change_password_obj)
-    if request.method == 'POST':
-        new_password=request.POST.get('new_pswd')
-        confirm_password=request.POST.get('confirm_pswd')
-      
+    if request.method == "POST":
+        new_password = request.POST.get("new_pswd")
+        confirm_password = request.POST.get("confirm_pswd")
+
         if user_id is None:
             messages.warning(request, "User not found...")
-            return redirect(f'/change-password/{token}/')
+            return redirect(f"/change-password/{token}/")
 
         if new_password != confirm_password:
             messages.warning(request, "Your Password and confirm Password dosen't match")
-            return redirect(f'/change-password/{token}/')
+            return redirect(f"/change-password/{token}/")
 
         UserRegistration.objects.filter(email=change_password_obj.user.email).update(password=new_password)
         ChangePassword.objects.filter(forgot_password_token=token).update(status=True)
         messages.success(request, "Your password is updated")
         return redirect("web:login_view")
 
-    context = {'user_id':change_password_obj.user.id}
-    return render(request,'web/change-password.html',context)
+    context = {"user_id": change_password_obj.user.id}
+    return render(request, "web/change-password.html", context)
+
 
 def profile(request):
     user = request.session["phone"]
@@ -259,8 +263,7 @@ def index(request):
         "important_poster": important_poster,
         "room_name": "broadcast",
         "logined_user": logined_user,
-        'branding_image':branding_image
-        
+        "branding_image": branding_image,
     }
     return render(request, "web/index.html", context)
 
@@ -268,10 +271,8 @@ def index(request):
 def notes(request):
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {
-        "logined_user":logined_user,
-    }
-    return render(request,'web/notes.html',context)
+    context = {"logined_user": logined_user}
+    return render(request, "web/notes.html", context)
 
 
 def notification(request):
@@ -324,7 +325,6 @@ def generateBill(request):
 #     return JsonResponse({})
 
 
-
 # def searchResult(request):
 #     for item in request.GET:
 #         qs = ServiceHeads.objects.filter(title__istartswith=request.GET.get(item))
@@ -333,7 +333,6 @@ def generateBill(request):
 #             titles.append(terms.title)
 #         return JsonResponse(titles, safe=False)
 #     return render(request,'web/index.html')
-
 
 
 # def search_items(request):
@@ -356,18 +355,16 @@ def generateBill(request):
 #     return JsonResponse({"Message":"Only POST method Allowed "})
 
 
-
 def search_items(request):
     if request.POST:
-        search_Key=request.POST['search_Key']
-        services = Services.objects.select_related("service_head").filter(Q(service_head__title__icontains=search_Key)| Q(title__icontains=search_Key) )
+        search_Key = request.POST["search_Key"]
+        services = Services.objects.select_related("service_head").filter(Q(service_head__title__icontains=search_Key) | Q(title__icontains=search_Key))
         print(services.count())
 
         context = {}
-        context ["template"] = render_to_string('web/service-searching.html',{'services':services},request=request)
+        context["template"] = render_to_string("web/service-searching.html", {"services": services}, request=request)
 
     return JsonResponse(context)
-
 
 
 def generateForms(request):
@@ -524,32 +521,31 @@ def paymentfail(request):
 def certificate_view(request):
     user = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=user)
-    context = {'logined_user':logined_user}
-    return render(request,'web/certificate.html',context)
+    context = {"logined_user": logined_user}
+    return render(request, "web/certificate.html", context)
 
 
 def render_to_pdf(template_src, context_dict={}):
-	template = get_template(template_src)
-	html  = template.render(context_dict)
-	result = BytesIO()
-	pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-	if not pdf.err:
-		return HttpResponse(result.getvalue(), content_type='application/pdf')
-	return None
-
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type="application/pdf")
+    return None
 
 
 def download_pdf(request):
-    pdf = render_to_pdf('web/download-certificate-download.html')
-    response = HttpResponse(pdf, content_type='application/pdf')
-    filename = "Invoice_%s.pdf" %("12341231")
-    content = "attachment; filename='%s'" %(filename)
-    response['Content-Disposition'] = content
-    return render(request,'web/certificate.html')
+    pdf = render_to_pdf("web/download-certificate-download.html")
+    response = HttpResponse(pdf, content_type="application/pdf")
+    filename = "Invoice_%s.pdf" % ("12341231")
+    content = "attachment; filename='%s'" % (filename)
+    response["Content-Disposition"] = content
+    return render(request, "web/certificate.html")
 
 
 def logout(request):
-    try:    
+    try:
         del request.session["phone"]
     except:
         return redirect("web:login_view")
