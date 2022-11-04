@@ -36,6 +36,9 @@ class Invoice(models.Model):
         verbose_name = "Invoice"
         verbose_name_plural = "Invoices"
 
+    def get_invoiceitem(self):
+        return InvoiceItem.objects.filter(invoice=self)
+
     def get_absolute_url(self):
         return reverse("invoice-update", kwargs={"pk": self.pk})
 
@@ -45,7 +48,7 @@ class Invoice(models.Model):
 
 class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-    services_name = models.ForeignKey(Services, on_delete=models.CASCADE, related_name="Services")
+    services_name = models.ForeignKey(Services, on_delete=models.CASCADE, related_name="invoices_items")
     services_charge = models.CharField(max_length=100)
     username = models.CharField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
@@ -54,11 +57,11 @@ class InvoiceItem(models.Model):
     created = models.DateField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "InvoiceItem"
-        verbose_name_plural = "InvoiceItems"
+        verbose_name = "Invoice Item"
+        verbose_name_plural = "Invoice Items"
 
     def get_absolute_url(self):
-        return reverse("invoice-download", kwargs={"pk": self.pk})
+        return reverse("invoice_download", kwargs={"pk": self.pk})
 
     def __str__(self):
         return str(self.services_name)
