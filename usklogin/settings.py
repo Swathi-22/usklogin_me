@@ -68,7 +68,11 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "web.context_proccessor.notifications",
                 "web.context_proccessor.main_context",
-            ]
+               
+            ],
+            'libraries':{   
+                'custom_tags': 'web.templatetags.custom_tags',
+            }
         },
     }
 ]
