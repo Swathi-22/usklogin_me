@@ -22,10 +22,10 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "user_sessions",
     "web",
     "invoices",
     "services",
@@ -45,7 +45,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    "user_sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     # 'django.middleware.csrf.CsrfViewMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -137,6 +137,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CHANNEL_LAYERS = {"default": {"BACKEND": "channels_redis.core.RedisChannelLayer", "CONFIG": {"hosts": [("127.0.0.1", 6379)]}}}
 
+# DJANGO-SESSION
+SESSION_ENGINE = "user_sessions.backends.db"
+MAX_DEVICE_SESSIONS = 3
 
 # CELERY SETTINGS
 
@@ -149,13 +152,12 @@ CELERY_TIMEZONE = "Asia/Kolkata"
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
+# EMAIL SETTINGS
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mkswathisuresh@gmail.com'
-EMAIL_HOST_PASSWORD = 'rrkimjacfiuwqcic'
+EMAIL_HOST_USER = "mkswathisuresh@gmail.com"
+EMAIL_HOST_PASSWORD = "rrkimjacfiuwqcic"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-
