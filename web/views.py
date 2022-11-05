@@ -24,6 +24,7 @@ from web.models import AgentBonus
 from web.models import FAQ
 from web.models import PaymentStatus
 from web.models import ChangePassword
+from web.models import CertificateImages
 from services.models import BrandingImage
 import razorpay
 from .forms import UserRegistrationForm
@@ -44,9 +45,9 @@ from .helper import send_forget_password_mail
 import uuid
 from django.db.models import Q
 from django.template.loader import render_to_string
-from io import BytesIO
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+
 
 
 
@@ -526,26 +527,28 @@ def certificate_view(request):
     logined_user = UserRegistration.objects.get(phone=user)
     context = {'logined_user':logined_user}
     return render(request,'web/certificate.html',context)
+    
 
+def pdf_certificate(request):
+    user = request.session["phone"]
+    logined_user = UserRegistration.objects.get(phone=user)
+    certificate_images =  CertificateImages.objects.all()
+    template_path = 'web/certificate-pdf.html'
+    context = {'logined_user':logined_user,'certificate_images':certificate_images}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="usklogin-certificate.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
-def render_to_pdf(template_src, context_dict={}):
-	template = get_template(template_src)
-	html  = template.render(context_dict)
-	result = BytesIO()
-	pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-	if not pdf.err:
-		return HttpResponse(result.getvalue(), content_type='application/pdf')
-	return None
-
-
-
-def download_pdf(request):
-    pdf = render_to_pdf('web/download-certificate-download.html')
-    response = HttpResponse(pdf, content_type='application/pdf')
-    filename = "Invoice_%s.pdf" %("12341231")
-    content = "attachment; filename='%s'" %(filename)
-    response['Content-Disposition'] = content
-    return render(request,'web/certificate.html')
 
 
 def logout(request):

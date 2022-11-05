@@ -297,3 +297,11 @@ class ChangePassword(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+
+
+class CertificateImages(models.Model):
+    usk_logo = VersatileImageField(upload_to="USKimages", null=True, default="USK Login Logo.png")
+    bruvsha_logo = VersatileImageField(upload_to="USKimages", null=True, default="Bruvsha Logo.png")
+    seal = VersatileImageField(upload_to="USKimages", null=True, default="Seal.png")
+    sign = VersatileImageField(upload_to="USKimages", null=True, default="Sign.png")

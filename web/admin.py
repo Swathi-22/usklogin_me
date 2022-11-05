@@ -18,7 +18,7 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import UserRegistration
-from .models import ChangePassword
+from .models import CertificateImages
 from django.contrib import admin
 
 
@@ -115,6 +115,12 @@ class SupportTicketAdmin(admin.ModelAdmin):
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
     list_display = ("id", "question")
+
+
+
+@admin.register(CertificateImages)
+class CertificateImagesAdmin(admin.ModelAdmin):
+    list_display = ("id",)
 
 
 @admin.register(Order)
