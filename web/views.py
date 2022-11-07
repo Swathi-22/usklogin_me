@@ -56,11 +56,6 @@ from itertools import chain
 
 
 def login_view(request):
-    # sender = ['mkswathisuresh@gmail.com']
-    # recipient = ['mkswathisuresh@gmail.com']
-    # print(recipient)
-    # send_mail("Account Created in USKLOGIN.COM","Thankyou.....",sender,recipient,fail_silently=False)
-    # login_form = LoginForm(request.POST or None)
     if request.method == "POST":
         phone = request.POST["phone"]
         password = request.POST["password"]
@@ -141,14 +136,11 @@ def callback(request):
     def verify_signature(response_data):
         client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
         return client.utility.verify_payment_signature(response_data)
-
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
         signature_id = request.POST.get("razorpay_signature", "")
-
         order = Order.objects.get(provider_order_id=provider_order_id)
-
         order.payment_id = payment_id
         order.signature_id = signature_id
         order.save()
@@ -168,27 +160,25 @@ def callback(request):
         return render(request, "web/payment.html")
 
 
+
 def forgot_password(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         if not UserRegistration.objects.filter(email=email).first():
             messages.warning(request, "User Not Found...")
             return redirect("web:forgot_password")
-
         user_obj = UserRegistration.objects.get(email=email)
         token = str(uuid.uuid4())
         ChangePassword.objects.create(user=user_obj,forgot_password_token=token)
         send_forget_password_mail(user_obj.email,token)
         messages.warning(request, "An email is sent")
         return redirect("web:forgot_password")
-
     context = {}
     return render(request, "web/forgot-password.html", context)
 
 
 
 def change_password(request,token):
-    
     change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
     if change_password_obj.status == True:
         messages.warning(request, "Link expired...")
@@ -199,22 +189,20 @@ def change_password(request,token):
     if request.method == 'POST':
         new_password=request.POST.get('new_pswd')
         confirm_password=request.POST.get('confirm_pswd')
-      
         if user_id is None:
             messages.warning(request, "User not found...")
             return redirect(f'/change-password/{token}/')
-
         if new_password != confirm_password:
             messages.warning(request, "Your Password and confirm Password dosen't match")
             return redirect(f'/change-password/{token}/')
-
         UserRegistration.objects.filter(email=change_password_obj.user.email).update(password=new_password)
         ChangePassword.objects.filter(forgot_password_token=token).update(status=True)
         messages.success(request, "Your password is updated")
         return redirect("web:login_view")
-
     context = {'user_id':change_password_obj.user.id}
     return render(request,'web/change-password.html',context)
+
+
 
 def profile(request):
     user = request.session["phone"]
@@ -222,6 +210,7 @@ def profile(request):
     user_form = UserUpdateForm(request.POST, request.FILES, instance=logined_user)
     context = {"is_profile": True, "logined_user": logined_user, "user_form": user_form}
     return render(request, "web/profile.html", context)
+
 
 
 def profile_update(request):
@@ -238,9 +227,11 @@ def profile_update(request):
     return render(request, "web/profile-update.html", context)
 
 
+
 def settings(request):
     context = {}
     return render(request, "web/settings.html", context)
+
 
 
 def index(request):
@@ -252,13 +243,7 @@ def index(request):
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
     branding_image = BrandingImage.objects.all()
-    context = {
-        "is_index": True,
-        "service_head": service_head,
-        "latest_news": latest_news,
-        "new_service_poster": new_service_poster,
-        "important_poster": important_poster,
-        "room_name": "broadcast",
+    context = {"is_index": True,"service_head": service_head,"latest_news": latest_news,"new_service_poster": new_service_poster,"important_poster": important_poster,"room_name": "broadcast",
         "logined_user": logined_user,
         'branding_image':branding_image,
         'room_name':"broadcast",
