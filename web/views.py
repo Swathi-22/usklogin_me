@@ -260,7 +260,8 @@ def index(request):
         "important_poster": important_poster,
         "room_name": "broadcast",
         "logined_user": logined_user,
-        'branding_image':branding_image
+        'branding_image':branding_image,
+        'room_name':"broadcast",
         
     }
     return render(request, "web/index.html", context)
@@ -271,13 +272,14 @@ def notes(request):
     logined_user = UserRegistration.objects.get(phone=phone)
     context = {
         "logined_user":logined_user,
+        'room_name':"broadcast",
     }
     return render(request,'web/notes.html',context)
 
 
 def notification(request):
     channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": "Notification"})
+    async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
     return HttpResponse("Done")
 
 
@@ -296,6 +298,7 @@ def generatePoster(request):
         "professional_poster": professional_poster,
         "logined_user": logined_user,
         "branding_image": branding_image,
+        'room_name':"broadcast",
     }
     return render(request, "web/generate-poster.html", context)
 
@@ -304,7 +307,7 @@ def generateBill(request):
     services = Services.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_bill": True, "services": services, "logined_user": logined_user}
+    context = {"is_bill": True, "services": services, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/generate-bill.html", context)
 
 
@@ -331,7 +334,7 @@ def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_form": True, "generate_forms": generate_forms, "logined_user": logined_user}
+    context = {"is_form": True, "generate_forms": generate_forms, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/generate-form.html", context)
 
 
@@ -349,7 +352,7 @@ def documents(request):
     documents = DownloadDocuments.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_document": True, "documents": documents, "logined_user": logined_user}
+    context = {"is_document": True, "documents": documents, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/documents.html", context)
 
 
@@ -357,7 +360,7 @@ def software(request):
     softwares = Softwares.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_software": True, "softwares": softwares, "logined_user": logined_user}
+    context = {"is_software": True, "softwares": softwares, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/softwares.html", context)
 
 
@@ -365,7 +368,7 @@ def tools(request):
     tools = Tools.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_tool": True, "tools": tools, "logined_user": logined_user}
+    context = {"is_tool": True, "tools": tools, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/tools.html", context)
 
 
@@ -373,7 +376,7 @@ def marketingTip(request):
     marketing_tips = MarketingTips.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_tip": True, "marketing_tips": marketing_tips, "logined_user": logined_user}
+    context = {"is_tip": True, "marketing_tips": marketing_tips, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/marketing-tip.html", context)
 
 
@@ -381,7 +384,7 @@ def otherIdea(request):
     other_ideas = OtherIdeas.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_idea": True, "other_ideas": other_ideas, "logined_user": logined_user}
+    context = {"is_idea": True, "other_ideas": other_ideas, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/other-ideas.html", context)
 
 
@@ -389,7 +392,7 @@ def agencyPortal(request):
     agency_portal = AgencyPortal.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_portal": True, "agency_portal": agency_portal, "logined_user": logined_user}
+    context = {"is_portal": True, "agency_portal": agency_portal, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/agency-portal.html", context)
 
 
@@ -397,7 +400,7 @@ def backOfficeServices(request):
     back_office_services = BackOfficeServices.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_backservice": True, "back_office_services": back_office_services, "logined_user": logined_user}
+    context = {"is_backservice": True, "back_office_services": back_office_services, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/back-office-services.html", context)
 
 
@@ -405,14 +408,14 @@ def bonus(request):
     agent_bonus = AgentBonus.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_bonus": True, "agent_bonus": agent_bonus, "logined_user": logined_user}
+    context = {"is_bonus": True, "agent_bonus": agent_bonus, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/bonus.html", context)
 
 
 def support(request):
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_support": True, "logined_user": logined_user}
+    context = {"is_support": True, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/support.html", context)
 
 
@@ -429,7 +432,7 @@ def supportRequest(request):
         else:
             response_data = {"status": "false", "title": "Form validation error", "message": repr(forms.errors)}
         return HttpResponse(json.dumps(response_data), content_type="application/javascript")
-    context = {"forms": forms, "logined_user": logined_user}
+    context = {"forms": forms, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/support-request.html", context)
 
 
@@ -437,7 +440,7 @@ def F_A_Q(request):
     Frequently_Asked_Questions = FAQ.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"Frequently_Asked_Questions": Frequently_Asked_Questions, "logined_user": logined_user}
+    context = {"Frequently_Asked_Questions": Frequently_Asked_Questions, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/faq.html", context)
 
 
@@ -454,7 +457,7 @@ def supportTicket(request):
         else:
             response_data = {"status": "false", "title": "Form validation error", "message": repr(forms.errors)}
         return HttpResponse(json.dumps(response_data), content_type="application/javascript")
-    context = {"forms": forms, "logined_user": logined_user}
+    context = {"forms": forms, "logined_user": logined_user,'room_name':"broadcast",}
     return render(request, "web/support-ticket.html", context)
 
 
@@ -481,7 +484,7 @@ def paymentfail(request):
 def certificate_view(request):
     user = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=user)
-    context = {'logined_user':logined_user}
+    context = {'logined_user':logined_user,'room_name':"broadcast",}
     return render(request,'web/certificate.html',context)
     
 
@@ -492,19 +495,17 @@ def pdf_certificate(request):
     template_path = 'web/certificate-pdf.html'
     context = {'logined_user':logined_user,'certificate_images':certificate_images}
     # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type='application/pdf')
+    response = HttpResponse(content_type='application/pdf') 
     response['Content-Disposition'] = 'attachment; filename="usklogin-certificate.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
     # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
+    pisa_status = pisa.CreatePDF(html, dest=response)
     # if error then show some funny view
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
 
 
 def logout(request):

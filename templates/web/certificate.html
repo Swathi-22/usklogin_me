@@ -23,7 +23,7 @@
 <body>
   <div class="container">
     <div class="certificate-bg">
-      <div class="ombre-externe">
+      <div class="ombre-externe" id="certificate">
         <div class="peinture-ombre-interne-fine">
           <div class="row">
             <div class="col-lg-4  text-start">
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <a href="{% url 'web:pdf_certificate' %}">
+    <a href="{% url 'web:pdf_certificate' %}" id="print-button">
       <div class="download-button">
         Download
       </div>
@@ -113,6 +113,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      $(document).ready(function(){
+        $('#print-button').click(function(){
+          $('#certificate').printThis();
+        })
+      })
+    </script> -->
 </body>
 
 </html>

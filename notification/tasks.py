@@ -1,11 +1,11 @@
 import asyncio
 import json
-
 from .models import BroadcastNotification
 from celery import shared_task
 from celery.exceptions import Ignore
 from channels.layers import get_channel_layer
-
+from celery import Celery,states
+from asgiref.sync import async_to_sync
 
 @shared_task(bind=True)
 def broadcast_notification(self, data):
@@ -25,7 +25,7 @@ def broadcast_notification(self, data):
         else:
             self.update_state(state="FAILURE", meta={"exe": "Not Found"})
 
-            raise Ignore()
+            raise Ignore() 
 
     except:
         self.update_state(

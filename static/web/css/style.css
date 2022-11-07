@@ -13864,6 +13864,9 @@ transition: all ease 0.8s;
   font-size: 11px;
 }
 @media only screen and (max-width:576px){
+  .notification-bar{
+    margin: 66px 168px !important;
+  }
   .usk-login-register{
     width: 50% !important;
   }
@@ -14576,6 +14579,9 @@ button.chatbtn, button.createbtn {
 }
 
 @media only screen and (min-width:577px) and (max-width:768px){
+  .notification-bar{
+    margin: 76px 515px !important;
+  }
   button.editbtn {
     border: 0;
     padding: 10px;
@@ -14904,7 +14910,9 @@ button.chatbtn, button.createbtn {
 
 
 @media only screen and (min-width:768px) and (max-width:1024px){
-  
+  .notification-bar{
+    margin: 55px -103px !important;
+  }
   .logo-login {
     width: 25%;
     margin: 0px 384px;
