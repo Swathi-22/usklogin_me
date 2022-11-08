@@ -1,6 +1,6 @@
 {% extends "invoice/base.html" %}
 {% load static %}
-{%load crispy_forms_tags %} 
+{%load crispy_forms_tags %}
 <link rel="shortcut icon" href="{% static 'web/images/FAV.png' %}" />
 <title>USKLOGIN.COM</title>
 {% block title %}{% endblock %}
@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
     .save-button{
@@ -34,7 +34,7 @@
         <form action="" method="post">{% csrf_token %}
             {{ form|crispy }}
 
-       
+
                 <!-- <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -43,8 +43,9 @@
                   <label for="exampleInputPassword1" class="form-label">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1">
                 </div> -->
-        
-            
+
+
+
             <table class="table">
 
                 {{ invoices_items.management_form }}
@@ -75,17 +76,17 @@
                     </tr>
                 {% endfor %}
             </table>
-            
 
-            <a href="{% url 'invoices:invoice-list' %}" class="back"><i class="fa-solid fa-arrow-left-long"></i> <span style="color: #000;">Back</span> </a><input type="submit" value="Save" class="save-button"/> 
+
+            <a href="{% url 'invoices:invoice-list' %}" class="back"><i class="fa-solid fa-arrow-left-long"></i> <span style="color: #000;">Back</span> </a><input type="submit" value="Save" class="save-button"/>
         </form>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="{% static 'formset/jquery.formset.js' %}"></script>
     <script type="text/javascript">
         $('.formset_row').formset({
-            addText: 'add invoice items details',
-            deleteText: 'remove',
+            addText: '<div style="color:black;"><i class="fa-solid fa-plus" style="color:green;border:1px solid green;border-radius:50%;padding:5px;margin-right:5px"></i>Add Service</div>',
+            deleteText: '<div style="color:black;"><i class="fa-solid fa-xmark" style="color: red;border: 1px solid red;border-radius: 50%;padding: 5px 8px;margin-right: 5px;margin-top: 23px;"></i>Remove</div>',
             prefix: 'familymember_set'
         });
     </script>

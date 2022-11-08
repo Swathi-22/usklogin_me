@@ -10,7 +10,7 @@ from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
-
+from django.views.generic import DetailView
 
 class CustomerList(ListView):
     model = Customer
@@ -102,13 +102,13 @@ class InvoiceList(ListView):
 
 class InvoiceCreate(CreateView):
     model = Invoice
-    fields = ["customer", "invoice_name", "from_address", "invoice_no", "phone_no"]
+    fields = ["customer", "invoice_name",  "invoice_no", ]
     template_name = "invoice/invoice_form.html"
 
 
 class InvoiceItemCreate(CreateView):
     model = Invoice
-    fields = ["customer", "invoice_name", "from_address", "invoice_no", "phone_no"]
+    fields = ["customer", "invoice_name", "invoice_no",]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
@@ -134,14 +134,14 @@ class InvoiceItemCreate(CreateView):
 
 class InvoiceUpdate(UpdateView):
     model = Invoice
-    fields = ["customer", "invoice_name", "from_address", "invoice_no", "phone_no"]
+    fields = ["customer", "invoice_name",  "invoice_no", ]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
 
 class InvoieItemUpdate(UpdateView):
     model = Invoice
-    fields = ["customer", "invoice_name", "from_address", "invoice_no", "phone_no"]
+    fields = ["customer", "invoice_name",  "invoice_no",]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
@@ -169,3 +169,13 @@ class InvoiceDelete(DeleteView):
     model = Invoice
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_confirm_delete.html"
+
+
+class InvoiceDetailView(DetailView):
+    model = Invoice
+    template_name = "invoice/general_3.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["invoices"] = self.object
+        return context

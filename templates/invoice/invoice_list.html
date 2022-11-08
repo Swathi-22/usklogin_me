@@ -41,7 +41,7 @@ tbody, td, tfoot, th, thead, tr {
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
 
-        
+
         <!-- <div>
         <ul>
             {% for profile in object_list %}
@@ -52,7 +52,6 @@ tbody, td, tfoot, th, thead, tr {
             {% empty %}
                 <li>No profile yet.</li>
             {% endfor %}
-
         </ul>
         <p>
           <a href="{% url 'invoices:customer-add' %}">add a profile</a>
@@ -60,11 +59,10 @@ tbody, td, tfoot, th, thead, tr {
         <p>
           <a href="{% url 'invoices:invoice-list' %}"> add invoices</a>
         </p>
-
     </div> -->
 
         <div class="row ">
-            
+
             <div class="col-lg-7 col-md-12 col-sm-12 col-12">
                 <h5 class="customer-list-head pb-4">Invoice List: </h5>
                 <div style="overflow-x: auto;">
@@ -76,6 +74,7 @@ tbody, td, tfoot, th, thead, tr {
                                 <th>Invoice No</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th>Download</th>
                             </tr>
                         </thead>
                         <tbody  class="td-color">
@@ -94,16 +93,22 @@ tbody, td, tfoot, th, thead, tr {
                                         <i class="fa-solid fa-trash delete-delete"></i>
                                     </a>
                                 </td>
+                                <td>
+                                    <a href="{% url 'invoices:invoice_download' profile.pk %}">
+                                        <i class="fa-solid fa-download"></i>
+                                    </a>
+                                </td>
+                                <td>
                             </tr>
                             {% empty %}
                             <td>No profile yet.</td>
                             {% endfor %}
                         </tbody>
-    
+
                     </table>
-                   
+
                 </div>
-                
+
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                         <a href="{% url 'invoices:invoice-add' %}">
@@ -124,10 +129,10 @@ tbody, td, tfoot, th, thead, tr {
             <div class="col-lg-5 col-md-12 col-sm-12 col-12">
                 <h5 class="customer-list-head pb-4">Search Invoice: </h5>
                 <div class="container-2"><span class="icon"><i class="fa fa-search"></i></span>
-  
+
                     <!-- Ensure that the input control you want to use is decorated with the data-prefixbox attribute -->
                     <input type="search" id="search" placeholder="Search..." data-prefixbox="true" />
-                  
+
                   </div>
             </div>
         </div>

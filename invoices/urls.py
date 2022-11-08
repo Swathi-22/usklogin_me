@@ -17,4 +17,6 @@ urlpatterns = [
     path("invoice/delete/<int:pk>", views.InvoiceDelete.as_view(), name="invoice-delete"),
     # ####
     path("demo/", TemplateView.as_view(template_name="invoice/general_3.html")),
+    # #### Download invoices  ###
+    path("invoice/download/<int:pk>", views.InvoiceDetailView.as_view(), name="invoice_download"),
 ]

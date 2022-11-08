@@ -25,15 +25,15 @@
                             <div class="tm_logo"><img src="{% static 'invoice/img/logo.svg' %}" alt="Logo"></div>
                         </div>
                         <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                            <div class="tm_f50 tm_text_uppercase tm_white_color">Invoice</div>
+                            <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoice.invoice_name}}</div>
                         </div>
                         <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                     </div>
                     <div class="tm_invoice_info tm_mb25">
                         <div class="tm_card_note tm_mobile_hide"><b class="tm_primary_color">Payment Method: </b>Paypal, Western Union</div>
                         <div class="tm_invoice_info_list tm_white_color">
-                            <p class="tm_invoice_number tm_m0">Invoice No: <b>#LL93784</b></p>
-                            <p class="tm_invoice_date tm_m0">Date: <b>01.07.2022</b></p>
+                            <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ invoice.invoice_no }}</b></p>
+                            <p class="tm_invoice_date tm_m0">Date: <b>{{invoice.created}}</b></p>
                         </div>
                         <div class="tm_invoice_seperator tm_accent_bg"></div>
                     </div>
@@ -41,9 +41,9 @@
                         <div class="tm_invoice_left">
                             <p class="tm_mb2"><b class="tm_primary_color">Invoice To:</b></p>
                             <p>
-                                Lowell H. Dominguez <br>
-                                84 Spilman Street, London <br>United Kingdom <br>
-                                lowell@gmail.com
+                                {{invoice.customer}} <br>
+                                {{invoice.customer.address}} <br> {{invoice.customer.phone_no}} <br>
+                                {{invoice.customer.email}}
                             </p>
                         </div>
                         <div class="tm_invoice_right tm_text_right">
@@ -70,13 +70,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        {% for item in invoice.get_invoiceitem %}
                                         <tr>
-                                            <td class="tm_width_3">1. Website Design</td>
-                                            <td class="tm_width_4">Six web page designs and three times revision</td>
-                                            <td class="tm_width_2">$350</td>
-                                            <td class="tm_width_1">1</td>
-                                            <td class="tm_width_2 tm_text_right">$350</td>
+                                            <td class="tm_width_3">1. {{ item.services_name }}</td>
+                                            <td class="tm_width_4">{{item.descripton}}</td>
+                                            <td class="tm_width_2">${{item.services_charge}}</td>
+                                            <td class="tm_width_1">{{item.qty}}</td>
+                                            <td class="tm_width_2 tm_text_right">${{item.get_subtotal}}</td>
                                         </tr>
+
+                                        {% endfor %}
+                                        {% comment %}
                                         <tr>
                                             <td class="tm_width_3">2. Web Development</td>
                                             <td class="tm_width_4">Convert pixel-perfect frontend and make it dynamic</td>
@@ -98,6 +103,7 @@
                                             <td class="tm_width_1">3</td>
                                             <td class="tm_width_2 tm_text_right">$300</td>
                                         </tr>
+                                        {% endcomment %}
                                     </tbody>
                                 </table>
                             </div>
@@ -120,7 +126,7 @@
                                         </tr>
                                         <tr class="tm_accent_bg">
                                             <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Grand Total </td>
-                                            <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">$1732</td>
+                                            <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">${{invoice.get_total}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

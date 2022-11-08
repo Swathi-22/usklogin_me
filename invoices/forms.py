@@ -16,7 +16,7 @@ class CustomerForm(ModelForm):
 class InvoiceForm(ModelForm):
     class Meta:
         model = Invoice
-        fields = ("customer", "invoice_name", "invoice_no", "from_address", "phone_no")
+        fields = ("customer", "invoice_name", "invoice_no",)
 
 
 class InvoiceItemForm(ModelForm):
