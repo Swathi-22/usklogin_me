@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.utils import timezone
 from decimal import Decimal
 
+
+
 # Create your models here.
 class Customer(models.Model):
     name = models.CharField(max_length=100)
