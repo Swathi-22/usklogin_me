@@ -4,6 +4,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 
+from decimal import Decimal
+
 
 # Create your models here.
 class Customer(models.Model):
@@ -39,6 +41,12 @@ class Invoice(models.Model):
     def get_invoiceitem(self):
         return InvoiceItem.objects.filter(invoice=self)
 
+    def get_total(self):
+        total = 0
+        for item in InvoiceItem.objects.filter(invoice=self):
+            total += item.get_subtotal()
+        return Decimal(total) if total else 0
+
     def get_absolute_url(self):
         return reverse("invoice-update", kwargs={"pk": self.pk})
 
@@ -59,6 +67,9 @@ class InvoiceItem(models.Model):
     class Meta:
         verbose_name = "Invoice Item"
         verbose_name_plural = "Invoice Items"
+
+    def get_subtotal(self):
+        return float(self.services_charge * self.qty)
 
     def get_absolute_url(self):
         return reverse("invoice_download", kwargs={"pk": self.pk})

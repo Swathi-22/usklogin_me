@@ -77,7 +77,7 @@
                                             <td class="tm_width_4">{{item.descripton}}</td>
                                             <td class="tm_width_2">${{item.services_charge}}</td>
                                             <td class="tm_width_1">{{item.qty}}</td>
-                                            <td class="tm_width_2 tm_text_right">$350</td>
+                                            <td class="tm_width_2 tm_text_right">${{ item.get_subtotal }}</td>
                                         </tr>
 
                                         {% endfor %}
@@ -126,7 +126,7 @@
                                         </tr>
                                         <tr class="tm_accent_bg">
                                             <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Grand Total </td>
-                                            <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">$1732</td>
+                                            <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">${{invoice.get_total}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
