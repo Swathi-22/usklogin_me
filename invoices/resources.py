@@ -6,9 +6,9 @@ from .models import Invoice,Customer
 
 
 class InvoiceAdminResource(resources.ModelResource):
-    customer_name = fields.Field(column_name='name', attribute='name', widget=ForeignKeyWidget(Customer, field='name'))
-    customer_email = fields.Field(column_name='email', attribute='email', widget=ForeignKeyWidget(Customer, field='email'))
-    customer_phone_no = fields.Field(column_name='phone_no', attribute='phone_no', widget=ForeignKeyWidget(Customer, field='phone_no'))
+    customer_name = fields.Field(column_name='name', attribute='name', widget=ForeignKeyWidget(Customer,'name'))
+    customer_email = fields.Field(column_name='email', attribute='email', widget=ForeignKeyWidget(Customer,'email'))
+    customer_phone_no = fields.Field(column_name='phone_no', attribute='phone_no', widget=ForeignKeyWidget(Customer,'phone_no'))
    
 
     class Meta:
