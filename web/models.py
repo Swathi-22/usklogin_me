@@ -35,7 +35,7 @@ class UserRegistration(BaseModel):
     )
     name = models.CharField(max_length=100)
     # password = models.CharField(default=generate_pw, max_length=30, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     shop_name = models.CharField(max_length=100)
     shop_address = models.TextField()
     email = models.EmailField()

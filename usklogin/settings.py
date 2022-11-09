@@ -17,24 +17,29 @@ ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
-    "versatileimagefield",
-    "tinymce",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "django.contrib.humanize",
-    "web",
-    "invoices",
-    "services",
-    "notification",
+    # 3rd party packages
     "user_sessions",
     "channels",
     "django_celery_beat",
     "django_celery_results",
     "crispy_forms",
     "crispy_bootstrap5",
+    "versatileimagefield",
+    "tinymce",
+    "import_export",
+    #
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    # apps
+    "web",
+    "invoices",
+    "services",
+    "notification",
+    "accounts",
 ]
 
 
@@ -162,3 +167,6 @@ EMAIL_HOST_USER = "mkswathisuresh@gmail.com"
 EMAIL_HOST_PASSWORD = "rrkimjacfiuwqcic"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+# user model created
+AUTH_USER_MODEL = "accounts.User"

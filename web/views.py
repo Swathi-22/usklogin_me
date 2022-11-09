@@ -110,7 +110,6 @@ def order_payment(request):
         email = request.POST.get("email")
         amount = 20000
         if user_form.is_valid():
-            user_form.user = request.user
             user_form.save()
 
         client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
