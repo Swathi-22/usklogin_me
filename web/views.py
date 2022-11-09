@@ -1,58 +1,52 @@
 import json
-from multiprocessing import context
 import os
-import re
+import uuid
+from itertools import chain
+
+from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
-from web.models import ChangePassword, UserRegistration
-from web.models import Order
-from web.models import LatestNews
-from web.models import NewServicePoster
-from web.models import ImportantPoster
+from web.models import FAQ
+from web.models import AgencyPortal
+from web.models import AgentBonus
+from web.models import BackOfficeServices
+from web.models import CertificateImages
+from web.models import ChangePassword
 from web.models import CommonServicesPoster
-from web.models import FestivelPoster
-from web.models import ProfessionalPoster
-from web.models import DownloadForms
 from web.models import DownloadDocuments
+from web.models import DownloadForms
+from web.models import FestivelPoster
+from web.models import ImportantPoster
+from web.models import LatestNews
+from web.models import MarketingTips
+from web.models import NewServicePoster
+from web.models import Order
+from web.models import OtherIdeas
+from web.models import PaymentStatus
+from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
-from web.models import MarketingTips
-from web.models import OtherIdeas
-from web.models import AgencyPortal
-from web.models import BackOfficeServices
-from web.models import AgentBonus
-from web.models import FAQ
-from web.models import PaymentStatus
-from web.models import ChangePassword
-from web.models import CertificateImages
-from services.models import BrandingImage
+from web.models import UserRegistration
+
 import razorpay
-from .forms import UserRegistrationForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
+from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
+from .helper import send_forget_password_mail
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.db.models import Q
 from django.http import Http404
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.contrib.auth.forms import PasswordChangeForm
-from django.core.mail import send_mail
-from .helper import send_forget_password_mail
-import uuid
-from django.db.models import Q
-from django.template.loader import render_to_string
 from django.template.loader import get_template
+from django.template.loader import render_to_string
 from xhtml2pdf import pisa
-from itertools import chain
-
-
-
-
-
 
 
 def login_view(request):
@@ -116,7 +110,6 @@ def order_payment(request):
         obj = UserRegistration.objects.get(email=email)
         order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
         order.save()
-        
 
         return render(
             request,
@@ -136,6 +129,7 @@ def callback(request):
     def verify_signature(response_data):
         client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
         return client.utility.verify_payment_signature(response_data)
+
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -151,57 +145,64 @@ def callback(request):
         else:
             order.status = PaymentStatus.SUCCESS
             order.save()
-            email=order.name.email
-            phone=order.name.phone
-            password=order.name.password
-            send_mail("Registration Completed on USKLOGIN.COM",'Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: '+phone+'\nPassword: '+password+'','mkswathisuresh@gmail.com',[email],fail_silently=False)
-            return render(request, "web/callback.html", context={"status": order.status})  
+            email = order.name.email
+            phone = order.name.phone
+            password = order.name.password
+            send_mail(
+                "Registration Completed on USKLOGIN.COM",
+                "Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: "
+                + phone
+                + "\nPassword: "
+                + password
+                + "",
+                "mkswathisuresh@gmail.com",
+                [email],
+                fail_silently=False,
+            )
+            return render(request, "web/callback.html", context={"status": order.status})
     else:
         return render(request, "web/payment.html")
 
 
-
 def forgot_password(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
+    if request.method == "POST":
+        email = request.POST.get("email")
         if not UserRegistration.objects.filter(email=email).first():
             messages.warning(request, "User Not Found...")
             return redirect("web:forgot_password")
         user_obj = UserRegistration.objects.get(email=email)
         token = str(uuid.uuid4())
-        ChangePassword.objects.create(user=user_obj,forgot_password_token=token)
-        send_forget_password_mail(user_obj.email,token)
+        ChangePassword.objects.create(user=user_obj, forgot_password_token=token)
+        send_forget_password_mail(user_obj.email, token)
         messages.warning(request, "An email is sent")
         return redirect("web:forgot_password")
     context = {}
     return render(request, "web/forgot-password.html", context)
 
 
-
-def change_password(request,token):
+def change_password(request, token):
     change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
-    if change_password_obj.status == True:
+    if change_password_obj.status:
         messages.warning(request, "Link expired...")
-        return redirect('web:forgot_password')
+        return redirect("web:forgot_password")
     print(change_password_obj.user.email)
-    user_id=UserRegistration.objects.filter(email=change_password_obj.user.email).first()
+    user_id = UserRegistration.objects.filter(email=change_password_obj.user.email).first()
     print(change_password_obj)
-    if request.method == 'POST':
-        new_password=request.POST.get('new_pswd')
-        confirm_password=request.POST.get('confirm_pswd')
+    if request.method == "POST":
+        new_password = request.POST.get("new_pswd")
+        confirm_password = request.POST.get("confirm_pswd")
         if user_id is None:
             messages.warning(request, "User not found...")
-            return redirect(f'/change-password/{token}/')
+            return redirect(f"/change-password/{token}/")
         if new_password != confirm_password:
             messages.warning(request, "Your Password and confirm Password dosen't match")
-            return redirect(f'/change-password/{token}/')
+            return redirect(f"/change-password/{token}/")
         UserRegistration.objects.filter(email=change_password_obj.user.email).update(password=new_password)
         ChangePassword.objects.filter(forgot_password_token=token).update(status=True)
         messages.success(request, "Your password is updated")
         return redirect("web:login_view")
-    context = {'user_id':change_password_obj.user.id}
-    return render(request,'web/change-password.html',context)
-
+    context = {"user_id": change_password_obj.user.id}
+    return render(request, "web/change-password.html", context)
 
 
 def profile(request):
@@ -210,7 +211,6 @@ def profile(request):
     user_form = UserUpdateForm(request.POST, request.FILES, instance=logined_user)
     context = {"is_profile": True, "logined_user": logined_user, "user_form": user_form}
     return render(request, "web/profile.html", context)
-
 
 
 def profile_update(request):
@@ -227,11 +227,9 @@ def profile_update(request):
     return render(request, "web/profile-update.html", context)
 
 
-
 def settings(request):
     context = {}
     return render(request, "web/settings.html", context)
-
 
 
 def index(request):
@@ -243,11 +241,16 @@ def index(request):
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
     branding_image = BrandingImage.objects.all()
-    context = {"is_index": True,"service_head": service_head,"latest_news": latest_news,"new_service_poster": new_service_poster,"important_poster": important_poster,"room_name": "broadcast",
+    context = {
+        "is_index": True,
+        "service_head": service_head,
+        "latest_news": latest_news,
+        "new_service_poster": new_service_poster,
+        "important_poster": important_poster,
+        "room_name": "broadcast",
         "logined_user": logined_user,
-        'branding_image':branding_image,
-        'room_name':"broadcast",
-        
+        "branding_image": branding_image,
+        "room_name": "broadcast",
     }
     return render(request, "web/index.html", context)
 
@@ -255,11 +258,8 @@ def index(request):
 def notes(request):
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {
-        "logined_user":logined_user,
-        'room_name':"broadcast",
-    }
-    return render(request,'web/notes.html',context)
+    context = {"logined_user": logined_user, "room_name": "broadcast"}
+    return render(request, "web/notes.html", context)
 
 
 def notification(request):
@@ -283,7 +283,7 @@ def generatePoster(request):
         "professional_poster": professional_poster,
         "logined_user": logined_user,
         "branding_image": branding_image,
-        'room_name':"broadcast",
+        "room_name": "broadcast",
     }
     return render(request, "web/generate-poster.html", context)
 
@@ -292,34 +292,32 @@ def generateBill(request):
     services = Services.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_bill": True, "services": services, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_bill": True, "services": services, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
-
 
 
 def search_items(request):
     if request.POST:
-        search_Key=request.POST['search_Key']
-        services = Services.objects.select_related("service_head").filter(Q(service_head__title__icontains=search_Key)| Q(title__icontains=search_Key) )
+        search_Key = request.POST["search_Key"]
+        services = Services.objects.select_related("service_head").filter(Q(service_head__title__icontains=search_Key) | Q(title__icontains=search_Key))
         new_service_poster = NewServicePoster.objects.filter(Q(title__icontains=search_Key))
         important_poster = ImportantPoster.objects.filter(Q(title__icontains=search_Key))
         common_services_poster = CommonServicesPoster.objects.filter(Q(title__icontains=search_Key))
         festivel_poster = FestivelPoster.objects.filter(Q(title__icontains=search_Key))
         professional_poster = ProfessionalPoster.objects.filter(Q(title__icontains=search_Key))
-        result=chain(services,new_service_poster,important_poster,common_services_poster,festivel_poster,professional_poster)
+        result = chain(services, new_service_poster, important_poster, common_services_poster, festivel_poster, professional_poster)
         print(services.count())
         context = {}
-        context ["template"] = render_to_string('web/service-searching.html',{'result':result,},request=request)
-    
-    return JsonResponse(context)
+        context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
 
+    return JsonResponse(context)
 
 
 def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_form": True, "generate_forms": generate_forms, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_form": True, "generate_forms": generate_forms, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/generate-form.html", context)
 
 
@@ -337,7 +335,7 @@ def documents(request):
     documents = DownloadDocuments.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_document": True, "documents": documents, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_document": True, "documents": documents, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/documents.html", context)
 
 
@@ -345,7 +343,7 @@ def software(request):
     softwares = Softwares.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_software": True, "softwares": softwares, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_software": True, "softwares": softwares, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/softwares.html", context)
 
 
@@ -353,7 +351,7 @@ def tools(request):
     tools = Tools.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_tool": True, "tools": tools, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_tool": True, "tools": tools, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/tools.html", context)
 
 
@@ -361,7 +359,7 @@ def marketingTip(request):
     marketing_tips = MarketingTips.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_tip": True, "marketing_tips": marketing_tips, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_tip": True, "marketing_tips": marketing_tips, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/marketing-tip.html", context)
 
 
@@ -369,7 +367,7 @@ def otherIdea(request):
     other_ideas = OtherIdeas.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_idea": True, "other_ideas": other_ideas, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_idea": True, "other_ideas": other_ideas, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/other-ideas.html", context)
 
 
@@ -377,7 +375,7 @@ def agencyPortal(request):
     agency_portal = AgencyPortal.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_portal": True, "agency_portal": agency_portal, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_portal": True, "agency_portal": agency_portal, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/agency-portal.html", context)
 
 
@@ -385,7 +383,7 @@ def backOfficeServices(request):
     back_office_services = BackOfficeServices.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_backservice": True, "back_office_services": back_office_services, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_backservice": True, "back_office_services": back_office_services, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/back-office-services.html", context)
 
 
@@ -393,14 +391,14 @@ def bonus(request):
     agent_bonus = AgentBonus.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_bonus": True, "agent_bonus": agent_bonus, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_bonus": True, "agent_bonus": agent_bonus, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/bonus.html", context)
 
 
 def support(request):
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"is_support": True, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"is_support": True, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
 
@@ -417,7 +415,7 @@ def supportRequest(request):
         else:
             response_data = {"status": "false", "title": "Form validation error", "message": repr(forms.errors)}
         return HttpResponse(json.dumps(response_data), content_type="application/javascript")
-    context = {"forms": forms, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"forms": forms, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/support-request.html", context)
 
 
@@ -425,7 +423,7 @@ def F_A_Q(request):
     Frequently_Asked_Questions = FAQ.objects.all()
     phone = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=phone)
-    context = {"Frequently_Asked_Questions": Frequently_Asked_Questions, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"Frequently_Asked_Questions": Frequently_Asked_Questions, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/faq.html", context)
 
 
@@ -442,7 +440,7 @@ def supportTicket(request):
         else:
             response_data = {"status": "false", "title": "Form validation error", "message": repr(forms.errors)}
         return HttpResponse(json.dumps(response_data), content_type="application/javascript")
-    context = {"forms": forms, "logined_user": logined_user,'room_name':"broadcast",}
+    context = {"forms": forms, "logined_user": logined_user, "room_name": "broadcast"}
     return render(request, "web/support-ticket.html", context)
 
 
@@ -469,19 +467,19 @@ def paymentfail(request):
 def certificate_view(request):
     user = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=user)
-    context = {'logined_user':logined_user,'room_name':"broadcast",}
-    return render(request,'web/certificate.html',context)
-    
+    context = {"logined_user": logined_user, "room_name": "broadcast"}
+    return render(request, "web/certificate.html", context)
+
 
 def pdf_certificate(request):
     user = request.session["phone"]
     logined_user = UserRegistration.objects.get(phone=user)
-    certificate_images =  CertificateImages.objects.all()
-    template_path = 'web/certificate-pdf.html'
-    context = {'logined_user':logined_user,'certificate_images':certificate_images}
+    certificate_images = CertificateImages.objects.all()
+    template_path = "web/certificate-pdf.html"
+    context = {"logined_user": logined_user, "certificate_images": certificate_images}
     # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type='application/pdf') 
-    response['Content-Disposition'] = 'attachment; filename="usklogin-certificate.pdf"'
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'attachment; filename="usklogin-certificate.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -489,12 +487,12 @@ def pdf_certificate(request):
     pisa_status = pisa.CreatePDF(html, dest=response)
     # if error then show some funny view
     if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        return HttpResponse("We had some errors <pre>" + html + "</pre>")
     return response
 
 
 def logout(request):
-    try:    
+    try:
         del request.session["phone"]
     except:
         return redirect("web:login_view")

@@ -1,5 +1,7 @@
+from .models import BrandingImage
+from .models import ServiceHeads
+from .models import Services
 from django.contrib import admin
-from .models import ServiceHeads, Services, BrandingImage
 
 
 @admin.register(ServiceHeads)
@@ -16,4 +18,4 @@ class ServicesAdmin(admin.ModelAdmin):
 
 @admin.register(BrandingImage)
 class BrandingImageAdmin(admin.ModelAdmin):
-    list_display = ("id","image",)
+    list_display = ("id", "image")

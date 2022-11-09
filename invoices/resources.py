@@ -1,16 +1,17 @@
-from django.contrib.auth.models import User
-from import_export import resources, fields
-from import_export.widgets import ForeignKeyWidget, ManyToManyWidget,DateWidget
-from .models import Invoice,Customer
-
+from .models import Customer
+from .models import Invoice
+from import_export import fields
+from import_export import resources
+from import_export.widgets import ForeignKeyWidget
 
 
 class InvoiceAdminResource(resources.ModelResource):
-    customer_name = fields.Field(column_name='name', attribute='name', widget=ForeignKeyWidget(Customer, field='name'))
-    customer_email = fields.Field(column_name='email', attribute='email', widget=ForeignKeyWidget(Customer, field='email'))
-    customer_phone_no = fields.Field(column_name='phone_no', attribute='phone_no', widget=ForeignKeyWidget(Customer, field='phone_no'))
-   
+    customer_name = fields.Field(column_name="customer_name", attribute="customer", widget=ForeignKeyWidget(Customer, "name"))
+    customer_email = fields.Field(column_name="customer_email", attribute="customer", widget=ForeignKeyWidget(Customer, "email"))
+    customer_phone_no = fields.Field(column_name="customer_phone_no", attribute="customer", widget=ForeignKeyWidget(Customer, "phone_no"))
+    customer_address = fields.Field(column_name="customer_address", attribute="customer", widget=ForeignKeyWidget(Customer, "address"))
+    customer_created_date = fields.Field(column_name="customer_created_date", attribute="customer", widget=ForeignKeyWidget(Customer, "created_date"))
 
     class Meta:
         model = Invoice
-        fields = ('customer_name','customer_email','customer_phone_no','invoice_name','invoice_no','created' )
+        fields = ("customer_name", "customer_email", "customer_phone_no", "customer_address", "customer_created_date", "invoice_name", "invoice_no", "created")

@@ -1,26 +1,23 @@
-
 from .forms import CustomerForm
 from .forms import InvoiceItemFormset
 from .models import Customer
 from .models import Invoice
-from .models import InvoiceItem
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
+from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
-from django.views.generic import DetailView
-
 
 
 class CustomerList(ListView):
     model = Customer
     template_name = "invoice/customer_list.html"
-    
-    def get_context_data(self,*args, **kwargs):
-        context = super().get_context_data(*args,**kwargs)
-        context['is_bill'] = True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["is_bill"] = True
         return context
 
 
@@ -104,16 +101,15 @@ class InvoiceList(ListView):
 
 class InvoiceCreate(CreateView):
     model = Invoice
-    fields = ["customer", "invoice_name",  "invoice_no", ]
+    fields = ["customer", "invoice_name", "invoice_no"]
     template_name = "invoice/invoice_form.html"
 
 
 class InvoiceItemCreate(CreateView):
     model = Invoice
-    fields = ["customer", "invoice_name", "invoice_no",]
+    fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
-  
 
     def get_context_data(self, **kwargs):
         context = super(InvoiceItemCreate, self).get_context_data(**kwargs)
@@ -137,14 +133,14 @@ class InvoiceItemCreate(CreateView):
 
 class InvoiceUpdate(UpdateView):
     model = Invoice
-    fields = ["customer", "invoice_name",  "invoice_no", ]
+    fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
 
 class InvoieItemUpdate(UpdateView):
     model = Invoice
-    fields = ["customer", "invoice_name",  "invoice_no",]
+    fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 

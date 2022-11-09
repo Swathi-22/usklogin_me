@@ -1,4 +1,3 @@
-from email.policy import default
 from .constants import PaymentStatus
 from .functions import generate_pk
 from .functions import generate_pw
@@ -36,8 +35,8 @@ class UserRegistration(BaseModel):
     shop_address = models.TextField()
     email = models.EmailField()
     phone = models.CharField(max_length=200)
-    district = models.CharField(max_length = 200)
-    pincode = models.CharField(max_length = 100)
+    district = models.CharField(max_length=200)
+    pincode = models.CharField(max_length=100)
     profile_image = VersatileImageField(upload_to="Profile", null=True, blank=True)
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
     is_user = models.BooleanField(default=False)
@@ -64,7 +63,7 @@ class Order(models.Model):
 
 class LatestNews(models.Model):
     news = models.TextField()
-    link = models.URLField(blank=True,null=True)
+    link = models.URLField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Lates News"
@@ -288,16 +287,14 @@ class FAQ(models.Model):
         return str(self.question)
 
 
-
 class ChangePassword(models.Model):
-    user = models.ForeignKey(UserRegistration,on_delete=models.CASCADE)
+    user = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
     forgot_password_token = models.CharField(max_length=100)
-    created_at = models. DateTimeField(auto_now_add = True)
+    created_at = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.user)
-
 
 
 class CertificateImages(models.Model):
