@@ -57,7 +57,7 @@ class Invoice(models.Model):
 class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
     services_name = models.ForeignKey(Services, on_delete=models.CASCADE, related_name="invoices_items")
-    services_charge = models.CharField(max_length=100)
+    services_charge = models.IntegerField()
     username = models.CharField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
     descripton = models.TextField(blank=True, null=True)
@@ -69,7 +69,7 @@ class InvoiceItem(models.Model):
         verbose_name_plural = "Invoice Items"
 
     def get_subtotal(self):
-        return float(self.services_charge * self.qty)
+        return self.services_charge * self.qty
 
     def get_absolute_url(self):
         return reverse("invoice_download", kwargs={"pk": self.pk})

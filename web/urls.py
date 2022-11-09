@@ -4,7 +4,7 @@ from django.views.static import serve
 
 
 app_name = "web"
-    
+
 urlpatterns = [
     path("", views.login_view, name="login_view"),
     path("register/", views.register, name="register"),
@@ -18,7 +18,7 @@ urlpatterns = [
     path("notification/", views.notification, name="notification"),
     path("generate-poster/", views.generatePoster, name="generatePoster"),
     path("generate-bill/", views.generateBill, name="generateBill"),
-    path("search/", views.search_items,name="search_items"),
+    path("search/", views.search_items, name="search_items"),
     path("generate-form/", views.generateForms, name="generateForms"),
     path("download/", serve, {"document_root": "settings.MEDIA_ROOT"}),
     path("documents/", views.documents, name="documents"),
@@ -36,7 +36,7 @@ urlpatterns = [
     path("terms-and-conditions/", views.termsConditions, name="termsConditions"),
     path("payment/", views.order_payment, name="payment"),
     path("callback/", views.callback, name="callback"),
-    path("download-certificate/",views.certificate_view,name="certificate_view"),
-    path('pdf_download/', views.download_pdf, name="pdf_download"),
+    path("download-certificate/", views.certificate_view, name="certificate_view"),
+    # path('pdf_download/', views.download_pdf, name="pdf_download"),
     path("logout/", views.logout, name="logout"),
 ]

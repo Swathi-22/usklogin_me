@@ -24,7 +24,8 @@ from web.models import AgentBonus
 from web.models import FAQ
 from web.models import PaymentStatus
 from web.models import ChangePassword
-from web.models import CertificateImages
+
+# from web.models import CertificateImages
 from services.models import BrandingImage
 import razorpay
 from .forms import UserRegistrationForm
@@ -109,7 +110,9 @@ def order_payment(request):
         email = request.POST.get("email")
         amount = 20000
         if user_form.is_valid():
+            user_form.user = request.user
             user_form.save()
+
         client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
         razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
         obj = UserRegistration.objects.get(email=email)
@@ -120,8 +123,8 @@ def order_payment(request):
             request,
             "web/payment.html",
             {
-                "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
-                # "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
+                # "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
+                "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
                 "razorpay_key": "rzp_test_kVa6uUqaP96eJr",
                 "order": order,
             },

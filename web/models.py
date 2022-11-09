@@ -7,6 +7,9 @@ from django.db import models
 from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
 
+# from django.contrib.auth import User
+from django.contrib.auth.models import User
+
 
 class BaseModel(models.Model):
     id = models.CharField(default=generate_pk, primary_key=True, max_length=255, unique=True, blank=True)
@@ -31,13 +34,14 @@ class UserRegistration(BaseModel):
         ("OTHERS", "OTHERS"),
     )
     name = models.CharField(max_length=100)
-    password = models.CharField(default=generate_pw, max_length=30, blank=True)
+    # password = models.CharField(default=generate_pw, max_length=30, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     shop_name = models.CharField(max_length=100)
     shop_address = models.TextField()
     email = models.EmailField()
     phone = models.CharField(max_length=200)
-    district = models.CharField(max_length = 200)
-    pincode = models.CharField(max_length = 100)
+    district = models.CharField(max_length=200)
+    pincode = models.CharField(max_length=100)
     profile_image = VersatileImageField(upload_to="Profile", null=True, blank=True)
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
     is_user = models.BooleanField(default=False)
@@ -64,7 +68,7 @@ class Order(models.Model):
 
 class LatestNews(models.Model):
     news = models.TextField()
-    link = models.URLField(blank=True,null=True)
+    link = models.URLField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Lates News"
@@ -288,11 +292,10 @@ class FAQ(models.Model):
         return str(self.question)
 
 
-
 class ChangePassword(models.Model):
-    user = models.ForeignKey(UserRegistration,on_delete=models.CASCADE)
+    user = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
     forgot_password_token = models.CharField(max_length=100)
-    created_at = models. DateTimeField(auto_now_add = True)
+    created_at = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
     def __str__(self):
