@@ -93,7 +93,7 @@
     </div>
   </nav>
 
-{% block js %}
+
  {{ room_name|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
@@ -119,4 +119,3 @@
         };
 
     </script>
-{% endblock %}
