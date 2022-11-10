@@ -1,9 +1,8 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from www.bootstrapdash.com/demo/purple-admin-free/{% url 'web:index' %} by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Sep 2022 11:18:01 GMT -->
+<!-- {% url 'web:index' %}  11:18:01 GMT -->
 
 <head>
     <!-- Required meta tags -->
@@ -35,11 +34,12 @@
     <link rel="stylesheet" href="{% static 'web/css/style.css' %}">
 
     <style>
-        .status{
+        .status {
             text-align: center;
             color: rgb(0, 0, 0);
-            margin: 250px 0px;   
+            margin: 250px 0px;
         }
+
     </style>
 </head>
 
@@ -52,26 +52,26 @@
                 {% csrf_token %}
                 <h1 class="status">Successful Payment </h1>
             </form>
-            
+
         </div>
         {% endcomment %}
         <div class="b"></div>
-        <div class="bb"></div>  
+        <div class="bb"></div>
         <div class="message">
             <div class="check">
-              &#10004;
+                &#10004;
             </div>
             <p>
-              Success
+                Success
             </p>
             <p>
-              Check your email for a booking confirmation. We'll see you soon!
+                Check your email for a booking confirmation. We'll see you soon!
             </p>
             <button id="ok">
-              OK
+                OK
             </button>
-          </div>
-          
+        </div>
+
     </div>
 
 
@@ -101,82 +101,82 @@
 
     <!-- End custom js for this page -->
 
-<script>
-    $(document).on('submit','form.ajax', function(e) {
-  e.preventDefault();
-  var $this = $(this);
-  var data = new FormData(this);
-  var action_url = $this.attr('action');
-  var reset = $this.hasClass('reset');
-  var reload = $this.hasClass('reload');
-  var redirect = $this.hasClass('redirect');
-  var redirect_url = $this.attr('data-redirect');
+    <script>
+        $(document).on('submit', 'form.ajax', function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var data = new FormData(this);
+            var action_url = $this.attr('action');
+            var reset = $this.hasClass('reset');
+            var reload = $this.hasClass('reload');
+            var redirect = $this.hasClass('redirect');
+            var redirect_url = $this.attr('data-redirect');
 
-  $.ajax({
-      url: action_url,
-      type: 'POST',
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "json",
+            $.ajax({
+                url: action_url,
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
 
-      success: function(data) {
+                success: function (data) {
 
-          var status = data.status;
-          var title = data.title;
-          var message = data.message;
-          var pk = data.pk;
+                    var status = data.status;
+                    var title = data.title;
+                    var message = data.message;
+                    var pk = data.pk;
 
-          if (status == "true") {
-              if (title) {
-                  title = title;
-              } else {
-                  title = "Success";
-              }
+                    if (status == "true") {
+                        if (title) {
+                            title = title;
+                        } else {
+                            title = "Success";
+                        }
 
-              Swal.fire({
-                  title: title,
-                  html: message,
-                  icon: 'success',
-              }).then(function() {
-                  if (redirect) {
-                      window.location.href = redirect_url;
-                  }
-                  if (reload) {
-                      window.location.reload();
-                  }
-                  if (reset) {
-                      window.location.reset();
-                  }
-              });
+                        Swal.fire({
+                            title: title,
+                            html: message,
+                            icon: 'success',
+                        }).then(function () {
+                            if (redirect) {
+                                window.location.href = redirect_url;
+                            }
+                            if (reload) {
+                                window.location.reload();
+                            }
+                            if (reset) {
+                                window.location.reset();
+                            }
+                        });
 
-          } else {
-              if (title) {
-                  title = title;
-              } else {
-                  title = "An Error Occurred";
-              }
-              Swal.fire({
-                  title: title,
-                  html: message,
-                  icon: "error"
-              });
+                    } else {
+                        if (title) {
+                            title = title;
+                        } else {
+                            title = "An Error Occurred";
+                        }
+                        Swal.fire({
+                            title: title,
+                            html: message,
+                            icon: "error"
+                        });
 
-          }
-      },
-      error: function(data) {
-          var title = "An error occurred";
-          var message = "something went wrong";
-          Swal.fire({
-              title: title,
-              html: message,
-              icon: "error"
-          });
-      }
-  });
-}); 
-</script>
+                    }
+                },
+                error: function (data) {
+                    var title = "An error occurred";
+                    var message = "something went wrong";
+                    Swal.fire({
+                        title: title,
+                        html: message,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
 
 
 </body>

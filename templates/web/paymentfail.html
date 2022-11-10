@@ -1,9 +1,8 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from www.bootstrapdash.com/demo/purple-admin-free/{% url 'web:index' %} by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Sep 2022 11:18:01 GMT -->
+<!-- {% url 'web:index' %}  11:18:01 GMT -->
 
 <head>
     <!-- Required meta tags -->
@@ -35,11 +34,12 @@
     <link rel="stylesheet" href="{% static 'web/css/style.css' %}">
 
     <style>
-        .status{
+        .status {
             text-align: center;
             color: rgb(0, 0, 0);
-            margin: 250px 0px;   
+            margin: 250px 0px;
         }
+
     </style>
 </head>
 
@@ -51,7 +51,7 @@
                 {% csrf_token %}
                 <h1 class="status">Payment Failed </h1>
             </form>
-            
+
         </div>
     </div>
 
