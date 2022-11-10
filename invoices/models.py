@@ -1,9 +1,10 @@
+from decimal import Decimal
+
 from services.models import Services
+
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from decimal import Decimal
-
 
 
 # Create your models here.
@@ -60,7 +61,7 @@ class InvoiceItem(models.Model):
     descripton = models.TextField(blank=True, null=True)
     qty = models.PositiveIntegerField("Quantity")
     created = models.DateField(auto_now_add=True)
-    
+
     class Meta:
         verbose_name = "Invoice Item"
         verbose_name_plural = "Invoice Items"

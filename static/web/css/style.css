@@ -13864,6 +13864,17 @@ transition: all ease 0.8s;
   font-size: 11px;
 }
 @media only screen and (max-width:576px){
+  .upgrade-button{
+    margin: auto;
+    width: 50% !important;
+    text-align: center;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid green;
+    background-color: green;
+    color: #fff;
+    border-radius: 22px;
+  }
   .notification-bar{
     margin: 66px 168px !important;
   }
@@ -14579,6 +14590,17 @@ button.chatbtn, button.createbtn {
 }
 
 @media only screen and (min-width:577px) and (max-width:768px){
+  .upgrade-button{
+    margin: auto;
+    width: 28% !important;
+    text-align: center;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid green;
+    background-color: green;
+    color: #fff;
+    border-radius: 22px;
+  }
   .notification-bar{
     margin: 76px 515px !important;
   }
@@ -14910,6 +14932,16 @@ button.chatbtn, button.createbtn {
 
 
 @media only screen and (min-width:768px) and (max-width:1024px){
+  .upgrade-button {
+    margin: auto;
+    width: 24% !important;
+    text-align: center;
+    padding: 6px 10px;
+    border: 1px solid green;
+    background-color: green;
+    color: #fff;
+    border-radius: 22px;
+}
   .notification-bar{
     margin: 55px -103px !important;
   }
@@ -17215,3 +17247,15 @@ hr.certificate-hr{
   background-color: #0050e3;
 }
 
+
+
+.upgrade-button{
+  margin: auto;
+  width: 17%;
+  text-align: center;
+  padding: 6px 10px;
+  border: 1px solid green;
+  background-color: green;
+  color: #fff;
+  border-radius: 22px;
+}

@@ -2,10 +2,11 @@ from .models import FAQ
 from .models import AgencyPortal
 from .models import AgentBonus
 from .models import BackOfficeServices
+from .models import CertificateImages
 from .models import CommonServicesPoster
 from .models import DownloadDocuments
-from .models import FestivelPoster
 from .models import DownloadForms
+from .models import FestivelPoster
 from .models import ImportantPoster
 from .models import LatestNews
 from .models import MarketingTips
@@ -18,7 +19,8 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import UserRegistration
-from .models import CertificateImages
+from .models import CallSupport
+from .models import WhatsappSupport
 from django.contrib import admin
 
 
@@ -117,7 +119,6 @@ class FAQAdmin(admin.ModelAdmin):
     list_display = ("id", "question")
 
 
-
 @admin.register(CertificateImages)
 class CertificateImagesAdmin(admin.ModelAdmin):
     list_display = ("id",)
@@ -128,3 +129,12 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
 
+
+@admin.register(CallSupport)
+class CallSupportAdmin(admin.ModelAdmin):
+    list_display = ("name","phone_number",)
+
+
+@admin.register(WhatsappSupport)
+class WhatsappSupportAdmin(admin.ModelAdmin):
+    list_display = ("name","phone_number",)

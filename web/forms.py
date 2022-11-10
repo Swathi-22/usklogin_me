@@ -1,9 +1,8 @@
 import re
 
-from attr import fields
-import attr
-
-from .models import UserRegistration,SupportRequest,SupportTicket
+from .models import SupportRequest
+from .models import SupportTicket
+from .models import UserRegistration
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms.widgets import EmailInput
@@ -11,11 +10,11 @@ from django.forms.widgets import FileInput
 from django.forms.widgets import Select
 from django.forms.widgets import Textarea
 from django.forms.widgets import TextInput
-
+from accounts.models import User
 
 # class LoginForm(forms.ModelForm):
 #     class Meta:
-#         model = UserRegistration
+#         model = User
 #         fields = '__all__'
 #         widgets= {
 #             'name': TextInput(attrs={'class':'login__input','name':'name','id':'name','required':'required',}),
@@ -32,7 +31,7 @@ class UserRegistrationForm(forms.ModelForm):
     phone = forms.CharField(validators=[phone_number_validation])
 
     class Meta:
-        model = UserRegistration
+        model = User
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "input-field", "name": "name", "id": "name", "required": "required"}),
@@ -73,7 +72,7 @@ class SupportTicketForm(forms.ModelForm):
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
-        model = UserRegistration
+        model = User
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "name": "name"}),
@@ -87,6 +86,3 @@ class UserUpdateForm(forms.ModelForm):
             "category": Select(attrs={"class": "form-control", "name": "category"}),
             "profile_image": FileInput(attrs={"class": "form-control", "name": "image"}),
         }
-
-
-

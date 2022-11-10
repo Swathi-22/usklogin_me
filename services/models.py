@@ -40,7 +40,6 @@ class Services(models.Model):
         return str(self.title)
 
 
-
 class BrandingImage(models.Model):
     image = VersatileImageField("Image", upload_to="service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
