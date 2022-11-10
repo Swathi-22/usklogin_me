@@ -1,14 +1,14 @@
 from django.shortcuts import render,get_object_or_404
 from services.models import ServiceHeads
 from services.models import Services
-from web.models import UserRegistration
-
+# from web.models import UserRegistration
+from accounts.models import User
 
 def serviceHead(request):
     service_head = ServiceHeads.objects.all()
     services = Services.objects.all()
     phone = request.session['phone']
-    logined_user=UserRegistration.objects.get(phone=phone)
+    logined_user=User.objects.get(phone=phone)
     context = {
         "is_service":True,
         'service_head':service_head,
@@ -31,5 +31,3 @@ def serviceDetails(request, slug):
     print(services.video_tutorial)
     context = {"services": services}
     return render(request, "web/service-details.html", context)
-
-

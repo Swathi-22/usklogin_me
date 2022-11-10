@@ -17,14 +17,14 @@ from .models import Softwares
 from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
-from .models import UserRegistration
+# from .models import UserRegistration
 from .models import ChangePassword
 from django.contrib import admin
 
 
-@admin.register(UserRegistration)
-class UserRegistrationAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "phone", "category")
+# @admin.register(UserRegistration)
+# class UserRegistrationAdmin(admin.ModelAdmin):
+#     list_display = ("name", "email", "phone", "category")
 
 
 @admin.register(LatestNews)
@@ -119,6 +119,4 @@ class FAQAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-
-
+    list_display = ("name","amount","payment_id","signature_id")

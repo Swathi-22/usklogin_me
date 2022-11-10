@@ -3,7 +3,8 @@ import re
 from attr import fields
 import attr
 
-from .models import UserRegistration, SupportRequest, SupportTicket
+from accounts.models import User
+from .models import SupportRequest, SupportTicket
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms.widgets import EmailInput
@@ -12,6 +13,7 @@ from django.forms.widgets import Select
 from django.forms.widgets import Textarea
 from django.forms.widgets import TextInput
 
+from web.functions import generate_pw
 
 # class LoginForm(forms.ModelForm):
 #     class Meta:
@@ -32,7 +34,7 @@ class UserRegistrationForm(forms.ModelForm):
     phone = forms.CharField(validators=[phone_number_validation])
 
     class Meta:
-        model = UserRegistration
+        model = User
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "input-field", "name": "name", "id": "name", "required": "required"}),
@@ -74,7 +76,7 @@ class SupportTicketForm(forms.ModelForm):
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
-        model = UserRegistration
+        model = User
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "name": "name"}),

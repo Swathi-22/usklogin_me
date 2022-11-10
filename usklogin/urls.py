@@ -11,6 +11,7 @@ urlpatterns = (
         path("", include("web.urls", namespace="web")),
         path("", include("services.urls", namespace="services")),
         path("", include("invoices.urls", namespace="invoices")),
+        path("", include("accounts.urls", namespace="accounts")),
         path("tinymce/", include("tinymce.urls")),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
