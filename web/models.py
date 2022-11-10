@@ -2,6 +2,7 @@ from .constants import PaymentStatus
 from .functions import generate_pk
 from .functions import generate_pw
 from .functions import generate_ticket_pk
+from django.core.validators import RegexValidator
 from django.db import models
 from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
@@ -34,7 +35,7 @@ class UserRegistration(BaseModel):
     shop_name = models.CharField(max_length=100)
     shop_address = models.TextField()
     email = models.EmailField()
-    phone = models.CharField(max_length=200)
+    phone = models.CharField(max_length=200, validators=[RegexValidator(regex="^.{10,10}$", message="Length has to be 10", code="nomatch")])
     district = models.CharField(max_length=200)
     pincode = models.CharField(max_length=100)
     profile_image = VersatileImageField(upload_to="Profile", null=True, blank=True)
@@ -50,7 +51,6 @@ class UserRegistration(BaseModel):
 
 class Order(models.Model):
     name = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
-    # name = models.CharField(("Customer Name"), max_length=254, blank=False, null=False)
     amount = models.FloatField(("Amount"), null=False, blank=False)
     status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254, blank=False, null=False)
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=False, blank=False)
@@ -313,7 +313,6 @@ class CallSupport(models.Model):
 
     def __str__(self):
         return str(self.name)
-
 
 
 class WhatsappSupport(models.Model):

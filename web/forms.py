@@ -1,16 +1,14 @@
-import re
+from accounts.models import User
 
 from .models import SupportRequest
 from .models import SupportTicket
-from .models import UserRegistration
 from django import forms
-from django.core.exceptions import ValidationError
 from django.forms.widgets import EmailInput
 from django.forms.widgets import FileInput
 from django.forms.widgets import Select
 from django.forms.widgets import Textarea
 from django.forms.widgets import TextInput
-from accounts.models import User
+
 
 # class LoginForm(forms.ModelForm):
 #     class Meta:
@@ -22,25 +20,19 @@ from accounts.models import User
 #         }
 
 
-def phone_number_validation(value):
-    if not re.compile(r"[0-9]\d{9}$").match(value):
-        raise ValidationError("This is Not Valid Phone Number")
-
-
 class UserRegistrationForm(forms.ModelForm):
-    phone = forms.CharField(validators=[phone_number_validation])
-
     class Meta:
         model = User
         fields = "__all__"
         widgets = {
-            "name": TextInput(attrs={"class": "input-field", "name": "name", "id": "name", "required": "required"}),
-            "shop_name": TextInput(attrs={"class": "input-field", "name": "shop_name", "id": "shop_name", "required": "required", "autocomplete": "off"}),
-            "shop_address": Textarea(attrs={"class": "input-field", "name": "shop_address", "id": "shop_address", "required": "required", "autocomplete": "off"}),
-            "email": EmailInput(attrs={"class": "input-field", "name": "email", "id": "email", "required": "required", "autocomplete": "off"}),
-            "district": TextInput(attrs={"class": "input-field", "name": "district", "id": "district", "required": "required", "autocomplete": "off"}),
-            "pincode": TextInput(attrs={"class": "input-field", "name": "pincode", "id": "pincode", "required": "required", "autocomplete": "off"}),
-            "category": Select(attrs={"class": "input-field", "name": "category", "id": "category", "required": "required", "autocomplete": "off"}),
+            "name": TextInput(attrs={"class": "form-control", "required": "required"}),
+            "shop_name": TextInput(attrs={"class": "form-control", "required": "required"}),
+            "shop_address": Textarea(attrs={"class": "form-control", "required": "required"}),
+            "email": EmailInput(attrs={"class": "form-control", "required": "required"}),
+            "district": TextInput(attrs={"class": "form-control", "required": "required"}),
+            "pincode": TextInput(attrs={"class": "form-control", "required": "required"}),
+            "category": Select(attrs={"class": "form-control", "required": "required"}),
+            "phone": TextInput(attrs={"class": "form-control", "required": "required"}),
         }
 
 

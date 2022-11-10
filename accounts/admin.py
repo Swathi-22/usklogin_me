@@ -1,8 +1,7 @@
-from django.contrib import admin
 from .models import User
+from django.contrib import admin
 from django.contrib.auth.forms import UserChangeForm
 from import_export.admin import ImportExportModelAdmin
-from django.utils.translation import gettext as _
 
 
 # Register your models here.
@@ -11,19 +10,9 @@ class MyUserChangeForm(UserChangeForm):
         model = User
 
 
-
-
 class MyUserAdmin(ImportExportModelAdmin):
     form = MyUserChangeForm
-    list_display = (
-        "email",
-        "phone",
-        "id",
-        "shop_name",
-        "district",
-        "pincode",
-        "category",
-    )
+    list_display = ("email", "phone", "id", "shop_name", "district", "pincode", "category")
     list_filter = ("is_active", "is_staff", "is_superuser")
     autocomplete_fields = ("groups",)
     readonly_fields = ("last_login", "date_joined")
@@ -56,4 +45,6 @@ class MyUserAdmin(ImportExportModelAdmin):
     #         },
     #     ),
     # )
+
+
 admin.site.register(User, MyUserAdmin)

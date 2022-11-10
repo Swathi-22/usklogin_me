@@ -1,4 +1,3 @@
-from errno import EMLINK
 from pathlib import Path
 
 from decouple import config

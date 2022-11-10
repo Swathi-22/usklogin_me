@@ -2,6 +2,8 @@ import json
 import os
 import uuid
 from itertools import chain
+
+from accounts.models import User
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -9,6 +11,7 @@ from web.models import FAQ
 from web.models import AgencyPortal
 from web.models import AgentBonus
 from web.models import BackOfficeServices
+from web.models import CallSupport
 from web.models import CertificateImages
 from web.models import ChangePassword
 from web.models import CommonServicesPoster
@@ -25,10 +28,8 @@ from web.models import PaymentStatus
 from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
-from web.models import UserRegistration
-from web.models import CallSupport
 from web.models import WhatsappSupport
-from accounts.models import User
+
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -48,7 +49,6 @@ from django.shortcuts import render
 from django.template.loader import get_template
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
-
 
 
 def login_view(request):
@@ -93,7 +93,6 @@ def login_view(request):
     return render(request, "web/login.html")
 
 
-# @csrf_exempt
 def register(request):
     user_form = UserRegistrationForm(request.POST or None)
     context = {"user_form": user_form}
@@ -103,26 +102,20 @@ def register(request):
 def order_payment(request):
     user_form = UserRegistrationForm(request.POST or None)
     if request.method == "POST":
-        email = request.POST.get("email")
         amount = 20000
         if user_form.is_valid():
-            user_form.save()
-        client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
-        razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
-        obj = User.objects.get(email=email)
-        order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
-        order.save()
-
-        return render(
-            request,
-            "web/payment.html",
-            {
+            obj = user_form.save()
+            client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
+            razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
+            order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
+            order.save()
+            context = {
                 # "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
                 "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
                 "razorpay_key": "rzp_test_kVa6uUqaP96eJr",
                 "order": order,
-            },
-        )
+            }
+            return render(request, "web/payment.html", context)
     return render(request, "web/payment.html")
 
 
@@ -452,9 +445,9 @@ def call_support(request):
     user = User.objects.filter(phone=phone).first()
     order = Order.objects.get(name=user)
     if order.amount == 20000:
-        return redirect('web:upgrade_plan')
-    context = {'call_support':call_support}
-    return render(request,'web/call-support.html',context)
+        return redirect("web:upgrade_plan")
+    context = {"call_support": call_support}
+    return render(request, "web/call-support.html", context)
 
 
 # def upgrade_plan(request):
@@ -470,14 +463,12 @@ def call_support(request):
 #                 "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
 #                 "razorpay_key": "rzp_test_kVa6uUqaP96eJr",
 #                 "order": order,},)
-    
 
 
 def whatsapp_support(request):
     whatsapp_support = WhatsappSupport.objects.all()
-    context = {'whatsapp_support':whatsapp_support}
-    return render(request,'web/whatsapp-support.html',context)
-
+    context = {"whatsapp_support": whatsapp_support}
+    return render(request, "web/whatsapp-support.html", context)
 
 
 def termsConditions(request):
