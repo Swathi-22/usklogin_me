@@ -108,7 +108,7 @@ def order_payment(request):
         "razorpay_key": RAZOR_PAY_KEY,
     }
     if request.method == "POST":
-        amount = 20000
+        amount = 10000
         if user_form.is_valid():
             obj = user_form.save()
             client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
@@ -116,6 +116,7 @@ def order_payment(request):
             order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
             order.save()
             context["order"] = order
+            print(order.amount)
             return render(request, "web/payment.html", context)
     return render(request, "web/payment.html", context)
 
