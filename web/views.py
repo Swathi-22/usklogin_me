@@ -51,45 +51,31 @@ from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
 
+RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
+RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
+
+
 def login_view(request):
     if request.method == "POST":
         phone = request.POST["phone"]
-        password = request.POST["password"]
-        user = User.objects.filter(phone=phone).first()
-        if user is None:
+        if not User.objects.filter(phone=phone).exists():
             print("User Not Found")
             messages.warning(request, "User Not Found...Checkout your email for username and password")
             return redirect("web:login_view")
-        order = Order.objects.get(name=user)
-        # obj = User.objects.get(phone=phone,password=password)
-        profile = User.objects.filter(phone=phone, password=password).first()
-        if profile is None:
-            messages.warning(request, "Wrong Password")
-            return redirect("web:login_view")
+        else:
+            user = User.objects.get(phone=phone)
 
-        if user is not None and order.status == PaymentStatus.SUCCESS:
-            request.session["phone"] = user.phone
-            messages.success(request, "You have successfully logged in!")
-            return redirect("web:index")
+            # what if order is not created or there are multiple order for same user
+            order = Order.objects.get(name=user)
 
-        if order.status == PaymentStatus.FAILURE or order.status == PaymentStatus.PENDING:
-            messages.info(request, "Please complete your payment")
-            return redirect("web:login_view")
+            if order.status == PaymentStatus.SUCCESS:
+                request.session["phone"] = user.phone
+                messages.success(request, "You have successfully logged in!")
+                return redirect("web:index")
 
-        # is_user = User.objects.filter(is_user=True)
-        # print(is_user)
-
-        # if user is not None and order.status == PaymentStatus.SUCCESS:
-        #     # if user is not None and is_user:
-        #     request.session['phone'] = phone
-        #     request.session['password'] = password
-        #     messages.success(request, 'You have successfully logged in!', 'success')
-        #     return redirect('web:index')
-        # elif order.status == PaymentStatus.FAILURE or order.status == PaymentStatus.PENDING:
-        #     messages.info(request, 'Please complete your payment')
-        # else:
-        #     messages.info(request, 'Invalid username or password')
-        #     return redirect('web:login_view')
+            if order.status == PaymentStatus.FAILURE or order.status == PaymentStatus.PENDING:
+                messages.info(request, "Please complete your payment")
+                return redirect("web:login_view")
     return render(request, "web/login.html")
 
 
@@ -119,13 +105,13 @@ def order_payment(request):
     context = {
         # "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
         "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
-        "razorpay_key": "rzp_test_kVa6uUqaP96eJr",
+        "razorpay_key": RAZOR_PAY_KEY,
     }
     if request.method == "POST":
         amount = 20000
         if user_form.is_valid():
             obj = user_form.save()
-            client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
+            client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
             razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
             order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
             order.save()
