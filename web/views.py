@@ -109,42 +109,47 @@ def order_payment(request, pk):
     return render(request, "web/payment.html", context)
 
 
-# @csrf_exempt
-def callback(request):
-    def verify_signature(response_data):
-        client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
-        return client.utility.verify_payment_signature(response_data)
+def verify_signature(response_data):
+    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    return client.utility.verify_payment_signature(response_data)
 
+
+def callback(request):
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
         signature_id = request.POST.get("razorpay_signature", "")
-        order = Order.objects.get(provider_order_id=provider_order_id)
-        order.payment_id = payment_id
-        order.signature_id = signature_id
-        order.save()
-        if not verify_signature(request.POST):
-            order.status = PaymentStatus.FAILURE
-            order.save()
-            return render(request, "web/callback.html", context={"status": order.status})
-        else:
+        response_data = {
+            "razorpay_order_id": provider_order_id,
+            "razorpay_payment_id": payment_id,
+            "razorpay_signature": signature_id,
+        }
+
+        if verify_signature(response_data):
+            order = Order.objects.get(provider_order_id=provider_order_id)
+            order_status = PaymentStatus.SUCCESS
             order.status = PaymentStatus.SUCCESS
+            order.payment_id = payment_id
+            order.signature_id = signature_id
             order.save()
-            email = order.name.email
-            phone = order.name.phone
-            password = order.name.password
+
             send_mail(
-                "Registration Completed on USKLOGIN.COM",
-                "Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: "
-                + phone
-                + "\nPassword: "
-                + password
-                + "",
+                f"""
+                Registration Completed on USKLOGIN.COM",
+                Welcome to USKLOGIN.COM...
+                Thank you for registered on USKLOGIN.COM.
+                Use this username and password to login
+                Username: {order.name.phone}
+                Password: {order.name.password}
+                """,
                 "mkswathisuresh@gmail.com",
-                [email],
+                [order.name.email],
                 fail_silently=False,
             )
-            return render(request, "web/callback.html", context={"status": order.status})
+            messages.success(request, "Payment Successful")
+        else:
+            order_status = PaymentStatus.FAILURE
+        return render(request, "web/callback.html", context={"status": order_status})
     else:
         return render(request, "web/payment.html")
 
