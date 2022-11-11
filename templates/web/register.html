@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    {% load static %}
+    {% load static crispy_forms_tags %}
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>USKLOGIN.COM</title>
@@ -37,23 +37,21 @@
 
             <div class="wrapper py-5">
 
-                <form class="form-right" method="POST" action="{% url 'web:payment' %}">
+                <form class="form-right" method="POST" action="">
                     <h2 class="text-uppercase">USK Agent Registration</h2>
 
                     <div class="row">
                         {% csrf_token %}
-                        <div class="col-sm-12 mb-3"><label class="text-left">Name</label>{{user_form.name}}</div>
-                        <div class="col-sm-6 mb-3"><label class="text-left">Shop Name</label>{{user_form.shop_name}}
+
+                        {% for field in user_form %}
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                {{ field|as_crispy_field }}
+                            </div>
                         </div>
-                        <div class="col-sm-6 mb-3"><label class="text-left">Category</label>{{user_form.category}}</div>
-                        <div class="col-sm-12 mb-3"><label class="text-left">Shop
-                                Address</label>{{user_form.shop_address}}</div>
-                        <div class="col-sm-6 mb-3"><label class="text-left">Email</label>{{user_form.email}}</div>
-                        <div class="col-sm-6 mb-3"><label class="text-left">Mobile Number</label>{{user_form.phone}}
-                        </div>
-                        <div class="col-sm-6 mb-3"><label class="text-left">District</label>{{user_form.district}}</div>
-                        <div class="col-sm-6 mb-3"><label class="text-left">Pincode</label>{{user_form.pincode}}</div>
+                        {% endfor %}
                     </div>
+
                     <div class="my-4">
                         <input type="checkbox" id="termsCheck">&nbsp I agree to the <a
                             href="{% url 'web:termsConditions' %}">Terms and Conditions</a>

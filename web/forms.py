@@ -26,11 +26,11 @@ class UserRegistrationForm(forms.ModelForm):
         fields = ('name', 'phone', 'category', 'email', 'shop_name', 'shop_address', 'district', 'pincode')
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "required": "required"}),
-            "phone": TextInput(attrs={"class": "form-control", "required": "required"}),
+            "phone": TextInput(attrs={"class": "form-control", "required": "required", "type": "tel"}),
             "category": Select(attrs={"class": "form-control", "required": "required"}),
             "email": EmailInput(attrs={"class": "form-control", "required": "required"}),
             "shop_name": TextInput(attrs={"class": "form-control", "required": "required"}),
-            "shop_address": Textarea(attrs={"class": "form-control", "required": "required"}),
+            "shop_address": TextInput(attrs={"class": "form-control", "required": "required"}),
             "district": TextInput(attrs={"class": "form-control", "required": "required"}),
             "pincode": TextInput(attrs={"class": "form-control", "required": "required"}),
         }

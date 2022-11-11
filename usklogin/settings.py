@@ -133,6 +133,8 @@ STATIC_FILE_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = ((BASE_DIR / "static"),)
 STATIC_ROOT = BASE_DIR / "assets"
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -163,3 +165,6 @@ EMAIL_USE_SSL = False
 
 # user model created
 AUTH_USER_MODEL = "accounts.User"
+
+
+CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev"]

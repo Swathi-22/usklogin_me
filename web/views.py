@@ -96,6 +96,21 @@ def login_view(request):
 def register(request):
     user_form = UserRegistrationForm(request.POST or None)
     context = {"user_form": user_form}
+    if request.method == "POST":
+        if user_form.is_valid():
+            data = user_form.save(commit=False)
+
+            phone = request.POST.get("phone")
+            password = "123456"
+
+            data.username = phone
+            data.set_password(password)
+            data.save()
+
+            messages.success(request, "You have successfully registered!")
+            return redirect("web:payment")
+        else:
+            print(user_form.errors)
     return render(request, "web/register.html", context)
 
 
