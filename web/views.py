@@ -29,7 +29,6 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
-
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -94,29 +93,26 @@ def register(request):
             data.save()
 
             messages.success(request, "You have successfully registered!")
-            return redirect("web:payment")
+            return redirect("web:order_payment", pk=data.pk)
         else:
             print(user_form.errors)
     return render(request, "web/register.html", context)
 
 
-def order_payment(request):
-    user_form = UserRegistrationForm(request.POST or None)
+def order_payment(request, pk):
+    user = User.objects.get(id=pk)
+    amount = 20000
+    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
+    order = Order.objects.create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    order.save()
     context = {
-        # "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
-        "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
+        "order": order,
+        "amount": amount,
         "razorpay_key": RAZOR_PAY_KEY,
+        "razorpay_order": razorpay_order,
+        "callback_url": "http://https://usklogin.geany.website/callback/"
     }
-    if request.method == "POST":
-        amount = 20000
-        if user_form.is_valid():
-            obj = user_form.save()
-            client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
-            razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
-            order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
-            order.save()
-            context["order"] = order
-            return render(request, "web/payment.html", context)
     return render(request, "web/payment.html", context)
 
 

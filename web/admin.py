@@ -19,14 +19,8 @@ from .models import Softwares
 from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
-from .models import UserRegistration
 from .models import WhatsappSupport
 from django.contrib import admin
-
-
-@admin.register(UserRegistration)
-class UserRegistrationAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "phone", "category")
 
 
 @admin.register(LatestNews)
@@ -126,7 +120,7 @@ class CertificateImagesAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("user",)
 
 
 @admin.register(CallSupport)
