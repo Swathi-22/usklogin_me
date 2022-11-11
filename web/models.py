@@ -1,9 +1,10 @@
+from accounts.models import User
+
 from .constants import PaymentStatus
 from .functions import generate_ticket_pk
 from django.db import models
 from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
-from accounts.models import User
 
 
 class Order(models.Model):

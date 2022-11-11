@@ -1,6 +1,7 @@
+from accounts.models import User
 from services.models import ServiceHeads
 from services.models import Services
-from accounts.models import User
+
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 

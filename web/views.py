@@ -29,11 +29,13 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
+
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
 from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
+from .functions import generate_pw
 from .helper import send_forget_password_mail
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
@@ -48,7 +50,6 @@ from django.shortcuts import render
 from django.template.loader import get_template
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
-from .functions import generate_pw
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
@@ -99,13 +100,7 @@ def order_payment(request, pk):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
     order = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {
-        "order": order,
-        "amount": amount,
-        "razorpay_key": RAZOR_PAY_KEY,
-        "razorpay_order": razorpay_order,
-        "callback_url": "http://https://usklogin.geany.website/callback/"
-    }
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://https://usklogin.geany.website/callback/"}
     return render(request, "web/payment.html", context)
 
 
@@ -119,11 +114,7 @@ def callback(request):
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
         signature_id = request.POST.get("razorpay_signature", "")
-        response_data = {
-            "razorpay_order_id": provider_order_id,
-            "razorpay_payment_id": payment_id,
-            "razorpay_signature": signature_id,
-        }
+        response_data = {"razorpay_order_id": provider_order_id, "razorpay_payment_id": payment_id, "razorpay_signature": signature_id}
 
         if verify_signature(response_data):
             order = Order.objects.get(provider_order_id=provider_order_id)

@@ -23,7 +23,7 @@ from django.forms.widgets import TextInput
 class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('name', 'phone', 'category', 'email', 'shop_name', 'shop_address', 'district', 'pincode')
+        fields = ("name", "phone", "category", "email", "shop_name", "shop_address", "district", "pincode")
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "required": "required"}),
             "phone": TextInput(attrs={"class": "form-control", "required": "required", "type": "tel"}),
