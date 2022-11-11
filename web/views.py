@@ -48,6 +48,7 @@ from django.shortcuts import render
 from django.template.loader import get_template
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
+from .functions import generate_pw
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
@@ -84,18 +85,11 @@ def register(request):
     if request.method == "POST":
         if user_form.is_valid():
             data = user_form.save(commit=False)
-
-            phone = request.POST.get("phone")
-            password = "123456"
-
-            data.username = phone
-            data.set_password(password)
+            data.username = request.POST.get("phone")
+            data.set_password(generate_pw())
             data.save()
-
             messages.success(request, "You have successfully registered!")
             return redirect("web:order_payment", pk=data.pk)
-        else:
-            print(user_form.errors)
     return render(request, "web/register.html", context)
 
 
@@ -104,8 +98,7 @@ def order_payment(request, pk):
     amount = 20000
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
-    order = Order.objects.create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    order.save()
+    order = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {
         "order": order,
         "amount": amount,
