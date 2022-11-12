@@ -16,7 +16,7 @@ class Order(models.Model):
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.id}-{self.name}-{self.status}"
+        return f"{self.id}-{self.user}-{self.status}"
 
 
 class LatestNews(models.Model):

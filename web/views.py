@@ -65,10 +65,8 @@ def login_view(request):
             return redirect("web:login_view")
         else:
             user = User.objects.get(phone=phone)
-
             # what if order is not created or there are multiple order for same user
             order = Order.objects.get(name=user)
-
             if order.status == PaymentStatus.SUCCESS:
                 request.session["phone"] = user.phone
                 messages.success(request, "You have successfully logged in!")
@@ -82,12 +80,15 @@ def login_view(request):
 
 def register(request):
     user_form = UserRegistrationForm(request.POST or None)
+    temp_pass = generate_pw()
+    print(temp_pass)
     context = {"user_form": user_form}
     if request.method == "POST":
         if user_form.is_valid():
             data = user_form.save(commit=False)
             data.username = request.POST.get("phone")
-            data.set_password(generate_pw())
+            data.temp_password = temp_pass
+            data.set_password(temp_pass)
             data.save()
             messages.success(request, "You have successfully registered!")
             return redirect("web:order_payment", pk=data.pk)
@@ -99,8 +100,8 @@ def order_payment(request, pk):
     amount = 20000
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
-    order = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://https://usklogin.geany.website/callback/"}
+    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",}
     return render(request, "web/payment.html", context)
 
 
@@ -123,18 +124,18 @@ def callback(request):
             order.payment_id = payment_id
             order.signature_id = signature_id
             order.save()
-
+            email = order.user.email
+            phone = order.user.phone
+            password = order.user.password
             send_mail(
-                f"""
-                Registration Completed on USKLOGIN.COM",
-                Welcome to USKLOGIN.COM...
-                Thank you for registered on USKLOGIN.COM.
-                Use this username and password to login
-                Username: {order.name.phone}
-                Password: {order.name.password}
-                """,
+                "Registration Completed on USKLOGIN.COM",
+                "Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: "
+                + phone
+                + "\nPassword: "
+                + password
+                + "",
                 "mkswathisuresh@gmail.com",
-                [order.name.email],
+                [email],
                 fail_silently=False,
             )
             messages.success(request, "Payment Successful")
