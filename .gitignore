@@ -4,7 +4,7 @@
 *.pyc
 _pycache_
 assets/
-
+db.sqlite3
 
 # Backup files #
 *.bak
