@@ -50,6 +50,7 @@ from django.shortcuts import render
 from django.template.loader import get_template
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
+from django.contrib.auth import authenticate, login, logout
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
@@ -59,22 +60,43 @@ RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
 def login_view(request):
     if request.method == "POST":
         phone = request.POST["phone"]
-        if not User.objects.filter(phone=phone).exists():
-            print("User Not Found")
-            messages.warning(request, "User Not Found...Checkout your email for username and password")
-            return redirect("web:login_view")
-        else:
-            user = User.objects.get(phone=phone)
-            # what if order is not created or there are multiple order for same user
-            order = Order.objects.get(name=user)
-            if order.status == PaymentStatus.SUCCESS:
-                request.session["phone"] = user.phone
-                messages.success(request, "You have successfully logged in!")
-                return redirect("web:index")
+        password = request.POST["password"]
+        print(password)
+        if not phone or not password:
+            messages.success(request, 'Both Username and Password Required')
+            return redirect('/')
 
-            if order.status == PaymentStatus.FAILURE or order.status == PaymentStatus.PENDING:
-                messages.info(request, "Please complete your payment")
-                return redirect("web:login_view")
+        user_obj = User.objects.filter(phone=phone)
+        print(user_obj)
+        if user_obj is None:
+            messages.success(request, 'User not found')
+            return redirect('/')
+        user = authenticate(request, phone=phone, password=password)
+        print(user)
+        if user is None:
+            messages.success(request, 'Wrong Paasword')
+            return redirect('/')
+        
+        if user is not None:
+            login(request, user)
+        else:
+            messages.info(request, 'Invalid Credentials')
+        # if not User.objects.filter(phone=phone,password=password).exists():
+        #     print("User Not Found")
+        #     messages.warning(request, "User Not Found...Checkout your email for username and password")
+        #     return redirect("web:login_view")
+        # else:
+        #     user = User.objects.get(phone=phone,password=password)
+        #     # what if order is not created or there are multiple order for same user
+        #     order = Order.objects.get(user=user)
+        #     if order.status == PaymentStatus.SUCCESS:
+        #         request.session["phone"] = user.phone
+        #         messages.success(request, "You have successfully logged in!")
+        #         return redirect("web:index")
+
+        #     if order.status == PaymentStatus.FAILURE or order.status == PaymentStatus.PENDING:
+        #         messages.info(request, "Please complete your payment")
+        #         return redirect("web:login_view")
     return render(request, "web/login.html")
 
 
@@ -179,7 +201,9 @@ def change_password(request, token):
         if new_password != confirm_password:
             messages.warning(request, "Your Password and confirm Password dosen't match")
             return redirect(f"/change-password/{token}/")
-        User.objects.filter(email=change_password_obj.user.email).update(password=new_password)
+        user_obj = User.objects.get(email=change_password_obj.user.email)
+        user_obj.set_password(new_password)
+        user_obj.save()
         ChangePassword.objects.filter(forgot_password_token=token).update(status=True)
         messages.success(request, "Your password is updated")
         return redirect("web:login_view")
