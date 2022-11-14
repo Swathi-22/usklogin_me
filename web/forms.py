@@ -67,10 +67,9 @@ class SupportTicketForm(forms.ModelForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = "__all__"
+        fields = ("name", "phone", "category", "email", "shop_name", "shop_address", "district", "pincode","profile_image",)
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "name": "name"}),
-            "temp_password": PasswordInput(attrs={"class": "form-control", "name": "password", "required": "required", "autocomplete": "off"}),
             "shop_name": TextInput(attrs={"class": "form-control", "name": "shop_name"}),
             "shop_address": Textarea(attrs={"class": "form-control", "name": "shop_address"}),
             "email": EmailInput(attrs={"class": "form-control", "name": "email"}),

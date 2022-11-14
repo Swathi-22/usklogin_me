@@ -226,6 +226,7 @@ def profile_update(request):
     user=request.user
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST, request.FILES, instance=user)
+        print(user_form)
         if user_form.is_valid():
             user_form.save()
             return redirect("web:profile")
