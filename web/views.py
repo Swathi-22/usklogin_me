@@ -148,7 +148,7 @@ def callback(request):
             order.save()
             email = order.user.email
             phone = order.user.phone
-            password = order.user.password
+            password = order.user.temp_password
             send_mail(
                 "Registration Completed on USKLOGIN.COM",
                 "Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: "
