@@ -57,30 +57,30 @@ RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
 RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
 
 
-def login_view(request):
-    if request.method == "POST":
-        phone = request.POST["phone"]
-        password = request.POST["password"]
-        print(password)
-        if not phone or not password:
-            messages.success(request, 'Both Username and Password Required')
-            return redirect('/')
-
-        user_obj = User.objects.filter(phone=phone)
-        print(user_obj)
-        if user_obj is None:
-            messages.success(request, 'User not found')
-            return redirect('/')
-        user = authenticate(request, phone=phone, password=password)
-        print(user)
-        if user is None:
-            messages.success(request, 'Wrong Paasword')
-            return redirect('/')
-        
-        if user is not None:
-            login(request, user)
-        else:
-            messages.info(request, 'Invalid Credentials')
+# def login_view(request):
+#     if request.method == "POST":
+#         phone = request.POST["phone"]
+#         password = request.POST["password"]
+#         print(password)
+#         if not phone or not password:
+#             messages.success(request, 'Both Username and Password Required')
+#             return redirect('/')
+#
+#         user_obj = User.objects.filter(phone=phone)
+#         print(user_obj)
+#         if user_obj is None:
+#             messages.success(request, 'User not found')
+#             return redirect('/')
+#         user = authenticate(request, phone=phone, password=password)
+#         print(user)
+#         if user is None:
+#             messages.success(request, 'Wrong Paasword')
+#             return redirect('/')
+#
+#         if user is not None:
+#             login(request, user)
+#         else:
+#             messages.info(request, 'Invalid Credentials')
         # if not User.objects.filter(phone=phone,password=password).exists():
         #     print("User Not Found")
         #     messages.warning(request, "User Not Found...Checkout your email for username and password")
@@ -97,7 +97,7 @@ def login_view(request):
         #     if order.status == PaymentStatus.FAILURE or order.status == PaymentStatus.PENDING:
         #         messages.info(request, "Please complete your payment")
         #         return redirect("web:login_view")
-    return render(request, "web/login.html")
+    # return render(request, "web/login.html")
 
 
 def register(request):
@@ -243,9 +243,10 @@ def index(request):
     latest_news = LatestNews.objects.all().last()
     new_service_poster = NewServicePoster.objects.all()
     important_poster = ImportantPoster.objects.all()
+    user=request.user
     # user = User.objects.filter(phone=phone).last()
-    phone = request.session["phone"]
-    logined_user = User.objects.get(phone=phone)
+    # phone = request.session["phone"]
+    # logined_user = use
     branding_image = BrandingImage.objects.all()
     context = {
         "is_index": True,
@@ -254,7 +255,7 @@ def index(request):
         "new_service_poster": new_service_poster,
         "important_poster": important_poster,
         "room_name": "broadcast",
-        "logined_user": logined_user,
+        "logined_user": user,
         "branding_image": branding_image,
         "room_name": "broadcast",
     }

@@ -1,0 +1,14 @@
+{% extends "web/dash.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Logged out" %}{% endblock %}
+
+{% block content %}
+<div class="app_card row">
+    <div class="text-center">
+        <p class="m-0">{% trans "Successfully logged out" %}.</p>
+        <a href="{% url 'auth_login' %}" class="rt_btn_color_border">Login Again</a>
+        <a href="/" class="rt_btn_color mt-2">Go Home</a>
+    </div>
+</div>
+{% endblock %}
