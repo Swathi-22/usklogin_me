@@ -26,6 +26,7 @@ class User(AbstractUser):
     phone = models.CharField(_("phone number"), validators=[phone_regex], max_length=17, unique=True)
     temp_password = models.CharField("Temporary password", max_length=17, blank=True)
     name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     shop_name = models.CharField(max_length=100)
     shop_address = models.TextField()
     district = models.CharField(max_length=200)

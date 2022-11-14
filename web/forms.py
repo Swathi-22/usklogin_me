@@ -8,6 +8,8 @@ from django.forms.widgets import FileInput
 from django.forms.widgets import Select
 from django.forms.widgets import Textarea
 from django.forms.widgets import TextInput
+from django.forms.widgets import PasswordInput
+
 
 
 # class LoginForm(forms.ModelForm):
@@ -68,7 +70,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "name": "name"}),
-            "password": TextInput(attrs={"class": "form-control", "name": "password", "required": "required", "autocomplete": "off"}),
+            "temp_password": PasswordInput(attrs={"class": "form-control", "name": "password", "required": "required", "autocomplete": "off"}),
             "shop_name": TextInput(attrs={"class": "form-control", "name": "shop_name"}),
             "shop_address": Textarea(attrs={"class": "form-control", "name": "shop_address"}),
             "email": EmailInput(attrs={"class": "form-control", "name": "email"}),

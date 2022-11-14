@@ -17,18 +17,20 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.name}}
+                <input type="text" class="form-control" value="{{user.name}}">
+                <!-- {{user_form.name}} -->
             </div>
+            {% comment %}
             <div class="mb-3">
                 <label class="form-label">Password</label>
                 <!-- <input type="text" class="form-control"> -->
-                {{user_form.password}}
+                {{user_form.temp_password}}
             </div>
+            {% endcomment %}
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.email}}
+                <input type="text" class="form-control" value="{{user.email}}">
+                <!-- {{user_form.email}} -->
             </div>
             <div class="mb-3">
                 <label class="form-label">Phone</label>

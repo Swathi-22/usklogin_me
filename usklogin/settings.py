@@ -163,10 +163,10 @@ REGISTRATION_AUTO_LOGIN = True
 SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ''
 
-REGISTRATION_OPEN = False
+REGISTRATION_OPEN = True
 LOGIN_URL = '/app/accounts/login/'
 LOGOUT_URL = '/app/accounts/logout/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/app/'
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
