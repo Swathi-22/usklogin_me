@@ -1,5 +1,4 @@
 from web.functions import generate_pk
-from web.functions import generate_pw
 
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator

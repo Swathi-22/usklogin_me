@@ -42,10 +42,10 @@
           </div>
           <div class="row">
             <div class="col-lg-3">
-              <span class="date">Joined Date : </span><span>&nbsp;{{logined_user.created}}</span>
+              <span class="date">Joined Date : </span><span>&nbsp;{{request.user.created}}</span>
             </div>
             <div class="col-lg-3 offset-md-6">
-              <span class="date">Usk Id : </span><span>&nbsp;{{logined_user.id}}</span>
+              <span class="date">Usk Id : </span><span>&nbsp;{{request.user.id}}</span>
             </div>
           </div>
           <div class="row">
@@ -54,7 +54,7 @@
                 <p class="certificate-present">The Certificate is Presented to :-</p>
               </div>
               <div class="hr-margin">
-                <span class="username">{{logined_user.name}}</span>
+                <span class="username">{{request.user.name}}</span>
                 <hr class="certificate-hr">
               </div>
               <div class="mt-4">
@@ -69,19 +69,19 @@
                   <p class="agent-details text-end">Shop Name :</p>
                 </div>
                 <div class="col-lg-6 text-start">
-                  <span>{{logined_user.shop_name}}</span>
+                  <span>{{request.user.shop_name}}</span>
                 </div>
                 <div class="col-lg-6">
                   <p class="agent-details text-end">District :</p>
                 </div>
                 <div class="col-lg-6 text-start">
-                  <span>{{logined_user.district}}</span>
+                  <span>{{request.user.district}}</span>
                 </div>
                 <div class="col-lg-6">
                   <p class="agent-details text-end">Pincode :</p>
                 </div>
                 <div class="col-lg-6 text-start">
-                  <span>{{logined_user.pincode}}</span>
+                  <span>{{request.user.pincode}}</span>
                 </div>
               </div>
             </div>

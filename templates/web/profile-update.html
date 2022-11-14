@@ -1,77 +1,26 @@
 {% extends 'web/base.html' %}
 {% block content %}
-{% load static %}
+{% load static crispy_forms_tags %}
 
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
-
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label class="form-label">Profile Image</label>
-                <!-- <input type="text" class="form-control"> -->
-   
-                {{user_form.profile_image}}
-        
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <form method="POST" enctype="multipart/form-data" action="">
+                    {% csrf_token %}
+                    {{user_form|crispy}}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input type="text" class="form-control" value="{{user.name}}">
-                <!-- {{user_form.name}} -->
-            </div>
-            {% comment %}
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.temp_password}}
-            </div>
-            {% endcomment %}
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="text" class="form-control" value="{{user.email}}">
-                <!-- {{user_form.email}} -->
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Phone</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.phone}}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Shop Name</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.shop_name}}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Shop Address</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.shop_address}}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">District</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.district}}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Pincode</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.pincode}}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Category</label>
-                <!-- <input type="text" class="form-control"> -->
-                {{user_form.category}}
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-        </form>
+        </div>
     </div>
 </div>
 
 
-<!-- 
+<!--
 <script>
     var loadFile = function (event) {
         var image = document.getElementById("output");

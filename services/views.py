@@ -1,4 +1,3 @@
-from accounts.models import User
 from services.models import ServiceHeads
 from services.models import Services
 
@@ -11,7 +10,7 @@ def serviceHead(request):
     services = Services.objects.all()
     # phone = request.session["phone"]
     # logined_user = User.objects.get(phone=phone)
-    user=request.user
+    user = request.user
     context = {"is_service": True, "service_head": service_head, "services": services, "logined_user": user, "room_name": "broadcast"}
     return render(request, "web/service-head.html", context)
 

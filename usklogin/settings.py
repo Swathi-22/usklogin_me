@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "import_export",
     "registration",
     "widget_tweaks",
-
 ]
 
 
@@ -161,12 +160,12 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 SEND_ACTIVATION_EMAIL = False
-REGISTRATION_EMAIL_SUBJECT_PREFIX = ''
+REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
 REGISTRATION_OPEN = True
-LOGIN_URL = '/app/accounts/login/'
-LOGOUT_URL = '/app/accounts/logout/'
-LOGIN_REDIRECT_URL = '/app/'
+LOGIN_URL = "/app/accounts/login/"
+LOGOUT_URL = "/app/accounts/logout/"
+LOGIN_REDIRECT_URL = "/app/"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"

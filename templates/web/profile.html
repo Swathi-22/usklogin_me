@@ -10,14 +10,14 @@
             <div class="row">
                 <div class="col-md-3 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-            
-                        {% if logined_user.profile_image %}
-                        <img class="rounded-circle mt-5" width="150px" src="{{logined_user.profile_image.url}}">
+
+                        {% if request.user.profile_image %}
+                        <img class="rounded-circle mt-5" width="150px" src="{{request.user.profile_image.url}}">
                         {% else %}
                         <img class="rounded-circle mt-5" width="150px" src="{% static 'web/images/deafult-01.jpg' %}">
                         {% endif %}
-                        <span class="font-weight-bold">{{logined_user.name}}</span>
-                        <span class="text-black-50">{{logined_user.category}}</span>
+                        <span class="font-weight-bold">{{request.user.name}}</span>
+                        <span class="text-black-50">{{request.user.category}}</span>
                         <span> </span>
                     </div>
                 </div>
@@ -28,31 +28,31 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12"><label class="labels">Name</label>
-                                <input type="text" class="form-control"  value="{{logined_user.name}}"></div>
-                            
+                                <input type="text" class="form-control"  value="{{request.user.name}}"></div>
+
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"><label class="labels">Mobile Number</label>
-                                <input type="text" class="form-control" value="{{logined_user.phone}}">
+                                <input type="text" class="form-control" value="{{request.user.phone}}">
                             </div>
                             <div class="col-md-12"><label class="labels">Email Id</label>
-                                <input type="text" class="form-control" value="{{logined_user.email}}">
+                                <input type="text" class="form-control" value="{{request.user.email}}">
                             </div>
                             <div class="col-md-12"><label class="labels">Shop Name</label>
-                                <input type="text" class="form-control" value="{{logined_user.shop_name}}">
+                                <input type="text" class="form-control" value="{{request.user.shop_name}}">
                             </div>
                             <div class="col-md-12"><label class="labels">Shop Address</label>
-                                <input type="text" class="form-control" value="{{logined_user.shop_address}}">
+                                <input type="text" class="form-control" value="{{request.user.shop_address}}">
                             </div>
                             <div class="col-md-12"><label class="labels">District</label>
-                                <input type="text" class="form-control" value="{{logined_user.district}}">
+                                <input type="text" class="form-control" value="{{request.user.district}}">
                             </div>
                             <div class="col-md-12"><label class="labels">Pincode</label>
-                                <input type="text" class="form-control" value="{{logined_user.pincode}}">
+                                <input type="text" class="form-control" value="{{request.user.pincode}}">
                             </div>
-                            
+
                         </div>
-                      
+
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -69,7 +69,7 @@
                                 <div class="d-flex justify-content-between align-items-center experience">
                                     <a href="">
                                         <button class="editbtn" id="chatBtn"><i class="fa-solid fa-sack-dollar"></i> Plan</button>
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-6 col-6">
@@ -79,7 +79,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
