@@ -187,6 +187,12 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 
+ANYMAIL = {
+    # "SENDINBLUE_SMTP_KEY": "xsmtpsib-908f87d8c58ebf8f4d8e64d65084ace7f2723a24bd918cf9a7365fc04fe46d3b-q3sPKkUA0EJjzh4m",
+    "SENDINBLUE_API_KEY": "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",
+}
+
+
 
 
 # user model created

@@ -49,6 +49,8 @@ from django.shortcuts import render
 from django.template.loader import get_template
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
@@ -87,6 +89,7 @@ def verify_signature(response_data):
     return client.utility.verify_payment_signature(response_data)
 
 
+@csrf_exempt
 def callback(request):
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
@@ -104,17 +107,15 @@ def callback(request):
             email = order.user.email
             phone = order.user.phone
             password = order.user.temp_password
-            send_mail(
-                "Registration Completed on USKLOGIN.COM",
-                "Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.\nUse this username and password to login \nUsername: "
-                + phone
-                + "\nPassword: "
-                + password
-                + "",
-                "uskdemomail@gmail.com",
-                [email],
-                fail_silently=False,
-            )
+            subject = "Registration Completed on USKLOGIN.COM"
+            message = f"""
+            Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
+            Use this username and password to login.
+
+            Username: {phone}
+            Password: {password}
+        """
+            send_mail(subject,message, "secure.gedexo@gmail.com", [email], fail_silently=False)
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
