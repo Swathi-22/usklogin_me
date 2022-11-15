@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "import_export",
     "registration",
     "widget_tweaks",
+    "anymail",
 ]
 
 
@@ -150,6 +151,8 @@ CHANNEL_LAYERS = {"default": {"BACKEND": "channels_redis.core.RedisChannelLayer"
 
 # SESSION-ENGINE FOR CUSTOM SESSESIOM
 SESSION_ENGINE = 'user_sessions.backends.db'
+MAX_DEVICE_SESSIONS = 3
+
 
 
 # CELERY SETTINGS
@@ -175,13 +178,23 @@ LOGIN_URL = "/app/accounts/login/"
 LOGOUT_URL = "/app/accounts/logout/"
 LOGIN_REDIRECT_URL = "/app/"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+
+
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "uskdemomail@gmail.com"
-EMAIL_HOST_PASSWORD = "mzdfydjqyamgktyy"
+EMAIL_HOST_USER = "secure.gedexo@gmail.com"
+EMAIL_HOST_PASSWORD = "tG3Ib4k7V1Bg92HL"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+ANYMAIL = {
+    # "SENDINBLUE_SMTP_KEY": "xsmtpsib-908f87d8c58ebf8f4d8e64d65084ace7f2723a24bd918cf9a7365fc04fe46d3b-q3sPKkUA0EJjzh4m",
+    "SENDINBLUE_API_KEY": "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",
+}
+
+
 
 
 # user model created
