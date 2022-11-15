@@ -18,13 +18,15 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "versatileimagefield",
     "tinymce",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.sessions",
+    "user_sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+
     "web",
     "invoices",
     "services",
@@ -49,9 +51,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    "user_sessions.middleware.SessionMiddleware",
+    # "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.csrf.CsrfViewMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -124,6 +127,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+SILENCED_SYSTEM_CHECKS = ["admin.E410"]
+
 
 USE_L10N = False
 DATE_INPUT_FORMATS = ("%d/%m/%Y", "%d-%m-%Y", "%d/%m/%y", "%d %b %Y", "%d %b, %Y", "%d %b %Y", "%d %b, %Y", "%d %B, %Y", "%d %B %Y")
@@ -143,6 +148,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CHANNEL_LAYERS = {"default": {"BACKEND": "channels_redis.core.RedisChannelLayer", "CONFIG": {"hosts": [("127.0.0.1", 6379)]}}}
+
+# SESSION-ENGINE FOR CUSTOM SESSESIOM
+SESSION_ENGINE = 'user_sessions.backends.db'
 
 
 # CELERY SETTINGS
