@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "import_export",
     "registration",
     "widget_tweaks",
+    "anymail",
 ]
 
 
@@ -167,13 +168,17 @@ LOGIN_URL = "/app/accounts/login/"
 LOGOUT_URL = "/app/accounts/logout/"
 LOGIN_REDIRECT_URL = "/app/"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+
+
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "uskdemomail@gmail.com"
-EMAIL_HOST_PASSWORD = "mzdfydjqyamgktyy"
+EMAIL_HOST_USER = "secure.gedexo@gmail.com"
+EMAIL_HOST_PASSWORD = "tG3Ib4k7V1Bg92HL"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
 
 
 # user model created

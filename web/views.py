@@ -2,7 +2,6 @@ import json
 import os
 import uuid
 from itertools import chain
-
 from accounts.models import User
 from services.models import BrandingImage
 from services.models import ServiceHeads
@@ -29,7 +28,6 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
-
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -80,7 +78,7 @@ def order_payment(request, pk):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:7000" + "/callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
     return render(request, "web/payment.html", context)
 
 
@@ -113,7 +111,7 @@ def callback(request):
                 + "\nPassword: "
                 + password
                 + "",
-                "mkswathisuresh@gmail.com",
+                "uskdemomail@gmail.com",
                 [email],
                 fail_silently=False,
             )
@@ -428,7 +426,6 @@ def certificate_view(request):
 
 
 def pdf_certificate(request):
-    request.session["phone"]
     certificate_images = CertificateImages.objects.all()
     template_path = "web/certificate-pdf.html"
     context = {"certificate_images": certificate_images}
