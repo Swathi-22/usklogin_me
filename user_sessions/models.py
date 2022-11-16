@@ -35,22 +35,22 @@ class Session(models.Model):
     ``user``, ``user_agent`` and ``ip``.
     """
 
-    session_key = models.CharField(_('session key'), max_length=40, primary_key=True)
-    session_data = models.TextField(_('session data'))
-    expire_date = models.DateTimeField(_('expiry date'), db_index=True)
+    session_key = models.CharField(_("session key"), max_length=40, primary_key=True)
+    session_data = models.TextField(_("session data"))
+    expire_date = models.DateTimeField(_("expiry date"), db_index=True)
     objects = SessionManager()
 
     class Meta:
-        verbose_name = _('session')
-        verbose_name_plural = _('sessions')
+        verbose_name = _("session")
+        verbose_name_plural = _("sessions")
 
     def get_decoded(self):
         return SessionStore(None, None).decode(self.session_data)
 
-    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'), null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(getattr(settings, "AUTH_USER_MODEL", "auth.User"), null=True, on_delete=models.CASCADE)
     user_agent = models.CharField(null=True, blank=True, max_length=200)
     last_activity = models.DateTimeField(auto_now=True)
-    ip = models.GenericIPAddressField(null=True, blank=True, verbose_name='IP')
+    ip = models.GenericIPAddressField(null=True, blank=True, verbose_name="IP")
 
 
 # At bottom to avoid circular import

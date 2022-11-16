@@ -14,7 +14,7 @@ from django.views.generic.edit import DeletionMixin
 
 class SessionMixin(object):
     def get_queryset(self):
-        return self.request.user.session_set.filter(expire_date__gt=now()).order_by('-last_activity')
+        return self.request.user.session_set.filter(expire_date__gt=now()).order_by("-last_activity")
 
 
 class LoginRequiredMixin(object):
@@ -33,7 +33,7 @@ class SessionListView(LoginRequiredMixin, SessionMixin, ListView):
     """
 
     def get_context_data(self, **kwargs):
-        kwargs['session_key'] = self.request.session.session_key
+        kwargs["session_key"] = self.request.session.session_key
         return super(SessionListView, self).get_context_data(**kwargs)
 
 
@@ -46,14 +46,14 @@ class SessionDeleteView(LoginRequiredMixin, SessionMixin, DeletionMixin, BaseDet
     """
 
     def delete(self, request, *args, **kwargs):
-        if kwargs['pk'] == request.session.session_key:
+        if kwargs["pk"] == request.session.session_key:
             logout(request)
-            next_page = getattr(settings, 'LOGOUT_REDIRECT_URL', '/')
+            next_page = getattr(settings, "LOGOUT_REDIRECT_URL", "/")
             return redirect(resolve_url(next_page))
         return super(SessionDeleteView, self).delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        return str(reverse_lazy('user_sessions:session_list'))
+        return str(reverse_lazy("user_sessions:session_list"))
 
 
 class SessionDeleteOtherView(LoginRequiredMixin, SessionMixin, DeletionMixin, View):
@@ -69,4 +69,4 @@ class SessionDeleteOtherView(LoginRequiredMixin, SessionMixin, DeletionMixin, Vi
         return super(SessionDeleteOtherView, self).get_queryset().exclude(session_key=self.request.session.session_key)
 
     def get_success_url(self):
-        return str(reverse_lazy('user_sessions:session_list'))
+        return str(reverse_lazy("user_sessions:session_list"))

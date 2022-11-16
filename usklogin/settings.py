@@ -18,6 +18,14 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "versatileimagefield",
     "tinymce",
+    "django_celery_beat",
+    "django_celery_results",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "import_export",
+    "registration",
+    "widget_tweaks",
+    "channels",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -32,15 +40,6 @@ INSTALLED_APPS = [
     "services",
     "accounts",
     "notification",
-    "channels",
-    "django_celery_beat",
-    "django_celery_results",
-    "crispy_forms",
-    "crispy_bootstrap5",
-    "import_export",
-    "registration",
-    "widget_tweaks",
-    "anymail",
 ]
 
 
@@ -54,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "user_sessions.middleware.SessionMiddleware",
     # "django.contrib.sessions.middleware.SessionMiddleware",
-    'django.middleware.csrf.CsrfViewMiddleware',
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -95,9 +94,6 @@ ASGI_APPLICATION = "usklogin.asgi.application"
 #         'PORT': '',
 #     }
 # }
-
-
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -150,13 +146,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CHANNEL_LAYERS = {"default": {"BACKEND": "channels_redis.core.RedisChannelLayer", "CONFIG": {"hosts": [("127.0.0.1", 6379)]}}}
 
 # SESSION-ENGINE FOR CUSTOM SESSESIOM
-SESSION_ENGINE = 'user_sessions.backends.db'
+SESSION_ENGINE = "user_sessions.backends.db"
 MAX_DEVICE_SESSIONS = 3
 
 
-
 # CELERY SETTINGS
-
 CELERY_BROKER_URL = "redis://127.0.0.1:6379"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_ACCEPT_CONTENT = ["application/json"]
@@ -179,9 +173,7 @@ LOGOUT_URL = "/app/accounts/logout/"
 LOGIN_REDIRECT_URL = "/app/"
 
 
-
-
-EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "secure.gedexo@gmail.com"
@@ -189,17 +181,10 @@ EMAIL_HOST_PASSWORD = "tG3Ib4k7V1Bg92HL"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-
-ANYMAIL = {
-    # "SENDINBLUE_SMTP_KEY": "xsmtpsib-908f87d8c58ebf8f4d8e64d65084ace7f2723a24bd918cf9a7365fc04fe46d3b-q3sPKkUA0EJjzh4m",
-    "SENDINBLUE_API_KEY": "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",
-}
-
-
-
-
 # user model created
 AUTH_USER_MODEL = "accounts.User"
 
 
+# For development
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
 CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev"]

@@ -2,7 +2,9 @@ import json
 import os
 import uuid
 from itertools import chain
+
 from accounts.models import User
+from invoices.models import Invoice
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -28,7 +30,7 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
-from invoices.models import Invoice
+
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -49,9 +51,8 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import get_template
 from django.template.loader import render_to_string
-from xhtml2pdf import pisa
 from django.views.decorators.csrf import csrf_exempt
-
+from xhtml2pdf import pisa
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
@@ -116,7 +117,7 @@ def callback(request):
             Username: {phone}
             Password: {password}
         """
-            send_mail(subject,message, "secure.gedexo@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
@@ -238,7 +239,6 @@ def generatePoster(request):
     return render(request, "web/generate-poster.html", context)
 
 
-
 def search_items(request):
     if request.POST:
         search_Key = request.POST["search_Key"]
@@ -262,10 +262,9 @@ def generateBill(request):
 
 
 def search_invoice(request):
-   if request.POST:
-    invoice_search_key = request.POST["search_invoice"]
-    invoice_list = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
-
+    if request.POST:
+        invoice_search_key = request.POST["search_invoice"]
+        invoice_list = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
 
 
 @login_required

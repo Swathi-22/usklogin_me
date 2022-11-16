@@ -120,7 +120,7 @@ class CertificateImagesAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("user","status",)
+    list_display = ("user", "status")
 
 
 @admin.register(CallSupport)

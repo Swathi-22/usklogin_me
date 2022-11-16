@@ -38,7 +38,7 @@ class SessionStore(SessionBase):
             return self.decode(s.session_data)
         except (Session.DoesNotExist, SuspiciousOperation) as e:
             if isinstance(e, SuspiciousOperation):
-                logger = logging.getLogger('django.security.%s' % e.__class__.__name__)
+                logger = logging.getLogger("django.security.%s" % e.__class__.__name__)
                 logger.warning(force_str(e))
             self.create()
             return {}
@@ -80,7 +80,7 @@ class SessionStore(SessionBase):
             with transaction.atomic(using):
                 obj.save(force_insert=must_create, using=using)
         except IntegrityError as e:
-            if must_create and 'session_key' in str(e):
+            if must_create and "session_key" in str(e):
                 raise CreateError
             raise
 
