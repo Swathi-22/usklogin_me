@@ -28,6 +28,7 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
+from invoices.models import Invoice
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -237,11 +238,6 @@ def generatePoster(request):
     return render(request, "web/generate-poster.html", context)
 
 
-def generateBill(request):
-    services = Services.objects.all()
-    context = {"is_bill": True, "services": services, "room_name": "broadcast"}
-    return render(request, "web/generate-bill.html", context)
-
 
 def search_items(request):
     if request.POST:
@@ -256,8 +252,20 @@ def search_items(request):
         print(services.count())
         context = {}
         context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
-
     return JsonResponse(context)
+
+
+def generateBill(request):
+    services = Services.objects.all()
+    context = {"is_bill": True, "services": services, "room_name": "broadcast"}
+    return render(request, "web/generate-bill.html", context)
+
+
+def search_invoice(request):
+   if request.POST:
+    invoice_search_key = request.POST["search_invoice"]
+    invoice_list = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
+
 
 
 @login_required
