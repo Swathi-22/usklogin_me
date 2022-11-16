@@ -40,7 +40,7 @@ urlpatterns = [
     path("payment/<str:pk>/", views.order_payment, name="order_payment"),
     path("callback/", views.callback, name="callback"),
     path("download-certificate/", views.certificate_view, name="certificate_view"),
-    path("download-pdf-certificate/", views.pdf_certificate, name="pdf_certificate"),
+    path("download-pdf-certificate/", views.Certificate.as_view(), name="pdf_certificate"),
     # path('download-certificate-download/', PDFView.as_view(template_name="web/certificate.html"),name="certificate"),
     path("logout/", views.logout_view, name="logout"),
 ]
