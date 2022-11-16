@@ -284,13 +284,20 @@ def generateBill(request):
 
 
 
+def invoice_searching(request):
+    context = {}
+    return render(request,'web/invoice-searching.html',context)
+
+
+
+@csrf_exempt
 def search_invoice(request):
     if request.POST:
-        invoice_search_key = request.POST["search"]
+        invoice_search_key = request.POST["invoice_search_key"]
         invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
-        print(invoice.count())
+        print(invoice)
         context = {}
-        context["template"] = render_to_string("web/invoice-searching.html", {"invoice": invoice}, request=request)
+        context["template"] = render_to_string("invoices/customers.html", {"invoice": invoice}, request=request)
     return JsonResponse(context)
 
 
