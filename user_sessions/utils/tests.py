@@ -32,7 +32,7 @@ class Client(BaseClient):
             if self.session:
                 request.session = self.session
             else:
-                request.session = SessionStore(user_agent='Python/2.7', ip='127.0.0.1')
+                request.session = SessionStore(user_agent="Python/2.7", ip="127.0.0.1")
             login(request, user)
 
             # Save the session values.
@@ -41,7 +41,7 @@ class Client(BaseClient):
             # Set the cookie to represent the session.
             session_cookie = settings.SESSION_COOKIE_NAME
             self.cookies[session_cookie] = request.session.session_key
-            cookie_data = {'max-age': None, 'path': '/', 'domain': settings.SESSION_COOKIE_DOMAIN, 'secure': settings.SESSION_COOKIE_SECURE or None, 'expires': None}
+            cookie_data = {"max-age": None, "path": "/", "domain": settings.SESSION_COOKIE_DOMAIN, "secure": settings.SESSION_COOKIE_SECURE or None, "expires": None}
             self.cookies[session_cookie].update(cookie_data)
 
             return True
@@ -64,9 +64,9 @@ class Client(BaseClient):
         """
         Obtains the current session variables.
         """
-        if 'user_sessions' in settings.INSTALLED_APPS:
+        if "user_sessions" in settings.INSTALLED_APPS:
             cookie = self.cookies.get(settings.SESSION_COOKIE_NAME, None)
             if cookie:
-                return SessionStore(session_key=cookie.value, user_agent='Python/2.7', ip='127.0.0.1')
+                return SessionStore(session_key=cookie.value, user_agent="Python/2.7", ip="127.0.0.1")
 
     session = property(_session)

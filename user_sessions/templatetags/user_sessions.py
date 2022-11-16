@@ -9,34 +9,34 @@ from django.utils.translation import gettext_lazy as _
 register = template.Library()
 
 BROWSERS = (
-    (re.compile('Edg'), _('Edge')),
-    (re.compile('OPR'), _('Opera')),
-    (re.compile('Chrome'), _('Chrome')),
-    (re.compile('Safari'), _('Safari')),
-    (re.compile('Firefox'), _('Firefox')),
-    (re.compile('IE'), _('Internet Explorer')),
+    (re.compile("Edg"), _("Edge")),
+    (re.compile("OPR"), _("Opera")),
+    (re.compile("Chrome"), _("Chrome")),
+    (re.compile("Safari"), _("Safari")),
+    (re.compile("Firefox"), _("Firefox")),
+    (re.compile("IE"), _("Internet Explorer")),
 )
 DEVICES = (
-    (re.compile('Windows Mobile'), _('Windows Mobile')),
-    (re.compile('Android'), _('Android')),
-    (re.compile('Linux'), _('Linux')),
-    (re.compile('iPhone'), _('iPhone')),
-    (re.compile('iPad'), _('iPad')),
-    (re.compile('Mac OS X 10[._]9'), _('OS X Mavericks')),
-    (re.compile('Mac OS X 10[._]10'), _('OS X Yosemite')),
-    (re.compile('Mac OS X 10[._]11'), _('OS X El Capitan')),
-    (re.compile('Mac OS X 10[._]12'), _('macOS Sierra')),
-    (re.compile('Mac OS X 10[._]13'), _('macOS High Sierra')),
-    (re.compile('Mac OS X 10[._]14'), _('macOS Mojave')),
-    (re.compile('Mac OS X 10[._]15'), _('macOS Catalina')),
-    (re.compile('Mac OS X'), _('macOS')),
-    (re.compile('NT 5.1'), _('Windows XP')),
-    (re.compile('NT 6.0'), _('Windows Vista')),
-    (re.compile('NT 6.1'), _('Windows 7')),
-    (re.compile('NT 6.2'), _('Windows 8')),
-    (re.compile('NT 6.3'), _('Windows 8.1')),
-    (re.compile('NT 10.0'), _('Windows 10')),
-    (re.compile('Windows'), _('Windows')),
+    (re.compile("Windows Mobile"), _("Windows Mobile")),
+    (re.compile("Android"), _("Android")),
+    (re.compile("Linux"), _("Linux")),
+    (re.compile("iPhone"), _("iPhone")),
+    (re.compile("iPad"), _("iPad")),
+    (re.compile("Mac OS X 10[._]9"), _("OS X Mavericks")),
+    (re.compile("Mac OS X 10[._]10"), _("OS X Yosemite")),
+    (re.compile("Mac OS X 10[._]11"), _("OS X El Capitan")),
+    (re.compile("Mac OS X 10[._]12"), _("macOS Sierra")),
+    (re.compile("Mac OS X 10[._]13"), _("macOS High Sierra")),
+    (re.compile("Mac OS X 10[._]14"), _("macOS Mojave")),
+    (re.compile("Mac OS X 10[._]15"), _("macOS Catalina")),
+    (re.compile("Mac OS X"), _("macOS")),
+    (re.compile("NT 5.1"), _("Windows XP")),
+    (re.compile("NT 6.0"), _("Windows Vista")),
+    (re.compile("NT 6.1"), _("Windows 7")),
+    (re.compile("NT 6.2"), _("Windows 8")),
+    (re.compile("NT 6.3"), _("Windows 8.1")),
+    (re.compile("NT 10.0"), _("Windows 10")),
+    (re.compile("Windows"), _("Windows")),
 )
 
 
@@ -68,7 +68,7 @@ def device(value):
             break
 
     if browser and device:
-        return _('%(browser)s on %(device)s') % {'browser': browser, 'device': device}
+        return _("%(browser)s on %(device)s") % {"browser": browser, "device": device}
 
     if browser:
         return browser
@@ -98,10 +98,10 @@ def location(value):
         except Exception as e:
             warnings.warn(str(e))
             location = None
-    if location and location['country_name']:
-        if 'city' in location and location['city']:
-            return '{}, {}'.format(location['city'], location['country_name'])
-        return location['country_name']
+    if location and location["country_name"]:
+        if "city" in location and location["city"]:
+            return "{}, {}".format(location["city"], location["country_name"])
+        return location["country_name"]
     return None
 
 

@@ -1,5 +1,6 @@
 import asyncio
 import json
+
 from .models import BroadcastNotification
 from celery import shared_task
 from celery.exceptions import Ignore

@@ -2,7 +2,9 @@ import json
 import os
 import uuid
 from itertools import chain
+
 from accounts.models import User
+from invoices.models import Invoice
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -11,7 +13,6 @@ from web.models import AgencyPortal
 from web.models import AgentBonus
 from web.models import BackOfficeServices
 from web.models import CallSupport
-from web.models import CertificateImages
 from web.models import ChangePassword
 from web.models import CommonServicesPoster
 from web.models import DownloadDocuments
@@ -28,7 +29,7 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
-from invoices.models import Invoice
+
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -47,15 +48,37 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.template.loader import get_template
 from django.template.loader import render_to_string
-from xhtml2pdf import pisa
 from django.views.decorators.csrf import csrf_exempt
-
+from .utils import PDFView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
 RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
+
+
+def pdf_certificate(request):
+    pass
+
+
+class Certificate(PDFView, LoginRequiredMixin):
+    template_name = "web/certificate-pdf.html"
+    pdfkit_options = {
+        "page-height": "8.5in",
+        "page-width": "11in",
+        "encoding": "UTF-8",
+        "margin-top": "0",
+        "margin-bottom": "0",
+        "margin-left": "0",
+        "margin-right": "0",
+    }
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["logged_user"] = self.request.user
+        context["content"] = "Gedexo Certificate"
+        return context
 
 
 def register(request):
@@ -116,7 +139,7 @@ def callback(request):
             Username: {phone}
             Password: {password}
         """
-            send_mail(subject,message, "secure.gedexo@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
@@ -236,7 +259,6 @@ def generatePoster(request):
         "room_name": "broadcast",
     }
     return render(request, "web/generate-poster.html", context)
-
 
 
 def search_items(request):
@@ -437,24 +459,6 @@ def paymentfail(request):
 def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
-
-
-def pdf_certificate(request):
-    certificate_images = CertificateImages.objects.all()
-    template_path = "web/certificate-pdf.html"
-    context = {"certificate_images": certificate_images}
-    # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type="application/pdf")
-    response["Content-Disposition"] = 'attachment; filename="usklogin-certificate.pdf"'
-    # find the template and render it.
-    template = get_template(template_path)
-    html = template.render(context)
-    # create a pdf
-    pisa_status = pisa.CreatePDF(html, dest=response)
-    # if error then show some funny view
-    if pisa_status.err:
-        return HttpResponse("We had some errors <pre>" + html + "</pre>")
-    return response
 
 
 def logout_view(request):
