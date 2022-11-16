@@ -261,10 +261,15 @@ def generateBill(request):
     return render(request, "web/generate-bill.html", context)
 
 
+
 def search_invoice(request):
-   if request.POST:
-    invoice_search_key = request.POST["search_invoice"]
-    invoice_list = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
+    if request.POST:
+        invoice_search_key = request.POST["search"]
+        invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
+        print(invoice.count())
+        context = {}
+        context["template"] = render_to_string("web/invoice-searching.html", {"invoice": invoice}, request=request)
+    return JsonResponse(context)
 
 
 
@@ -430,7 +435,7 @@ def paymentfail(request):
 
 
 def certificate_view(request):
-    context = {"logined_user": request.user, "room_name": "broadcast"}
+    context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
 
 
