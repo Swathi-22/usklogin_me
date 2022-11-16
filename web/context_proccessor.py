@@ -8,7 +8,7 @@ def main_context(request):
 
     if request.user.is_authenticated:
         if request.user.session_set.all().count() > settings.MAX_DEVICE_SESSIONS:
-            request.user.session_set.all().order_by("-last_activity")[: settings.MAX_DEVICE_SESSIONS].delete()
+            request.user.session_set.filter(pk__in=request.user.session_set.order_by("-last_activity").values_list('pk')[settings.MAX_DEVICE_SESSIONS:]).delete()
 
     branding_image = BrandingImage.objects.all()
 
