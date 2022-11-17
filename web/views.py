@@ -5,6 +5,7 @@ from itertools import chain
 
 from accounts.models import User
 from invoices.models import Invoice
+from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -282,17 +283,31 @@ def generateBill(request):
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
 
-
-@csrf_exempt
 @login_required
-def search_invoice(request):
-    if request.POST:
-        invoice_search_key = request.POST["invoice_search_key"]
-        invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
+def searching_invoice(request):
+    search=''
+    invoice=''
+    if 'search' in request.GET:
+        search = request.GET['search']
+        invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
         print(invoice)
-        context = {}
-        context["template"] = render_to_string("invoices/customers.html", {"invoice": invoice}, request=request)
-    return JsonResponse(context)
+        # invoice_item = InvoiceItem.objects.select_related("invoice").filter(invoice__invoice_name=)
+    else:
+        invoice = InvoiceItem.objects.all()
+    context = {'invoice':invoice,}
+    return render(request,'web/invoice-searching.html',context)
+
+
+# @csrf_exempt
+# @login_required
+# def searching_customer_invoice(request):
+#     if request.POST:
+#         invoice_search_key = request.POST["invoice_search_key"]
+#         invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
+#         print(invoice)
+#         context = {}
+#         context["template"] = render_to_string("web/invoice-searching.html", {"invoice": invoice}, request=request)
+#     return JsonResponse(context)
 
 
 
@@ -301,6 +316,8 @@ def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
     return render(request, "web/generate-form.html", context)
+
+
 
 @login_required
 def download(request, path):
