@@ -1,15 +1,15 @@
 
-  $('#search-tile').keyup(function () {
-    var search_Key = $('#search-tile').val()
+  $('#search').keyup(function () {
+    var invoice_search_key = $('#search').val()
     // alert(this.value)
-    if (search_Key != '') {
-      var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+    if (invoice_search_key != '') {
+      var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
       $.ajax({
-        url: '/search/',
+        url: '/seacrch-invocie/',
         type: 'POST',
         data: {
-          'search_Key': search_Key,
-          csrfmiddlewaretoken: csrftoken
+          'invoice_search_key': invoice_search_key,
+          headers: { 'X-CSRFToken':csrftoken }
 
         },
         success: function (response) {
@@ -25,8 +25,3 @@
     }
 
   });
-
-
-
-
-  

@@ -18,6 +18,8 @@ urlpatterns = [
     path("notification/", views.notification, name="notification"),
     path("generate-poster/", views.generatePoster, name="generatePoster"),
     path("generate-bill/", views.generateBill, name="generateBill"),
+    path("search-invocie/", views.searching_invoice, name="searching_invoice"),
+    # path("searching-customer-invocie/", views.searching_customer_invoice, name="searching_customer_invoice"),
     path("search/", views.search_items, name="search_items"),
     path("generate-form/", views.generateForms, name="generateForms"),
     path("download/", serve, {"document_root": "settings.MEDIA_ROOT"}),

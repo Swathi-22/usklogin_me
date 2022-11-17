@@ -5,6 +5,7 @@ from itertools import chain
 
 from accounts.models import User
 from invoices.models import Invoice
+from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -163,7 +164,7 @@ def forgot_password(request):
     context = {}
     return render(request, "web/forgot-password.html", context)
 
-
+@login_required
 def change_password(request, token):
     change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
     if change_password_obj.status:
@@ -213,7 +214,7 @@ def settings(request):
     context = {}
     return render(request, "web/settings.html", context)
 
-
+@login_required
 def index(request):
     service_head = ServiceHeads.objects.all()
     latest_news = LatestNews.objects.all().last()
@@ -244,7 +245,7 @@ def notification(request):
     async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
     return HttpResponse("Done")
 
-
+@login_required
 def generatePoster(request):
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
@@ -260,7 +261,7 @@ def generatePoster(request):
     }
     return render(request, "web/generate-poster.html", context)
 
-
+@login_required
 def search_items(request):
     if request.POST:
         search_Key = request.POST["search_Key"]
@@ -276,20 +277,38 @@ def search_items(request):
         context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
     return JsonResponse(context)
 
-
+@login_required
 def generateBill(request):
     services = Services.objects.all()
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
 
+@login_required
+def searching_invoice(request):
+    search=''
+    invoice=''
+    if 'search' in request.GET:
+        search = request.GET['search']
+        invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
+        print(invoice)
+        # invoice_item = InvoiceItem.objects.select_related("invoice").filter(invoice__invoice_name=)
+    else:
+        invoice = InvoiceItem.objects.all()
+    context = {'invoice':invoice,}
+    return render(request,'web/invoice-searching.html',context)
 
-def search_invoice(request):
-    if request.POST:
-        invoice_search_key = request.POST["search_invoice"]
-        invoice_list = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
-        context = {}
-        context["template"] = render_to_string("web/invoice-searching.html", {"invoice_list": invoice_list}, request=request)
-    return JsonResponse(context)
+
+# @csrf_exempt
+# @login_required
+# def searching_customer_invoice(request):
+#     if request.POST:
+#         invoice_search_key = request.POST["invoice_search_key"]
+#         invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
+#         print(invoice)
+#         context = {}
+#         context["template"] = render_to_string("web/invoice-searching.html", {"invoice": invoice}, request=request)
+#     return JsonResponse(context)
+
 
 
 @login_required
@@ -299,6 +318,8 @@ def generateForms(request):
     return render(request, "web/generate-form.html", context)
 
 
+
+@login_required
 def download(request, path):
     file_path = os.path.join(settings.MEDIA_ROOT, path)
     if os.path.exists(file_path):
@@ -329,42 +350,47 @@ def tools(request):
     context = {"is_tool": True, "tools": tools, "room_name": "broadcast"}
     return render(request, "web/tools.html", context)
 
-
+@login_required
 def marketingTip(request):
     marketing_tips = MarketingTips.objects.all()
     context = {"is_tip": True, "marketing_tips": marketing_tips, "room_name": "broadcast"}
     return render(request, "web/marketing-tip.html", context)
 
-
+@login_required
 def otherIdea(request):
     other_ideas = OtherIdeas.objects.all()
     context = {"is_idea": True, "other_ideas": other_ideas, "room_name": "broadcast"}
     return render(request, "web/other-ideas.html", context)
 
 
+@login_required
 def agencyPortal(request):
     agency_portal = AgencyPortal.objects.all()
     context = {"is_portal": True, "agency_portal": agency_portal, "room_name": "broadcast"}
     return render(request, "web/agency-portal.html", context)
 
 
+@login_required
 def backOfficeServices(request):
     back_office_services = BackOfficeServices.objects.all()
     context = {"is_backservice": True, "back_office_services": back_office_services, "room_name": "broadcast"}
     return render(request, "web/back-office-services.html", context)
 
 
+@login_required
 def bonus(request):
     agent_bonus = AgentBonus.objects.all()
     context = {"is_bonus": True, "agent_bonus": agent_bonus, "room_name": "broadcast"}
     return render(request, "web/bonus.html", context)
 
 
+@login_required
 def support(request):
     context = {"is_support": True, "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
 
+@login_required
 def supportRequest(request):
     forms = SupportRequestForm(request.POST or None)
     if request.method == "POST":
@@ -380,12 +406,14 @@ def supportRequest(request):
     return render(request, "web/support-request.html", context)
 
 
+@login_required
 def F_A_Q(request):
     Frequently_Asked_Questions = FAQ.objects.all()
     context = {"Frequently_Asked_Questions": Frequently_Asked_Questions, "room_name": "broadcast"}
     return render(request, "web/faq.html", context)
 
 
+@login_required
 def supportTicket(request):
     forms = SupportTicketForm(request.POST or None)
     if request.method == "POST":
@@ -401,6 +429,7 @@ def supportTicket(request):
     return render(request, "web/support-ticket.html", context)
 
 
+@login_required
 def call_support(request):
     call_support = CallSupport.objects.all()
     phone = request.session["phone"]
@@ -427,12 +456,14 @@ def call_support(request):
 #                 "order": order,},)
 
 
+@login_required
 def whatsapp_support(request):
     whatsapp_support = WhatsappSupport.objects.all()
     context = {"whatsapp_support": whatsapp_support}
     return render(request, "web/whatsapp-support.html", context)
 
 
+@login_required
 def termsConditions(request):
     context = {}
     return render(request, "web/terms&conditions.html", context)
@@ -453,8 +484,9 @@ def paymentfail(request):
     return render(request, "web/paymentfail.html", context)
 
 
+@login_required
 def certificate_view(request):
-    context = {"logined_user": request.user, "room_name": "broadcast"}
+    context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
 
 
