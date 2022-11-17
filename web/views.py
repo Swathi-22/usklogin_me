@@ -105,7 +105,7 @@ def order_payment(request, pk):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "https://" + "127.0.0.1:8000" + "/callback/"}
     return render(request, "web/payment.html", context)
 
 

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "services",
     "accounts",
     "notification",
+    
 ]
 
 
@@ -94,6 +95,8 @@ ASGI_APPLICATION = "usklogin.asgi.application"
 #         'PORT': '',
 #     }
 # }
+
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -186,5 +189,11 @@ AUTH_USER_MODEL = "accounts.User"
 
 
 # For development
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {
+    "default":
+    {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3"
+    }
+}
 CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev"]
