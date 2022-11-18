@@ -20,6 +20,8 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
+from .models import Subscription
+
 from django.contrib import admin
 
 
@@ -131,3 +133,8 @@ class CallSupportAdmin(admin.ModelAdmin):
 @admin.register(WhatsappSupport)
 class WhatsappSupportAdmin(admin.ModelAdmin):
     list_display = ("name", "phone_number")
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ("user", "amount", "valid_from", "valid_upto")

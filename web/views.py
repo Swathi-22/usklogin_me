@@ -30,6 +30,7 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
+from web.models import Subscription
 
 import razorpay
 from .forms import SupportRequestForm
@@ -101,12 +102,23 @@ def register(request):
 
 def order_payment(request, pk):
     user = User.objects.get(id=pk)
-    amount = 20000
+    amount = 200
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
-    razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
+    razorpay_order = client.order.create({"amount": int(amount)*100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "https://" + "127.0.0.1:8000" + "/callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
     return render(request, "web/payment.html", context)
+
+
+def upgrade_plan(request):
+    user = request.user
+    amount = 400
+    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    razorpay_order = client.order.create({"amount": int(amount)*100, "currency": "INR", "payment_capture": "1"})
+    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    subscription, created = Subscription.objects.get_or_create(user=user, amount=amount, is_active= True)
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
+    return render(request, "web/upgrade_plan.html", context)
 
 
 def verify_signature(response_data):
@@ -490,9 +502,9 @@ def certificate_view(request):
     return render(request, "web/certificate.html", context)
 
 
-def logout_view(request):
-    try:
-        del request.session["phone"]
-    except:
-        return redirect("web:login_view")
-    return redirect("web:login_view")
+# def logout_view(request):
+#     try:
+#         del request.session["phone"]
+#     except:
+#         return redirect("web:login_view")
+#     return redirect("web:login_view")
