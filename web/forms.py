@@ -1,5 +1,4 @@
 from accounts.models import User
-
 from .models import SupportRequest
 from .models import SupportTicket
 from django import forms
@@ -8,6 +7,7 @@ from django.forms.widgets import FileInput
 from django.forms.widgets import Select
 from django.forms.widgets import Textarea
 from django.forms.widgets import TextInput
+from services.models import BrandingImage
 
 
 # class LoginForm(forms.ModelForm):
@@ -77,3 +77,14 @@ class UserUpdateForm(forms.ModelForm):
             "category": Select(attrs={"class": "form-control", "name": "category"}),
             "profile_image": FileInput(attrs={"class": "form-control", "name": "image"}),
         }
+
+
+class BrandingImageUploadingForm(forms.ModelForm):
+    class Meta:
+        model = BrandingImage
+        fields = ("image",)
+        widgets = {
+            "image":FileInput(attrs={"class": "get-input d-none",})
+        }
+
+

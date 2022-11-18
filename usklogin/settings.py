@@ -85,16 +85,16 @@ WSGI_APPLICATION = "usklogin.wsgi.application"
 ASGI_APPLICATION = "usklogin.asgi.application"
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': config('DB_ENGINE'),
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('DB_PASSWORD'),
-#         'HOST': config('DB_HOST'),
-#         'PORT': '',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': '',
+    }
+}
 
 
 
@@ -171,16 +171,16 @@ SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
 REGISTRATION_OPEN = True
-LOGIN_URL = "/app/accounts/login/"
-LOGOUT_URL = "/app/accounts/logout/"
+LOGIN_URL = "/login/"
+LOGOUT_URL = "/logout/"
 LOGIN_REDIRECT_URL = "/app/"
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "secure.gedexo@gmail.com"
-EMAIL_HOST_PASSWORD = "tG3Ib4k7V1Bg92HL"
+EMAIL_HOST_USER = "uskdemomail@gmail.com"
+EMAIL_HOST_PASSWORD = "uskdemomail@123"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
@@ -189,6 +189,7 @@ AUTH_USER_MODEL = "accounts.User"
 
 
 # For development
+
 DATABASES = {
     "default":
     {
@@ -196,4 +197,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3"
     }
 }
+
+
 CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev"]

@@ -41,7 +41,7 @@ class Services(models.Model):
 
 
 class BrandingImage(models.Model):
-    image = VersatileImageField("Image", upload_to="service/", ppoi_field="ppoi")
+    image = VersatileImageField("Image", upload_to="service/", ppoi_field="ppoi",blank=True,null=True)
     ppoi = PPOIField("Image PPOI")
 
     class Meta:

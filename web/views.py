@@ -2,7 +2,6 @@ import json
 import os
 import uuid
 from itertools import chain
-
 from accounts.models import User
 from invoices.models import Invoice
 from invoices.models import InvoiceItem
@@ -30,7 +29,6 @@ from web.models import ProfessionalPoster
 from web.models import Softwares
 from web.models import Tools
 from web.models import WhatsappSupport
-
 import razorpay
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -53,7 +51,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from .utils import PDFView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from .forms import BrandingImageUploadingForm
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
 RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
@@ -164,6 +162,8 @@ def forgot_password(request):
     context = {}
     return render(request, "web/forgot-password.html", context)
 
+
+
 @login_required
 def change_password(request, token):
     change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
@@ -195,7 +195,12 @@ def change_password(request, token):
 @login_required
 def profile(request):
     user_form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
-    context = {"is_profile": True, "user_form": user_form}
+    branding_image = BrandingImageUploadingForm(request.POST, request.FILES)
+    if request.POST == "POST":
+        branding_image = BrandingImageUploadingForm(request.POST, request.FILES)
+        if branding_image.is_valid():
+            branding_image.save()
+    context = {"is_profile": True, "user_form": user_form,"branding_image":branding_image,}
     return render(request, "web/profile.html", context)
 
 
@@ -213,6 +218,7 @@ def profile_update(request):
 def settings(request):
     context = {}
     return render(request, "web/settings.html", context)
+
 
 @login_required
 def index(request):
@@ -277,11 +283,13 @@ def search_items(request):
         context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
     return JsonResponse(context)
 
+
 @login_required
 def generateBill(request):
     services = Services.objects.all()
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
+
 
 @login_required
 def searching_invoice(request):
@@ -296,19 +304,6 @@ def searching_invoice(request):
         invoice = InvoiceItem.objects.all()
     context = {'invoice':invoice,}
     return render(request,'web/invoice-searching.html',context)
-
-
-# @csrf_exempt
-# @login_required
-# def searching_customer_invoice(request):
-#     if request.POST:
-#         invoice_search_key = request.POST["invoice_search_key"]
-#         invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
-#         print(invoice)
-#         context = {}
-#         context["template"] = render_to_string("web/invoice-searching.html", {"invoice": invoice}, request=request)
-#     return JsonResponse(context)
-
 
 
 @login_required
@@ -439,21 +434,6 @@ def call_support(request):
         return redirect("web:upgrade_plan")
     context = {"call_support": call_support}
     return render(request, "web/call-support.html", context)
-
-
-# def upgrade_plan(request):
-#     phone = request.session["phone"]
-#     amount = 50000
-#     client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
-#     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
-#     obj = User.objects.filter(phone=phone).first()
-#     order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
-#     order.save()
-#     return render(request,"web/upgrade-plan.html",{
-#                 # "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
-#                 "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
-#                 "razorpay_key": "rzp_test_kVa6uUqaP96eJr",
-#                 "order": order,},)
 
 
 @login_required

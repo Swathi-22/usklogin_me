@@ -3,6 +3,8 @@
 {% load static %}
 {% load humanize %}
 
+
+{% csrf_token %} 
 <!-- search -->
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -181,12 +183,12 @@
 {% block js %}
 
 
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
   $(document).ready(function () {
     $('#sucessful-login-message').fadeOut(3000)
   })  
-</script> -->
+</script>
 
 
 <script>
