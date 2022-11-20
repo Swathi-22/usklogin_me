@@ -1,7 +1,10 @@
-from __future__ import absolute_import, print_function, unicode_literals
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import os
-from os.path import basename, splitext
+from os.path import basename
+from os.path import splitext
 
 import pdfkit
 from django.conf import settings
@@ -24,12 +27,8 @@ class PDFView(TemplateView):
     def get(self, request, *args, **kwargs):
         content = self.render_pdf(*args, **kwargs)
         response = HttpResponse(content, content_type="application/pdf")
-        if (
-            not self.inline or "download" in request.GET
-        ) and "inline" not in request.GET:
-            response["Content-Disposition"] = (
-                "attachment; filename=%s" % self.get_filename()
-            )
+        if (not self.inline or "download" in request.GET) and "inline" not in request.GET:
+            response["Content-Disposition"] = "attachment; filename=%s" % self.get_filename()
         response["Content-Length"] = len(content)
         return response
 
@@ -47,10 +46,7 @@ class PDFView(TemplateView):
     def get_pdfkit_options(self):
         if self.pdfkit_options is not None:
             return self.pdfkit_options
-        return {
-            "page-size": "A4",
-            "encoding": "UTF-8",
-        }
+        return {"page-size": "A4", "encoding": "UTF-8"}
 
     def get_filename(self):
         if self.filename is None:
@@ -59,16 +55,8 @@ class PDFView(TemplateView):
         return self.filename
 
     def render_html(self, *args, **kwargs):
-        static_url = "%s://%s%s" % (
-            self.request.scheme,
-            self.request.get_host(),
-            settings.STATIC_URL,
-        )
-        media_url = "%s://%s%s" % (
-            self.request.scheme,
-            self.request.get_host(),
-            settings.MEDIA_URL,
-        )
+        static_url = "%s://%s%s" % (self.request.scheme, self.request.get_host(), settings.STATIC_URL)
+        media_url = "%s://%s%s" % (self.request.scheme, self.request.get_host(), settings.MEDIA_URL)
 
         with override_settings(STATIC_URL=static_url, MEDIA_URL=media_url):
             template = loader.get_template(self.template_name)

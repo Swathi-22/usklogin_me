@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAZORPAY</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <div class="row">
+        
+        <script>
+            var options = {
+                "key": "{{razorpay_key}}",
+                "amount": "{{amount}}",
+                "currency": "INR",
+                "order_id": "{{order.provider_order_id}}",
+                "image": "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
+                "callback_url": "{{callback_url}}",
+                
+
+                // "handler": function (response) {
+                //     alert(response.razorpay_payment_id);
+                // },
+                "modal": {
+                    "ondismiss": function () {
+                        if (confirm("Are you sure, you want to close the form?")) {
+                            txt = "You pressed OK!";
+                            console.log("Checkout form closed by the user");
+                        } else {
+                            txt = "You pressed Cancel!";
+                            console.log("Complete the Payment")
+                        }
+                    }
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        </script>
+
+
+    </div>
+
+
+</body>
+
+</html>

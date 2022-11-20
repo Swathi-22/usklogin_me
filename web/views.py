@@ -4,7 +4,6 @@ import uuid
 from itertools import chain
 
 from accounts.models import User
-from invoices.models import Invoice
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
@@ -28,20 +27,25 @@ from web.models import OtherIdeas
 from web.models import PaymentStatus
 from web.models import ProfessionalPoster
 from web.models import Softwares
+from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
 
 import razorpay
+from .forms import BrandingImageUploadingForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
 from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
 from .helper import send_forget_password_mail
+from .utils import PDFView
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import Http404
@@ -51,9 +55,6 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
-from .utils import PDFView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.conf import settings
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
@@ -78,15 +79,7 @@ def test(request):
 
 class Certificate(PDFView, LoginRequiredMixin):
     template_name = "web/certificate-pdf.html"
-    pdfkit_options = {
-        "page-height": "8.5in",
-        "page-width": "11in",
-        "encoding": "UTF-8",
-        "margin-top": "0",
-        "margin-bottom": "0",
-        "margin-left": "0",
-        "margin-right": "0",
-    }
+    pdfkit_options = {"page-height": "8.5in", "page-width": "11in", "encoding": "UTF-8", "margin-top": "0", "margin-bottom": "0", "margin-left": "0", "margin-right": "0"}
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -114,12 +107,23 @@ def register(request):
 
 def order_payment(request, pk):
     user = User.objects.get(id=pk)
-    amount = 20000
+    amount = 200
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
-    razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
+    razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
     return render(request, "web/payment.html", context)
+
+
+def upgrade_plan(request):
+    user = request.user
+    amount = 400
+    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
+    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    subscription, created = Subscription.objects.get_or_create(user=user, amount=amount, is_active=True)
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
+    return render(request, "web/upgrade_plan.html", context)
 
 
 def verify_signature(response_data):
@@ -210,7 +214,12 @@ def change_password(request, token):
 @login_required
 def profile(request):
     user_form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
-    context = {"is_profile": True, "user_form": user_form}
+    branding_image = BrandingImageUploadingForm(request.POST, request.FILES)
+    if request.POST == "POST":
+        branding_image = BrandingImageUploadingForm(request.POST, request.FILES)
+        if branding_image.is_valid():
+            branding_image.save()
+    context = {"is_profile": True, "user_form": user_form, "branding_image": branding_image}
     return render(request, "web/profile.html", context)
 
 
@@ -225,7 +234,7 @@ def profile_update(request):
     return render(request, "web/profile-update.html", context)
 
 
-def settings(request):
+def settings_menu(request):
     context = {}
     return render(request, "web/settings.html", context)
 
@@ -305,32 +314,21 @@ def generateBill(request):
 
 @login_required
 def searching_invoice(request):
-    if 'search' in request.GET:
-        search = request.GET['search']
+    if "search" in request.GET:
+        search = request.GET["search"]
         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
         print(invoice)
         context = {"invoice": invoice}
     else:
-        context = {'invoice': invoice, }
-        return render(request, 'web/invoice-searching.html', context)
-
-
-# @csrf_exempt
-# @login_required
-# def searching_customer_invoice(request):
-#     if request.POST:
-#         invoice_search_key = request.POST["invoice_search_key"]
-#         invoice = Invoice.objects.select_related("customer").filter(Q(customer__phone_no__icontains=invoice_search_key))
-#         print(invoice)
-#         context = {}
-#         context["template"] = render_to_string("web/invoice-searching.html", {"invoice": invoice}, request=request)
-#     return JsonResponse(context)
+        context = {"invoice": invoice}
+        return render(request, "web/invoice-searching.html", context)
 
 
 @login_required
 def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
+    return render(request, "web/generate-forms.html", context)
 
 
 @login_required
@@ -458,21 +456,6 @@ def call_support(request):
     return render(request, "web/call-support.html", context)
 
 
-# def upgrade_plan(request):
-#     phone = request.session["phone"]
-#     amount = 50000
-#     client = razorpay.Client(auth=("rzp_test_kVa6uUqaP96eJr", "SMxZvHU0XyiAIwMoLIqFL7Na"))
-#     razorpay_order = client.order.create({"amount": amount, "currency": "INR", "payment_capture": "1"})
-#     obj = User.objects.filter(phone=phone).first()
-#     order = Order.objects.create(name=obj, amount=amount, provider_order_id=razorpay_order["id"])
-#     order.save()
-#     return render(request,"web/upgrade-plan.html",{
-#                 # "callback_url": "https://" + "usklogin.geany.website" + "/callback/",
-#                 "callback_url": "http://" + "127.0.0.1:8000" + "/callback/",
-#                 "razorpay_key": "rzp_test_kVa6uUqaP96eJr",
-#                 "order": order,},)
-
-
 @login_required
 def whatsapp_support(request):
     whatsapp_support = WhatsappSupport.objects.all()
@@ -507,9 +490,9 @@ def certificate_view(request):
     return render(request, "web/certificate.html", context)
 
 
-def logout_view(request):
-    try:
-        del request.session["phone"]
-    except:
-        return redirect("web:login_view")
-    return redirect("web:login_view")
+# def logout_view(request):
+#     try:
+#         del request.session["phone"]
+#     except:
+#         return redirect("web:login_view")
+#     return redirect("web:login_view")

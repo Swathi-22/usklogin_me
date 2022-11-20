@@ -1,8 +1,11 @@
+from datetime import timedelta
+
 from accounts.models import User
 
 from .constants import PaymentStatus
 from .functions import generate_ticket_pk
 from django.db import models
+from django.utils import timezone
 from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
 
@@ -282,3 +285,26 @@ class WhatsappSupport(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, related_name="upgraded_user", on_delete=models.CASCADE)
+    amount = models.FloatField(("Amount"), null=False, blank=False)
+    is_active = models.BooleanField("Mark as Active", default=False)
+    valid_from = models.DateTimeField(default=timezone.now)
+    valid_upto = models.DateTimeField(blank=True, editable=False)
+
+    class Meta:
+        verbose_name = "User Subscription"
+        verbose_name_plural = "User Subscriptions"
+
+    @property
+    def is_valid(self):
+        return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
+
+    def __str__(self):
+        return str(f"{self.user} - {self.valid_from} - {self.valid_upto}")
+
+    def save(self, *args, **kwargs):
+        self.valid_upto = self.valid_from + timedelta(days=30)
+        super(Subscription, self).save(*args, **kwargs)

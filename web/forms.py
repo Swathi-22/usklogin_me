@@ -1,4 +1,5 @@
 from accounts.models import User
+from services.models import BrandingImage
 
 from .models import SupportRequest
 from .models import SupportTicket
@@ -77,3 +78,10 @@ class UserUpdateForm(forms.ModelForm):
             "category": Select(attrs={"class": "form-control", "name": "category"}),
             "profile_image": FileInput(attrs={"class": "form-control", "name": "image"}),
         }
+
+
+class BrandingImageUploadingForm(forms.ModelForm):
+    class Meta:
+        model = BrandingImage
+        fields = ("image",)
+        widgets = {"image": FileInput(attrs={"class": "get-input d-none"})}

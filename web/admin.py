@@ -16,6 +16,7 @@ from .models import Order
 from .models import OtherIdeas
 from .models import ProfessionalPoster
 from .models import Softwares
+from .models import Subscription
 from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
@@ -131,3 +132,8 @@ class CallSupportAdmin(admin.ModelAdmin):
 @admin.register(WhatsappSupport)
 class WhatsappSupportAdmin(admin.ModelAdmin):
     list_display = ("name", "phone_number")
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ("user", "amount", "valid_from", "valid_upto")
