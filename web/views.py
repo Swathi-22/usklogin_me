@@ -53,14 +53,27 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from .utils import PDFView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
 
 
 RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
 RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
 
 
-def pdf_certificate(request):
-    pass
+def test(request):
+    phone = "1234567890"
+    password = "1234567890"
+    email = "anfasperingavu@gmail.com"
+    subject = "Registration Completed on USKLOGIN.COM"
+    message = f"""
+        Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
+        Use this username and password to login.
+
+        Username: {phone}
+        Password: {password}
+    """
+    send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
+    return HttpResponse("Done")
 
 
 class Certificate(PDFView, LoginRequiredMixin):
@@ -134,13 +147,14 @@ def callback(request):
             password = order.user.temp_password
             subject = "Registration Completed on USKLOGIN.COM"
             message = f"""
-            Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
-            Use this username and password to login.
+                Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
+                Use this username and password to login.
 
-            Username: {phone}
-            Password: {password}
-        """
+                Username: {phone}
+                Password: {password}
+            """
             send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
+            print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
@@ -163,6 +177,7 @@ def forgot_password(request):
         return redirect("web:forgot_password")
     context = {}
     return render(request, "web/forgot-password.html", context)
+
 
 @login_required
 def change_password(request, token):
@@ -214,6 +229,7 @@ def settings(request):
     context = {}
     return render(request, "web/settings.html", context)
 
+
 @login_required
 def index(request):
     service_head = ServiceHeads.objects.all()
@@ -245,6 +261,7 @@ def notification(request):
     async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
     return HttpResponse("Done")
 
+
 @login_required
 def generatePoster(request):
     common_services_poster = CommonServicesPoster.objects.all()
@@ -260,6 +277,7 @@ def generatePoster(request):
         "room_name": "broadcast",
     }
     return render(request, "web/generate-poster.html", context)
+
 
 @login_required
 def search_items(request):
@@ -277,25 +295,24 @@ def search_items(request):
         context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
     return JsonResponse(context)
 
+
 @login_required
 def generateBill(request):
     services = Services.objects.all()
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
 
+
 @login_required
 def searching_invoice(request):
-    search=''
-    invoice=''
     if 'search' in request.GET:
         search = request.GET['search']
         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
         print(invoice)
-        # invoice_item = InvoiceItem.objects.select_related("invoice").filter(invoice__invoice_name=)
+        context = {"invoice": invoice}
     else:
-        invoice = InvoiceItem.objects.all()
-    context = {'invoice':invoice,}
-    return render(request,'web/invoice-searching.html',context)
+        context = {'invoice': invoice, }
+        return render(request, 'web/invoice-searching.html', context)
 
 
 # @csrf_exempt
@@ -310,13 +327,10 @@ def searching_invoice(request):
 #     return JsonResponse(context)
 
 
-
 @login_required
 def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
-    return render(request, "web/generate-form.html", context)
-
 
 
 @login_required
@@ -350,11 +364,14 @@ def tools(request):
     context = {"is_tool": True, "tools": tools, "room_name": "broadcast"}
     return render(request, "web/tools.html", context)
 
+
 @login_required
 def marketingTip(request):
     marketing_tips = MarketingTips.objects.all()
     context = {"is_tip": True, "marketing_tips": marketing_tips, "room_name": "broadcast"}
+
     return render(request, "web/marketing-tip.html", context)
+
 
 @login_required
 def otherIdea(request):
