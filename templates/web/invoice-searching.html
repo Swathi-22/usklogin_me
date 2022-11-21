@@ -1,11 +1,12 @@
 {% extends 'web/base.html' %}
 {% block content %}
 {% load static %}
+{% csrf_token %}
+
 
 <!-- partial -->
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
-
         <h5 class="customer-list-head pb-4">Search Invoice: </h5>
          <!-- search bar right align -->
          <div class="search">
@@ -13,16 +14,15 @@
                 <input type="text"
                     placeholder=" Search Courses"
                     name="search">
-                <button style="background: #f2edf3;border: none;">
+                <button>
                     <i class="fa fa-search"
                         style="font-size: 18px;">
                     </i>
                 </button>
             </form>
         </div>
-
         {% for customer in invoice %}
-        <div class="tm_container_invoice mt-5">
+        <div class="tm_container_invoice mt-5 mx-4">
             <div class="tm_invoice_wrap">
                 <div class="tm_invoice tm_style1 tm_type1" id="tm_download_section">
                     <div class="tm_invoice_in">
@@ -77,7 +77,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-        
+
                                             {% for item in invoice %}
                                             {% if customer.invoice == item.invoice %}
                                             <tr>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="tm_invoice_footer tm_border_top tm_mb15 tm_m0_md">
                                 <div class="tm_left_footer">
-                                    
+
                                 </div>
                                 <div class="tm_right_footer">
                                     <table class="tm_mb15">

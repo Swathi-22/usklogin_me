@@ -4,6 +4,7 @@ import uuid
 from itertools import chain
 
 from accounts.models import User
+from invoices.models import Invoice
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
@@ -319,24 +320,27 @@ def generateBill(request):
     return render(request, "web/generate-bill.html", context)
 
 
+@csrf_exempt
 @login_required
 def searching_invoice(request):
-    if "search" in request.GET:
-        search = request.GET["search"]
+    search=''
+    invoice=''
+    if 'search' in request.GET:
+        search = request.GET['search']
         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
-        print(invoice)
-        context = {"invoice": invoice}
     else:
-        context = {"invoice": invoice}
-        return render(request, "web/invoice-searching.html", context)
+        invoice = InvoiceItem.objects.all()
+    context = {'invoice':invoice,}
+    return render(request,'web/invoice-searching.html',context)
+    return JsonResponse(context)
+
 
 
 @login_required
 def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
-    return render(request, "web/generate-forms.html", context)
-
+    return render(request, "web/generate-form.html", context)
 
 @login_required
 def download(request, path):
