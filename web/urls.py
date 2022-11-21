@@ -18,8 +18,7 @@ urlpatterns = [
     path("notification/", views.notification, name="notification"),
     path("generate-poster/", views.generatePoster, name="generatePoster"),
     path("generate-bill/", views.generateBill, name="generateBill"),
-    path("search-invocie/", views.searching_invoice, name="searching_invoice"),
-    # path("searching-customer-invocie/", views.searching_customer_invoice, name="searching_customer_invoice"),
+    path("seacrch-invocie/", views.search_invoice, name="search_invoice"),
     path("search/", views.search_items, name="search_items"),
     path("generate-form/", views.generateForms, name="generateForms"),
     path("download/", serve, {"document_root": "settings.MEDIA_ROOT"}),
@@ -45,6 +44,7 @@ urlpatterns = [
     path("download-certificate/", views.certificate_view, name="certificate_view"),
     path("download-pdf-certificate/", views.Certificate.as_view(), name="pdf_certificate"),
     # path('download-certificate-download/', PDFView.as_view(template_name="web/certificate.html"),name="certificate"),
-    path("logout/", views.logout_view, name="logout"),
-    path("test/", views.test, name="test"),
+#     path("logout/", views.logout_view, name="logout"),
+#     path("test/", views.test, name="test"),
+#
 ]
