@@ -7,7 +7,7 @@ app_name = "web"
 
 urlpatterns = [
     # path("", views.login_view, name="login_view"),
-    path("", views.index, name="index"),
+    path("app/", views.index, name="index"),
     path("register/", views.register, name="register"),
     path("forgot-password/", views.forgot_password, name="forgot_password"),
     path("change-password/<token>/", views.change_password, name="change_password"),
@@ -45,6 +45,6 @@ urlpatterns = [
     path("download-certificate/", views.certificate_view, name="certificate_view"),
     path("download-pdf-certificate/", views.Certificate.as_view(), name="pdf_certificate"),
     # path('download-certificate-download/', PDFView.as_view(template_name="web/certificate.html"),name="certificate"),
-    path("logout/", views.logout_view, name="logout"),
+    # path("logout/", views.logout_view, name="logout"),
     path("test/", views.test, name="test"),
 ]

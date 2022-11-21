@@ -3,6 +3,7 @@
 {% load static widget_tweaks %}
 
 {% block content %}
+{% csrf_token %}
 
 <div class="row mt-4">
     <div class="col-md-5 p-4 shadow-sm border rounded-5 border-primary login-form mx-auto">

@@ -2,7 +2,7 @@ from django.db import models
 from tinymce.models import HTMLField
 from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
-
+from accounts.models import User
 
 # Service category
 class ServiceHeads(models.Model):
@@ -41,6 +41,7 @@ class Services(models.Model):
 
 
 class BrandingImage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = VersatileImageField("Image", upload_to="service/", ppoi_field="ppoi", blank=True, null=True)
     ppoi = PPOIField("Image PPOI")
 
