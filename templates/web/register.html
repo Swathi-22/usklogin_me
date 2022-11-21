@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    {% load static crispy_forms_tags %}
+    {% load static crispy_forms_tags%}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>USKLOGIN.COM</title>
     <link rel="stylesheet" href="{% static 'web/vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -23,14 +23,17 @@
             <div class="text-center pt-5">
                 <img src="{% static 'web/images/USKLKOG.png' %}" style="width:24%;" class="usk-login-register" alt="">
             </div>
+            
 
             <div class="wrapper py-5">
+               
 
                 <form class="form-right" method="POST" action="">
                     <h2 class="text-uppercase">USK Agent Registration</h2>
-
+                   
                     <div class="row text-left">
                         {% csrf_token %}
+                       
 
                         {% for field in user_form %}
                         <div class="col-sm-6 mb-3">
