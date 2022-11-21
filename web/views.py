@@ -330,7 +330,7 @@ def searching_invoice(request):
         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
     else:
         invoice = InvoiceItem.objects.all()
-    context = {'invoice':invoice,}
+    context = {"is_search":True,'invoice':invoice,}
     return render(request,'web/invoice-searching.html',context)
     return JsonResponse(context)
 
