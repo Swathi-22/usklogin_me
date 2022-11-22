@@ -411,7 +411,12 @@ def bonus(request):
 
 @login_required
 def support(request):
-    context = {"is_support": True, "room_name": "broadcast"}
+    user=request.user
+    subscription=Subscription.objects.filter(user=user, is_active=True)
+    for subs in subscription:
+        upgraded=subs.is_active
+
+    context = {"is_support": True, "subscription":subscription , "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
 
@@ -457,11 +462,6 @@ def supportTicket(request):
 @login_required
 def call_support(request):
     call_support = CallSupport.objects.all()
-    phone = request.session["phone"]
-    user = User.objects.filter(phone=phone).first()
-    order = Order.objects.get(name=user)
-    if order.amount == 20000:
-        return redirect("web:upgrade_plan")
     context = {"call_support": call_support}
     return render(request, "web/call-support.html", context)
 
