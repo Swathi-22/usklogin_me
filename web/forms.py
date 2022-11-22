@@ -84,4 +84,4 @@ class BrandingImageUploadingForm(forms.ModelForm):
     class Meta:
         model = BrandingImage
         fields = ("image",)
-        widgets = {"image": FileInput(attrs={"class": "get-input","name":"image","type":"file",})}
+        widgets = {"image": FileInput(attrs={"class": "get-input","name":"image","type":"file","plceholder":"Upload Image"})}
