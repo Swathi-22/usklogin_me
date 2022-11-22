@@ -34,8 +34,8 @@ from web.models import WhatsappSupport
 
 import razorpay
 
-from .decorators import requires_subscription
-from .forms import BrandingImageUploadingForm
+from .forms import BrandingImageForm
+# from .forms import BrandingImageUploadingForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
 from .forms import UserRegistrationForm
@@ -217,19 +217,35 @@ def change_password(request, token):
 @csrf_exempt
 @login_required
 def profile(request):
+    user=request.user
     user_form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
     branding_image =''
-    # print(branding_image)
+    print(branding_image)
     if request.POST == "POST":
         branding_image = BrandingImageUploadingForm(request.POST, request.FILES,instance=request.user)
         print(branding_image)
         if branding_image.is_valid():
             branding_image.user=request.user.id
             branding_image.save()
+    # user= request.user
+    # if request.method == 'POST':
+    #     form = BrandingImageForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         # form.user=user
+    #         form.save()
+    #         return redirect('index')
+    # else:
+    #     form = BrandingImageForm()
+    # return render(request, 'core/model_form_upload.html', {
+    #     'form': form
+    # })
 
     uploaded_branding_image= BrandingImage.objects.all()
     print(uploaded_branding_image)
-    context = {"is_profile": True, "user_form": user_form, "branding_image": branding_image,'uploaded_branding_image':uploaded_branding_image}
+    #   FOR CHECK USER IS SUBSCRIBED USERS
+    subscription=Subscription.objects.filter(user=user, is_active=True)
+
+    context = {"is_profile": True, "user_form": user_form, "branding_image": branding_image,  "subscription": subscription, 'uploaded_branding_image':uploaded_branding_image}
     return render(request, "web/profile.html", context)
 
 
@@ -415,11 +431,12 @@ def bonus(request):
 @login_required
 def support(request):
     user=request.user
+    upgraded=""
     subscription=Subscription.objects.filter(user=user, is_active=True)
     for subs in subscription:
         upgraded=subs.is_active
 
-    context = {"is_support": True, "subscription":subscription , "room_name": "broadcast"}
+    context = {"is_support": True, "upgraded":upgraded , "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
 
@@ -461,7 +478,7 @@ def supportTicket(request):
     context = {"forms": forms, "room_name": "broadcast"}
     return render(request, "web/support-ticket.html", context)
 
-@requires_subscription
+
 @login_required
 def call_support(request):
     call_support = CallSupport.objects.all()
@@ -469,7 +486,6 @@ def call_support(request):
     return render(request, "web/call-support.html", context)
 
 
-@requires_subscription
 @login_required
 def whatsapp_support(request):
     whatsapp_support = WhatsappSupport.objects.all()
@@ -502,11 +518,3 @@ def paymentfail(request):
 def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
-
-
-# def logout_view(request):
-#     try:
-#         del request.session["phone"]
-#     except:
-#         return redirect("web:login_view")
-#     return redirect("web:login_view")
