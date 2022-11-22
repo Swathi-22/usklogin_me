@@ -215,18 +215,19 @@ def change_password(request, token):
 @csrf_exempt
 @login_required
 def profile(request):
-    user_form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
-    branding_image =''
+    user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
+    user = request.user
+    instance = BrandingImage.objects.filter(user=user).last()
+    branding_image_form = BrandingImageUploadingForm(request.POST or None, request.FILES or None, instance=instance)
     if request.method == "POST":
-        branding_image = BrandingImageUploadingForm(request.POST, request.FILES, instance=request.user)
-        print(branding_image)
-        if branding_image.is_valid():
-            branding_image.save()
-    user=request.user
-    print(user)
-    uploaded_branding_image = BrandingImage.objects.filter(user=user).last()
-    print(uploaded_branding_image)    
-    context = {"is_profile": True, "user_form": user_form, "branding_image": branding_image,'uploaded_branding_image':uploaded_branding_image}
+        if branding_image_form.is_valid():
+            data = branding_image_form.save(commit=False)
+            data.user = request.user
+            data.save()
+        else:
+            print(branding_image_form.errors)
+    uploaded_branding_image = BrandingImage.objects.all()
+    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form,'instance':instance,"uploaded_branding_image":uploaded_branding_image}
     return render(request, "web/profile.html", context)
 
 
