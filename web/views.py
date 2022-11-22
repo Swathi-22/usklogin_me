@@ -2,7 +2,6 @@ import json
 import os
 import uuid
 from itertools import chain
-
 from accounts.models import User
 from invoices.models import Invoice
 from invoices.models import InvoiceItem
@@ -31,7 +30,6 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
-
 import razorpay
 
 from .forms import BrandingImageForm
@@ -217,35 +215,18 @@ def change_password(request, token):
 @csrf_exempt
 @login_required
 def profile(request):
-    user=request.user
-    user_form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
-    branding_image =''
-    print(branding_image)
-    if request.POST == "POST":
-        branding_image = BrandingImageUploadingForm(request.POST, request.FILES,instance=request.user)
-        print(branding_image)
-        if branding_image.is_valid():
-            branding_image.user=request.user.id
-            branding_image.save()
-    # user= request.user
-    # if request.method == 'POST':
-    #     form = BrandingImageForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         # form.user=user
-    #         form.save()
-    #         return redirect('index')
-    # else:
-    #     form = BrandingImageForm()
-    # return render(request, 'core/model_form_upload.html', {
-    #     'form': form
-    # })
-
-    uploaded_branding_image= BrandingImage.objects.all()
-    print(uploaded_branding_image)
-    #   FOR CHECK USER IS SUBSCRIBED USERS
-    subscription=Subscription.objects.filter(user=user, is_active=True)
-
-    context = {"is_profile": True, "user_form": user_form, "branding_image": branding_image,  "subscription": subscription, 'uploaded_branding_image':uploaded_branding_image}
+    user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
+    instance, created = BrandingImage.objects.get_or_create(user=request.user)
+    branding_image_form = BrandingImageUploadingForm(request.POST or None, request.FILES or None, instance=instance)
+    if request.method == "POST":
+        if branding_image_form.is_valid():
+            data = branding_image_form.save(commit=False)
+            data.user = request.user
+            data.save()
+        else:
+            print(branding_image_form.errors)
+    uploaded_branding_image = BrandingImage.objects.all()
+    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form,'instance':instance,"uploaded_branding_image":uploaded_branding_image}
     return render(request, "web/profile.html", context)
 
 
@@ -359,6 +340,8 @@ def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
     return render(request, "web/generate-form.html", context)
+
+
 
 @login_required
 def download(request, path):

@@ -41,8 +41,9 @@ class Services(models.Model):
 
 
 class BrandingImage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = VersatileImageField("Image", upload_to="service/", blank=True, null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    image = VersatileImageField("Image", upload_to="service/", ppoi_field="ppoi", blank=True, null=True)
+    ppoi = PPOIField("Image PPOI")
 
     class Meta:
         verbose_name = "Branding Image"
