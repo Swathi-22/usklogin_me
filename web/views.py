@@ -216,7 +216,7 @@ def profile(request):
     user_form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
     branding_image =''
     if request.method == "POST":
-        branding_image = BrandingImageUploadingForm(request.POST,request.FILES,instance=request.user)
+        branding_image = BrandingImageUploadingForm(request.POST, request.FILES, instance=request.user)
         print(branding_image)
         if branding_image.is_valid():
             branding_image.save()
