@@ -83,5 +83,5 @@ class UserUpdateForm(forms.ModelForm):
 class BrandingImageUploadingForm(forms.ModelForm):
     class Meta:
         model = BrandingImage
-        fields = ("user","image",)
+        fields = ("image",)
         widgets = {"image": FileInput(attrs={"class": "get-input"})}
