@@ -31,6 +31,8 @@ from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
 import razorpay
+
+from .decorators import requires_subscription
 from .forms import BrandingImageUploadingForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -458,7 +460,7 @@ def supportTicket(request):
     context = {"forms": forms, "room_name": "broadcast"}
     return render(request, "web/support-ticket.html", context)
 
-
+@requires_subscription
 @login_required
 def call_support(request):
     call_support = CallSupport.objects.all()
@@ -466,6 +468,7 @@ def call_support(request):
     return render(request, "web/call-support.html", context)
 
 
+@requires_subscription
 @login_required
 def whatsapp_support(request):
     whatsapp_support = WhatsappSupport.objects.all()

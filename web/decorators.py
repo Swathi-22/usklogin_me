@@ -1,6 +1,8 @@
 from django.core.exceptions import PermissionDenied
 from functools import wraps
 
+from .models import Subscription
+
 def requires_subscription(view):
     @wraps(view)
     def _view(request, *args, **kwargs):
