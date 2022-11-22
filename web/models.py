@@ -302,8 +302,11 @@ class Subscription(models.Model):
     def is_valid(self):
         return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
+    def active(self):
+        return self.filter(is_active=True)
+
     def __str__(self):
-        return str(f"{self.user} - {self.valid_from} - {self.valid_upto}")
+        return str(f"{self.user}- {self.is_active} - {self.valid_from} - {self.valid_upto}")
 
     def save(self, *args, **kwargs):
         self.valid_upto = self.valid_from + timedelta(days=30)

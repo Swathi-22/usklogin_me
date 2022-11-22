@@ -159,9 +159,9 @@ SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
 REGISTRATION_OPEN = True
-LOGIN_URL = "/login/"
-LOGOUT_URL = "/logout/"
-LOGIN_REDIRECT_URL = "/app/"
+LOGIN_URL = "app/login/"
+LOGOUT_URL = "app/logout/"
+LOGIN_REDIRECT_URL = "/"
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
