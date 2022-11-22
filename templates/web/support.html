@@ -17,7 +17,6 @@
             </div>
         </section>
 
-
         <section>
             <div class="row d-flex justify-content-center">
             <div class="col-lg-3 col-md-3 col-sm-6 col-6">
@@ -39,6 +38,7 @@
                 </div>
             </div>
 
+            {% if upgraded %}
             <div class="col-lg-3 col-md-3 col-sm-6 col-6">
                 <div class="cards">
                     <a href="{% url 'web:call_support' %}">
@@ -57,6 +57,28 @@
                     </a>
                 </div>
             </div>
+            {% else %}
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="cards">
+                    <a href="{% url 'web:profile' %}">
+                        <div class="cards-content">
+                            <span>CALL</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="cards">
+                    <a href="{% url 'web:profile' %}">
+                        <div class="cards-content">
+                            <span>WHATSAPP</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
 
             </div>
             <div class="row">
@@ -70,8 +92,7 @@
                     </div>
                 </div>
             </div>
-
-        </section>
+         </section>
     </div>
 </div>
 

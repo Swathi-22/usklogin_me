@@ -80,7 +80,14 @@ class UserUpdateForm(forms.ModelForm):
         }
 
 
-class BrandingImageUploadingForm(forms.ModelForm):
+# class BrandingImageUploadingForm(forms.ModelForm):
+#     class Meta:
+#         model = BrandingImage
+#         fields = ("user","image",)
+#         widgets = {"image": FileInput(attrs={"class": "get-input"})}
+
+
+class BrandingImageForm(forms.ModelForm):
     class Meta:
         model = BrandingImage
         fields = ("image",)
