@@ -217,7 +217,7 @@ def change_password(request, token):
 def profile(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
     instance, created = BrandingImage.objects.get_or_create(user=request.user)
-    branding_image_form = BrandingImageUploadingForm(request.POST or None, request.FILES or None, instance=instance)
+    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, instance=instance)
     if request.method == "POST":
         if branding_image_form.is_valid():
             data = branding_image_form.save(commit=False)
@@ -252,7 +252,7 @@ def index(request):
     latest_news = LatestNews.objects.all().last()
     new_service_poster = NewServicePoster.objects.all()
     important_poster = ImportantPoster.objects.all()
-    branding_image = BrandingImage.objects.all()
+    # branding_image = BrandingImage.objects.all()
     context = {
         "is_index": True,
         "service_head": service_head,
@@ -260,7 +260,7 @@ def index(request):
         "new_service_poster": new_service_poster,
         "important_poster": important_poster,
         "room_name": "broadcast",
-        "branding_image": branding_image,
+        # "branding_image": branding_image,
         "room_name": "broadcast",
     }
     return render(request, "web/index.html", context)
