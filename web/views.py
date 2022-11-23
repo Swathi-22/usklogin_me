@@ -225,7 +225,7 @@ def profile(request):
             data.save()
         else:
             print(branding_image_form.errors)
-    uploaded_branding_image = BrandingImage.objects.all()
+    uploaded_branding_image = BrandingImage.objects.get(user=request.user)
     context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form,'instance':instance,"uploaded_branding_image":uploaded_branding_image}
     return render(request, "web/profile.html", context)
 
