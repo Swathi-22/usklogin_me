@@ -501,3 +501,8 @@ def paymentfail(request):
 def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
+
+
+def upgrade_plan_request(request):
+    context = {}
+    return render(request,'web/upgrade-request.html',context)
