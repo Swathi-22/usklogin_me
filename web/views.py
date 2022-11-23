@@ -58,8 +58,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 
-RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
-RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
+RAZOR_PAY_KEY = "rzp_test_wcql7nxaDxg320"
+RAZOR_PAY_SECRET = "cvB5ta4s0QgbeVir7iCYwvYE"
 
 
 def test(request):
@@ -295,6 +295,7 @@ def generatePoster(request):
     return render(request, "web/generate-poster.html", context)
 
 
+@csrf_exempt
 @login_required
 def search_items(request):
     if request.POST:
