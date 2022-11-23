@@ -217,7 +217,7 @@ def change_password(request, token):
 def profile(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
     instance, created = BrandingImage.objects.get_or_create(user=request.user)
-    branding_image_form = BrandingImageUploadingForm(request.POST or None, request.FILES or None, instance=instance)
+    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, instance=instance)
     if request.method == "POST":
         if branding_image_form.is_valid():
             data = branding_image_form.save(commit=False)
