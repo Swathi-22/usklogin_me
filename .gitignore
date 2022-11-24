@@ -3,6 +3,7 @@
 *.pot
 *.pyc
 _pycache_
+migrations/
 assets/
 db.sqlite3
 
