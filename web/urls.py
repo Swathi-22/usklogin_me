@@ -46,5 +46,5 @@ urlpatterns = [
     path("download-pdf-certificate/", views.Certificate.as_view(), name="pdf_certificate"),
     # path('download-certificate-download/', PDFView.as_view(template_name="web/certificate.html"),name="certificate"),
     # path("logout/", views.logout_view, name="logout"),
-    # path("test/", views.test, name="test"),
+    path("test/", views.test, name="test"),
 ]

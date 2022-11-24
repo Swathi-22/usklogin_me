@@ -167,8 +167,8 @@ LOGIN_REDIRECT_URL = "/"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "uskdemomail@gmail.com"
-EMAIL_HOST_PASSWORD = "DrvGV48Eyd7tHJnp"
+EMAIL_HOST_USER = "secure.gedexo@gmail.com"
+EMAIL_HOST_PASSWORD = "tG3Ib4k7V1Bg92HL"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
