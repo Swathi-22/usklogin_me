@@ -79,17 +79,18 @@
     </section>
 
 
-
     <div class="d-none">
       <div class="service-heading">
         <h5>Branding Image</h5>
       </div>
       <div class="container">
-        {% for brand_image in branding_image %}
-        <img src="{{brand_image.image.crop.1000x100}}" id="footerImage" alt="Image">
-        {% endfor %}
+        
+        <img src="{{branding_image.image.crop.1000x100}}" id="footerImage" alt="Image">
+       
+       
       </div>
     </div>
+
 
     <!-- new services -->
     <section class="py-5">
@@ -182,13 +183,13 @@
 
 {% block js %}
 
-
+<!-- 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
   $(document).ready(function () {
     $('#sucessful-login-message').fadeOut(3000)
   })  
-</script>
+</script> -->
 
 
 <script>

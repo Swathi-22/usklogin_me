@@ -33,6 +33,7 @@ urlpatterns = [
     path("support/", views.support, name="support"),
     path("support-request/", views.supportRequest, name="supportRequest"),
     path("support-ticket/", views.supportTicket, name="supportTicket"),
+    path("upgrade-request/", views.upgrade_plan_request, name="upgrade_plan_request"),
     path("FAQ/", views.F_A_Q, name="F_A_Q"),
     path("terms-and-conditions/", views.termsConditions, name="termsConditions"),
     path("call-support/", views.call_support, name="call_support"),

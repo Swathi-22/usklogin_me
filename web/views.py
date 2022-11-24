@@ -58,8 +58,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 
-RAZOR_PAY_KEY = "rzp_test_kVa6uUqaP96eJr"
-RAZOR_PAY_SECRET = "SMxZvHU0XyiAIwMoLIqFL7Na"
+RAZOR_PAY_KEY = "rzp_test_wcql7nxaDxg320"
+RAZOR_PAY_SECRET = "cvB5ta4s0QgbeVir7iCYwvYE"
 
 
 def test(request):
@@ -112,7 +112,7 @@ def order_payment(request, pk):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "https://" + "usklogin.geany.website" + "/callback/"}
     return render(request, "web/payment.html", context)
 
 
@@ -123,7 +123,7 @@ def upgrade_plan(request):
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     subscription, created = Subscription.objects.get_or_create(user=user, amount=amount, is_active=True)
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "127.0.0.1:8000" + "/callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "http://" + "usklogin.geany.website" + "/callback/"}
     return render(request, "web/upgrade_plan.html", context)
 
 
@@ -158,7 +158,7 @@ def callback(request):
                 Username: {phone}
                 Password: {password}
             """
-            send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "uskdemomail@gmail.com", [email], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
@@ -252,7 +252,7 @@ def index(request):
     latest_news = LatestNews.objects.all().last()
     new_service_poster = NewServicePoster.objects.all()
     important_poster = ImportantPoster.objects.all()
-    branding_image = BrandingImage.objects.all()
+    branding_image = BrandingImage.objects.filter(user=request.user).last()
     context = {
         "is_index": True,
         "service_head": service_head,
@@ -283,7 +283,7 @@ def generatePoster(request):
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
     professional_poster = ProfessionalPoster.objects.all()
-    branding_image = BrandingImage.objects.all()
+    branding_image = BrandingImage.objects.filter(user=request.user).last()
     context = {
         "is_poster": True,
         "common_services_poster": common_services_poster,
@@ -295,6 +295,7 @@ def generatePoster(request):
     return render(request, "web/generate-poster.html", context)
 
 
+@csrf_exempt
 @login_required
 def search_items(request):
     if request.POST:
@@ -501,3 +502,8 @@ def paymentfail(request):
 def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
+
+
+def upgrade_plan_request(request):
+    context = {}
+    return render(request,'web/upgrade-request.html',context)

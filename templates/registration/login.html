@@ -21,7 +21,8 @@
             <div class="mb-3">
                 <label class="form-label">Password</label>
                 {{form.password.errors}}
-                <input type="text" name="password" class="form-control border border-primary" required>
+                {{form.password|add_class:"form-control border border-primary"|attr:"placeholder:Password"}}
+                <!-- <input type="text" name="password" class="form-control border border-primary" required> -->
             </div>
             <p class="small"><a class="text-primary" href="{% url 'auth_password_reset' %}">Forgot password?</a>
             </p>

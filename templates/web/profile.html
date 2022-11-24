@@ -4,17 +4,18 @@
 
 <style>
     .branding_image_uploading {
-        background: #fff !important;
+        background: #f2edf3 !important;
         width: 100%;
         margin: 23px 0px;
-        height: 100px;
+        height: auto;
     }
 
     .buynow_button {
         background-color: #00409f;
         color: #fff;
         padding: 7px 10px;
-        margin: 0px 28px;
+        margin: 0px 9px;
+        font-size: 14px;
         text-align: center;
         border-radius: 13px
     }
@@ -25,6 +26,7 @@
         color: #fff;
         padding: 7px 10px;
         margin: auto;
+        font-size: 14px;
         text-align: center;
         border-radius: 13px
     }
@@ -37,7 +39,7 @@
         background-color: #00409f;
         color: #fff;
         border-radius: 13px;
-        font-size: 1em;
+        font-size: 14px;
         text-align: center;
     }
 
@@ -58,6 +60,80 @@
         padding: 0;
         position: absolute;
         width: 1px;
+    }
+    
+    @media only screen and (min-width:320px) and (max-width:567px) {
+        .expiry_date{
+        margin-left: 0px !important;
+    }
+        .label-file {
+        display: block;
+        margin: 0 auto;
+        padding: 7px 10px;
+        background-color: #00409f;
+        color: #fff;
+        border-radius: 13px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .save_button {
+        background-color: #00409f;
+        border: 1px solid #00409f;
+        color: #fff;
+        font-size: 10px;
+        padding: 7px 10px;
+        margin: auto;
+        text-align: center;
+        border-radius: 13px
+    }
+    .buynow_button {
+        background-color: #00409f;
+        color: #fff;
+        padding: 7px 10px;
+        font-size: 10px;
+        margin: 0px 8px;
+        text-align: center;
+        border-radius: 13px
+    }
+    }
+
+    @media only screen and (min-width:1044px){
+        /* .buynow_button {
+        background-color: #00409f;
+        color: #fff;
+        padding: 7px 10px;
+        margin: 0px 9px;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 13px
+    }
+
+    .save_button {
+        background-color: #00409f;
+        border: 1px solid #00409f;
+        color: #fff;
+        padding: 7px 10px;
+        margin: auto;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 13px
+    }
+
+
+    .label-file {
+        display: block;
+        margin: 0 auto;
+        padding: 7px 10px;
+        background-color: #00409f;
+        color: #fff;
+        border-radius: 13px;
+        font-size: 14px;
+        text-align: center;
+    } */
+    .responsive-size{
+        height: 90px;
+    }
     }
 </style>
 
@@ -116,6 +192,13 @@
                 <div class="col-md-3">
                     <div class="p-3">
                         <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                        Expiry Date: 11/02/2023
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-12 col-md-12 col-sm-3 col-3">
                                 <div class="d-flex justify-content-between align-items-center experience">
                                     <a href="{% url 'web:profile_update' %}">
@@ -156,7 +239,11 @@
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="branding_image_uploading">
-                    <img src="{{uploaded_branding_image.image.url}}" alt="">
+                    {% if uploaded_branding_image.image %}
+                    <img src="{{uploaded_branding_image.image.crop.1000x100}}" style="width: 100%;" class="responsive-size">
+                    {% else %}
+                    <h5 style="text-align: center;color: rgb(77, 3, 3);padding: 40px 0px;">Upload Your Branding Image</h5>
+                    {% endif %}
                 </div>
             </div>
 
@@ -164,13 +251,13 @@
                 {% csrf_token %}
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
                             <label class="label-file">{{branding_image_form.image}} Upload Image</label>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
                             <input type="submit" value="Save Uploaded Image" class="save_button">
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
                             <div class="buynow_button">
                                 Buy Now
                             </div>
