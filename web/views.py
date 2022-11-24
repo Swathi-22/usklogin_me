@@ -40,6 +40,7 @@ from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
 from .helper import send_forget_password_mail
+from .helper import upgrade_reminder_mail
 from .utils import PDFView
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
@@ -63,18 +64,21 @@ RAZOR_PAY_SECRET = "cvB5ta4s0QgbeVir7iCYwvYE"
 
 
 def test(request):
-    phone = "1234567890"
-    password = "1234567890"
-    email = "anfasperingavu@gmail.com"
-    subject = "Registration Completed on USKLOGIN.COM"
-    message = f"""
-        Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
-        Use this username and password to login.
-
-        Username: {phone}
-        Password: {password}
-    """
-    send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
+    user=request.user
+    email="ashiquekc97@gmail.com"
+    upgrade_reminder_mail(user.email, user)
+    # phone = "1234567890"
+    # password = "1234567890"
+    # email = "anfasperingavu@gmail.com"
+    # subject = "Registration Completed on USKLOGIN.COM"
+    # message = f"""
+    #     Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
+    #     Use this username and password to login.
+    #
+    #     Username: {phone}
+    #     Password: {password}
+    # """
+    # send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
     return HttpResponse("Done")
 
 
