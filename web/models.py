@@ -17,7 +17,8 @@ class Order(models.Model):
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
-
+    is_active = models.BooleanField("Mark as Active", default=False)
+    
     def __str__(self):
         return f"{self.id}-{self.user}-{self.status}"
 

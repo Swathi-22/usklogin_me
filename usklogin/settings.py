@@ -82,9 +82,9 @@ WSGI_APPLICATION = "usklogin.wsgi.application"
 ASGI_APPLICATION = "usklogin.asgi.application"
 
 
-DATABASES = {
-    "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
-}
+# DATABASES = {
+#     "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -154,7 +154,7 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 # Registration REDUX
 
 ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_AUTO_LOGIN = False
 SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
@@ -167,8 +167,8 @@ LOGIN_REDIRECT_URL = "/"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "uskdemomail@gmail.com"
-EMAIL_HOST_PASSWORD = "DrvGV48Eyd7tHJnp"
+EMAIL_HOST_USER = "loginusk@gmail.com"
+EMAIL_HOST_PASSWORD = "D2ja7rJgAnQFTS5Z"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 

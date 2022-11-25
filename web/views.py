@@ -149,7 +149,8 @@ def callback(request):
             order.status = PaymentStatus.SUCCESS
             order.payment_id = payment_id
             order.signature_id = signature_id
-            order.save()
+            order.save(commit=False)
+            order.PAY
             email = order.user.email
             phone = order.user.phone
             password = order.user.temp_password
@@ -161,7 +162,7 @@ def callback(request):
                 Username: {phone}
                 Password: {password}
             """
-            send_mail(subject, message, "uskdemomail@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
