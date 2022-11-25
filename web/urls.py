@@ -42,7 +42,7 @@ urlpatterns = [
     # path("upgrade-plan/", views.upgrade_plan, name="upgrade_plan"),
     path("payment/<str:pk>/", views.order_payment, name="order_payment"),
     path("upgrade_plan/", views.upgrade_plan, name="upgrade_plan"),
-    path("callback/", views.callback, name="callback"),
+    path("callback/<str:pk>/", views.callback, name="callback"),
     path("download-certificate/", views.certificate_view, name="certificate_view"),
     path("download-pdf-certificate/", views.Certificate.as_view(), name="pdf_certificate"),
     # path('download-certificate-download/', PDFView.as_view(template_name="web/certificate.html"),name="certificate"),

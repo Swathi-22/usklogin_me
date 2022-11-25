@@ -10,6 +10,7 @@ from services.models import ServiceHeads
 from services.models import Services
 from web.models import FAQ
 from web.models import AgencyPortal
+from django.shortcuts import get_object_or_404
 from web.models import AgentBonus
 from web.models import BackOfficeServices
 from web.models import CallSupport
@@ -92,18 +93,19 @@ def register(request):
 
 
 def order_payment(request, pk):
-    user = User.objects.get(id=pk)
+    user = get_object_or_404(User, id=pk)
     amount = 200
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
-               "razorpay_order": razorpay_order, "callback_url": settings.DOMAIN + "/callback/"}
+               "razorpay_order": razorpay_order, "callback_url": settings.DOMAIN + "/callback/" + pk}
     return render(request, "web/payment.html", context)
 
 
 @csrf_exempt
-def callback(request):
+def callback(request, pk):
+    user = get_object_or_404(User, id=pk)
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -112,7 +114,7 @@ def callback(request):
         print(response_data)
 
         if verify_signature(response_data):
-            order, _ = Order.objects.get_or_create(provider_order_id=provider_order_id)
+            order, _ = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=provider_order_id)
             order_status = PaymentStatus.SUCCESS
             order.status = PaymentStatus.SUCCESS
             order.payment_id = payment_id
