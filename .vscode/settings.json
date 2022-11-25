@@ -130,5 +130,8 @@
     "errorLens.delay": 1000,
     "errorLens.enabledDiagnosticLevels": ["error", "warning"],
     "errorLens.enabled": false,
-    "telemetry.telemetryLevel": "error"
+    "telemetry.telemetryLevel": "error",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
 }

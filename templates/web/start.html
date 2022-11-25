@@ -24,35 +24,22 @@
                 <img src="{% static 'web/images/USKLKOG.png' %}" style="width:24%;" class="usk-login-register" alt="">
             </div>
 
-
             <div class="wrapper py-5">
 
-
                 <form class="form-right" method="POST" action="">
-                    <h2 class="text-uppercase">USK Agent Registration</h2>
-
+                    <h2 class="text-uppercase">Lets get started</h2>
                     <div class="row text-left">
                         {% csrf_token %}
-
-
-                        {% for field in user_form %}
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-sm-12 mb-3">
                             <div class="form-group">
-                                {{ field|as_crispy_field }}
+                                <label> Enter your mobile number</label>
+                                <input type="number" name="mobile" class="form-control" />
                             </div>
                         </div>
-                        {% endfor %}
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="termsCheck" class="form-check-label d-flex align-items-center">
-                            <input type="checkbox" name="terms" id="termsCheck" required class="me-2">
-                            I agree to the <a href="{% url 'web:termsConditions' %}" target="_blank">Terms and Conditions</a>
                     </div>
 
                     <div class="form-field text-center">
-                        <button type="submit" id="submitBtn" class="btn btn-primary" name="register"
-                            disabled>Submit</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary" name="register">Continue</button>
                     </div>
                 </form>
             </div>

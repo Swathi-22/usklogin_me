@@ -8,6 +8,7 @@ app_name = "web"
 urlpatterns = [
     # path("", views.login_view, name="login_view"),
     path("", views.index, name="index"),
+    path("start/", views.start, name="start"),
     path("register/", views.register, name="register"),
     path("forgot-password/", views.forgot_password, name="forgot_password"),
     path("change-password/<token>/", views.change_password, name="change_password"),

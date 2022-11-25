@@ -1,7 +1,6 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
-
+{% block content %}
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
@@ -12,74 +11,78 @@
                     <h5 class="text-center support-title">SUPPORT</h5>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book.It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum.</p>
                 </div>
             </div>
         </section>
 
         <section>
             <div class="row d-flex justify-content-center">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                <div class="cards">
-                    <a href="{% url 'web:supportRequest' %}">
-                        <div class="cards-content">
-                            <span>REQUEST</span>
-                        </div>
-                    </a>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:supportRequest' %}">
+                            <div class="cards-content">
+                                <span>REQUEST</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                <div class="cards">
-                    <a href="{% url 'web:supportTicket' %}">
-                        <div class="cards-content">
-                            <span>TICKET</span>
-                        </div>
-                    </a>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:supportTicket' %}">
+                            <div class="cards-content">
+                                <span>TICKET</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            {% if upgraded %}
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                <div class="cards">
-                    <a href="{% url 'web:call_support' %}">
-                        <div class="cards-content">
-                            <span>CALL</span>
-                        </div>
-                    </a>
+                {% if upgraded %}
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:call_support' %}">
+                            <div class="cards-content">
+                                <span>CALL</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                <div class="cards">
-                    <a href="{% url 'web:whatsapp_support' %}">
-                        <div class="cards-content">
-                            <span>WHATSAPP</span>
-                        </div>
-                    </a>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:whatsapp_support' %}">
+                            <div class="cards-content">
+                                <span>WHATSAPP</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            {% else %}
+                {% else %}
 
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                <div class="cards">
-                    <a href="{% url 'web:upgrade_plan_request' %}">
-                        <div class="cards-content">
-                            <span>CALL</span>
-                        </div>
-                    </a>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:upgrade_plan_request' %}">
+                            <div class="cards-content">
+                                <span>CALL</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                <div class="cards">
-                    <a href="{% url 'web:upgrade_plan_request' %}">
-                        <div class="cards-content">
-                            <span>WHATSAPP</span>
-                        </div>
-                    </a>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:upgrade_plan_request' %}">
+                            <div class="cards-content">
+                                <span>WHATSAPP</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            {% endif %}
-
-
+                {% endif %}
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6 mx-auto">
@@ -92,10 +95,8 @@
                     </div>
                 </div>
             </div>
-         </section>
+        </section>
     </div>
 </div>
-
-
 
 {% endblock %}

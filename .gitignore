@@ -3,7 +3,9 @@
 *.pot
 *.pyc
 _pycache_
-migrations/
+migrations/*.pyc
+migrations/_pycache_
+!migrations/__init__.py
 assets/
 db.sqlite3
 

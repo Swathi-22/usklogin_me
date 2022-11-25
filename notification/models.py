@@ -16,6 +16,9 @@ class BroadcastNotification(models.Model):
     class Meta:
         ordering = ["-broadcast_on"]
 
+    def __str__(self):
+        return f'{self.message} - scheduled to {self.broadcast_on}'
+
 
 @receiver(post_save, sender=BroadcastNotification)
 def notification_handler(sender, instance, created, **kwargs):
