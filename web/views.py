@@ -181,7 +181,6 @@ def upgrade_plan(request):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    subscription, created = Subscription.objects.get_or_create(user=user, amount=amount, is_active=True)
     context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
                "razorpay_order": razorpay_order, "callback_url": "http://" + "usklogin.geany.website" + "/callback/"}
     return render(request, "web/upgrade_plan.html", context)
@@ -437,11 +436,11 @@ def bonus(request):
 @login_required
 def support(request):
     user = request.user
-    upgraded = ""
+    upgraded = False
     subscription = Subscription.objects.filter(user=user, is_active=True)
     for subs in subscription:
+        # get subscription that falls between current time period, check wheher it is active or not
         upgraded = subs.is_active
-
     context = {"is_support": True, "upgraded": upgraded , "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 

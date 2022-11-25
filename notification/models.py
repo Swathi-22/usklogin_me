@@ -7,7 +7,6 @@ from django_celery_beat.models import CrontabSchedule
 from django_celery_beat.models import PeriodicTask
 
 
-# Create your models here.
 class BroadcastNotification(models.Model):
     message = models.TextField()
     broadcast_on = models.DateTimeField()
@@ -18,6 +17,7 @@ class BroadcastNotification(models.Model):
 
     def __str__(self):
         return f'{self.message} - scheduled to {self.broadcast_on}'
+
 
 
 @receiver(post_save, sender=BroadcastNotification)
