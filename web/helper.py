@@ -6,7 +6,6 @@ from django.core.mail import send_mail
 from .models import Subscription
 from datetime import datetime
 from django.utils import timezone
-from django.conf import settings
 
 
 def send_forget_password_mail(email, token):
