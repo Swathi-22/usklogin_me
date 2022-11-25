@@ -31,7 +31,6 @@ from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
 import razorpay
-
 from .forms import BrandingImageForm
 # from .forms import BrandingImageUploadingForm
 from .forms import SupportRequestForm
@@ -59,8 +58,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 
-RAZOR_PAY_KEY = "rzp_test_wcql7nxaDxg320"
-RAZOR_PAY_SECRET = "cvB5ta4s0QgbeVir7iCYwvYE"
+RAZOR_PAY_KEY = "rzp_test_gmilUW5MZmHsEK"
+RAZOR_PAY_SECRET = "z7rD3fi8O6rS8vsVMRvmbGkW"
 
 
 def test(request):
@@ -115,7 +114,7 @@ def order_payment(request, pk):
     amount = 200
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
-    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"]) 
     context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": "https://" + "usklogin.geany.website" + "/callback/"}
     return render(request, "web/payment.html", context)
 
@@ -511,3 +510,8 @@ def certificate_view(request):
 def upgrade_plan_request(request):
     context = {}
     return render(request,'web/upgrade-request.html',context)
+
+
+def buy_now_branding_image(request):
+    context = {}
+    return render(request,'web/buy-now.html',context)

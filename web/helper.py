@@ -19,7 +19,6 @@ def send_forget_password_mail(email, token):
 
 
 def upgrade_reminder_mail(email, user):
-    today=datetime.now()
     qs=Subscription.objects.get(user=user)
     print(qs.valid_upto)
     if qs.valid_upto - timezone.now() == timedelta(days=10):
