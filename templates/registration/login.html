@@ -30,7 +30,7 @@
                 <button class="btn btn-login" type="submit">Login</button>
             </div>
         </form>
-        {% if messages %}
+        <!-- {% if messages %}
         <div class="messages login-message">
             {% for message in messages %}
             <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
@@ -39,7 +39,7 @@
             </div>
             {% endfor %}
         </div>
-        {% endif %}
+        {% endif %} -->
         <div class="mt-3">
             <p class="mb-0  text-center">Don't have an account? <a href="{% url 'web:register' %}"
                     class="text-primary fw-bold">Sign

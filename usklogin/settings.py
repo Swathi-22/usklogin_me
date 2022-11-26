@@ -79,12 +79,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "usklogin.wsgi.application"
-ASGI_APPLICATION = "usklogin.asgi.application"
+# ASGI_APPLICATION = "usklogin.asgi.application"
 
 
-# DATABASES = {
-#     "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
-# }
+DATABASES = {
+    "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -176,11 +176,12 @@ EMAIL_USE_SSL = False
 AUTH_USER_MODEL = "accounts.User"
 
 DOMAIN = "https://usklogin.geany.website"
-DOMAIN = "https://8000-swathi22-uskloginme-s2s6440jho2.ws-us77.gitpod.io"
+# DOMAIN = "http://127.0.0.1:8000"
 
 # For development
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+
 
 
 CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev", "https://8000-swathi22-uskloginme-s2s6440jho2.ws-us77.gitpod.io"]

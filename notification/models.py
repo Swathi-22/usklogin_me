@@ -20,6 +20,8 @@ class BroadcastNotification(models.Model):
 
 
 
+
+
 @receiver(post_save, sender=BroadcastNotification)
 def notification_handler(sender, instance, created, **kwargs):
     # call group_send function directly to send notificatoions or you can create a dynamic task in celery beat
@@ -32,3 +34,4 @@ def notification_handler(sender, instance, created, **kwargs):
         )
 
     # if not created:
+
