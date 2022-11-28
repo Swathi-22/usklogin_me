@@ -1,6 +1,7 @@
 import requests
 from requests.structures import CaseInsensitiveDict
 
+
 url = "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages"
 
 headers = CaseInsensitiveDict()

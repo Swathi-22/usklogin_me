@@ -2,15 +2,14 @@ import json
 import os
 import uuid
 from itertools import chain
+
 from accounts.models import User
-from invoices.models import Invoice
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
 from web.models import FAQ
 from web.models import AgencyPortal
-from django.shortcuts import get_object_or_404
 from web.models import AgentBonus
 from web.models import BackOfficeServices
 from web.models import CallSupport
@@ -31,16 +30,17 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
+
 import razorpay
-from .forms import BrandingImageForm
+
 # from .forms import BrandingImageUploadingForm
+from .forms import BrandingImageForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
 from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
 from .helper import send_forget_password_mail
-from .helper import upgrade_reminder_mail
 from .utils import PDFView
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
@@ -53,6 +53,7 @@ from django.db.models import Q
 from django.http import Http404
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
@@ -98,8 +99,7 @@ def order_payment(request, pk):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
-               "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/{pk}/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/{pk}/"}
     return render(request, "web/payment.html", context)
 
 
@@ -146,7 +146,7 @@ def callback(request, pk):
 
 
 def test(request):
-    user = request.user
+    request.user
     email = "anfasperingavu@gmail.com"
     # upgrade_reminder_mail(user.email, user)
     phone = "1234567890"
@@ -187,6 +187,17 @@ def upgrade_plan(request):
     amount = 4000
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
+<<<<<<< HEAD
+    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    context = {
+        "order": order,
+        "amount": amount,
+        "razorpay_key": RAZOR_PAY_KEY,
+        "razorpay_order": razorpay_order,
+        "callback_url": "http://" + "usklogin.geany.website" + "/callback/",
+    }
+    return render(request, "web/upgrade_plan.html", context)
+=======
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
                "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
@@ -228,6 +239,7 @@ def upgrade_callback(request):
         return render(request, "web/planupgrade-callback.html", context={"status": order_status})
     else:
         return render(request, "web/payment.html")
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
 
 
 def verify_signature(response_data):
@@ -293,8 +305,12 @@ def profile(request):
         else:
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.get(user=request.user)
+<<<<<<< HEAD
+    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, "instance": instance, "uploaded_branding_image": uploaded_branding_image}
+=======
     subscription_validity = Subscription.objects.filter(user=request.user).last()
     context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, 'instance': instance, "uploaded_branding_image": uploaded_branding_image,'subscription_validity':subscription_validity}
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
     return render(request, "web/profile.html", context)
 
 
@@ -391,15 +407,15 @@ def generateBill(request):
 @csrf_exempt
 @login_required
 def searching_invoice(request):
-    search = ''
-    invoice = ''
-    if 'search' in request.GET:
-        search = request.GET['search']
+    search = ""
+    invoice = ""
+    if "search" in request.GET:
+        search = request.GET["search"]
         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
     else:
         invoice = InvoiceItem.objects.all()
-    context = {"is_search": True, 'invoice': invoice, }
-    return render(request, 'web/invoice-searching.html', context)
+    context = {"is_search": True, "invoice": invoice}
+    return render(request, "web/invoice-searching.html", context)
     return JsonResponse(context)
 
 
@@ -486,7 +502,7 @@ def support(request):
     for subs in subscription:
         # get subscription that falls between current time period, check wheher it is active or not
         upgraded = subs.is_active
-    context = {"is_support": True, "upgraded": upgraded , "room_name": "broadcast"}
+    context = {"is_support": True, "upgraded": upgraded, "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
 
@@ -569,7 +585,14 @@ def certificate_view(request):
     return render(request, "web/certificate.html", context)
 
 
+<<<<<<< HEAD
+def upgrade_plan_request(request):
+    context = {}
+    return render(request, "web/upgrade-request.html", context)
+
+=======
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
 
 def buy_now_branding_image(request):
     context = {}
-    return render(request, 'web/buy-now.html', context)
+    return render(request, "web/buy-now.html", context)

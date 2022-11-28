@@ -18,14 +18,11 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "versatileimagefield",
     "tinymce",
-    "django_celery_beat",
-    "django_celery_results",
     "crispy_forms",
     "crispy_bootstrap5",
     "import_export",
     "registration",
     "widget_tweaks",
-    "channels",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -133,26 +130,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-CHANNEL_LAYERS = {"default": {"BACKEND": "channels_redis.core.RedisChannelLayer", "CONFIG": {"hosts": [("127.0.0.1", 6379)]}}}
-
 # SESSION-ENGINE FOR CUSTOM SESSESIOM
 SESSION_ENGINE = "user_sessions.backends.db"
 MAX_DEVICE_SESSIONS = 3
 
-
-# CELERY SETTINGS
-CELERY_BROKER_URL = "redis://127.0.0.1:6379"
-CELERY_RESULT_BACKEND = "django-db"
-CELERY_ACCEPT_CONTENT = ["application/json"]
-CELERY_RESULT_SERIALIZER = "json"
-CELERY_TASK_SELERLIZER = "json"
-CELERY_TIMEZONE = "Asia/Kolkata"
-
-CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-
 # Registration REDUX
-
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = False
 SEND_ACTIVATION_EMAIL = False
@@ -172,10 +154,12 @@ EMAIL_HOST_PASSWORD = "D2ja7rJgAnQFTS5Z"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-# user model created
+# user model
 AUTH_USER_MODEL = "accounts.User"
 
 DOMAIN = "https://usklogin.geany.website"
+<<<<<<< HEAD
+=======
 # DOMAIN = "http://127.0.0.1:8000"
 
 # For development
@@ -185,3 +169,4 @@ DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DI
 
 
 CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev", "https://8000-swathi22-uskloginme-s2s6440jho2.ws-us77.gitpod.io"]
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e

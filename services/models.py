@@ -1,8 +1,10 @@
+from accounts.models import User
+
 from django.db import models
 from tinymce.models import HTMLField
 from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
-from accounts.models import User
+
 
 # Service category
 class ServiceHeads(models.Model):
@@ -41,7 +43,7 @@ class Services(models.Model):
 
 
 class BrandingImage(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = VersatileImageField("Image", upload_to="service/", blank=True, null=True)
 
     class Meta:

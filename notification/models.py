@@ -1,10 +1,4 @@
-import json
-
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django_celery_beat.models import CrontabSchedule
-from django_celery_beat.models import PeriodicTask
 
 
 class BroadcastNotification(models.Model):
@@ -16,6 +10,9 @@ class BroadcastNotification(models.Model):
         ordering = ["-broadcast_on"]
 
     def __str__(self):
+<<<<<<< HEAD
+        return f"{self.message} - scheduled to {self.broadcast_on}"
+=======
         return f'{self.message} - scheduled to {self.broadcast_on}'
 
 
@@ -35,3 +32,4 @@ def notification_handler(sender, instance, created, **kwargs):
 
     # if not created:
 
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
