@@ -187,17 +187,6 @@ def upgrade_plan(request):
     amount = 4000
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
-<<<<<<< HEAD
-    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {
-        "order": order,
-        "amount": amount,
-        "razorpay_key": RAZOR_PAY_KEY,
-        "razorpay_order": razorpay_order,
-        "callback_url": "http://" + "usklogin.geany.website" + "/callback/",
-    }
-    return render(request, "web/upgrade_plan.html", context)
-=======
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
                "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
@@ -239,7 +228,6 @@ def upgrade_callback(request):
         return render(request, "web/planupgrade-callback.html", context={"status": order_status})
     else:
         return render(request, "web/payment.html")
->>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
 
 
 def verify_signature(response_data):
@@ -305,12 +293,8 @@ def profile(request):
         else:
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.get(user=request.user)
-<<<<<<< HEAD
-    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, "instance": instance, "uploaded_branding_image": uploaded_branding_image}
-=======
     subscription_validity = Subscription.objects.filter(user=request.user).last()
     context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, 'instance': instance, "uploaded_branding_image": uploaded_branding_image,'subscription_validity':subscription_validity}
->>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
     return render(request, "web/profile.html", context)
 
 
@@ -585,13 +569,10 @@ def certificate_view(request):
     return render(request, "web/certificate.html", context)
 
 
-<<<<<<< HEAD
 def upgrade_plan_request(request):
     context = {}
     return render(request, "web/upgrade-request.html", context)
 
-=======
->>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
 
 def buy_now_branding_image(request):
     context = {}
