@@ -79,12 +79,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "usklogin.wsgi.application"
-# ASGI_APPLICATION = "usklogin.asgi.application"
+ASGI_APPLICATION = "usklogin.asgi.application"
 
 
-DATABASES = {
-    "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
-}
+# DATABASES = {
+#     "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -180,7 +180,7 @@ DOMAIN = "https://usklogin.geany.website"
 
 # For development
 
-# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
 
 
 
