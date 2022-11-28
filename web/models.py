@@ -294,6 +294,11 @@ class Subscription(models.Model):
     is_active = models.BooleanField("Mark as Active", default=False)
     valid_from = models.DateTimeField(default=timezone.now)
     valid_upto = models.DateTimeField(blank=True, editable=False)
+    status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254)
+    provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
+    payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
+    signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
+    
 
     class Meta:
         verbose_name = "User Subscription"
@@ -311,4 +316,4 @@ class Subscription(models.Model):
 
     def save(self, *args, **kwargs):
         self.valid_upto = self.valid_from + timedelta(days=30)
-        super(Subscription, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)

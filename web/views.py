@@ -114,7 +114,7 @@ def callback(request, pk):
         print(response_data)
 
         if verify_signature(response_data):
-            order, _ = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=provider_order_id)
+            order, _ = Order.objects.get_or_create(user=user, provider_order_id=provider_order_id)
             order_status = PaymentStatus.SUCCESS
             order.status = PaymentStatus.SUCCESS
             order.payment_id = payment_id
@@ -175,11 +175,19 @@ class Certificate(PDFView, LoginRequiredMixin):
         return context
 
 
+
+def upgrade_plan_request(request):
+    context = {}
+    return render(request, 'web/upgrade-request.html', context)
+
+
+@login_required
 def upgrade_plan(request):
     user = request.user
-    amount = 400
+    amount = 4000
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
+<<<<<<< HEAD
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {
         "order": order,
@@ -189,6 +197,49 @@ def upgrade_plan(request):
         "callback_url": "http://" + "usklogin.geany.website" + "/callback/",
     }
     return render(request, "web/upgrade_plan.html", context)
+=======
+    order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
+               "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
+    return render(request, "web/payment.html", context)
+
+
+@login_required
+@csrf_exempt
+def upgrade_callback(request):
+    user = request.user
+    if "razorpay_signature" in request.POST:
+        payment_id = request.POST.get("razorpay_payment_id", "")
+        provider_order_id = request.POST.get("razorpay_order_id", "")
+        signature_id = request.POST.get("razorpay_signature", "")
+        response_data = {"razorpay_order_id": provider_order_id, "razorpay_payment_id": payment_id, "razorpay_signature": signature_id}
+        print(response_data)
+
+        if verify_signature(response_data):
+            order, _ = Subscription.objects.get_or_create(user=user, provider_order_id=provider_order_id)
+            order_status = PaymentStatus.SUCCESS
+            order.status = PaymentStatus.SUCCESS
+            order.payment_id = payment_id
+            order.signature_id = signature_id
+            order.save()
+
+            order.user.is_active = True
+            order.user.save()
+
+            email = order.user.email
+            subject = "Upgrade Plan"
+            message = f"""
+               The scheduled upgrade has been completed successfully.
+            """
+            send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
+            print("Payment Successful")
+            messages.success(request, "Payment Successful")
+        else:
+            order_status = PaymentStatus.FAILURE
+        return render(request, "web/planupgrade-callback.html", context={"status": order_status})
+    else:
+        return render(request, "web/payment.html")
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
 
 
 def verify_signature(response_data):
@@ -254,7 +305,12 @@ def profile(request):
         else:
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.get(user=request.user)
+<<<<<<< HEAD
     context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, "instance": instance, "uploaded_branding_image": uploaded_branding_image}
+=======
+    subscription_validity = Subscription.objects.filter(user=request.user).last()
+    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, 'instance': instance, "uploaded_branding_image": uploaded_branding_image,'subscription_validity':subscription_validity}
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
     return render(request, "web/profile.html", context)
 
 
@@ -529,10 +585,13 @@ def certificate_view(request):
     return render(request, "web/certificate.html", context)
 
 
+<<<<<<< HEAD
 def upgrade_plan_request(request):
     context = {}
     return render(request, "web/upgrade-request.html", context)
 
+=======
+>>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
 
 def buy_now_branding_image(request):
     context = {}
