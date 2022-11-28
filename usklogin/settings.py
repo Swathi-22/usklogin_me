@@ -76,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "usklogin.wsgi.application"
-# ASGI_APPLICATION = "usklogin.asgi.application"
+ASGI_APPLICATION = "usklogin.asgi.application"
 
 
 DATABASES = {
@@ -158,15 +158,3 @@ EMAIL_USE_SSL = False
 AUTH_USER_MODEL = "accounts.User"
 
 DOMAIN = "https://usklogin.geany.website"
-<<<<<<< HEAD
-=======
-# DOMAIN = "http://127.0.0.1:8000"
-
-# For development
-
-# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
-
-
-
-CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev", "https://8000-swathi22-uskloginme-s2s6440jho2.ws-us77.gitpod.io"]
->>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
