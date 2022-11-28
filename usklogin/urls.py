@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+from django.views.generic import TemplateView
 
 
 urlpatterns = (
@@ -13,6 +14,7 @@ urlpatterns = (
         path("", include("services.urls", namespace="services")),
         path("", include("invoices.urls", namespace="invoices")),
         path("tinymce/", include("tinymce.urls")),
+        path("OneSignalSDKWorker.js", TemplateView.as_view(template_name="OneSignalSDKWorker.js", content_type="application/javascript")),
         path("", include("user_sessions.urls", "user_sessions")),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

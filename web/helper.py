@@ -1,10 +1,9 @@
 from datetime import timedelta
 
-from django.conf import settings
-from django.core.mail import send_mail
 import requests
 from .models import Subscription
-from datetime import datetime
+from django.conf import settings
+from django.core.mail import send_mail
 from django.utils import timezone
 
 
@@ -34,8 +33,11 @@ def send_scheduled_message():
     return requests.post(
         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
         auth=("api", "YOUR_API_KEY"),
-        data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
-              "to": "bar@example.com",
-              "subject": "Hello",
-              "text": "Testing some Mailgun awesomness!",
-              "o:deliverytime": "Fri, 25 Oct 2011 23:10:10 -0000"})
+        data={
+            "from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
+            "to": "bar@example.com",
+            "subject": "Hello",
+            "text": "Testing some Mailgun awesomness!",
+            "o:deliverytime": "Fri, 25 Oct 2011 23:10:10 -0000",
+        },
+    )
