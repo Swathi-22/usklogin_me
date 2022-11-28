@@ -32,21 +32,10 @@ def upgrade_reminder_mail(email, user):
 def send_scheduled_message(email):
     return requests.post(
         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
-<<<<<<< HEAD
-        auth=("api", "YOUR_API_KEY"),
-        data={
-            "from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
-            "to": "bar@example.com",
-            "subject": "Hello",
-            "text": "Testing some Mailgun awesomness!",
-            "o:deliverytime": "Fri, 25 Oct 2011 23:10:10 -0000",
-        },
-    )
-=======
         auth=("api", "913731f1be6bac9b41e2d3f69fdf2656-69210cfc-8ba19ad2"),
         data={"from": "secure.gedexo@gmail.com",
               "to": [email],
               "subject": "Hello",
               "text": "Testing some Mailgun awesomness!",
               "o:deliverytime": upgrade_reminder_mail(email, user)})
->>>>>>> 5a9bf3a2834e2c8e93483661b7987ac1cab6730e
+
