@@ -13,7 +13,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(InvoiceItem)
 class InvoiceItemAdmin(admin.ModelAdmin):
-    list_display = ("invoice", "services_name", "created")
+    list_display = ("invoice", "services_name", "created", "sub_total")
 
 
 @admin.register(Invoice)
