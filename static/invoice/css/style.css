@@ -1075,6 +1075,7 @@ ul {
 
 .tm_table_responsive {
   overflow-x: auto;
+  margin-top: 97px;
 }
 
 .tm_table_responsive>table {
