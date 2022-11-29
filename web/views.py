@@ -146,21 +146,6 @@ def callback(request, pk):
 
 
 def test(request):
-    request.user
-    email = "anfasperingavu@gmail.com"
-    # upgrade_reminder_mail(user.email, user)
-    phone = "1234567890"
-    password = "1234567890"
-    email = "anfasperingavu@gmail.com"
-    subject = "Registration Completed on USKLOGIN.COM"
-    message = f"""
-        Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
-        Use this username and password to login.
-
-        Username: {phone}
-        Password: {password}
-    """
-    send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
     return HttpResponse("Done")
 
 
@@ -175,10 +160,9 @@ class Certificate(PDFView, LoginRequiredMixin):
         return context
 
 
-
 def upgrade_plan_request(request):
     context = {}
-    return render(request, 'web/upgrade-request.html', context)
+    return render(request, "web/upgrade-request.html", context)
 
 
 @login_required
@@ -188,8 +172,7 @@ def upgrade_plan(request):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
-               "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
     return render(request, "web/payment.html", context)
 
 
@@ -217,9 +200,7 @@ def upgrade_callback(request):
 
             email = order.user.email
             subject = "Upgrade Plan"
-            message = f"""
-               The scheduled upgrade has been completed successfully.
-            """
+            message = "The scheduled upgrade has been completed successfully."
             send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
@@ -294,7 +275,14 @@ def profile(request):
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.get(user=request.user)
     subscription_validity = Subscription.objects.filter(user=request.user).last()
-    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, 'instance': instance, "uploaded_branding_image": uploaded_branding_image,'subscription_validity':subscription_validity}
+    context = {
+        "is_profile": True,
+        "user_form": user_form,
+        "branding_image_form": branding_image_form,
+        "instance": instance,
+        "uploaded_branding_image": uploaded_branding_image,
+        "subscription_validity": subscription_validity,
+    }
     return render(request, "web/profile.html", context)
 
 
@@ -567,11 +555,6 @@ def paymentfail(request):
 def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
-
-
-def upgrade_plan_request(request):
-    context = {}
-    return render(request, "web/upgrade-request.html", context)
 
 
 def buy_now_branding_image(request):

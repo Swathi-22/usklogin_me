@@ -22,20 +22,25 @@ def upgrade_reminder_mail(email, user):
         qs = Subscription.objects.get(user=user)
         print(qs.valid_upto)
         qs.valid_upto - timezone.now() == timedelta(days=10)
-            # subject = "Your Plan is Expireing Soon..!"
-            # message = "Your upgrade plan about to end within 10 days..!. Please Renew Your Plan. Thank You "
-            # email_from = settings.EMAIL_HOST_USER
-            # recipient_list = [email]
-            # send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
 
-def send_scheduled_message(email):
+def send_scheduled_message(data):
+    DOMAIN_NAME = "sandboxd8904f8fd59b40eab3139d5031e4dcaf.mailgun.org"
+    API_KEY = "913731f1be6bac9b41e2d3f69fdf2656-69210cfc-8ba19ad2"
+    FROM_EMAIL = settings.MAILGUN_FROM_EMAIL
     return requests.post(
-        "https://api.mailgun.net/v3/sandboxd8904f8fd59b40eab3139d5031e4dcaf.mailgun.org/messages",
-        auth=("api", "913731f1be6bac9b41e2d3f69fdf2656-69210cfc-8ba19ad2"),
-        data={"from": "secure.gedexo@gmail.com",
-              "to": [email],
-              "subject": "Hello",
-              "text": "Testing some Mailgun awesomness!",
-              "o:deliverytime": upgrade_reminder_mail(email, user)})
+        f"https://api.mailgun.net/v3/{DOMAIN_NAME}/messages",
+        auth=("api", API_KEY),
+        data={"from": FROM_EMAIL, "to": data.get("email"), "subject": data.get("subject"), "text": data.get("message"), "o:deliverytime": data.get("delivery_time")},
+    )
 
+
+# calling the function
+send_scheduled_message(
+    {
+        "email": ["contact@gedexo.com"],
+        "subject": "Your Plan is Expiriing Soon..!",
+        "message": "Your plan is about to end in 10 days..!. Please Renew Your Plan. Thank You",
+        "delivery_time": "Fri, 25 Oct 2011 23:10:10 -0000",
+    }
+)

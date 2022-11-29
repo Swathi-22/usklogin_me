@@ -265,6 +265,12 @@ class CertificateImages(models.Model):
     seal = VersatileImageField(upload_to="USKimages", null=True, default="Seal.png")
     sign = VersatileImageField(upload_to="USKimages", null=True, default="Sign.png")
 
+    class Meta:
+        verbose_name_plural = "Certificate Images"
+
+    def __str__(self):
+        return str(self.id)
+
 
 class CallSupport(models.Model):
     name = models.CharField(max_length=100)
@@ -290,14 +296,15 @@ class WhatsappSupport(models.Model):
 
 class Subscription(models.Model):
     user = models.ForeignKey(User, related_name="upgraded_user", on_delete=models.CASCADE)
-    amount = models.FloatField(("Amount"), null=False, blank=False)
+    amount = models.FloatField("Amount", null=False, blank=False)
     is_active = models.BooleanField("Mark as Active", default=False)
     valid_from = models.DateTimeField(default=timezone.now)
     valid_upto = models.DateTimeField(blank=True, editable=False)
-    status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254)
-    provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
-    payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
-    signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
+    status = models.CharField("Payment Status", default=PaymentStatus.PENDING, max_length=254)
+    provider_order_id = models.CharField("Order ID", max_length=40, null=True, blank=True)
+    payment_id = models.CharField("Payment ID", max_length=36, null=True, blank=True)
+    signature_id = models.CharField("Signature ID", max_length=128, null=True, blank=True)
+    is_notified = models.BooleanField("Is Notified", default=False)
 
     class Meta:
         verbose_name = "User Subscription"
