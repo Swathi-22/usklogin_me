@@ -42,7 +42,7 @@ class Invoice(models.Model):
     def get_total(self):
         total = 0
         for item in InvoiceItem.objects.filter(invoice=self):
-            total += item.get_subtotal()
+            total += item.sub_total
         return Decimal(total) if total else 0
 
     def get_absolute_url(self):
@@ -56,6 +56,7 @@ class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
     services_name = models.ForeignKey(Services, on_delete=models.CASCADE, related_name="invoices_items")
     services_charge = models.CharField(max_length=100)
+    sub_total = models.PositiveIntegerField("Sub Total", blank=True, editable=False)
     username = models.CharField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
     descripton = models.TextField(blank=True, null=True)
@@ -66,11 +67,12 @@ class InvoiceItem(models.Model):
         verbose_name = "Invoice Item"
         verbose_name_plural = "Invoice Items"
 
-    def get_subtotal(self):
-        return float(self.services_charge * self.qty)
-
     def get_absolute_url(self):
         return reverse("invoice_download", kwargs={"pk": self.pk})
 
     def __str__(self):
         return str(self.services_name)
+
+    def save(self, *args, **kwargs):
+        self.sub_total = float(self.services_charge) * self.qty
+        super().save(*args, **kwargs)

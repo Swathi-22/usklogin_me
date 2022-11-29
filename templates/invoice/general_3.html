@@ -30,7 +30,7 @@
                         <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                     </div>
                     <div class="tm_invoice_info tm_mb25">
-                        
+
                         <div class="tm_invoice_info_list tm_white_color">
                             <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ invoice.invoice_no }}</b></p>
                             <p class="tm_invoice_date tm_m0">Date: <b>{{invoice.created}}</b></p>
@@ -45,14 +45,14 @@
                                 {{invoice.customer.address}} <br> {{invoice.customer.phone_no}} <br>
                                 {{invoice.customer.email}}
                             </p>
-                           
+
                                 {% for item in invoice.get_invoiceitem %}
                                 <p>
                                     Username : {{item.username}} <br>
                                     Password : {{item.password}}
                                 </p>
                                 {% endfor %}
-                           
+
                         </div>
 
                         <div class="tm_invoice_right tm_text_right">
@@ -86,7 +86,7 @@
                                             <td class="tm_width_4">{{item.descripton}}</td>
                                             <td class="tm_width_2">&#8377;{{item.services_charge}}</td>
                                             <td class="tm_width_1">{{item.qty}}</td>
-                                            <td class="tm_width_2 tm_text_right">${{item.get_subtotal}}</td>
+                                            <td class="tm_width_2 tm_text_right">${{item.sub_total}}</td>
                                         </tr>
 
                                         {% endfor %}
@@ -119,11 +119,11 @@
                             </div>
                         </div>
                         <div class="tm_invoice_footer tm_border_top tm_mb15 tm_m0_md">
-                           
+
                             <div class="tm_right_footer">
                                 <table class="tm_mb15">
                                     <tbody>
-                                        
+
                                         <tr class="tm_accent_bg">
                                             <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Grand
                                                 Total </td>
