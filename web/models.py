@@ -38,6 +38,7 @@ class NewServicePoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="New_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "New Service Poster"
@@ -50,6 +51,7 @@ class ImportantPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="Importants/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Important Poster"
@@ -62,6 +64,7 @@ class CommonServicesPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="CommonServices/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Common Services Poster"
@@ -74,6 +77,7 @@ class FestivelPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="FestivelPoster/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Festivel Poster"
@@ -86,6 +90,7 @@ class ProfessionalPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="ProfessionalPoster/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Professional Poster"
