@@ -104,6 +104,7 @@ class DownloadForms(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Forms/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Download Forms"
@@ -117,6 +118,7 @@ class DownloadDocuments(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Documents/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Download Documents"
@@ -130,6 +132,7 @@ class Softwares(models.Model):
     image = VersatileImageField("Image", upload_to="Softwares/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Softwares"
@@ -143,6 +146,7 @@ class Tools(models.Model):
     image = VersatileImageField("Image", upload_to="Tools/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Tools"
@@ -156,6 +160,7 @@ class MarketingTips(models.Model):
     image = VersatileImageField("Image", upload_to="Marketing_Tip/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Marketing Tips"
@@ -169,6 +174,7 @@ class OtherIdeas(models.Model):
     image = VersatileImageField("Image", upload_to="Other_Ideas/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Other Ideas"
@@ -182,6 +188,7 @@ class AgencyPortal(models.Model):
     image = VersatileImageField("Image", upload_to="Agency_Portal/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Agency Portals"
@@ -195,6 +202,7 @@ class BackOfficeServices(models.Model):
     image = VersatileImageField("Image", upload_to="Back_Office_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Back Office Service"
@@ -208,6 +216,7 @@ class AgentBonus(models.Model):
     image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Bonus for USK Agent"

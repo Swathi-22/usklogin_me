@@ -2,7 +2,33 @@
 {% block content %}
 {% load static %}
 
+<style>
+    .head-name{
+        text-align: center;
+        color: #fff;
+        height: auto;
+        margin-top: 11px;
+    }
+    .row-width{
+        width: 75%;
+        margin: auto 0px;
+    }
+    .access-button{
+        background-color: #24a17d;
+        border: 1px solid #24a17d;
+        padding: 2px 0px;
+        font-size: 13px;
+        border-radius: 5px;
+        text-align: center;
+    }
 
+    @media only screen and (min-width: 320px) and (max-width:567px){
+        .row-width{
+        width: 100%;
+        margin: auto 0px;
+    }
+    }
+</style>
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
         <section>
@@ -12,28 +38,33 @@
                     <a href="">
                         <div class="card">
                             <div class="card-body">
-                                <img src="{{each_software.image.crop.194x194}}" alt="">
+                                <img src="{{each_software.image.url}}" alt="">
                             </div>
+                            <div class="head-name">
+                                <h6>{{each_software.name}}</h6> 
+                             </div>
                         </div>
+                        
                     </a>
+                    <div class="row row-width">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
+                            <a href="{{each_software.detail_link}}" rel="noopener noreferrer" target="_blank" style="color: #fff;">ACCESS</a>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
+                            <a href="{{each_software.detail_link}}" rel="noopener noreferrer" target="_blank" style="color: #fff;">DETAILS</a>
+                        </div>
+                    </div>
+                    {% comment %}
                     <div class='buttons'>
                         <div class='left-col'>
                             <a href="{{each_software.link}}" class="access-software" rel="noopener noreferrer" target="_blank">ACCESS</a>
                         </div>
                         <div class='right-col-software'>
-                            <span class="name-software">{{each_software.name}}</span>
+                            <a herf="{{each_software.detail_link}}" class="name-software" rel="noopener noreferrer" target="_blank">Detailss</a>
                             <!-- <a href="" class="name-software" rel="noopener noreferrer" target="_blank"></a> -->
                         </div>
                       </div>
-                    <!-- <div>
-                        <a href="{{each_software.link}}" class="access-software" rel="noopener noreferrer" target="_blank">ACCESS</a>
-                        <a href="" class="name-software" rel="noopener noreferrer" target="_blank">{{each_software.name}}</a>
-                      </div> -->
-                    <!-- <button class="btn-hover-soft color-6">{{each_software.name}}</button>
-                    <a href="{{each_software.link}}">
-                        <button class="btn-hover-soft color-6">ACCESS</button>
-                    </a> -->
-
+                      {% endcomment %}
                 </div>
                 {% endfor %}
             </div>

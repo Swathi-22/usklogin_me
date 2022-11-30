@@ -21511,8 +21511,8 @@ h2 em {
   padding: 0;
   border-radius: 20px;
   background-color: #f1f8fe;
-  min-height: 216px;
-  width: 77%;
+  min-height: 242px;
+  width: 80%;
 }
 
 .download-button {
@@ -21614,7 +21614,9 @@ h2 em {
 .card {
   width: 75%;
   background-color: #abd1c6 !important;
-  padding: 23px 23px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 5px;
   box-shadow: 3px 3px 10px #000 85;
 }
@@ -21639,8 +21641,10 @@ h2 em {
 
 .card-tool {
   width: 75%;
-  background-color: #5e9fa5e0 !important;
-  padding: 23px 23px;
+  background-color: #abd1c6 !important;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 5px;
   box-shadow: 3px 3px 10px #000 85;
 }
@@ -22471,6 +22475,13 @@ a.fl-button.fill:before {
   border-radius: 5px;
   font-size: 13px;
 }
+.name-software:hover{
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-radius: 5px;
+  font-size: 13px;
+}
 
 /* .name-software:hover{
   background-image: linear-gradient(to right, #008b92, #2183fc, #00A8C5, #62e021);
@@ -22739,6 +22750,7 @@ a.fl-button.fill:before {
   background-image: linear-gradient(to right, #008b92, #2183fc, #00A8C5, #62e021);
   box-shadow: 0 4px 15px 0 rgb(83 176 57 / 75%);
 }
+
 
 .right-col-tool {
   width: 50%;

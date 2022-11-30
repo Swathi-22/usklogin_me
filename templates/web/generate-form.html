@@ -3,6 +3,11 @@
 {% load static %}
 
 
+<style>
+    .form-detail{
+        padding: 6px 39px;
+    }
+</style>
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
         <section>
@@ -19,6 +24,9 @@
                         <a href="{{forms.file.url}}"  download="{{forms.file.url}}">
                             <div class="text-center">
                                 <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{forms.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
                             </div>
                             
                         </a>
