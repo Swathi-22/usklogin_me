@@ -22,7 +22,7 @@
                 <div class="tm_invoice_in">
                     <div class="tm_invoice_head tm_top_head tm_mb15 tm_align_center">
                         <div class="tm_invoice_left">
-                            <div class="tm_logo"><img src="{% static 'invoice/img/logo.svg' %}" alt="Logo"></div>
+                            <div class="tm_logo"><img src="{{request.user.profile_image}}" alt="Logo"></div>
                         </div>
                         <div class="tm_invoice_right tm_text_right tm_mobile_hide">
                             <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoice.invoice_no}}</div>
@@ -88,30 +88,7 @@
                                         </tr>
 
                                         {% endfor %}
-                                        {% comment %}
-                                        <tr>
-                                            <td class="tm_width_3">2. Web Development</td>
-                                            <td class="tm_width_4">Convert pixel-perfect frontend and make it dynamic
-                                            </td>
-                                            <td class="tm_width_2">$600</td>
-                                            <td class="tm_width_1">1</td>
-                                            <td class="tm_width_2 tm_text_right">$600</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tm_width_3">3. App Development</td>
-                                            <td class="tm_width_4">Android & Ios Application Development</td>
-                                            <td class="tm_width_2">$200</td>
-                                            <td class="tm_width_1">2</td>
-                                            <td class="tm_width_2 tm_text_right">$400</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tm_width_3">4. Digital Marketing</td>
-                                            <td class="tm_width_4">Facebook, Youtube and Google Marketing</td>
-                                            <td class="tm_width_2">$100</td>
-                                            <td class="tm_width_1">3</td>
-                                            <td class="tm_width_2 tm_text_right">$300</td>
-                                        </tr>
-                                        {% endcomment %}
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -133,6 +110,7 @@
                                 </table>
                             </div>
                         </div>
+                        {% comment %}
                         <div class="tm_invoice_footer tm_type1">
                             <div class="tm_left_footer"></div>
                             <div class="tm_right_footer">
@@ -143,6 +121,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endcomment %}
                     </div>
                     <div class="tm_note tm_text_center tm_font_style_normal">
                         <hr class="tm_mb15">
