@@ -23562,6 +23562,23 @@ button.createbtn i {
   margin-left: 201px;
 }
 
+@media only screen and (min-width:320px) and (max-width:567px){
+  .popup-imagea {
+    height: 400px;
+    margin-left: -25px !important;
+}
+.img-popup img {
+  max-width: 90% !important;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-100px);
+  -webkit-transform: translateY(-100px);
+  -moz-transform: translateY(-100px);
+  -ms-transform: translateY(-100px);
+  -o-transform: translateY(-100px);
+}
+}
+
 .poster-download-button {
   margin-left: 199px;
 }
@@ -24183,12 +24200,12 @@ hr.certificate-hr {
 
 .tm_accent_color,
 .tm_accent_color_hover:hover {
-  color: #007aff;
+  color: #2d3d83;
 }
 
 .tm_accent_bg,
 .tm_accent_bg_hover:hover {
-  background-color: #007aff;
+  background-color: #2d3d83;
 }
 
 .tm_accent_bg_10 {
@@ -24253,7 +24270,7 @@ hr.certificate-hr {
 }
 
 .tm_accent_border {
-  border-color: #007aff;
+  border-color: #2d3d83;
 }
 
 .tm_accent_border_10 {
@@ -25277,7 +25294,7 @@ hr {
 
   .tm_invoice_btn.tm_color1 {
     background-color: rgba(0, 122, 255, 0.1);
-    color: #007aff;
+    color: #2d3d83;
     border-radius: 5px 5px 0 0;
   }
 
@@ -25358,7 +25375,7 @@ hr {
 
   .tm_invoice_btn.tm_color1 {
     background-color: rgba(0, 122, 255, 0.1);
-    color: #007aff;
+    color: #2d3d83;
   }
 
   .tm_invoice_btn.tm_color1:hover {
@@ -25746,7 +25763,7 @@ hr {
   }
 
   .tm_accent_bg {
-    background-color: #007aff;
+    background-color: #2d3d83;
     -webkit-print-color-adjust: exact;
   }
 
@@ -25766,7 +25783,7 @@ hr {
   }
 
   .tm_accent_color {
-    color: #007aff !important;
+    color: #2d3d83 !important;
     -webkit-print-color-adjust: exact;
   }
 

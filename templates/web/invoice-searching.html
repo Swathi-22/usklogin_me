@@ -34,16 +34,16 @@
                                 <div class="tm_logo"><img src="{% static 'invoice/img/logo.svg' %}" alt="Logo"></div>
                             </div>
                             <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                                <div class="tm_f50 tm_text_uppercase tm_white_color">{{customer}}</div>
+                                <div class="tm_f50 tm_text_uppercase tm_white_color">{{customer.invoice.invoice_no}}</div>
                             </div>
                             <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                         </div>
                         <div class="tm_invoice_info tm_mb25">
-                            <div class="tm_card_note tm_mobile_hide"><b class="tm_primary_color">Payment Method: </b>Paypal,
-                                Western Union</div>
+                            <div class="tm_card_note tm_mobile_hide">
+                                </div>
                             <div class="tm_invoice_info_list tm_white_color">
-                                <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ customer.invoice_no }}</b></p>
-                                <p class="tm_invoice_date tm_m0">Date: <b>{{customer.created}}</b></p>
+                                <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ customer.invoice.invoice_no }}</b></p>
+                                <p class="tm_invoice_date tm_m0">Date: <b>{{customer.invoice.created}}</b></p>
                             </div>
                             <div class="tm_invoice_seperator tm_accent_bg"></div>
                         </div>
@@ -59,10 +59,11 @@
                             <div class="tm_invoice_right tm_text_right">
                                 <p class="tm_mb2"><b class="tm_primary_color">Pay To:</b></p>
                                 <p>
-                                    Laralink Ltd <br>
-                                    86-90 Paul Street, London<br>
-                                    England EC2A 4NE <br>
-                                    demo@gmail.com
+                                    {{request.user.name}} <br>
+                                    {{request.user.shop_address}}<br>
+                                    {{request.user.district}}<br>
+                                    {{request.user.email}} <br>
+                                    {{request.user.phone}}
                                 </p>
                             </div>
                         </div>
@@ -73,7 +74,8 @@
                                         <thead>
                                             <tr class="tm_accent_bg">
                                                 <th class="tm_width_3 tm_semi_bold tm_white_color">Item</th>
-                                                <th class="tm_width_4 tm_semi_bold tm_white_color">Description</th>
+                                                <th class="tm_width_4 tm_semi_bold tm_white_color">Username</th>
+                                                <th class="tm_width_4 tm_semi_bold tm_white_color">Password</th>
                                                 <th class="tm_width_2 tm_semi_bold tm_white_color">Price</th>
                                                 <th class="tm_width_1 tm_semi_bold tm_white_color">Qty</th>
                                                 <th class="tm_width_2 tm_semi_bold tm_white_color tm_text_right">Total</th>
@@ -85,7 +87,8 @@
                                             {% if customer.invoice == item.invoice %}
                                             <tr>
                                                 <td class="tm_width_3">1. {{ item.services_name }}</td>
-                                                <td class="tm_width_4">{{item.descripton}}</td>
+                                                <td class="tm_width_3">{{item.username}}</td>
+                                                <td class="tm_width_3">{{item.password}}</td>
                                                 <td class="tm_width_2">${{item.services_charge}}</td>
                                                 <td class="tm_width_1">{{item.qty}}</td>
                                                 <td class="tm_width_2 tm_text_right">${{item.get_subtotal}}</td>

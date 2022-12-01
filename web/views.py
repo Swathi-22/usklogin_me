@@ -135,6 +135,14 @@ def callback(request, pk):
                 Password: {password}
             """
             send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
+            subject = "Registration Completed on USKLOGIN.COM"
+            message = f"""
+                One more Agent on USKLOGIN.COM
+
+                Username: {phone}
+                Password: {password}
+            """
+            send_mail(subject, message, "loginusk@gmail.com","uskdemomail@gmail.com", fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
