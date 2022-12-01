@@ -1,33 +1,30 @@
-{% extends 'web/base.html' %}
+{% extends 'registration/base.html' %}
 {% load static crispy_forms_tags %}
 
-{% block body %}
-<div class="container">
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="wrapper py-5">
 
-    <div class="text-center pt-5">
-        <img src="{% static 'web/images/USKLKOG.png' %}" style="width:24%;" class="usk-login-register" alt="">
-    </div>
-
-    <div class="wrapper py-5">
-
-        <form class="form-right" method="POST" action="">
-            <h2 class="text-uppercase">Lets get started</h2>
-            <div class="row text-left">
-                {% csrf_token %}
-                <div class="col-sm-12 mb-3">
-                    <div class="form-group">
-                        <label> Enter your mobile number</label>
-                        <input type="number" name="mobile" class="form-control" />
+            <form class="form-right" method="POST" action="">
+                <h2 class="text-uppercase">Lets get started</h2>
+                <div class="row text-left">
+                    {% csrf_token %}
+                    <div class="col-sm-12 mb-3">
+                        <div class="form-group">
+                            <label> Enter your mobile number</label>
+                            <input type="number" name="mobile" class="form-control" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-field text-center">
-                <button type="submit" id="submitBtn" class="btn btn-primary" name="register">Continue</button>
-            </div>
-        </form>
+                <div class="form-field text-center">
+                    <button type="submit" id="submitBtn" class="btn btn-primary" name="register">Continue</button>
+                </div>
+            </form>
+        </div>
+
     </div>
-
 </div>
 {% endblock %}
 

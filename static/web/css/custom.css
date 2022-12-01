@@ -127,7 +127,9 @@
         border-radius: 13px
     }
 }
-
+.navbar-toggler:focus {
+    box-shadow: none;
+}
 .tooltip {
     display: contents;
     border-bottom: 1px dotted black;

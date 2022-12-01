@@ -1,6 +1,5 @@
 import json
 import os
-import uuid
 from itertools import chain
 
 from accounts.models import User
@@ -38,7 +37,6 @@ from .forms import SupportTicketForm
 from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
-from .helper import send_forget_password_mail
 from .utils import PDFView
 from django.conf import settings
 from django.contrib import messages

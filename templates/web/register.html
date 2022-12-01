@@ -24,17 +24,11 @@
                 <img src="{% static 'web/images/USKLKOG.png' %}" style="width:24%;" class="usk-login-register" alt="">
             </div>
 
-
-            <div class="wrapper py-5">
-
-
+            <div class="wrapper mt-4">
                 <form class="form-right" method="POST" action="">
                     <h2 class="text-uppercase">USK Agent Registration</h2>
-
                     <div class="row text-left">
                         {% csrf_token %}
-
-
                         {% for field in user_form %}
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
@@ -54,6 +48,8 @@
                         <button type="submit" id="submitBtn" class="btn btn-primary" name="register"
                             disabled>Submit</button>
                     </div>
+
+                    <p class="mt-2"><a href="{% url 'auth_login' %}">Already have an account? Login</a></p>
                 </form>
             </div>
 
