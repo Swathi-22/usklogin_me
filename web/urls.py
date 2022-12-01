@@ -49,4 +49,6 @@ urlpatterns = [
     # path("logout/", views.logout_view, name="logout"),
     path("test/", views.test, name="test"),
     path("buynow-branding-image/", views.buy_now_branding_image, name="buy_now_branding_image"),
+    path("add-on_services/", views.add_on_services, name="add_on_services"),
+
 ]

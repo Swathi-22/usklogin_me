@@ -2,7 +2,6 @@ import json
 import os
 import uuid
 from itertools import chain
-
 from accounts.models import User
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
@@ -30,7 +29,7 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
-
+from web.models import AddonServices
 import razorpay
 
 # from .forms import BrandingImageUploadingForm
@@ -560,3 +559,9 @@ def certificate_view(request):
 def buy_now_branding_image(request):
     context = {}
     return render(request, "web/buy-now.html", context)
+
+
+def add_on_services(request):
+    addon_services = AddonServices.objects.all()
+    context = {"addon_services":addon_services}
+    return render(request,'web/add-on-services.html',context)

@@ -273,19 +273,6 @@ class ChangePassword(models.Model):
         return str(self.user)
 
 
-class CertificateImages(models.Model):
-    usk_logo = VersatileImageField(upload_to="USKimages", null=True, default="USK Login Logo.png")
-    bruvsha_logo = VersatileImageField(upload_to="USKimages", null=True, default="Bruvsha Logo.png")
-    seal = VersatileImageField(upload_to="USKimages", null=True, default="Seal.png")
-    sign = VersatileImageField(upload_to="USKimages", null=True, default="Sign.png")
-
-    class Meta:
-        verbose_name_plural = "Certificate Images"
-
-    def __str__(self):
-        return str(self.id)
-
-
 class CallSupport(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=50)
@@ -337,3 +324,17 @@ class Subscription(models.Model):
     def save(self, *args, **kwargs):
         self.valid_upto = self.valid_from + timedelta(days=30)
         super().save(*args, **kwargs)
+
+
+class AddonServices(models.Model):
+    name = models.CharField(max_length=100)
+    image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    link = models.URLField()
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Add-on Services"
+
+    def __str__(self):
+        return str(self.name)

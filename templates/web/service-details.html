@@ -30,7 +30,7 @@
                 <ul>
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-7 col-7">
-                            <li>സെർവിസിന് വരുന്ന ചാർജ് </li>
+                            <li>Service Charge </li>
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-5 col-5 charge-pad">
                             : <span>&#8377; {{services.service_charge}}</span>
@@ -38,18 +38,10 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-9 col-9">
-                            <li>സെർവിസിന് വാങ്ങാവുന്ന ചാർജ് </li>
+                            <li>Service Expense </li>
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-3 col-3 charge-pad">
                             : <span> &#8377; {{services.actual_service_charge}} </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6 col-sm-8 col-8">
-                            <li>സെർവിസിന് വരുന്ന സമയം </li>
-                        </div>
-                        <div class="col-lg-7 col-md-6 col-sm-4 col-4 charge-pad">
-                            : <span>{{services.time_for_service}} </span>
                         </div>
                     </div>
 
@@ -69,10 +61,17 @@
                 <a href="{{services.guidline}}">
                     <div class="service-detail-button text-center">
                         <!-- <span>Guidline</span> -->
-                        <a href="https://youtube.com/watch?v={{services.video_tutorial}}" class="youtube">Guidline</a>
+                        <a href="https://youtube.com/watch?v={{services.video_tutorial}}" class="youtube">View More</a>
                     </div>
                 </a>
+                {% comment %}
                 <a href="{{services.upload_form.url}}" download="{{services.upload_form.url}}">
+                    <div class="service-detail-button text-center">
+                        <span>Download Forms</span>
+                    </div>
+                </a>
+                {% endcomment %}
+                <a href="{{services.upload_form}}">
                     <div class="service-detail-button text-center">
                         <span>Download Forms</span>
                     </div>

@@ -16502,8 +16502,12 @@ code {
 .btn-primary:not(.btn-light) {
   color: #ffffff;
 }
+.btn-primary:not(.btn-light):hover{
+  color: #ffffff;
+  background-color: #2d3d84;
+  border: 1px solid #2d3d84;
+}
 
-.btn-primary:not(.btn-light):hover,
 .btn-primary:not(.btn-light):focus,
 .btn-primary:not(.btn-light):active {
   color: #ffffff;
