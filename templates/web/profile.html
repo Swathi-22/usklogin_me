@@ -137,8 +137,7 @@
                         {% else %}
                         <img class="rounded-circle mt-5" width="150px" src="{% static 'web/images/deafult-01.jpg' %}">
                         {% endif %}
-                        <span class="font-weight-bold">{{request.user.name}}</span>
-                        <span class="text-black-50">{{request.user.category}}</span>
+                        <span class="text-black-50"></span>
                         <span> </span>
                     </div>
                 </div>
@@ -159,6 +158,9 @@
                             </div>
                             <div class="col-md-12"><label class="labels">Email Id</label>
                                 <input type="text" class="form-control" value="{{request.user.email}}">
+                            </div>
+                            <div class="col-md-12"><label class="labels">Category</label>
+                                <input type="text" class="form-control" value="{{request.user.category}}">
                             </div>
                             <div class="col-md-12"><label class="labels">Shop Name</label>
                                 <input type="text" class="form-control" value="{{request.user.shop_name}}">
