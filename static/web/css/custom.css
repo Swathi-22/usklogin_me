@@ -134,7 +134,32 @@
     display: contents;
     border-bottom: 1px dotted black;
 }
-
+input[type="submit"] {
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    outline: 0;
+    outline-offset: 0;
+    text-decoration: none;
+    -webkit-appearance: button;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.875rem 2.5rem;
+    border-radius: 0.1875rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    background-color: #e6603d;
+    border-color: #e6603d;
+    box-shadow: none;
+    font-size: 0.875rem;
+    line-height: 1;
+    font-family: "ubuntu-bold", sans-serif;
+    color: #ffffff;
+    cursor: pointer;
+}
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 290px;

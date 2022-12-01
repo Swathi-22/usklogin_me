@@ -1,36 +1,28 @@
-{% extends 'registration/base.html' %}
-
+{% extends 'registration/registration_base.html' %}
 {% load static widget_tweaks crispy_forms_tags %}
-
 {% block content %}
-<div class="row">
-    <div class="col-md-6 mx-auto">
-        <div class="wrapper mt-4">
-            <form class="form-right" method="POST" action="">
-                <h2 class="text-uppercase">USK Agent Login</h2>
-                <div class="row text-left">
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <p class="small"><a class="text-primary" href="{% url 'auth_password_reset' %}">Forgot password?</a>
-                    </p>
-                    <div class="d-grid">
-                        <button class="btn btn-login" type="submit">Login</button>
-                    </div>
-                    <div class="mt-3">
-                        <p class="mb-0  text-center">
-                            Don't have an account?
-                            <a href="{% url 'web:register' %}" class="text-primary fw-bold">Sign Up</a>
-                        </p>
-                    </div>
-                
-                    <a href="#" target="_blank" class="learnmore-button">
-                        LEARN MORE
-                    </a>
-                </div>
-            </form>
+
+<form class="" method="POST" action="">
+    <h2 class="text-uppercase">USK Agent Login</h2>
+    <div class="row text-left">
+        {% csrf_token %}
+        {{form|crispy}}
+        <p class="small"><a class="text-primary" href="{% url 'auth_password_reset' %}">Forgot password?</a>
+        </p>
+        <div class="d-grid">
+            <button class="btn btn-login" type="submit">Login</button>
         </div>
-        
+        <div class="mt-3">
+            <p class="mb-0  text-center">
+                Don't have an account?
+                <a href="{% url 'web:register' %}" class="text-primary fw-bold">Sign Up</a>
+            </p>
+        </div>
+
+        <a href="#" target="_blank" class="learnmore-button">
+            LEARN MORE
+        </a>
     </div>
-</div>
+</form>
 
 {% endblock %}
