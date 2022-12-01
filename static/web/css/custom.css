@@ -1,0 +1,178 @@
+.head-name {
+    text-align: center;
+    color: #fff;
+    height: auto;
+    margin-top: 11px;
+}
+
+.form-detail {
+    padding: 6px 39px;
+}
+
+.row-width {
+    width: 75%;
+    margin: auto 0px;
+}
+
+.access-button {
+    background-color: #24a17d;
+    border: 1px solid #24a17d;
+    padding: 2px 0px;
+    font-size: 13px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detail-button {
+    background-color: #008b92;
+    border: 1px solid #008b92;
+    border-radius: 4px;
+    width: 60%;
+    margin: 2px auto;
+
+}
+
+.branding_image_uploading {
+    background: #f2edf3 !important;
+    width: 100%;
+    margin: 23px 0px;
+    height: auto;
+}
+
+.buynow_button {
+    background-color: #00409f;
+    color: #fff;
+    padding: 7px 10px;
+    margin: 0px 9px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 13px
+}
+
+.save_button {
+    background-color: #00409f;
+    border: 1px solid #00409f;
+    color: #fff;
+    padding: 7px 10px;
+    margin: auto;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 13px
+}
+
+
+.label-file {
+    display: block;
+    padding: 7px 10px;
+    background-color: #00409f;
+    color: #fff;
+    border-radius: 13px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.label-file:hover {
+    background-color: rgb(5, 73, 199);
+}
+
+.label-file:active {
+    background-color: rgb(1, 119, 80);
+}
+
+.get-input {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+@media only screen and (min-width:320px) and (max-width:567px) {
+    .expiry_date {
+        margin-left: 0px !important;
+    }
+
+    .label-file {
+        display: block;
+        margin: 0 auto;
+        padding: 7px 10px;
+        background-color: #00409f;
+        color: #fff;
+        border-radius: 13px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .save_button {
+        background-color: #00409f;
+        border: 1px solid #00409f;
+        color: #fff;
+        font-size: 10px;
+        padding: 7px 10px;
+        margin: auto;
+        text-align: center;
+        border-radius: 13px
+    }
+
+    .buynow_button {
+        background-color: #00409f;
+        color: #fff;
+        padding: 7px 10px;
+        font-size: 10px;
+        margin: 0px 8px;
+        text-align: center;
+        border-radius: 13px
+    }
+}
+
+.tooltip {
+    display: contents;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 290px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    margin-top: 3px;
+    margin-left: 102px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+@media only screen and (min-width: 320px) and (max-width:567px) {
+    .detail-button {
+        background-color: #008b92;
+        border: 1px solid #008b92;
+        border-radius: 4px;
+        width: 76% !important;
+        margin: 2px auto;
+    }
+
+    .row-width {
+        width: 100%;
+        margin: auto 0px;
+    }
+}
+
+@media only screen and (min-width: 568px) and (max-width:768px) {
+    .detail-button {
+        background-color: #008b92;
+        border: 1px solid #008b92;
+        border-radius: 4px;
+        width: 66% !important;
+        margin: 2px auto;
+    }
+}

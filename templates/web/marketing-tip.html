@@ -1,35 +1,6 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
-
-
-<style>
-    .head-name{
-        text-align: center;
-        color: #fff;
-        height: auto;
-        margin-top: 11px;
-    }
-    .row-width{
-        width: 75%;
-        margin: auto 0px;
-    }
-    .access-button{
-        background-color: #24a17d;
-        border: 1px solid #24a17d;
-        padding: 2px 0px;
-        font-size: 13px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    @media only screen and (min-width: 320px) and (max-width:567px){
-        .row-width{
-        width: 100%;
-        margin: auto 0px;
-    }
-    }
-</style>  
+{% block content %}
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
@@ -73,7 +44,5 @@
         </section>
     </div>
 </div>
-
-
 
 {% endblock %}

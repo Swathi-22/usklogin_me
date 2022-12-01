@@ -67,10 +67,7 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("profile_image",)
-        widgets = {
-            
-            "profile_image": FileInput(attrs={"class": "form-control", "name": "image"}),
-        }
+        widgets = {"profile_image": FileInput(attrs={"class": "form-control", "name": "image"})}
 
 
 # class BrandingImageUploadingForm(forms.ModelForm):

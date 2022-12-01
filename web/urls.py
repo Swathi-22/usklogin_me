@@ -10,8 +10,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("start/", views.start, name="start"),
     path("register/", views.register, name="register"),
-    path("forgot-password/", views.forgot_password, name="forgot_password"),
-    path("change-password/<token>/", views.change_password, name="change_password"),
     path("profile/", views.profile, name="profile"),
     path("profile-update/", views.profile_update, name="profile_update"),
     path("settings/", views.settings_menu, name="settings"),
@@ -50,5 +48,4 @@ urlpatterns = [
     path("test/", views.test, name="test"),
     path("buynow-branding-image/", views.buy_now_branding_image, name="buy_now_branding_image"),
     path("add-on_services/", views.add_on_services, name="add_on_services"),
-
 ]

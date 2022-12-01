@@ -1,7 +1,6 @@
-  
-  {% load humanize %}
-  
-  <!-- new service -->
+{% extends 'web/base.html' %}
+{% load static humanize %}
+{% block content %}
 <div class="row">
 
   {% for posters in new_service_poster %}
@@ -32,3 +31,6 @@
     </div>
   </div>
 </div>
+
+{% endblock %}
+

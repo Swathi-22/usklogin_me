@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from decouple import config
 
 
@@ -68,7 +69,16 @@ TEMPLATES = [
 WSGI_APPLICATION = "usklogin.wsgi.application"
 ASGI_APPLICATION = "usklogin.asgi.application"
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {
+    "default": {
+        "ENGINE": config("DB_ENGINE"),
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": "",
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -129,7 +139,7 @@ SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
 REGISTRATION_OPEN = True
-LOGIN_URL = "app/login/"
+LOGIN_URL = "/start/"
 LOGOUT_URL = "app/logout/"
 LOGIN_REDIRECT_URL = "/"
 
@@ -148,7 +158,4 @@ MAILGUN_FROM_EMAIL = "secure.gedexo@gmail.com"
 
 
 # For development
-CSRF_TRUSTED_ORIGINS = ["https://pvanfas-glorious-palm-tree-vqg5qg7jqvgfx5g7-8000.preview.app.github.dev", "https://8000-swathi22-uskloginme-s2s6440jho2.ws-us77.gitpod.io"]
-# DATABASES = {
-#     "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
-# }
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}

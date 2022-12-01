@@ -1,23 +1,21 @@
-
 {% load humanize %}
 
 <!-- festival poster -->
 <div class="row">
-    {% for festive_poster in festivel_poster %}
-  
-    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-      <div class="container__img-holder">
-        <img src="{{festive_poster.image.url}}" data-id="{{festive_poster.id | apnumber }}" alt="Image">
-  
-        <div class="text-center mt-3">
-          <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-            data-source="{{festive_poster.id | apnumber }}">Click to Download</button>
-        </div>
-        
-        <span>{{festive_poster.title}}</span>
+  {% for festive_poster in festivel_poster %}
+
+  <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+    <div class="container__img-holder">
+      <img src="{{festive_poster.image.url}}" data-id="{{festive_poster.id | apnumber }}" alt="Image">
+
+      <div class="text-center mt-3">
+        <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
+          data-source="{{festive_poster.id | apnumber }}">Click to Download</button>
       </div>
+
+      <span>{{festive_poster.title}}</span>
     </div>
-  
-  
-    {% endfor %}
   </div>
+
+  {% endfor %}
+</div>

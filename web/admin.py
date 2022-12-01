@@ -1,4 +1,5 @@
 from .models import FAQ
+from .models import AddonServices
 from .models import AgencyPortal
 from .models import AgentBonus
 from .models import BackOfficeServices
@@ -20,7 +21,6 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
-from .models import AddonServices
 from django.contrib import admin
 
 

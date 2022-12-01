@@ -2,17 +2,18 @@ import json
 import os
 import uuid
 from itertools import chain
+
 from accounts.models import User
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
 from web.models import FAQ
+from web.models import AddonServices
 from web.models import AgencyPortal
 from web.models import AgentBonus
 from web.models import BackOfficeServices
 from web.models import CallSupport
-from web.models import ChangePassword
 from web.models import CommonServicesPoster
 from web.models import DownloadDocuments
 from web.models import DownloadForms
@@ -29,10 +30,8 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
-from web.models import AddonServices
-import razorpay
 
-# from .forms import BrandingImageUploadingForm
+import razorpay
 from .forms import BrandingImageForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -41,8 +40,6 @@ from .forms import UserUpdateForm
 from .functions import generate_pw
 from .helper import send_forget_password_mail
 from .utils import PDFView
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -142,7 +139,7 @@ def callback(request, pk):
                 Username: {phone}
                 Password: {password}
             """
-            send_mail(subject, message, "loginusk@gmail.com","uskdemomail@gmail.com", fail_silently=False)
+            send_mail(subject, message, "loginusk@gmail.com", "uskdemomail@gmail.com", fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
@@ -223,50 +220,6 @@ def verify_signature(response_data):
     return client.utility.verify_payment_signature(response_data)
 
 
-def forgot_password(request):
-    if request.method == "POST":
-        email = request.POST.get("email")
-        if not User.objects.filter(email=email).first():
-            messages.warning(request, "User Not Found...")
-            return redirect("web:forgot_password")
-        user_obj = User.objects.get(email=email)
-        token = str(uuid.uuid4())
-        ChangePassword.objects.create(user=user_obj, forgot_password_token=token)
-        send_forget_password_mail(user_obj.email, token)
-        messages.warning(request, "An email is sent")
-        return redirect("web:forgot_password")
-    context = {}
-    return render(request, "web/forgot-password.html", context)
-
-
-@login_required
-def change_password(request, token):
-    change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
-    if change_password_obj.status:
-        messages.warning(request, "Link expired...")
-        return redirect("web:forgot_password")
-    print(change_password_obj.user.email)
-    user_id = User.objects.filter(email=change_password_obj.user.email).first()
-    print(change_password_obj)
-    if request.method == "POST":
-        new_password = request.POST.get("new_pswd")
-        confirm_password = request.POST.get("confirm_pswd")
-        if user_id is None:
-            messages.warning(request, "User not found...")
-            return redirect(f"/change-password/{token}/")
-        if new_password != confirm_password:
-            messages.warning(request, "Your Password and confirm Password dosen't match")
-            return redirect(f"/change-password/{token}/")
-        user_obj = User.objects.get(email=change_password_obj.user.email)
-        user_obj.set_password(new_password)
-        user_obj.save()
-        ChangePassword.objects.filter(forgot_password_token=token).update(status=True)
-        messages.success(request, "Your password is updated")
-        return redirect("web:login_view")
-    context = {"user_id": change_password_obj.user.id}
-    return render(request, "web/change-password.html", context)
-
-
 @csrf_exempt
 @login_required
 def profile(request):
@@ -336,8 +289,8 @@ def notes(request):
 
 
 def notification(request):
-    channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
+    # channel_layer = get_channel_layer()
+    # async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
     return HttpResponse("Done")
 
 
@@ -571,5 +524,5 @@ def buy_now_branding_image(request):
 
 def add_on_services(request):
     addon_services = AddonServices.objects.all()
-    context = {"addon_services":addon_services}
-    return render(request,'web/add-on-services.html',context)
+    context = {"addon_services": addon_services}
+    return render(request, "web/add-on-services.html", context)

@@ -1,22 +1,23 @@
-
 {% load humanize %}
-<!-- common service -->
+{% extends 'web/base.html' %}
+{% load static %}
+{% block body %}
 
 <div class="row">
-    {% for common_services in common_services_poster %}
-  
-  
-    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-      <div class="container__img-holder">
-        <img src="{{common_services.image.url}}" data-id="{{common_services.id | apnumber }}" alt="Image">
-  
-        <div class="text-center mt-3">
-          <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-            data-source="{{common_services.id | apnumber }}">Click to Download</button>
-        </div>
-        
-        <span>{{common_services.title}}</span>
+  {% for common_services in common_services_poster %}
+  <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+    <div class="container__img-holder">
+      <img src="{{common_services.image.url}}" data-id="{{common_services.id | apnumber }}" alt="Image">
+
+      <div class="text-center mt-3">
+        <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
+          data-source="{{common_services.id | apnumber }}">Click to Download</button>
       </div>
+
+      <span>{{common_services.title}}</span>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

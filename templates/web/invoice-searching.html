@@ -1,25 +1,22 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
 {% csrf_token %}
 
+{% block content %}
 
 <!-- partial -->
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
         <h5 class="customer-list-head pb-4">Search Invoice: </h5>
-         <!-- search bar right align -->
-         <div class="search">
+        <!-- search bar right align -->
+        <div class="search">
             <form action="#">
-                <input type="text"
-                    placeholder=" Search Courses"
-                    name="search">
+                <input type="text" placeholder=" Search Courses" name="search">
                 <button style="
                 background: #f2edf3;
                 border: none;
-            "> 
-                    <i class="fa fa-search"
-                        style="font-size: 18px;">
+            ">
+                    <i class="fa fa-search" style="font-size: 18px;">
                     </i>
                 </button>
             </form>
@@ -31,18 +28,21 @@
                     <div class="tm_invoice_in">
                         <div class="tm_invoice_head tm_top_head tm_mb15 tm_align_center">
                             <div class="tm_invoice_left">
-                                <div class="tm_logo"><img src="{{request.user.profile_image.crop.105x80}}" alt="Logo"></div>
+                                <div class="tm_logo"><img src="{{request.user.profile_image.crop.105x80}}" alt="Logo">
+                                </div>
                             </div>
                             <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                                <div class="tm_f50 tm_text_uppercase tm_white_color">{{customer.invoice.invoice_no}}</div>
+                                <div class="tm_f50 tm_text_uppercase tm_white_color">{{customer.invoice.invoice_no}}
+                                </div>
                             </div>
                             <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                         </div>
                         <div class="tm_invoice_info tm_mb25">
                             <div class="tm_card_note tm_mobile_hide">
-                                </div>
+                            </div>
                             <div class="tm_invoice_info_list tm_white_color">
-                                <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ customer.invoice.invoice_no }}</b></p>
+                                <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ customer.invoice.invoice_no }}</b>
+                                </p>
                                 <p class="tm_invoice_date tm_m0">Date: <b>{{customer.invoice.created}}</b></p>
                             </div>
                             <div class="tm_invoice_seperator tm_accent_bg"></div>
@@ -52,9 +52,10 @@
                                 <p class="tm_mb2"><b class="tm_primary_color">Invoice To:</b></p>
                                 <p>
                                     {{customer.invoice.customer.name}} <br>
-                                    {{customer.invoice.customer.address}} <br> {{customer.invoice.customer.phone_no}} <br>
+                                    {{customer.invoice.customer.address}} <br> {{customer.invoice.customer.phone_no}}
+                                    <br>
                                     {{customer.invoice.customer.email}}
-                                </p>    
+                                </p>
                             </div>
                             <div class="tm_invoice_right tm_text_right">
                                 <p class="tm_mb2"><b class="tm_primary_color">Pay To:</b></p>
@@ -78,7 +79,8 @@
                                                 <th class="tm_width_4 tm_semi_bold tm_white_color">Password</th>
                                                 <th class="tm_width_2 tm_semi_bold tm_white_color">Price</th>
                                                 <th class="tm_width_1 tm_semi_bold tm_white_color">Qty</th>
-                                                <th class="tm_width_2 tm_semi_bold tm_white_color tm_text_right">Total</th>
+                                                <th class="tm_width_2 tm_semi_bold tm_white_color tm_text_right">Total
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,7 +110,8 @@
                                         <tbody>
 
                                             <tr class="tm_accent_bg">
-                                                <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Grand
+                                                <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">
+                                                    Grand
                                                     Total </td>
                                                 <td
                                                     class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
@@ -135,7 +138,8 @@
                             <hr class="tm_mb15">
                             <p class="tm_mb2"><b class="tm_primary_color">Terms & Conditions:</b></p>
                             <p class="tm_m0">All claims relating to quantity or shipping errors shall be waived by Buyer
-                                unless made in writing to <br>Seller within thirty (30) days after delivery of goods to the
+                                unless made in writing to <br>Seller within thirty (30) days after delivery of goods to
+                                the
                                 address stated.</p>
                         </div><!-- .tm_note -->
                     </div>

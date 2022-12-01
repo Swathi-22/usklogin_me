@@ -263,16 +263,6 @@ class FAQ(models.Model):
         return str(self.question)
 
 
-class ChangePassword(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    forgot_password_token = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return str(self.user)
-
-
 class CallSupport(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=50)

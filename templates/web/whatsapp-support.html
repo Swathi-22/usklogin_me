@@ -1,29 +1,26 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
-
+{% block content %}
 
 <div class="main-panel " id="demo">
-    <div class="content-wrapper" id="demo2">
-        <table class="table table-secondary">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Phone Number</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for list in whatsapp_support %}
-              <tr>
-                <td>{{list.name}}</td>
-                <td> <a href="tel:+91{{list.phone_number}}" style="color: #000;">{{list.phone_number}}</a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-    </div>
+  <div class="content-wrapper" id="demo2">
+    <table class="table table-secondary">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for list in whatsapp_support %}
+        <tr>
+          <td>{{list.name}}</td>
+          <td> <a href="tel:+91{{list.phone_number}}" style="color: #000;">{{list.phone_number}}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
 
 {% endblock %}
