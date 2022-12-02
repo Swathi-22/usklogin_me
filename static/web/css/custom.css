@@ -27,7 +27,8 @@
     background-color: #008b92;
     border: 1px solid #008b92;
     border-radius: 4px;
-    width: 60%;
+    padding: 5px 0px;
+    width: 72%;
     margin: 2px auto;
 
 }
@@ -88,6 +89,29 @@
     padding: 0;
     position: absolute;
     width: 1px;
+}
+
+.whats-link {
+    position: fixed !important;
+    display: inline-block;
+    bottom: 15%;
+    right: -225px;
+    color: rgb(243, 243, 243) !important;
+    border-radius: 20px 0px 0 20px;
+    padding: 5px;
+    font-size: 11px !important;
+
+}
+.whatsapp-icon{
+    width: 8%;
+}
+
+.poster-view-more ,.poster-view-more:hover{
+    background-color: #008000;
+    border: 1px solid #008000;
+    padding: 10px 10px;
+    border-radius: 5px;
+    color: #ffffff;
 }
 
 @media only screen and (min-width:320px) and (max-width:567px) {
@@ -184,7 +208,7 @@ input[type="submit"] {
         background-color: #008b92;
         border: 1px solid #008b92;
         border-radius: 4px;
-        width: 76% !important;
+        width: 87% !important;
         margin: 2px auto;
     }
 
@@ -199,7 +223,10 @@ input[type="submit"] {
         background-color: #008b92;
         border: 1px solid #008b92;
         border-radius: 4px;
-        width: 66% !important;
+        width: 76% !important;
         margin: 2px auto;
     }
 }
+
+
+

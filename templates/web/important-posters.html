@@ -1,0 +1,42 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+{% load static humanize %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+         <!-- importants -->
+    <section class="pt-3">
+        <h6 class="pb-4 service-heading">IMPORTANT</h6>
+        <div class="container">
+  
+          <div class="row">
+            {% for posters in important_posters %}
+  
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+              <div class="container__img-holder">
+                <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
+  
+                <div class="text-center mt-3">
+                  <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
+                    data-source="{{posters.id | apnumber }}">Click to Download</button>
+                </div>
+                <div class="detail-button">
+                  <a href="{{posters.detail_link}}" style=" color: #fff;">Details</a>
+                </div>
+                <span>{{posters.title}}</span>
+              </div>
+            </div>
+  
+            {% endfor %}
+  
+          </div>
+        </div>
+      </section>
+    </div>
+</div>
+
+
+
+{% endblock %}

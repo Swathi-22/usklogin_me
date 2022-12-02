@@ -1,0 +1,54 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+{% load static humanize %}
+
+
+<div class="main-panel " id="demo">
+    <div class="content-wrapper" id="demo2">
+         <!-- new services -->
+    <section>
+        <h6 class="pb-2 service-heading">NEWLY ADDED SERVICES</h6>
+        <div class="container">
+  
+          <div class="row">
+  
+            {% for posters in service_posters %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+              <div class="container__img-holder">
+                <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
+  
+                <div class="text-center mt-3">
+                  <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
+                    data-source="{{posters.id | apnumber }}">Click to Download</button>
+                </div>
+                <div class="detail-button">
+                  <a href="{{posters.detail_link}}" style=" color: #fff;">Details</a>
+                </div>
+                <span>{{posters.title}}</span>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="img-popup">
+              <div class="container" id="resultContainer" style="display: none;">
+  
+                <img class="img-responsive popup-imagea" id="result" src="">
+                <div class="text-center mt-3 poster-download-button">
+                  <a id="download" class="btn-sm mx-auto btn btn-primary" download>Download</a>
+                </div>
+              </div>
+              <div class="close-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </section>
+    </div>
+</div>
+
+
+
+{% endblock %}

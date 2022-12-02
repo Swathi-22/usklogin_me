@@ -1,7 +1,5 @@
 from datetime import timedelta
-
 from accounts.models import User
-
 from .constants import PaymentStatus
 from .functions import generate_ticket_pk
 from django.db import models
@@ -47,7 +45,7 @@ class NewServicePoster(models.Model):
     detail_link = models.URLField()
 
     class Meta:
-        verbose_name_plural = "New Service Poster"
+        verbose_name_plural = "Newly Added Service Poster"
 
     def __str__(self):
         return str(self.image)
