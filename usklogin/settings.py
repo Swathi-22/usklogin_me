@@ -114,8 +114,8 @@ STATICFILES_DIRS = ((BASE_DIR / "static"),)
 STATIC_ROOT = BASE_DIR / "assets"
 
 AUTH_USER_MODEL = "accounts.User"
-# DOMAIN = "https://usklogin.geany.website"
-DOMAIN = "http://127.0.0.1:8000"
+DOMAIN = "https://usklogin.geany.website"
+# DOMAIN = "http://127.0.0.1:8000"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
