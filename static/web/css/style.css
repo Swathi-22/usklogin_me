@@ -20153,7 +20153,7 @@ a:hover {
 .access {
   background: linear-gradient(to right, #ffbf96, #fe7096) !important;
   color: #fff;
-  padding: 3px 8px;
+  padding: 3px 4px;
   border-radius: 5px;
   font-size: 11px;
 }
@@ -20161,7 +20161,7 @@ a:hover {
 .view-more {
   background: linear-gradient(to right, #ffbf96, #fe7096) !important;
   color: #fff;
-  padding: 3px 8px;
+  padding: 3px 4px;
   border-radius: 5px;
   font-size: 11px;
 }
@@ -21149,7 +21149,7 @@ a:hover {
   .access {
     background: linear-gradient(to right, #ffbf96, #fe7096) !important;
     color: #fff;
-    padding: 3px 10px !important;
+    padding: 3px 8px !important;
     border-radius: 5px;
     font-size: 10px;
   }
@@ -21157,7 +21157,7 @@ a:hover {
   .view-more {
     background: linear-gradient(to right, #ffbf96, #fe7096) !important;
     color: #fff;
-    padding: 3px 10px !important;
+    padding: 3px 8px !important;
     border-radius: 5px;
     font-size: 10px;
   }

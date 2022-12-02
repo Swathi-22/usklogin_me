@@ -39,7 +39,7 @@
 
 
 
-        {% for commo_services in common_services_poster|slice:"2::" %}
+        {% for commo_services in common_services_poster|slice:"0:2" %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <div class="container__img-holder">
             <img src="{{commo_services.image.url}}" data-id="{{commo_services.id | apnumber }}" alt="Image">
@@ -72,7 +72,7 @@
 
 
 
-        {% for festive_poster in festivel_poster|slice:"1::-1" %}
+        {% for festive_poster in festivel_poster|slice:"0:2" %}
 
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <div class="container__img-holder">
@@ -92,7 +92,7 @@
         {% endfor %}
 
 
-        {% for prof_posters in professional_poster|slice:"1::-1" %}
+        {% for prof_posters in professional_poster|slice:"0:2" %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <div class="container__img-holder">
             <img src="{{prof_posters.image.url}}" data-id="{{prof_posters.id | apnumber }}" alt="Image">
@@ -185,7 +185,7 @@
 
     <!-- professional posters -->
     <div>
-      <h5 class="service-heading">Professional Posters</h5>
+      <h5 class="service-heading">Professional Services</h5>
     </div>
     <div class="container">
       <div class="row">
