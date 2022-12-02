@@ -262,10 +262,10 @@ def settings_menu(request):
 
 @login_required
 def index(request):
-    service_head = ServiceHeads.objects.all()
+    service_head = ServiceHeads.objects.all()[:12]
     latest_news = LatestNews.objects.all().last()
-    new_service_poster = NewServicePoster.objects.all()
-    important_poster = ImportantPoster.objects.all()
+    new_service_poster = NewServicePoster.objects.all().order_by('-id')[0:2]
+    important_poster = ImportantPoster.objects.all().order_by('-id')[0:2]
     branding_image = BrandingImage.objects.filter(user=request.user).last()
     context = {
         "is_index": True,
@@ -524,3 +524,15 @@ def add_on_services(request):
     addon_services = AddonServices.objects.all()
     context = {"addon_services": addon_services}
     return render(request, "web/add-on-services.html", context)
+
+
+def newly_added_services(request):
+    service_posters = NewServicePoster.objects.all()
+    context = {"service_posters":service_posters}
+    return render(request,'web/newly-addedd-services.html',context)
+
+
+def important_services(request):
+    important_posters = ImportantPoster.objects.all()
+    context = {"important_posters":important_posters}
+    return render(request,'web/important-posters.html',context)

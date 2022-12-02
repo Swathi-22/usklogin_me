@@ -19885,13 +19885,13 @@ a:hover {
 
 .service-main-head-index {
   border-radius: 10px;
-  padding: 14px 10px;
+  padding: 13px 0px;
   width: 100%;
 }
 
 .serviec-main-head-a {
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .serviec-main-head-a:hover {
@@ -20661,7 +20661,7 @@ a:hover {
 
   .content-wrapper {
     background: #f2edf3;
-    padding: 5.75rem 0.25rem !important;
+    padding: 0.75rem 0.25rem !important;
     width: 100%;
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
@@ -23318,12 +23318,27 @@ button.createbtn i {
   color: #af0808;
 }
 
-.learnmore-button {
-  width: 100%;
+.learnmore-button, .learnmore-button:hover{
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
   padding: 7px 10px;
-  background-color: #0b2c2e;
-  border: 2px solid #0b2c2e;
-  border-radius: 10px;
+  background-color: #2554C7;
+  border: 2px solid #2554C7;
+  border-radius: 6px;
+  color: #fff;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.learnmore-button-malayalam, .learnmore-button-malayalam:hover{
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 7px 10px;
+  background-color: #157DEC;
+  border: 2px solid #157DEC;
+  border-radius: 6px;
   color: #fff;
   text-align: center;
   margin-top: 14px;

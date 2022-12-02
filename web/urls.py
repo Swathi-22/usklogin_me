@@ -48,4 +48,6 @@ urlpatterns = [
     path("test/", views.test, name="test"),
     path("buynow-branding-image/", views.buy_now_branding_image, name="buy_now_branding_image"),
     path("add-on_services/", views.add_on_services, name="add_on_services"),
+    path("newly-addedd-services/", views.newly_added_services, name="newly_added_services"),
+    path("important-poster/", views.important_services, name="add_on_services"),
 ]
