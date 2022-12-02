@@ -19921,7 +19921,9 @@ a:hover {
 }
 
 .container__img-holder {
-  max-width: 280px;
+  width: 100%;
+  height: auto;
+  overflow: auto;
   display: inline-block;
   vertical-align: top;
   margin-bottom: 20px;
@@ -21514,7 +21516,7 @@ h2 em {
   border-radius: 20px;
   background-color: #f1f8fe;
   min-height: 242px;
-  width: 80%;
+  width: 82%;
 }
 
 .download-button {

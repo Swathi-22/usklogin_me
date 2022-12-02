@@ -31,27 +31,27 @@ class LatestNewsAdmin(admin.ModelAdmin):
 
 @admin.register(NewServicePoster)
 class NewServicePosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(ImportantPoster)
 class ImportantPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" ,"image")
 
 
 @admin.register(CommonServicesPoster)
 class CommonServicesPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(FestivelPoster)
 class FestivelPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(ProfessionalPoster)
 class ProfessionalPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(DownloadForms)
