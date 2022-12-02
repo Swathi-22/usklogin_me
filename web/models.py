@@ -15,10 +15,16 @@ class Order(models.Model):
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
+    valid_from = models.DateTimeField(default=timezone.now)
+    valid_upto = models.DateTimeField(blank=True, editable=False)
     is_active = models.BooleanField("Mark as Active", default=False)
 
     def __str__(self):
         return f"{self.id}-{self.user}-{self.status}"
+
+    def save(self, *args, **kwargs):
+        self.valid_upto = self.valid_from + timedelta(days=365)
+        super().save(*args, **kwargs)
 
 
 class LatestNews(models.Model):

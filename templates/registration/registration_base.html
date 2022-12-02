@@ -29,7 +29,7 @@
                     <div class="wrapper my-0">
                         <div class="form-right">
                             {% block content %}
-                            
+
                             {% endblock content %}
                         </div>
                     </div>
@@ -45,7 +45,7 @@
     <script src="{% static 'web/js/off-canvas.js' %}"></script>
     <script src="{% static 'web/js/hoverable-collapse.js' %}"></script>
     <script src="{% static 'web/js/owl.carousel.min.js' %}"></script>
-
+    {% block js %}    {% endblock js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'web/js/main.js' %}"></script>
 </body>
