@@ -332,3 +332,16 @@ class AddonServices(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+
+class OnloadPopup(models.Model):
+    title = models.TextField()
+    image = VersatileImageField("Image", upload_to="Onload_Popup/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+
+    class Meta:
+        verbose_name_plural = "Onload Popup"
+
+    def __str__(self):
+        return str(self.title)

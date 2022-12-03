@@ -1,0 +1,90 @@
+
+<style>
+    .popup a {
+  text-decoration: none;
+}
+.popup-onload {
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 10;
+}
+.popup {
+  min-width: 400px;
+  width: 40%;
+  min-height: 150px;
+  margin: 100px auto;
+  background: #333;
+  opacity: 0.9;
+  position: relative;
+  z-index: 10;
+  padding: 15px 35px;
+  box-shadow: 0 2px 5px #000;
+}
+.popup p {
+  color: #fff;
+  /* text-align: justify; */
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Nunito Sans", sans-serif;
+}
+.popup p a {
+  color: #b18d73;
+  font-weight: 400;
+}
+.x {
+  color: #b18d73;
+  font-size: 2rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Nunito Sans", sans-serif;
+  text-decoration: none;
+  position: absolute;
+  right: 15px;
+  top: 0;
+}
+.x:hover {
+  cursor: pointer;
+}
+
+.popup-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #efefef;
+
+  color: #b18d73;
+  font-size: 2rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Nunito Sans", sans-serif;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+</style>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>$(function() {
+    $(".popup-onload").show();
+    $(".close").click(function() {
+      $(".popup-onload").hide();
+      return false;
+    });
+    $(".x").click(function() {
+      $(".popup-onload").hide();
+      return false;
+    });
+    $(".popup-wrapper").click(function() {
+      $(".popup-onload").hide();
+      return false;
+    });
+  });
+  </script>
