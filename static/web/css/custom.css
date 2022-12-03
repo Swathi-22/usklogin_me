@@ -199,7 +199,7 @@ input[type="submit"] {
 }
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 500px;
+    width: 760px;
     background-color: black;
     color: #fff;
     text-align: center;
