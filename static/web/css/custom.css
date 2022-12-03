@@ -51,14 +51,14 @@
 }
 
 .save_button {
-    background-color: #00409f;
-    border: 1px solid #00409f;
+    background-color: #00409f !important;
+    border: 1px solid #00409f !important;
     color: #fff;
-    padding: 7px 10px;
-    margin: auto;
-    font-size: 14px;
-    text-align: center;
-    border-radius: 13px
+    padding: 9px 10px !important;
+    margin: auto !important;
+    font-size: 14px !important;
+    text-align: center !important;
+    border-radius: 13px !important;
 }
 
 
@@ -199,7 +199,7 @@ input[type="submit"] {
 }
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 500px;
+    width: 760px;
     background-color: black;
     color: #fff;
     text-align: center;
