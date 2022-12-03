@@ -11,21 +11,18 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
                     <h5 class="text-center support-title">SUPPORT</h5>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book.It has survived not only five centuries,
-                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of
-                        Lorem Ipsum.</p>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-justify">
+                    <p>പ്രിയ ഉഭഭോക്താവേ , <br>
+                        USKLOGIN ഏജൻസി വഴി ഞങ്ങൾ നൽകുന്ന പ്രധാന സംവിധാനങ്ങൾ കൂടാതെ  ഒട്ടനധികം മറ്റു സേവനങ്ങൾ ഉണ്ട് . എന്നാൽ അത്തരം പൊതു സേവനങ്ങൾ അല്ലെങ്കിൽ ഓൺലൈൻ സേവനങ്ങൾക്ക് ഞങ്ങൾ യാതൊരു വിധത്തിലും സപ്പോർട്ട് നൽകുന്നില്ല. എന്നാൽ സേവനങ്ങൾക്ക് സപ്പോർട്ട് ആവിഷമെങ്കിൽ അതിന് വേണ്ട സൗകര്യങ്ങൾ (ട്രൈനിംഗ് ,ഹെൽപ്‌ഡെസ്‌ക് സപ്പോർട്ട്) പ്രീമിയം അടച്ചു സർവീസ് ഉൾപ്പെടുത്തുന്നവും. അതുമായി ബന്ധപ്പെട്ട വിവരങ്ങൾക്ക് MY ACCOUNT  ൽ ADD-ON SERVICES സന്ദർശിക്കുക.
+                        
+                        ഇവിടെ കാണുന്ന സപ്പോർട്ട് ഓപ്‌ഷനുകൾ ഈ പോർട്ടൽ സംബന്ധിച്ചു ആവിശ്യമായ സപ്പോർട്ട് ലഭിക്കുന്നതിന് മാത്രം ഉപയോഗിക്കുക.</p>
                 </div>
             </div>
         </section>
 
         <section>
             <div class="row d-flex justify-content-center">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-6">
                     <div class="cards">
                         <a href="{% url 'web:supportRequest' %}">
                             <div class="cards-content">
@@ -34,7 +31,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-6">
                     <div class="cards">
                         <a href="{% url 'web:supportTicket' %}">
                             <div class="cards-content">
@@ -44,6 +41,37 @@
                     </div>
                 </div>
 
+                <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:supportTicket' %}">
+                            <div class="cards-content">
+                                <span>TELEGRAM</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:supportTicket' %}">
+                            <div class="cards-content">
+                                <span>FACEBOOK</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+                    <div class="cards">
+                        <a href="{% url 'web:supportTicket' %}">
+                            <div class="cards-content">
+                                <span>GUIDELINE</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                 
+                {% comment %}
                 {% if upgraded %}
                 <div class="col-lg-3 col-md-3 col-sm-6 col-6">
                     <div class="cards">
@@ -84,6 +112,8 @@
                     </div>
                 </div>
                 {% endif %}
+                
+                {% endcomment %}
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6 mx-auto">

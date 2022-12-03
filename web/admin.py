@@ -21,6 +21,7 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
+from .models import OnloadPopup
 from django.contrib import admin
 
 
@@ -137,3 +138,8 @@ class SubscriptionAdmin(admin.ModelAdmin):
 @admin.register(AddonServices)
 class AddonServicesAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
+
+
+@admin.register(OnloadPopup)
+class OnloadPopupAdmin(admin.ModelAdmin):
+    list_display = ("title", "image")

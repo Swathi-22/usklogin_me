@@ -29,7 +29,7 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
-
+from web.models import OnloadPopup
 import razorpay
 from .forms import BrandingImageForm
 from .forms import SupportRequestForm
@@ -275,6 +275,7 @@ def index(request):
     new_service_poster = NewServicePoster.objects.all().order_by('-id')[0:2]
     important_poster = ImportantPoster.objects.all().order_by('-id')[0:2]
     branding_image = BrandingImage.objects.filter(user=request.user).last()
+    on_load_popup = OnloadPopup.objects.all().order_by('-id')
     context = {
         "is_index": True,
         "service_head": service_head,
@@ -284,6 +285,7 @@ def index(request):
         "room_name": "broadcast",
         "branding_image": branding_image,
         "room_name": "broadcast",
+        "on_load_popup":on_load_popup
     }
     return render(request, "web/index.html", context)
 
