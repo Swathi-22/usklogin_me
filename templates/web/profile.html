@@ -117,32 +117,47 @@
                 {% csrf_token %}
                 <div class="col-lg-12">
                     <div class="row">
+                        {% if uploaded_branding_image.image %}
+
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-4 tooltip">
+                            <span class="tooltiptext">To change branding image you need to contact admin.
+                            </span>
+                            <a href="{% url 'web:buy_now_branding_image' %}">
+                                <div class="buynow_button">
+                                    Change Image
+                                </div>
+                            </a>
+                        </div>
+
+                        {% else %}
                         <div class="col-lg-2 col-md-3 col-sm-4 col-4 tooltip">
                             <span class="tooltiptext">To download a poster with branding of your organization, upload an image size of (222 PX * 1080 PX ) <br>
                                 നിങ്ങളുചട സ്ഥാപനത്തിന്ചറ ത് ാൻേിംഗ് ഉള്ള ഒരു ഡപാസ്റ്റർ േൗൺഡലാഡ് ചെയ്യാൻ,
                                 (222 PX * 1080 PX ) സസസ് ഒരു ഇഡേജ് അപ്ഡലാഡ് ചെയ്യുക
                             </span>
                             <label class="label-file">{{branding_image_form.image}} Upload Image</label>
-                
+
                         </div>
-                      
+
                         <div class="col-lg-2 col-md-3 col-sm-4 col-4">
                             <input type="submit" value="Save Uploaded Image" class="save_button">
                         </div>
+                        {% endif %}
+
                         <div class="col-lg-2 col-md-3 col-sm-4 col-4">
-                                <a href="{% url 'web:buy_now_branding_image' %}">
-                                    <div class="buynow_button">
-                                        Buy Now
-                                    </div>
-                                </a>
+                            <a href="{% url 'web:buy_now_branding_image' %}">
+                                <div class="buynow_button">
+                                    Buy Now
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
             <div class="row">
                 <div class="col-lg-12 col-12">
-                    <span>*To know how to edit the image <a href="https://upabokthasevanakendram.com/usk-login-brand-image.html" target="_blank" rel="noopener noreferrer" >Click Here</a></span>
+                    <span>*To know how to edit the image <a href="https://upabokthasevanakendram.com/usk-login-brand-image.html" target="_blank" rel="noopener noreferrer">Click Here</a></span>
                 </div>
             </div>
         </div>
