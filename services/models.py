@@ -43,7 +43,7 @@ class Services(models.Model):
 
 class BrandingImage(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = VersatileImageField("Image", upload_to="service/", blank=True, null=True)
+    image = VersatileImageField("Image", upload_to="service/", default="service/banner_default.png")
     is_verified = models.BooleanField("Mark as Verified", default=False)
 
     class Meta:
