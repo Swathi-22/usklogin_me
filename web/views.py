@@ -230,6 +230,13 @@ def profile(request):
             data = branding_image_form.save(commit=False)
             data.user = request.user
             data.save()
+            subject = "Need To Verify Branding Image "
+            message = f"""
+                Username: {request.user.phone}
+                Userid: {request.user.id}, Added a branding image. Please verify the branding image.
+            """
+            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
+            print("done")
         else:
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.get(user=request.user)
