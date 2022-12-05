@@ -119,6 +119,7 @@ class DownloadForms(models.Model):
 
 class DownloadDocuments(models.Model):
     file = models.FileField()
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Documents/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")

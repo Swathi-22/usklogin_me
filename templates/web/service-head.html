@@ -66,6 +66,7 @@
       $(".serviceSee").slice(0, 6).show();
       $("body").on('click touchstart', '.load-more', function (e) {
           e.preventDefault();
+
           $(".serviceSee:hidden").slice().slideDown();
           if ($(".serviceSee:hidden").length == 0) {
               $(".load-more").css('visibility', 'hidden');
@@ -76,5 +77,9 @@
       });
   });
 </script>
+
+
+
+
 {% endblock %}
 
