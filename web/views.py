@@ -223,8 +223,8 @@ def verify_signature(response_data):
 @login_required
 def profile(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
-    instance, created = BrandingImage.objects.get_or_create(user=request.user)
-    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, instance=instance)
+    instance = BrandingImage.objects.filter(user=request.user)
+    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, )
     if request.method == "POST":
         if branding_image_form.is_valid():
             data = branding_image_form.save(commit=False)
@@ -239,8 +239,8 @@ def profile(request):
             print("done")
         else:
             print(branding_image_form.errors)
-    uploaded_branding_image = BrandingImage.objects.get(user=request.user)
-    subscription_validity = Subscription.objects.filter(user=request.user).last()
+    uploaded_branding_image = BrandingImage.objects.filter(user=request.user).last()
+    subscription_validity = Subscription.objects.filter(user=request.user, is_active=True).last()
     context = {
         "is_profile": True,
         "user_form": user_form,

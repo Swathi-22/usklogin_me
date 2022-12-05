@@ -138,10 +138,10 @@
                 <div class="branding_image_uploading ">
                     {% if uploaded_branding_image.is_verified == True %}
                     <h3>Image Verified By Admin</h3>
-                    <img src="{{uploaded_branding_image.image.url}}" style="width: 100%;" class="responsive-size">
+                    <img src="{{uploaded_branding_image.image.crop.1080x222}}" style="width: 100%;" class="responsive-size">
                     {% elif uploaded_branding_image.is_verified == False %}
                     <h3>Image not Verified By Admin</h3>
-                    <img src="{{uploaded_branding_image.image.url}}" style="width: 100%;" class="responsive-size">
+                    <img src="{{uploaded_branding_image.image.crop.1080x222}}" style="width: 100%;" class="responsive-size">
                     {% else %}
                     <h5 style="text-align: center;color: rgb(77, 3, 3);padding: 40px 0px;">Upload Your Branding Image</h5>
                     {% endif %}
