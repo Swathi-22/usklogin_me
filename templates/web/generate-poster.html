@@ -26,7 +26,7 @@
       <div class="row">
         <!-- {% for common_services in common_services_poster|slice:"2::" %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
+          <div class="card card-body w-100">
             <img src="{{common_services.image.url}}" alt="Image">
             <div class="poster-title">
               <span>{{common_services.title}}</span>
@@ -39,26 +39,20 @@
 
 
 
-        {% for commo_services in common_services_poster|slice:"0:2" %}
+        {% for obj in common_services_poster|slice:"0:2" %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
-            <img src="{{commo_services.image.url}}" data-id="{{commo_services.id | apnumber }}" alt="Image">
-
+          <div class="card card-body w-100">
+            <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+            <span>{{obj.title}}</span>
             <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{commo_services.id | apnumber }}">Click to Download</button>
+              <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{obj.id | apnumber }}">Download</button>
+              <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
             </div>
-            <div class="detail-button">
-              <a href="{{commo_services.detail_link}}" style=" color: #fff;">Details</a>
-            </div>
-            <span>{{commo_services.title}}</span>
-
           </div>
         </div>
         {% endfor %}
         <div class="img-popup">
           <div class="container" id="resultContainer" style="display: none;">
-
             <img class="img-responsive popup-imagea" id="result" src="">
             <div class="text-center mt-3 poster-download-button">
               <a id="download" class="btn-sm mx-auto btn btn-warning " download>Download</a>
@@ -70,41 +64,29 @@
           </div>
         </div>
 
-
-
-        {% for festive_poster in festivel_poster|slice:"0:2" %}
-
+        {% for obj in festivel_poster|slice:"0:2" %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
-            <img src="{{festive_poster.image.url}}" data-id="{{festive_poster.id | apnumber }}" alt="Image">
-
+          <div class="card card-body w-100">
+            <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+            <span>{{obj.title}}</span>
             <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{festive_poster.id | apnumber }}">Click to Download</button>
+              <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{obj.id | apnumber }}">Download</button>
+              <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
             </div>
-            <div class="detail-button">
-              <a href="{{festive_poster.detail_link}}" style=" color: #fff;">Details</a>
-            </div>
-            <span>{{festive_poster.title}}</span>
           </div>
         </div>
-
         {% endfor %}
 
 
-        {% for prof_posters in professional_poster|slice:"0:2" %}
+        {% for obj in professional_poster|slice:"0:2" %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
-            <img src="{{prof_posters.image.url}}" data-id="{{prof_posters.id | apnumber }}" alt="Image">
-
+          <div class="card card-body w-100">
+            <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+            <span>{{obj.title}}</span>
             <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{prof_posters.id | apnumber }}">Click to Download</button>
+              <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{obj.id | apnumber }}">Download</button>
+              <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
             </div>
-            <div class="detail-button">
-              <a href="{{prof_posters.detail_link}}" style=" color: #fff;">Details</a>
-            </div>
-            <span>{{prof_posters.title}}</span>
           </div>
         </div>
         {% endfor %}
@@ -112,75 +94,51 @@
 
 
     </div>
-
-
-
 
     <!-- common services -->
     <div>
       <h5 class="service-heading">Common Services</h5>
     </div>
+
     <div class="container">
       <div class="row">
-        {% for common_services in common_services_poster %}
-
-
+        {% for obj in obj_poster %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
-            <img src="{{common_services.image.url}}" data-id="{{common_services.id | apnumber }}" alt="Image">
-
+          <div class="card card-body w-100">
+            <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+            <span>{{obj.title}}</span>
             <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{common_services.id | apnumber }}">Click to Download</button>
+              <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{obj.id | apnumber }}">Download</button>
+              <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
             </div>
-            <div class="detail-button">
-              <a href="{{common_services.detail_link}}" style=" color: #fff;">Details</a>
-            </div>
-            <span>{{common_services.title}}</span>
           </div>
         </div>
         {% endfor %}
       </div>
 
     </div>
-
-
-
-
 
     <!-- festival posters -->
     <div>
       <h5 class="service-heading">Festivel Posters</h5>
     </div>
+
     <div class="container">
       <div class="row">
-        {% for festive_poster in festivel_poster %}
-
+        {% for obj in festivel_poster %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
-            <img src="{{festive_poster.image.url}}" data-id="{{festive_poster.id | apnumber }}" alt="Image">
-
+          <div class="card card-body w-100">
+            <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+            <span>{{obj.title}}</span>
             <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{festive_poster.id | apnumber }}">Click to Download</button>
+              <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{obj.id | apnumber }}">Download</button>
+              <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
             </div>
-            <div class="detail-button">
-              <a href="{{festive_poster.detail_link}}" style=" color: #fff;">Details</a>
-            </div>
-            <span>{{festive_poster.title}}</span>
           </div>
         </div>
-
-
         {% endfor %}
       </div>
     </div>
-
-
-
-
-
-
 
 
     <!-- professional posters -->
@@ -189,29 +147,21 @@
     </div>
     <div class="container">
       <div class="row">
-        {% for prof_posters in professional_poster %}
-
+        {% for obj in professional_poster %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-          <div class="container__img-holder">
-            <img src="{{prof_posters.image.url}}" data-id="{{prof_posters.id | apnumber }}" alt="Image">
-
+          <div class="card card-body w-100">
+            <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+            <span>{{obj.title}}</span>
             <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{prof_posters.id | apnumber }}">Click to Download</button>
+              <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{obj.id | apnumber }}">Download</button>
+              <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
             </div>
-            <div class="detail-button">
-              <a href="{{prof_posters.detail_link}}" style=" color: #fff;">Details</a>
-            </div>
-            <span>{{prof_posters.title}}</span>
           </div>
         </div>
         {% endfor %}
       </div>
 
     </div>
-
-
-
 
   </div>
 </div>

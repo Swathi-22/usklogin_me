@@ -15,17 +15,14 @@
   
             {% for posters in service_posters %}
             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-              <div class="container__img-holder">
+              <div class="card card-body w-100">
                 <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-  
-                <div class="text-center mt-3">
-                  <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                    data-source="{{posters.id | apnumber }}">Click to Download</button>
-                </div>
-                <div class="detail-button">
-                  <a href="{{posters.detail_link}}" style=" color: #fff;">Details</a>
-                </div>
                 <span>{{posters.title}}</span>
+
+                <div class="text-center mt-3">
+                  <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{posters.id | apnumber }}">Download</button>
+                  <a href="{{posters.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                </div>
               </div>
             </div>
             {% endfor %}

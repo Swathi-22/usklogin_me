@@ -4,43 +4,44 @@
 {% block content %}
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
-        <section>
+        <div class="container">
             <div class="row ">
-             {% for each_tools in tools %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-body-tool">
-                                <img src="{{each_tools.image.url}}" alt="">
-                            </div>
-                            <div class="head-name">
-                                <h6>{{each_tools.name}}</h6> 
-                             </div>
+                {% for each_tools in tools %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
+                    <div class="card card-body">
+                        <div class="card-image">
+                            <img src="{{each_tools.image.url}}" alt="">
                         </div>
-                    </a>
-                    <div class="row row-width">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
-                            <a href="{{each_tools.detail_link}}" style="color: #fff;" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <div class="head-name">
+                            <h6>{{each_tools.name}}</h6>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
-                            <a href="{{each_tools.detail_link}}" style="color: #fff;" rel="noopener noreferrer" target="_blank">DETAILS</a>
+                    </div>
+                    <div class="d-flex">
+                        <div class="w-50 access-button mr-1">
+                            <a href="{{each_tools.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class="w-50 access-button">
+                            <a href="{{each_tools.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">DETAILS</a>
                         </div>
                     </div>
                     {% comment %}
                     <div class='buttons'>
                         <div class='left-col'>
-                            <a href="{{each_tools.link}}" class="access-tool" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                            <a href="{{each_tools.link}}" class="access-tool" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
                         </div>
                         <div class='right-col-tool'>
                             <span class="name-tool">{{each_tools.name}}</span>
                             <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
                         </div>
-                      </div>
-                      {% endcomment %}
+                    </div>
+                    {% endcomment %}
                 </div>
-              {% endfor %}
+                {% endfor %}
             </div>
-        </section>
+        </div>
     </div>
 </div>
 {% endblock %}
