@@ -6,24 +6,24 @@
     <div class="content-wrapper" id="demo2">
         <section>
             <div class="row">
-            {% for services in back_office_services %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-body-office">
-                                <img src="{{services.image.crop.194x194}}" alt="">
-                            </div>
-                            <div class="head-name">
-                                <h6>{{services.name}}</h6> 
-                             </div>
+                {% for services in back_office_services %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
+                    <div class="card">
+                        <div class="card-body-office">
+                            <img src="{{services.image.crop.194x194}}" alt="">
                         </div>
-                    </a>
-                    <div class="row row-width">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
-                            <a href="{{services.detail_link}}" style="color: #fff;" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <div class="head-name">
+                            <h6>{{services.name}}</h6>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
-                            <a href="{{services.detail_link}}" style="color: #fff;" rel="noopener noreferrer" target="_blank">DETAILS</a>
+                    </div>
+                    <div class="d-flex">
+                        <div class="w-50 access-button mr-1">
+                            <a href="{{services.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class="w-50 access-button">
+                            <a href="{{services.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">DETAILS</a>
                         </div>
                     </div>
                     {% comment %}
@@ -39,7 +39,7 @@
                     </div>
                     {% endcomment %}
                 </div>
-             {% endfor %}
+                {% endfor %}
             </div>
         </section>
     </div>

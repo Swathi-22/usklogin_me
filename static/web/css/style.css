@@ -17649,6 +17649,7 @@ code {
 .card {
   border: 0;
   background: #fff;
+  margin-bottom: 1rem;
 }
 
 .card .card-body {
@@ -19926,7 +19927,6 @@ a:hover {
   overflow: auto;
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 20px;
   cursor: pointer;
   box-shadow: 10px 10px 10px #111ec126;
 }
@@ -21611,36 +21611,6 @@ h2 em {
   background-image: linear-gradient(to right, #008b92, #21fc6e, #00A8C5, #21e04a);
   box-shadow: 0 4px 15px 0 rgb(83 176 57 / 75%);
 }
-
-
-/* ==========softwares */
-
-.card {
-  width: 75%;
-  background-color: #abd1c6 !important;
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px #000 85;
-}
-
-.card-body {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 5px;
-  font-size: 20px;
-  text-align: center;
-}
-
-@media screen and (max-width: 400px) {
-  .card {
-    width: 320px;
-  }
-}
-
 
 
 .card-tool {

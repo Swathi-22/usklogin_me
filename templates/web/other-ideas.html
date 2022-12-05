@@ -7,24 +7,24 @@
     <div class="content-wrapper" id="demo2">
         <section>
             <div class="row">
-             {% for ideas in other_ideas %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
-                    <a href="">
-                        <div class="card">
-                            <div class="card-body-idea">
-                                <img src="{{ideas.image.url}}" alt="">
-                            </div>
-                            <div class="head-name">
-                                <h6>{{ideas.name}}</h6> 
-                             </div>
+                {% for ideas in other_ideas %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
+                    <div class="card card-body">
+                        <div class="card-image">
+                            <img src="{{ideas.image.url}}" alt="">
                         </div>
-                    </a>
-                    <div class="row row-width">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
-                            <a href="{{ideas.detail_link}}" style="color: #fff;" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                        <div class="head-name">
+                            <h6>{{ideas.name}}</h6>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 access-button">
-                            <a href="{{ideas.detail_link}}" style="color: #fff;" rel="noopener noreferrer" target="_blank">DETAILS</a>
+                    </div>
+                    <div class="d-flex">
+                        <div class="w-50 access-button mr-1">
+                            <a href="{{ideas.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class="w-50 access-button">
+                            <a href="{{ideas.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">DETAILS</a>
                         </div>
                     </div>
                     {% comment %}
@@ -40,7 +40,7 @@
                     </div>
                     {% endcomment %}
                 </div>
-              {% endfor %}
+                {% endfor %}
             </div>
         </section>
     </div>
