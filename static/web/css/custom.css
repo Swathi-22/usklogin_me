@@ -94,7 +94,7 @@
 .whats-link {
     position: fixed !important;
     display: inline-block;
-    bottom: 15%;
+    bottom: 6%;
     right: -225px;
     color: rgb(243, 243, 243) !important;
     border-radius: 20px 0px 0 20px;
@@ -128,6 +128,19 @@
 
 
 @media only screen and (min-width:320px) and (max-width:567px) {
+    .whatsapp-icon {
+        width: 6% !important;
+    }
+    .whats-link {
+        position: fixed !important;
+        display: inline-block;
+        bottom: 2%;
+        right: -239px;
+        color: rgb(243, 243, 243) !important;
+        border-radius: 20px 0px 0 20px;
+        padding: 5px;
+        font-size: 11px !important;
+    }
     .expiry_date {
         margin-left: 0px !important;
     }
