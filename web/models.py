@@ -182,7 +182,7 @@ class OtherIdeas(models.Model):
     detail_link = models.URLField()
 
     class Meta:
-        verbose_name_plural = "Other Ideas"
+        verbose_name_plural = "Add to the Business"
 
     def __str__(self):
         return str(self.name)
