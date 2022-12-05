@@ -1,1 +1,951 @@
-[{"model": "web.order", "pk": 1, "fields": {"user": "USK05599", "amount": 200.0, "status": "Success", "provider_order_id": "order_KliX3ALC25QYek", "payment_id": "pay_KliXBPdqxTyepO", "signature_id": "9fd3509db8160615a5bbe4edf4c213477bce82b43a00b359204bd521c8524cd9", "is_active": false}}, {"model": "web.order", "pk": 2, "fields": {"user": "USK02981", "amount": 200.0, "status": "Success", "provider_order_id": "order_KllEViXMSjOghI", "payment_id": "pay_KllFBvlT5tKGsj", "signature_id": "f927d725cc080115cd8d2e02b5721b2cf01f416fb2b31bc8c62bbfa4f9adeb90", "is_active": false}}, {"model": "web.latestnews", "pk": 1, "fields": {"news": "\"Apologise To Our Hosts\": Israel Envoy As 'The Kashmir Files' Row Snowballs", "link": "https://www.ndtv.com/india-news/israeli-envoy-naor-gilon-slams-iffi-jury-chairman-nadav-lapid-for-the-kashmir-files-remarks-tweets-apologise-to-our-hosts-3561678"}}, {"model": "web.newserviceposter", "pk": 1, "fields": {"title": "E-mithra seva", "image": "New_Service/e_mitra_seva_kendra_online_training_yGpq695.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.newserviceposter", "pk": 2, "fields": {"title": "E-mithra seva", "image": "New_Service/e_mitra_seva_kendra_online_training_95YCJsN.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.newserviceposter", "pk": 3, "fields": {"title": "E-mithra seva", "image": "New_Service/e_mitra_seva_kendra_online_training_lrdMG6D.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.newserviceposter", "pk": 4, "fields": {"title": "E-mithra seva", "image": "New_Service/e_mitra_seva_kendra_online_training_CqjBCye.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.newserviceposter", "pk": 5, "fields": {"title": "E-mithra seva", "image": "New_Service/e_mitra_seva_kendra_online_training_bxws4BU.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.newserviceposter", "pk": 6, "fields": {"title": "E-mithra seva", "image": "New_Service/e_mitra_seva_kendra_online_training_vnIm3Rl.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.importantposter", "pk": 1, "fields": {"title": "E-mithra seva", "image": "Importants/e_mitra_seva_kendra_online_training_mRDLnoM.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.importantposter", "pk": 2, "fields": {"title": "E-mithra seva", "image": "Importants/e_mitra_seva_kendra_online_training_uqbenth.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.importantposter", "pk": 3, "fields": {"title": "E-mithra seva", "image": "Importants/e_mitra_seva_kendra_online_training_h6I9vQW.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.importantposter", "pk": 4, "fields": {"title": "E-mithra seva", "image": "Importants/e_mitra_seva_kendra_online_training_XPzex5o.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.importantposter", "pk": 5, "fields": {"title": "TEST", "image": "Importants/WhatsApp_Image_2022-10-07_at_1.59.00_PM.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://usklogin.geany.website/"}}, {"model": "web.commonservicesposter", "pk": 1, "fields": {"title": "E-mithra seva", "image": "CommonServices/e_mitra_seva_kendra_online_training.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.commonservicesposter", "pk": 2, "fields": {"title": "E-mithra seva", "image": "CommonServices/e_mitra_seva_kendra_online_training_FUxPFKP.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.commonservicesposter", "pk": 3, "fields": {"title": "E-mithra seva", "image": "CommonServices/e_mitra_seva_kendra_online_training_ZXeAeZ6.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.commonservicesposter", "pk": 4, "fields": {"title": "E-mithra seva", "image": "CommonServices/e_mitra_seva_kendra_online_training_9ZKHOLB.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.festivelposter", "pk": 1, "fields": {"title": "E-mithra seva", "image": "FestivelPoster/e_mitra_seva_kendra_online_training.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.festivelposter", "pk": 2, "fields": {"title": "E-mithra seva", "image": "FestivelPoster/e_mitra_seva_kendra_online_training_9AI4ryD.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.festivelposter", "pk": 3, "fields": {"title": "E-mithra seva", "image": "FestivelPoster/e_mitra_seva_kendra_online_training_8GmuIax.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.professionalposter", "pk": 1, "fields": {"title": "E-mithra seva", "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.professionalposter", "pk": 2, "fields": {"title": "E-mithra seva", "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training_MxT5IIx.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.professionalposter", "pk": 3, "fields": {"title": "E-mithra seva", "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training_MkIFeMR.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.professionalposter", "pk": 4, "fields": {"title": "E-mithra seva", "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training_St7m5m3.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.professionalposter", "pk": 5, "fields": {"title": "PANCARD", "image": "ProfessionalPoster/WhatsApp_Image_2022-10-07_at_1.59.00_PM.jpeg", "ppoi": "0.5x0.5", "detail_link": "https://usklogin.geany.website/admin/web/professionalposter/add/"}}, {"model": "web.downloadforms", "pk": 1, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2-pdf_VkCKAoR.pdf", "name": "Adhar Application Form", "image": "Forms/PDF_file_TVxgkSp.png", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloadforms", "pk": 2, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_DJ1ZfjF.pdf", "name": "Degree Application Form", "image": "Forms/PDF_file_A9ItXJz.png", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloadforms", "pk": 3, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_8ImshXc.pdf", "name": "Higher Secondary Application Form", "image": "Forms/PDF_file_Mx8Rcct.png", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloadforms", "pk": 4, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_h9l8RWc.pdf", "name": "Passport Application Form", "image": "Forms/PDF_file_TjOWKQY.png", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloadforms", "pk": 5, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_m0WyH7w.pdf", "name": "Income certificate application", "image": "Forms/PDF_file_nESbr4B.png", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloaddocuments", "pk": 1, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_3y9TRIf.pdf", "name": "Adhar Application Form", "image": "Documents/doc_SELep5H.webp", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloaddocuments", "pk": 2, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_f0RUnKJ.pdf", "name": "Higher Secondary Application Form", "image": "Documents/doc_6o3r6Ok.webp", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.downloaddocuments", "pk": 3, "fields": {"file": "USK_LOGIN_SRS_-_Copy_iDi04A2_VjQMlDf.pdf", "name": "Degree Application Form", "image": "Documents/doc_zMstWDu.webp", "ppoi": "0.5x0.5", "detail_link": "https://www.adobe.com/"}}, {"model": "web.softwares", "pk": 1, "fields": {"name": "Software 1", "image": "Softwares/software1_LhLFHlb.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.softwares", "pk": 2, "fields": {"name": "Software 2", "image": "Softwares/software1_EflAlYd.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.softwares", "pk": 3, "fields": {"name": "Software 3", "image": "Softwares/software1_QdRsysD.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.softwares", "pk": 4, "fields": {"name": "Software 4", "image": "Softwares/software1_K0dlAPX.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.softwares", "pk": 5, "fields": {"name": "Software 5", "image": "Softwares/software1_r9ED8NS.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.tools", "pk": 1, "fields": {"name": "Tool 1", "image": "Tools/photo_2022-11-29_10-51-08.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.tools", "pk": 2, "fields": {"name": "Tool 2", "image": "Tools/photo_2022-11-29_10-51-13.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.tools", "pk": 3, "fields": {"name": "Tool 3", "image": "Tools/photo_2022-11-29_10-51-08_EZWUIre.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.tools", "pk": 4, "fields": {"name": "Tool 4", "image": "Tools/photo_2022-11-29_10-51-13_hjUXnIe.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.tools", "pk": 5, "fields": {"name": "Tool 5", "image": "Tools/photo_2022-11-29_10-51-08_n2ghiEl.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.marketingtips", "pk": 1, "fields": {"name": "Tips 1", "image": "Marketing_Tip/photo_2022-11-29_10-51-08.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.marketingtips", "pk": 2, "fields": {"name": "Tips 2", "image": "Marketing_Tip/photo_2022-11-29_10-51-13.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.marketingtips", "pk": 3, "fields": {"name": "Tips 3", "image": "Marketing_Tip/photo_2022-11-29_10-51-08_86LoxYU.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.marketingtips", "pk": 4, "fields": {"name": "Tips 4", "image": "Marketing_Tip/photo_2022-11-29_10-51-13_v7P81f1.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.marketingtips", "pk": 5, "fields": {"name": "Tips 5", "image": "Marketing_Tip/photo_2022-11-29_10-51-08_rjrrzU3.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.otherideas", "pk": 1, "fields": {"name": "Ideas 1", "image": "Other_Ideas/photo_2022-11-29_10-58-33_PjlLXS6.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.otherideas", "pk": 2, "fields": {"name": "Ideas 2", "image": "Other_Ideas/photo_2022-11-29_10-58-33_tqqnvyy.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.otherideas", "pk": 3, "fields": {"name": "Ideas 3", "image": "Other_Ideas/photo_2022-11-29_10-58-33_1Rt1mW7.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.otherideas", "pk": 4, "fields": {"name": "Ideas 4", "image": "Other_Ideas/photo_2022-11-29_10-58-33.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.otherideas", "pk": 5, "fields": {"name": "Ideas 5", "image": "Other_Ideas/photo_2022-11-29_10-58-33_T7cyj1S.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agencyportal", "pk": 1, "fields": {"name": "Portal 1", "image": "Agency_Portal/photo_2022-11-29_11-03-05.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agencyportal", "pk": 2, "fields": {"name": "Portal 2", "image": "Agency_Portal/photo_2022-11-29_11-03-05_4d5vRdF.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agencyportal", "pk": 3, "fields": {"name": "Portal 3", "image": "Agency_Portal/photo_2022-11-29_11-03-05_37kaLti.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agencyportal", "pk": 4, "fields": {"name": "Portal 4", "image": "Agency_Portal/photo_2022-11-29_11-03-05_wmpQJ0K.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agencyportal", "pk": 5, "fields": {"name": "Portal 5", "image": "Agency_Portal/photo_2022-11-29_11-03-05_FfyYFYl.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.backofficeservices", "pk": 1, "fields": {"name": "Backoffice  1", "image": "Back_Office_Service/photo_2022-11-29_10-51-08.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.backofficeservices", "pk": 2, "fields": {"name": "Backoffice  2", "image": "Back_Office_Service/photo_2022-11-29_10-51-08_NaCNni3.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.backofficeservices", "pk": 3, "fields": {"name": "Backoffice  3", "image": "Back_Office_Service/photo_2022-11-29_10-51-08_exDdAN9.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.backofficeservices", "pk": 4, "fields": {"name": "Backoffice  4", "image": "Back_Office_Service/photo_2022-11-29_10-51-08_BZJ7ODc.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.backofficeservices", "pk": 5, "fields": {"name": "Backoffice  5", "image": "Back_Office_Service/photo_2022-11-29_10-51-08_hSwnuPc.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agentbonus", "pk": 1, "fields": {"name": "Bonus 1", "image": "Agent_Bonus/photo_2022-11-29_11-09-05.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agentbonus", "pk": 2, "fields": {"name": "Bonus 2", "image": "Agent_Bonus/photo_2022-11-29_11-09-05_qsj2IQY.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agentbonus", "pk": 3, "fields": {"name": "Bonus 3", "image": "Agent_Bonus/photo_2022-11-29_11-09-05_R0Kdi8Y.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agentbonus", "pk": 4, "fields": {"name": "Bonus 4", "image": "Agent_Bonus/photo_2022-11-29_11-09-05_3FMwCqi.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.agentbonus", "pk": 5, "fields": {"name": "Bonus 5", "image": "Agent_Bonus/photo_2022-11-29_11-09-05_c6LfF5s.jpg", "ppoi": "0.5x0.5", "link": "https://www.google.co.in/", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.supportrequest", "pk": 1, "fields": {"name": "shamnasd", "phone": "9895676161", "email": "testrequest@gmail.com", "message": "hi test"}}, {"model": "web.faq", "pk": 1, "fields": {"question": "Lorem ipsum dolor sit amet?", "answer": "Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}}, {"model": "web.subscription", "pk": 1, "fields": {"user": "USK05599", "amount": 4000.0, "is_active": false, "valid_from": "2022-11-29T06:20:52.781Z", "valid_upto": "2022-12-29T06:20:52.781Z", "status": "Pending", "provider_order_id": "order_KlkmHYHYKFMd9m", "payment_id": null, "signature_id": null, "is_notified": false}}, {"model": "web.subscription", "pk": 2, "fields": {"user": "USK05599", "amount": 4000.0, "is_active": false, "valid_from": "2022-11-29T06:33:42.475Z", "valid_upto": "2022-12-29T06:33:42.475Z", "status": "Pending", "provider_order_id": "order_Klkzpdfjpzw4q9", "payment_id": null, "signature_id": null, "is_notified": false}}, {"model": "web.subscription", "pk": 3, "fields": {"user": "USK05599", "amount": 4000.0, "is_active": false, "valid_from": "2022-11-29T06:34:08.346Z", "valid_upto": "2022-12-29T06:34:08.346Z", "status": "Pending", "provider_order_id": "order_Kll0I0Frd54IrK", "payment_id": null, "signature_id": null, "is_notified": false}}, {"model": "web.subscription", "pk": 4, "fields": {"user": "USK05599", "amount": 4000.0, "is_active": false, "valid_from": "2022-11-29T06:34:56.110Z", "valid_upto": "2022-12-29T06:34:56.110Z", "status": "Pending", "provider_order_id": "order_Kll185DZXEjhTQ", "payment_id": null, "signature_id": null, "is_notified": false}}, {"model": "web.subscription", "pk": 5, "fields": {"user": "USK02981", "amount": 4000.0, "is_active": false, "valid_from": "2022-11-29T11:42:23.726Z", "valid_upto": "2022-12-29T11:42:23.726Z", "status": "Pending", "provider_order_id": "order_KlqFuWZoOnNQbB", "payment_id": null, "signature_id": null, "is_notified": false}}, {"model": "web.addonservices", "pk": 1, "fields": {"name": "add-on service", "image": "Agent_Bonus/service1.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.addonservices", "pk": 2, "fields": {"name": "add-on service", "image": "Agent_Bonus/service1_fTbJwFW.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "web.addonservices", "pk": 3, "fields": {"name": "add-on service", "image": "Agent_Bonus/service1_kNCI9ki.webp", "ppoi": "0.5x0.5", "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei", "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"}}, {"model": "accounts.user", "pk": "USK02981", "fields": {"password": "pbkdf2_sha256$390000$5aQF028FTQXDKWEQneu8vq$PlcEDKttlXU3K7EuMETT3TzaoY6gu5eQ0AsdKGP/nVc=", "last_login": "2022-12-01T14:26:17.281Z", "is_superuser": false, "username": "9895676161", "first_name": "", "last_name": "", "is_staff": false, "is_active": true, "date_joined": "2022-11-29T06:47:34.746Z", "phone": "9895676161", "temp_password": "2pDoceWvnO", "name": "shamnad pk", "email": "shamnadpro@gmail.com", "shop_name": "E MITRA SEVA KENDRA", "shop_address": "KODUR MALAPPURAM", "district": "MALAPPURAM", "pincode": "676505", "profile_image": "", "category": "ONLINE SERVICE CENTER", "groups": [], "user_permissions": []}}, {"model": "accounts.user", "pk": "USK05599", "fields": {"password": "pbkdf2_sha256$390000$00evaFXeqXSE0tRJCLpGoK$+v2HU84LM2dKzjREU0kJ4MghXGXQP9YkVeC+eG/pE5E=", "last_login": "2022-12-01T06:03:16.639Z", "is_superuser": false, "username": "9539438918", "first_name": "", "last_name": "", "is_staff": false, "is_active": true, "date_joined": "2022-11-29T04:09:03.476Z", "phone": "9539438918", "temp_password": "4w6z3G75hb", "name": "Dante Cash", "email": "swathikunju115@gmail.com", "shop_name": "Camden Pennington", "shop_address": "Excepturi obcaecati", "district": "Quo aut autem officia id unde maiores", "pincode": "55555", "profile_image": "Profile/face2.jpg", "category": "INTERNET CAFE", "groups": [], "user_permissions": []}}, {"model": "accounts.user", "pk": "USK09601", "fields": {"password": "pbkdf2_sha256$390000$CZ3Ze1OYI2lsOUIO8fXBjd$CWrQnEJ6uXeB19Cpc5sTdNQf/EkY9vbdZ00ZrZ+xxvM=", "last_login": "2022-12-01T06:02:52.382Z", "is_superuser": true, "username": "admin", "first_name": "", "last_name": "", "is_staff": true, "is_active": true, "date_joined": "2022-11-29T04:08:35.573Z", "phone": "", "temp_password": "", "name": "", "email": "admin@gmail.com", "shop_name": "", "shop_address": "", "district": "", "pincode": "", "profile_image": "", "category": "", "groups": [], "user_permissions": []}}]
+[
+    {
+        "model": "web.order",
+        "pk": 1,
+        "fields": {
+            "user": "USK05599",
+            "amount": 200.0,
+            "status": "Success",
+            "provider_order_id": "order_KliX3ALC25QYek",
+            "payment_id": "pay_KliXBPdqxTyepO",
+            "signature_id": "9fd3509db8160615a5bbe4edf4c213477bce82b43a00b359204bd521c8524cd9",
+            "is_active": false
+        }
+    },
+    {
+        "model": "web.order",
+        "pk": 2,
+        "fields": {
+            "user": "USK02981",
+            "amount": 200.0,
+            "status": "Success",
+            "provider_order_id": "order_KllEViXMSjOghI",
+            "payment_id": "pay_KllFBvlT5tKGsj",
+            "signature_id": "f927d725cc080115cd8d2e02b5721b2cf01f416fb2b31bc8c62bbfa4f9adeb90",
+            "is_active": false
+        }
+    },
+    {
+        "model": "web.latestnews",
+        "pk": 1,
+        "fields": {
+            "news": "\"Apologise To Our Hosts\": Israel Envoy As 'The Kashmir Files' Row Snowballs",
+            "link": "https://www.ndtv.com/india-news/israeli-envoy-naor-gilon-slams-iffi-jury-chairman-nadav-lapid-for-the-kashmir-files-remarks-tweets-apologise-to-our-hosts-3561678"
+        }
+    },
+    {
+        "model": "web.newserviceposter",
+        "pk": 1,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "New_Service/e_mitra_seva_kendra_online_training_yGpq695.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.newserviceposter",
+        "pk": 2,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "New_Service/e_mitra_seva_kendra_online_training_95YCJsN.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.newserviceposter",
+        "pk": 3,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "New_Service/e_mitra_seva_kendra_online_training_lrdMG6D.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.newserviceposter",
+        "pk": 4,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "New_Service/e_mitra_seva_kendra_online_training_CqjBCye.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.newserviceposter",
+        "pk": 5,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "New_Service/e_mitra_seva_kendra_online_training_bxws4BU.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.newserviceposter",
+        "pk": 6,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "New_Service/e_mitra_seva_kendra_online_training_vnIm3Rl.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.importantposter",
+        "pk": 1,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "Importants/e_mitra_seva_kendra_online_training_mRDLnoM.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.importantposter",
+        "pk": 2,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "Importants/e_mitra_seva_kendra_online_training_uqbenth.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.importantposter",
+        "pk": 3,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "Importants/e_mitra_seva_kendra_online_training_h6I9vQW.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.importantposter",
+        "pk": 4,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "Importants/e_mitra_seva_kendra_online_training_XPzex5o.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.importantposter",
+        "pk": 5,
+        "fields": {
+            "title": "TEST",
+            "image": "Importants/WhatsApp_Image_2022-10-07_at_1.59.00_PM.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://usklogin.geany.website/"
+        }
+    },
+    {
+        "model": "web.commonservicesposter",
+        "pk": 1,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "CommonServices/e_mitra_seva_kendra_online_training.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.commonservicesposter",
+        "pk": 2,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "CommonServices/e_mitra_seva_kendra_online_training_FUxPFKP.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.commonservicesposter",
+        "pk": 3,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "CommonServices/e_mitra_seva_kendra_online_training_ZXeAeZ6.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.commonservicesposter",
+        "pk": 4,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "CommonServices/e_mitra_seva_kendra_online_training_9ZKHOLB.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.festivelposter",
+        "pk": 1,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "FestivelPoster/e_mitra_seva_kendra_online_training.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.festivelposter",
+        "pk": 2,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "FestivelPoster/e_mitra_seva_kendra_online_training_9AI4ryD.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.festivelposter",
+        "pk": 3,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "FestivelPoster/e_mitra_seva_kendra_online_training_8GmuIax.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.professionalposter",
+        "pk": 1,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.professionalposter",
+        "pk": 2,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training_MxT5IIx.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.professionalposter",
+        "pk": 3,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training_MkIFeMR.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.professionalposter",
+        "pk": 4,
+        "fields": {
+            "title": "E-mithra seva",
+            "image": "ProfessionalPoster/e_mitra_seva_kendra_online_training_St7m5m3.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.professionalposter",
+        "pk": 5,
+        "fields": {
+            "title": "PANCARD",
+            "image": "ProfessionalPoster/WhatsApp_Image_2022-10-07_at_1.59.00_PM.jpeg",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://usklogin.geany.website/admin/web/professionalposter/add/"
+        }
+    },
+    {
+        "model": "web.downloadforms",
+        "pk": 1,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2-pdf_VkCKAoR.pdf",
+            "name": "Adhar Application Form",
+            "image": "Forms/PDF_file_TVxgkSp.png",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloadforms",
+        "pk": 2,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_DJ1ZfjF.pdf",
+            "name": "Degree Application Form",
+            "image": "Forms/PDF_file_A9ItXJz.png",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloadforms",
+        "pk": 3,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_8ImshXc.pdf",
+            "name": "Higher Secondary Application Form",
+            "image": "Forms/PDF_file_Mx8Rcct.png",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloadforms",
+        "pk": 4,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_h9l8RWc.pdf",
+            "name": "Passport Application Form",
+            "image": "Forms/PDF_file_TjOWKQY.png",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloadforms",
+        "pk": 5,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_m0WyH7w.pdf",
+            "name": "Income certificate application",
+            "image": "Forms/PDF_file_nESbr4B.png",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloaddocuments",
+        "pk": 1,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_3y9TRIf.pdf",
+            "name": "Adhar Application Form",
+            "image": "Documents/doc_SELep5H.webp",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloaddocuments",
+        "pk": 2,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_f0RUnKJ.pdf",
+            "name": "Higher Secondary Application Form",
+            "image": "Documents/doc_6o3r6Ok.webp",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.downloaddocuments",
+        "pk": 3,
+        "fields": {
+            "file": "USK_LOGIN_SRS_-_Copy_iDi04A2_VjQMlDf.pdf",
+            "name": "Degree Application Form",
+            "image": "Documents/doc_zMstWDu.webp",
+            "ppoi": "0.5x0.5",
+            "detail_link": "https://www.adobe.com/"
+        }
+    },
+    {
+        "model": "web.softwares",
+        "pk": 1,
+        "fields": {
+            "name": "Software 1",
+            "image": "Softwares/software1_LhLFHlb.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.softwares",
+        "pk": 2,
+        "fields": {
+            "name": "Software 2",
+            "image": "Softwares/software1_EflAlYd.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.softwares",
+        "pk": 3,
+        "fields": {
+            "name": "Software 3",
+            "image": "Softwares/software1_QdRsysD.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.softwares",
+        "pk": 4,
+        "fields": {
+            "name": "Software 4",
+            "image": "Softwares/software1_K0dlAPX.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.softwares",
+        "pk": 5,
+        "fields": {
+            "name": "Software 5",
+            "image": "Softwares/software1_r9ED8NS.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.tools",
+        "pk": 1,
+        "fields": {
+            "name": "Tool 1",
+            "image": "Tools/photo_2022-11-29_10-51-08.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.tools",
+        "pk": 2,
+        "fields": {
+            "name": "Tool 2",
+            "image": "Tools/photo_2022-11-29_10-51-13.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.tools",
+        "pk": 3,
+        "fields": {
+            "name": "Tool 3",
+            "image": "Tools/photo_2022-11-29_10-51-08_EZWUIre.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.tools",
+        "pk": 4,
+        "fields": {
+            "name": "Tool 4",
+            "image": "Tools/photo_2022-11-29_10-51-13_hjUXnIe.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.tools",
+        "pk": 5,
+        "fields": {
+            "name": "Tool 5",
+            "image": "Tools/photo_2022-11-29_10-51-08_n2ghiEl.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.marketingtips",
+        "pk": 1,
+        "fields": {
+            "name": "Tips 1",
+            "image": "Marketing_Tip/photo_2022-11-29_10-51-08.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.marketingtips",
+        "pk": 2,
+        "fields": {
+            "name": "Tips 2",
+            "image": "Marketing_Tip/photo_2022-11-29_10-51-13.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.marketingtips",
+        "pk": 3,
+        "fields": {
+            "name": "Tips 3",
+            "image": "Marketing_Tip/photo_2022-11-29_10-51-08_86LoxYU.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.marketingtips",
+        "pk": 4,
+        "fields": {
+            "name": "Tips 4",
+            "image": "Marketing_Tip/photo_2022-11-29_10-51-13_v7P81f1.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.marketingtips",
+        "pk": 5,
+        "fields": {
+            "name": "Tips 5",
+            "image": "Marketing_Tip/photo_2022-11-29_10-51-08_rjrrzU3.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.otherideas",
+        "pk": 1,
+        "fields": {
+            "name": "Ideas 1",
+            "image": "Other_Ideas/photo_2022-11-29_10-58-33_PjlLXS6.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.otherideas",
+        "pk": 2,
+        "fields": {
+            "name": "Ideas 2",
+            "image": "Other_Ideas/photo_2022-11-29_10-58-33_tqqnvyy.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.otherideas",
+        "pk": 3,
+        "fields": {
+            "name": "Ideas 3",
+            "image": "Other_Ideas/photo_2022-11-29_10-58-33_1Rt1mW7.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.otherideas",
+        "pk": 4,
+        "fields": {
+            "name": "Ideas 4",
+            "image": "Other_Ideas/photo_2022-11-29_10-58-33.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.otherideas",
+        "pk": 5,
+        "fields": {
+            "name": "Ideas 5",
+            "image": "Other_Ideas/photo_2022-11-29_10-58-33_T7cyj1S.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agencyportal",
+        "pk": 1,
+        "fields": {
+            "name": "Portal 1",
+            "image": "Agency_Portal/photo_2022-11-29_11-03-05.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agencyportal",
+        "pk": 2,
+        "fields": {
+            "name": "Portal 2",
+            "image": "Agency_Portal/photo_2022-11-29_11-03-05_4d5vRdF.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agencyportal",
+        "pk": 3,
+        "fields": {
+            "name": "Portal 3",
+            "image": "Agency_Portal/photo_2022-11-29_11-03-05_37kaLti.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agencyportal",
+        "pk": 4,
+        "fields": {
+            "name": "Portal 4",
+            "image": "Agency_Portal/photo_2022-11-29_11-03-05_wmpQJ0K.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agencyportal",
+        "pk": 5,
+        "fields": {
+            "name": "Portal 5",
+            "image": "Agency_Portal/photo_2022-11-29_11-03-05_FfyYFYl.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.backofficeservices",
+        "pk": 1,
+        "fields": {
+            "name": "Backoffice  1",
+            "image": "Back_Office_Service/photo_2022-11-29_10-51-08.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.backofficeservices",
+        "pk": 2,
+        "fields": {
+            "name": "Backoffice  2",
+            "image": "Back_Office_Service/photo_2022-11-29_10-51-08_NaCNni3.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.backofficeservices",
+        "pk": 3,
+        "fields": {
+            "name": "Backoffice  3",
+            "image": "Back_Office_Service/photo_2022-11-29_10-51-08_exDdAN9.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.backofficeservices",
+        "pk": 4,
+        "fields": {
+            "name": "Backoffice  4",
+            "image": "Back_Office_Service/photo_2022-11-29_10-51-08_BZJ7ODc.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.backofficeservices",
+        "pk": 5,
+        "fields": {
+            "name": "Backoffice  5",
+            "image": "Back_Office_Service/photo_2022-11-29_10-51-08_hSwnuPc.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agentbonus",
+        "pk": 1,
+        "fields": {
+            "name": "Bonus 1",
+            "image": "Agent_Bonus/photo_2022-11-29_11-09-05.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agentbonus",
+        "pk": 2,
+        "fields": {
+            "name": "Bonus 2",
+            "image": "Agent_Bonus/photo_2022-11-29_11-09-05_qsj2IQY.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agentbonus",
+        "pk": 3,
+        "fields": {
+            "name": "Bonus 3",
+            "image": "Agent_Bonus/photo_2022-11-29_11-09-05_R0Kdi8Y.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agentbonus",
+        "pk": 4,
+        "fields": {
+            "name": "Bonus 4",
+            "image": "Agent_Bonus/photo_2022-11-29_11-09-05_3FMwCqi.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.agentbonus",
+        "pk": 5,
+        "fields": {
+            "name": "Bonus 5",
+            "image": "Agent_Bonus/photo_2022-11-29_11-09-05_c6LfF5s.jpg",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.google.co.in/",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.supportrequest",
+        "pk": 1,
+        "fields": {
+            "name": "shamnasd",
+            "phone": "9895676161",
+            "email": "testrequest@gmail.com",
+            "message": "hi test"
+        }
+    },
+    {
+        "model": "web.faq",
+        "pk": 1,
+        "fields": {
+            "question": "Lorem ipsum dolor sit amet?",
+            "answer": "Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+    },
+    {
+        "model": "web.subscription",
+        "pk": 1,
+        "fields": {
+            "user": "USK05599",
+            "amount": 4000.0,
+            "is_active": false,
+            "valid_from": "2022-11-29T06:20:52.781Z",
+            "valid_upto": "2022-12-29T06:20:52.781Z",
+            "status": "Pending",
+            "provider_order_id": "order_KlkmHYHYKFMd9m",
+            "payment_id": null,
+            "signature_id": null,
+            "is_notified": false
+        }
+    },
+    {
+        "model": "web.subscription",
+        "pk": 2,
+        "fields": {
+            "user": "USK05599",
+            "amount": 4000.0,
+            "is_active": false,
+            "valid_from": "2022-11-29T06:33:42.475Z",
+            "valid_upto": "2022-12-29T06:33:42.475Z",
+            "status": "Pending",
+            "provider_order_id": "order_Klkzpdfjpzw4q9",
+            "payment_id": null,
+            "signature_id": null,
+            "is_notified": false
+        }
+    },
+    {
+        "model": "web.subscription",
+        "pk": 3,
+        "fields": {
+            "user": "USK05599",
+            "amount": 4000.0,
+            "is_active": false,
+            "valid_from": "2022-11-29T06:34:08.346Z",
+            "valid_upto": "2022-12-29T06:34:08.346Z",
+            "status": "Pending",
+            "provider_order_id": "order_Kll0I0Frd54IrK",
+            "payment_id": null,
+            "signature_id": null,
+            "is_notified": false
+        }
+    },
+    {
+        "model": "web.subscription",
+        "pk": 4,
+        "fields": {
+            "user": "USK05599",
+            "amount": 4000.0,
+            "is_active": false,
+            "valid_from": "2022-11-29T06:34:56.110Z",
+            "valid_upto": "2022-12-29T06:34:56.110Z",
+            "status": "Pending",
+            "provider_order_id": "order_Kll185DZXEjhTQ",
+            "payment_id": null,
+            "signature_id": null,
+            "is_notified": false
+        }
+    },
+    {
+        "model": "web.subscription",
+        "pk": 5,
+        "fields": {
+            "user": "USK02981",
+            "amount": 4000.0,
+            "is_active": false,
+            "valid_from": "2022-11-29T11:42:23.726Z",
+            "valid_upto": "2022-12-29T11:42:23.726Z",
+            "status": "Pending",
+            "provider_order_id": "order_KlqFuWZoOnNQbB",
+            "payment_id": null,
+            "signature_id": null,
+            "is_notified": false
+        }
+    },
+    {
+        "model": "web.addonservices",
+        "pk": 1,
+        "fields": {
+            "name": "add-on service",
+            "image": "Agent_Bonus/service1.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.addonservices",
+        "pk": 2,
+        "fields": {
+            "name": "add-on service",
+            "image": "Agent_Bonus/service1_fTbJwFW.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "web.addonservices",
+        "pk": 3,
+        "fields": {
+            "name": "add-on service",
+            "image": "Agent_Bonus/service1_kNCI9ki.webp",
+            "ppoi": "0.5x0.5",
+            "link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei",
+            "detail_link": "https://www.adobe.com/in/creativecloud.html?gclid=Cj0KCQjwteOaBhDuARIsADBqReiEgrBcsTgV_F-Vl74Qu5eDwBN8cVjBgVAEZz7svIkUkLLiLB_3M8YaAoAoEALw_wcB&sdid=SL4KMHQ2&mv=search&ef_id=Cj0KCQjwteOaBhDuARIsADBqRei"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": "USK02981",
+        "fields": {
+            "password": "pbkdf2_sha256$390000$5aQF028FTQXDKWEQneu8vq$PlcEDKttlXU3K7EuMETT3TzaoY6gu5eQ0AsdKGP/nVc=",
+            "last_login": "2022-12-01T14:26:17.281Z",
+            "is_superuser": false,
+            "username": "9895676161",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-11-29T06:47:34.746Z",
+            "phone": "9895676161",
+            "temp_password": "2pDoceWvnO",
+            "name": "shamnad pk",
+            "email": "shamnadpro@gmail.com",
+            "shop_name": "E MITRA SEVA KENDRA",
+            "shop_address": "KODUR MALAPPURAM",
+            "district": "MALAPPURAM",
+            "pincode": "676505",
+            "profile_image": "",
+            "category": "ONLINE SERVICE CENTER",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": "USK05599",
+        "fields": {
+            "password": "pbkdf2_sha256$390000$00evaFXeqXSE0tRJCLpGoK$+v2HU84LM2dKzjREU0kJ4MghXGXQP9YkVeC+eG/pE5E=",
+            "last_login": "2022-12-01T06:03:16.639Z",
+            "is_superuser": false,
+            "username": "9539438918",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-11-29T04:09:03.476Z",
+            "phone": "9539438918",
+            "temp_password": "4w6z3G75hb",
+            "name": "Dante Cash",
+            "email": "swathikunju115@gmail.com",
+            "shop_name": "Camden Pennington",
+            "shop_address": "Excepturi obcaecati",
+            "district": "Quo aut autem officia id unde maiores",
+            "pincode": "55555",
+            "profile_image": "Profile/face2.jpg",
+            "category": "INTERNET CAFE",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": "USK09601",
+        "fields": {
+            "password": "pbkdf2_sha256$390000$CZ3Ze1OYI2lsOUIO8fXBjd$CWrQnEJ6uXeB19Cpc5sTdNQf/EkY9vbdZ00ZrZ+xxvM=",
+            "last_login": "2022-12-01T06:02:52.382Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-11-29T04:08:35.573Z",
+            "phone": "",
+            "temp_password": "",
+            "name": "",
+            "email": "admin@gmail.com",
+            "shop_name": "",
+            "shop_address": "",
+            "district": "",
+            "pincode": "",
+            "profile_image": "",
+            "category": "",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
