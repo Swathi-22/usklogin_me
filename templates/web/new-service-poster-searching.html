@@ -1,12 +1,11 @@
-  
-  {% load humanize %}
-  
-  <!-- new service -->
+{% extends 'web/base.html' %}
+{% load static humanize %}
+{% block content %}
 <div class="row">
 
   {% for posters in new_service_poster %}
   <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-    <div class="container__img-holder">
+    <div class="card card-body w-100">
       <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
 
       <div class="text-center mt-3">
@@ -32,3 +31,6 @@
     </div>
   </div>
 </div>
+
+{% endblock %}
+

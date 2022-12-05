@@ -1,27 +1,113 @@
 {% extends 'web/base.html' %}
+{% load static humanize %}
 {% block content %}
-{% load static %}
-{% load humanize %}
 
+{% csrf_token %}
+<style>
+  .popup a {
+    text-decoration: none;
+  }
 
-{% csrf_token %} 
-<!-- search -->
+  .popup-onload {
+    width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    z-index: 100;
+    background: #01010ebf;
+    height: 100vh;
+  }
 
-<div class="main-panel " id="demo">
-  <div class="content-wrapper" id="demo2">
+  .popup {
+    width: 800px;
+    min-width: 800px;
+    max-width: 90%;
+    min-height: 150px;
+    margin: 40px auto;
+    background: #fff;
+    opacity: 0.9;
+    position: relative;
+    z-index: 10;
+    padding: 15px 35px;
+    /* box-shadow: 0 2px 5px #000; */
+    border-radius: 29px;
+  }
 
+  .popup p {
+    color: #fff;
+    /* text-align: justify; */
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "Nunito Sans", sans-serif;
+  }
 
-    <!-- {% if messages %}
-    <div class="messages text-center success-message" id="sucessful-login-message">
-      {% for message in messages %}
-      <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-        {{ message }}
-      </div>  
+  .popup p a {
+    color: #b18d73;
+    font-weight: 400;
+  }
+
+  .x {
+    color: #b18d73;
+    font-size: 2rem;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "Nunito Sans", sans-serif;
+    text-decoration: none;
+    position: absolute;
+    right: 15px;
+    top: 0;
+  }
+
+  .x:hover {
+    cursor: pointer;
+  }
+
+  .popup-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: #efefef;
+
+    color: #b18d73;
+    font-size: 2rem;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "Nunito Sans", sans-serif;
+    text-align: center;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .onload-image {
+    width: 100%;
+    height: auto;
+  }
+</style>
+
+ 
+<body>
+  <div class='popup-onload'>
+    <div class='popup'>
+      <a href='' class="x">x</a>
+      {% for onload_popup in on_load_popup|slice:":1" %}
+      <div style="height: auto;width: 400px;" class="mx-auto">
+        <img src="{{onload_popup.image.url}}" class="onload-image">
+      </div>
+      <div class="text-center py-3">
+        <span class="modal-desc">
+          {{onload_popup.title}}
+        </span>
+      </div>
       {% endfor %}
     </div>
-    {% endif %} -->
+  </div>
+</body>
 
+<div class="main-panel " id="demo">
+
+  <div class="content-wrapper" id="demo2">
 
 
     <!-- service head display -->
@@ -29,7 +115,7 @@
       <div class="row">
 
         {% for each_service_head in service_head %}
-        <div class="col-lg-2 col-md-2 col-sm-6 col-6 pb-4 ">
+        <div class="col-lg-2 col-md-2 col-sm-6 col-6 pb-1 ">
           <div class="service-main-head-index text-center bg-gradient-danger">
             <a href="{% url 'services:service' each_service_head.slug %}"
               class="serviec-main-head-a">{{each_service_head.title}}</a>
@@ -53,20 +139,18 @@
     </section>
 
     <!--news scrolling  -->
-    <section class="py-2">
+    <section class="pt-2">
       <div class="alert alert-info">
         <span class="text1">
 
           <marquee><b>{{latest_news.news}}</b>
-            {% if latest_news.link == None %}
+            {% if not latest_news.link %}
             <span></span>
             {% else %}
             <span> <a href="{{latest_news.link}}" rel="noopener noreferrer" target="_blank" class="news">Click
                 Here</a></span>
             {% endif %}
           </marquee>
-
-
         </span>
       </div>
     </section>
@@ -79,86 +163,87 @@
       <div class="container">
         {% if branding_image.image %}
         <img src="{{branding_image.image.crop.1000x100}}" id="footerImage" alt="Image">
-       {% else %}
-       <h4>....</h4>
-       {% endif %}
-       
+        {% else %}
+        <h4>....</h4>
+        {% endif %}
+
       </div>
     </div>
 
 
-    <!-- new services -->
-    <section class="py-5">
-      <h6 class="pb-4 service-heading">NEW SERVICES</h6>
-      <div class="container">
+    <section>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+          <h6 class="pb-2 service-heading">NEWLY ADDED SERVICES</h6>
+          <div class="container">
+            <div class="row">
+              {% for posters in new_service_poster %}
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div class="card card-body w-100">
+                  <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
+                  <span>{{posters.title}}</span>
 
-        <div class="row">
-
-          {% for posters in new_service_poster %}
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="container__img-holder">
-              <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-
-              <div class="text-center mt-3">
-                <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                  data-source="{{posters.id | apnumber }}">Click to Download</button>
+                  <div class="text-center mt-3">
+                    <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{posters.id | apnumber }}">Download</button>
+                    <a href="{{posters.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                  </div>
+                  
+                </div>
               </div>
+              {% endfor %}
+              <div class="row">
+                <div class="col-lg-12 col-12 mt-3">
+                  <a href="{% url 'web:newly_added_services' %}" class="poster-view-more d-inline-block">
+                    View More
+                  </a>
+                </div>
+              </div>
+              <div class="img-popup">
+                <div class="container" id="resultContainer" style="display: none;">
 
-              <span>{{posters.title}}</span>
+                  <img class="img-responsive popup-imagea" id="result" src="">
+                  <div class="text-center mt-3 poster-download-button">
+                    <a id="download" class="btn-sm mx-auto btn btn-primary" download>Download</a>
+                  </div>
+                </div>
+                <div class="close-btn">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+              </div>
             </div>
           </div>
-          {% endfor %}
-          <div class="img-popup">
-            <div class="container" id="resultContainer" style="display: none;">
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+          <h6 class="pb-2 service-heading">IMPORTANT</h6>
+          <div class="container">
+            <div class="row">
+              {% for posters in important_poster %}
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div class="card card-body w-100">
+                  <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
+                  <span>{{posters.title}}</span>
 
-              <img class="img-responsive popup-imagea" id="result" src="">
-              <div class="text-center mt-3 poster-download-button">
-                <a id="download" class="btn-sm mx-auto btn btn-primary" download>Download</a>
+                  <div class="text-center mt-3">
+                    <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{posters.id | apnumber }}">Download</button>
+                    <a href="{{posters.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                  </div>
+
+                </div>
               </div>
-            </div>
-            <div class="close-btn">
-              <div class="bar"></div>
-              <div class="bar"></div>
+              {% endfor %}
+              <div class="row">
+                <div class="col-lg-12 col-12 mt-3">
+                  <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
+                    View More
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
     </section>
-
-    <!-- importants -->
-    <section class="pt-3">
-      <h6 class="pb-4 service-heading">IMPORTANT</h6>
-      <div class="container">
-
-        <div class="row">
-          {% for posters in important_poster %}
-
-
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="container__img-holder">
-              <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-
-              <div class="text-center mt-3">
-                <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                  data-source="{{posters.id | apnumber }}">Click to Download</button>
-              </div>
-
-              <span>{{posters.title}}</span>
-            </div>
-          </div>
-
-          {% endfor %}
-        </div>
-      </div>
-
-
-    </section>
-
-
 
 
 
@@ -167,26 +252,14 @@
   <!-- content-wrapper ends -->
 
 </div>
-<!-- main-panel ends -->
 
 
 {% endblock %}
-<!-- ===============successful login message  -->
 
 
 
 
 {% block js %}
-
-<!-- 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $('#sucessful-login-message').fadeOut(3000)
-  })  
-</script> -->
-
-
 <script>
   function downloadImage(elm) {
     var canvas = document.createElement('canvas');
@@ -208,10 +281,10 @@
   }
 
   var buttons = document.querySelectorAll('button');
-  var Width = 2500; //> same width to both images
-  var headerImageHeight = 2500;
-  var footerImageHeight = 500;
-  var HeightAdjustment = -100;
+  var Width = 1080; //> same width to both images
+  var headerImageHeight = 1080;
+  var footerImageHeight = 222;
+  var HeightAdjustment = 0;
 
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
@@ -245,7 +318,7 @@
         a = (a ? (a = "preload", n.href = e, n.rel = t ? i + a : a, t || (n.as = "script")) : (n.src = e, t && (n.type = i, n.onerror = function () {
           return d()
         })), o && o.nonce ? o.nonce : null);
-      a && (n.nonce = a), y.appendChild👎
+      a && (n.nonce = a), y.appendChild(n)
     }, "function" == typeof (e = "".matchAll) && e.toString().includes("[native code]") ? (t = a + (m ? "" : "svg/"), d((e = l + (m ? "" : "modules/")) + "core" + p + ".js", !0), a = document.createElement("link").relList.supports(
       "modulepreload"), n.overlays && n.overlays.length && a && d(e + "overlays" + p + ".js", !0, !0), r.querySelector('.a2a_dd:empty,.a2a_kit [class*="a2a_button_"]:empty') && d(t + "icons.31.svg.js", !1, !0)) : d(), u = function (
         e) {
@@ -272,6 +345,25 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+  integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>$(function () {
+    $(".popup-onload").show();
+    $(".close").click(function () {
+      $(".popup-onload").hide();
+      return false;
+    });
+    $(".x").click(function () {
+      $(".popup-onload").hide();
+      return false;
+    });
+    $(".popup-wrapper").click(function () {
+      $(".popup-onload").hide();
+      return false;
+    });
+  });
+</script>
 
 
 {% endblock %}

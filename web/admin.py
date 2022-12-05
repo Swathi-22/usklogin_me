@@ -1,9 +1,9 @@
 from .models import FAQ
+from .models import AddonServices
 from .models import AgencyPortal
 from .models import AgentBonus
 from .models import BackOfficeServices
 from .models import CallSupport
-from .models import CertificateImages
 from .models import CommonServicesPoster
 from .models import DownloadDocuments
 from .models import DownloadForms
@@ -21,6 +21,7 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
+from .models import OnloadPopup
 from django.contrib import admin
 
 
@@ -31,27 +32,27 @@ class LatestNewsAdmin(admin.ModelAdmin):
 
 @admin.register(NewServicePoster)
 class NewServicePosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(ImportantPoster)
 class ImportantPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" ,"image")
 
 
 @admin.register(CommonServicesPoster)
 class CommonServicesPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(FestivelPoster)
 class FestivelPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(ProfessionalPoster)
 class ProfessionalPosterAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id","title" , "image")
 
 
 @admin.register(DownloadForms)
@@ -114,11 +115,6 @@ class FAQAdmin(admin.ModelAdmin):
     list_display = ("id", "question")
 
 
-@admin.register(CertificateImages)
-class CertificateImagesAdmin(admin.ModelAdmin):
-    list_display = ("id",)
-
-
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("user", "status")
@@ -137,3 +133,13 @@ class WhatsappSupportAdmin(admin.ModelAdmin):
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
     list_display = ("user", "amount", "is_active", "valid_from", "valid_upto")
+
+
+@admin.register(AddonServices)
+class AddonServicesAdmin(admin.ModelAdmin):
+    list_display = ("name", "link")
+
+
+@admin.register(OnloadPopup)
+class OnloadPopupAdmin(admin.ModelAdmin):
+    list_display = ("title", "image")

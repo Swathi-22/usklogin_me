@@ -1,7 +1,5 @@
 from datetime import timedelta
-
 from accounts.models import User
-
 from .constants import PaymentStatus
 from .functions import generate_ticket_pk
 from django.db import models
@@ -17,10 +15,16 @@ class Order(models.Model):
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
+    valid_from = models.DateTimeField(default=timezone.now)
+    valid_upto = models.DateTimeField(blank=True,null=True, editable=False)
     is_active = models.BooleanField("Mark as Active", default=False)
-
+    
     def __str__(self):
         return f"{self.id}-{self.user}-{self.status}"
+
+    def save(self, *args, **kwargs):
+        self.valid_upto = self.valid_from + timedelta(days=365)
+        super().save(*args, **kwargs)
 
 
 class LatestNews(models.Model):
@@ -38,9 +42,10 @@ class NewServicePoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="New_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
-        verbose_name_plural = "New Service Poster"
+        verbose_name_plural = "Newly Added Service Poster"
 
     def __str__(self):
         return str(self.image)
@@ -50,6 +55,7 @@ class ImportantPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="Importants/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Important Poster"
@@ -62,6 +68,7 @@ class CommonServicesPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="CommonServices/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Common Services Poster"
@@ -74,6 +81,7 @@ class FestivelPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="FestivelPoster/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Festivel Poster"
@@ -86,6 +94,7 @@ class ProfessionalPoster(models.Model):
     title = models.CharField(max_length=150)
     image = VersatileImageField("Image", upload_to="ProfessionalPoster/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Professional Poster"
@@ -99,6 +108,7 @@ class DownloadForms(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Forms/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Download Forms"
@@ -109,9 +119,11 @@ class DownloadForms(models.Model):
 
 class DownloadDocuments(models.Model):
     file = models.FileField()
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Documents/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Download Documents"
@@ -125,6 +137,7 @@ class Softwares(models.Model):
     image = VersatileImageField("Image", upload_to="Softwares/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Softwares"
@@ -138,6 +151,7 @@ class Tools(models.Model):
     image = VersatileImageField("Image", upload_to="Tools/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Tools"
@@ -151,6 +165,7 @@ class MarketingTips(models.Model):
     image = VersatileImageField("Image", upload_to="Marketing_Tip/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Marketing Tips"
@@ -164,9 +179,10 @@ class OtherIdeas(models.Model):
     image = VersatileImageField("Image", upload_to="Other_Ideas/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
-        verbose_name_plural = "Other Ideas"
+        verbose_name_plural = "Add to the Business"
 
     def __str__(self):
         return str(self.name)
@@ -177,6 +193,7 @@ class AgencyPortal(models.Model):
     image = VersatileImageField("Image", upload_to="Agency_Portal/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Agency Portals"
@@ -190,6 +207,7 @@ class BackOfficeServices(models.Model):
     image = VersatileImageField("Image", upload_to="Back_Office_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Back Office Service"
@@ -203,6 +221,7 @@ class AgentBonus(models.Model):
     image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
     link = models.URLField()
+    detail_link = models.URLField()
 
     class Meta:
         verbose_name_plural = "Bonus for USK Agent"
@@ -247,29 +266,6 @@ class FAQ(models.Model):
 
     def __str__(self):
         return str(self.question)
-
-
-class ChangePassword(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    forgot_password_token = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return str(self.user)
-
-
-class CertificateImages(models.Model):
-    usk_logo = VersatileImageField(upload_to="USKimages", null=True, default="USK Login Logo.png")
-    bruvsha_logo = VersatileImageField(upload_to="USKimages", null=True, default="Bruvsha Logo.png")
-    seal = VersatileImageField(upload_to="USKimages", null=True, default="Seal.png")
-    sign = VersatileImageField(upload_to="USKimages", null=True, default="Sign.png")
-
-    class Meta:
-        verbose_name_plural = "Certificate Images"
-
-    def __str__(self):
-        return str(self.id)
 
 
 class CallSupport(models.Model):
@@ -323,3 +319,30 @@ class Subscription(models.Model):
     def save(self, *args, **kwargs):
         self.valid_upto = self.valid_from + timedelta(days=30)
         super().save(*args, **kwargs)
+
+
+class AddonServices(models.Model):
+    name = models.CharField(max_length=100)
+    image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    link = models.URLField()
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Add-on Services"
+
+    def __str__(self):
+        return str(self.name)
+
+
+
+class OnloadPopup(models.Model):
+    title = models.TextField()
+    image = VersatileImageField("Image", upload_to="Onload_Popup/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+
+    class Meta:
+        verbose_name_plural = "Onload Popup"
+
+    def __str__(self):
+        return str(self.title)

@@ -1,7 +1,6 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
-
+{% block content %}
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
@@ -20,6 +19,9 @@
                             <div class="text-center">
                                 <button class="btn-hover color-3">Download File</button>
                             </div>
+                            <div class="text-center div-margin">
+                                <a href="{{forms.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
                             
                         </a>
                     </div>
@@ -29,7 +31,5 @@
         </section>
     </div>
 </div>
-
-
 
 {% endblock %}
