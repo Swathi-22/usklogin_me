@@ -27,12 +27,11 @@ class Services(models.Model):
     link_to_official_website = models.URLField()
     about_service = HTMLField(blank=True, null=True)
     requirements = HTMLField(blank=True, null=True)
-    service_charge = models.IntegerField()
-    actual_service_charge = models.IntegerField()
-    time_for_service = models.CharField(max_length=100)
+    service_charge = models.CharField(max_length=100)
+    actual_service_charge = models.CharField(max_length=100)
     video_tutorial = models.CharField(max_length=100)
     guidline = models.CharField(max_length=100)
-    upload_form = models.FileField()
+    upload_form = models.URLField()
     slug = models.SlugField(unique=True)
 
     class Meta:
@@ -44,7 +43,8 @@ class Services(models.Model):
 
 class BrandingImage(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = VersatileImageField("Image", upload_to="service/", blank=True, null=True)
+    image = VersatileImageField("Image", upload_to="service/")
+    is_verified = models.BooleanField("Mark as Verified", default=False)
 
     class Meta:
         verbose_name = "Branding Image"

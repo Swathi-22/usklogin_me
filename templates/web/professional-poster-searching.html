@@ -1,21 +1,23 @@
+{% extends 'web/base.html' %}
+{% load static %}
 {% load humanize %}
- 
- <!-- professional posters -->
- 
- <div class="row">
-    {% for prof_posters in professional_poster %}
-  
-    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-      <div class="container__img-holder">
-        <img src="{{prof_posters.image.url}}" data-id="{{prof_posters.id | apnumber }}" alt="Image">
-  
-        <div class="text-center mt-3">
-          <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-            data-source="{{prof_posters.id | apnumber }}">Click to Download</button>
-        </div>
-        
-        <span>{{prof_posters.title}}</span>
+{% block body %}
+
+<div class="row">
+  {% for prof_posters in professional_poster %}
+
+  <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+    <div class="card card-body w-100">
+      <img src="{{prof_posters.image.url}}" data-id="{{prof_posters.id | apnumber }}" alt="Image">
+
+      <div class="text-center mt-3">
+        <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
+          data-source="{{prof_posters.id | apnumber }}">Click to Download</button>
       </div>
+
+      <span>{{prof_posters.title}}</span>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,8 +1,7 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
 
-<!-- partial -->
+{% block content %}
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
 
@@ -11,32 +10,30 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-10 col-sm-10 col-10 note-title">
                         <input placeholder="Add title" type="title" id="title">
-
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-                        <button class="AddToDo "><i class="fa-solid fa-plus"></i> <span class="d-sm-none d-lg-inline d-md-inline"> Add Notes</span>  </button>
+                        <button class="AddToDo "><i class="fa-solid fa-plus"></i> <span
+                                class="d-sm-none d-lg-inline d-md-inline"> Add Notes</span> </button>
                     </div>
                 </div>
-                
-
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <textarea type="text" name="notes" placeholder="write here..." id="notes"></textarea>
                     </div>
                 </div>
-
-
             </div>
         </div>
-        <br>
-        <hr>
-        <br>
-        <div class="Display"></div>
 
+        <hr>
+
+        <div class="Display"></div>
     </div>
 </div>
 
+{% endblock %}
 
+
+{% block js %}
 <script>
     let addTodo = document.querySelector('.AddToDo')
     showtodo()
@@ -78,32 +75,21 @@
         
          <button  id=" ${index}" onclick="deletetodo()" class="AddToDo"><i class="fa-solid fa-trash"></i> Delete</button>
           <textarea type="text" name="notes" placeholder="write here..." id="notes" > ${element.text} </textarea>
-       </div>
-      
-    
-   `
-
+       </div>`
         });
 
         let notesElm = document.querySelector(".Display")
-
-
         if (todoObj.length != 0) {
             notesElm.innerHTML = html;
-
         }
         else {
-
             notesElm.innerHTML = "<h3>Nothing to show here! Please, click on Add Notes to add your notes here</h3>"
-            notesElm.style.color = "#fff"
         }
-
     }
 
     function deletetodo(index) {
         // console.log("i amm deleting",index)
         let todolist = localStorage.getItem("todolist")
-
         if (todolist === null) {
             todoObj = []
         }
@@ -114,8 +100,5 @@
         localStorage.setItem('todolist', JSON.stringify(todoObj))
         showtodo()
     }
-
 </script>
-
-
 {% endblock %}

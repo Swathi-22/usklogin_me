@@ -16502,8 +16502,12 @@ code {
 .btn-primary:not(.btn-light) {
   color: #ffffff;
 }
+.btn-primary:not(.btn-light):hover{
+  color: #ffffff;
+  background-color: #2d3d84;
+  border: 1px solid #2d3d84;
+}
 
-.btn-primary:not(.btn-light):hover,
 .btn-primary:not(.btn-light):focus,
 .btn-primary:not(.btn-light):active {
   color: #ffffff;
@@ -17645,6 +17649,7 @@ code {
 .card {
   border: 0;
   background: #fff;
+  margin-bottom: 1rem;
 }
 
 .card .card-body {
@@ -18781,7 +18786,7 @@ dl li {
 }
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
-  width: calc(70px - 50px);
+  width: calc(65px - 36px);
   max-width: 100%;
   height: 28px;
   margin: auto;
@@ -18931,6 +18936,10 @@ dl li {
 }
 
 @media (max-width: 767px) {
+  .logo-login {
+    width: 60% !important;
+    margin: 0px auto;
+}
   .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
     margin-left: .8rem;
     margin-right: .8rem;
@@ -19853,7 +19862,7 @@ dl li {
 .content-wrapper {
   background: #f2edf3;
   padding: 0 2.25rem;
-  padding-top: 6.75rem;
+  padding-top: 1.75rem;
   padding-bottom: 1rem;
   width: 100%;
   -webkit-box-flex: 1;
@@ -19863,7 +19872,6 @@ dl li {
 
 .content-div {
   margin-left: 47px;
-  padding: 107px 55px;
 }
 
 a:hover {
@@ -19878,13 +19886,13 @@ a:hover {
 
 .service-main-head-index {
   border-radius: 10px;
-  padding: 14px 10px;
+  padding: 13px 0px;
   width: 100%;
 }
 
 .serviec-main-head-a {
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .serviec-main-head-a:hover {
@@ -19914,10 +19922,11 @@ a:hover {
 }
 
 .container__img-holder {
-  max-width: 280px;
+  width: 100%;
+  height: auto;
+  overflow: auto;
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 20px;
   cursor: pointer;
   box-shadow: 10px 10px 10px #111ec126;
 }
@@ -20146,7 +20155,7 @@ a:hover {
 .access {
   background: linear-gradient(to right, #ffbf96, #fe7096) !important;
   color: #fff;
-  padding: 3px 8px;
+  padding: 3px 4px;
   border-radius: 5px;
   font-size: 11px;
 }
@@ -20154,7 +20163,7 @@ a:hover {
 .view-more {
   background: linear-gradient(to right, #ffbf96, #fe7096) !important;
   color: #fff;
-  padding: 3px 8px;
+  padding: 3px 4px;
   border-radius: 5px;
   font-size: 11px;
 }
@@ -20654,7 +20663,7 @@ a:hover {
 
   .content-wrapper {
     background: #f2edf3;
-    padding: 5.75rem 0.25rem !important;
+    padding: 0.75rem 0.25rem !important;
     width: 100%;
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
@@ -20798,7 +20807,6 @@ a:hover {
 }
 
 .wrapper .form-right label {
-  font-weight: 600;
   font-size: 15px;
   color: #666;
   display: block;
@@ -21004,7 +21012,7 @@ a:hover {
   }
 
   .software-card-margin {
-    margin: 0px 0px !important;
+    margin: 0px -30px !important;
   }
 
   .form-dodument-card-margin {
@@ -21143,7 +21151,7 @@ a:hover {
   .access {
     background: linear-gradient(to right, #ffbf96, #fe7096) !important;
     color: #fff;
-    padding: 3px 10px !important;
+    padding: 3px 8px !important;
     border-radius: 5px;
     font-size: 10px;
   }
@@ -21151,7 +21159,7 @@ a:hover {
   .view-more {
     background: linear-gradient(to right, #ffbf96, #fe7096) !important;
     color: #fff;
-    padding: 3px 10px !important;
+    padding: 3px 8px !important;
     border-radius: 5px;
     font-size: 10px;
   }
@@ -21353,11 +21361,11 @@ a:hover {
 
 @media only screen and (min-width:1024px) {
   .software-card-margin {
-    margin: 0px 0px !important;
+    margin: 0px -27px !important;
   }
 
   .form-dodument-card-margin {
-    margin-right: -63px !important;
+    margin-right: -58px !important;
   }
 }
 
@@ -21507,8 +21515,8 @@ h2 em {
   padding: 0;
   border-radius: 20px;
   background-color: #f1f8fe;
-  min-height: 230px;
-  width: 81%;
+  min-height: 242px;
+  width: 82%;
 }
 
 .download-button {
@@ -21525,7 +21533,7 @@ h2 em {
   background: -webkit-linear-gradient(5deg, #69009f, #0066ff 69%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 
@@ -21605,38 +21613,12 @@ h2 em {
 }
 
 
-/* ==========softwares */
-
-.card {
-  width: 75%;
-  background-color: #abd1c6 !important;
-  padding: 23px 23px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px #000 85;
-}
-
-.card-body {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 5px;
-  font-size: 20px;
-  text-align: center;
-}
-
-@media screen and (max-width: 400px) {
-  .card {
-    width: 320px;
-  }
-}
-
-
-
 .card-tool {
   width: 75%;
-  background-color: #5e9fa5e0 !important;
-  padding: 23px 23px;
+  background-color: #abd1c6 !important;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 5px;
   box-shadow: 3px 3px 10px #000 85;
 }
@@ -22004,7 +21986,7 @@ h2 em {
 
 .cards {
   border: 1px solid #fff;
-  width: 85%;
+  width: 100%;
   height: 50px;
   border-radius: 12px;
   margin: 10px 0px;
@@ -22467,6 +22449,13 @@ a.fl-button.fill:before {
   border-radius: 5px;
   font-size: 13px;
 }
+.name-software:hover{
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-radius: 5px;
+  font-size: 13px;
+}
 
 /* .name-software:hover{
   background-image: linear-gradient(to right, #008b92, #2183fc, #00A8C5, #62e021);
@@ -22735,6 +22724,7 @@ a.fl-button.fill:before {
   background-image: linear-gradient(to right, #008b92, #2183fc, #00A8C5, #62e021);
   box-shadow: 0 4px 15px 0 rgb(83 176 57 / 75%);
 }
+
 
 .right-col-tool {
   width: 50%;
@@ -23300,12 +23290,27 @@ button.createbtn i {
   color: #af0808;
 }
 
-.learnmore-button {
-  width: 100%;
+.learnmore-button, .learnmore-button:hover{
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
   padding: 7px 10px;
-  background-color: #0b2c2e;
-  border: 2px solid #0b2c2e;
-  border-radius: 10px;
+  background-color: #2554C7;
+  border: 2px solid #2554C7;
+  border-radius: 6px;
+  color: #fff;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.learnmore-button-malayalam, .learnmore-button-malayalam:hover{
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 7px 10px;
+  background-color: #157DEC;
+  border: 2px solid #157DEC;
+  border-radius: 6px;
   color: #fff;
   text-align: center;
   margin-top: 14px;
@@ -23540,6 +23545,23 @@ button.createbtn i {
 .popup-imagea {
   height: 400px;
   margin-left: 201px;
+}
+
+@media only screen and (min-width:320px) and (max-width:567px){
+  .popup-imagea {
+    height: 400px;
+    margin-left: -25px !important;
+}
+.img-popup img {
+  max-width: 90% !important;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-100px);
+  -webkit-transform: translateY(-100px);
+  -moz-transform: translateY(-100px);
+  -ms-transform: translateY(-100px);
+  -o-transform: translateY(-100px);
+}
 }
 
 .poster-download-button {
@@ -24163,12 +24185,12 @@ hr.certificate-hr {
 
 .tm_accent_color,
 .tm_accent_color_hover:hover {
-  color: #007aff;
+  color: #2d3d83;
 }
 
 .tm_accent_bg,
 .tm_accent_bg_hover:hover {
-  background-color: #007aff;
+  background-color: #2d3d83;
 }
 
 .tm_accent_bg_10 {
@@ -24233,7 +24255,7 @@ hr.certificate-hr {
 }
 
 .tm_accent_border {
-  border-color: #007aff;
+  border-color: #2d3d83;
 }
 
 .tm_accent_border_10 {
@@ -25257,7 +25279,7 @@ hr {
 
   .tm_invoice_btn.tm_color1 {
     background-color: rgba(0, 122, 255, 0.1);
-    color: #007aff;
+    color: #2d3d83;
     border-radius: 5px 5px 0 0;
   }
 
@@ -25338,7 +25360,7 @@ hr {
 
   .tm_invoice_btn.tm_color1 {
     background-color: rgba(0, 122, 255, 0.1);
-    color: #007aff;
+    color: #2d3d83;
   }
 
   .tm_invoice_btn.tm_color1:hover {
@@ -25726,7 +25748,7 @@ hr {
   }
 
   .tm_accent_bg {
-    background-color: #007aff;
+    background-color: #2d3d83;
     -webkit-print-color-adjust: exact;
   }
 
@@ -25746,7 +25768,7 @@ hr {
   }
 
   .tm_accent_color {
-    color: #007aff !important;
+    color: #2d3d83 !important;
     -webkit-print-color-adjust: exact;
   }
 
@@ -26144,5 +26166,3 @@ hr {
   }
 
 
-
-  

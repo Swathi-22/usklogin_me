@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,20 +11,15 @@
 
 <body>
     <div class="row">
-        
+
         <script>
             var options = {
                 "key": "{{razorpay_key}}",
                 "amount": "{{amount}}",
                 "currency": "INR",
                 "order_id": "{{order.provider_order_id}}",
-                "image": "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
+                "image": "{% static 'web/images/USKLKOG.png' %}",
                 "callback_url": "{{callback_url}}",
-                
-
-                // "handler": function (response) {
-                //     alert(response.razorpay_payment_id);
-                // },
                 "modal": {
                     "ondismiss": function () {
                         if (confirm("Are you sure, you want to close the form?")) {
@@ -40,10 +35,7 @@
             var rzp1 = new Razorpay(options);
             rzp1.open();
         </script>
-
-
     </div>
-
 
 </body>
 

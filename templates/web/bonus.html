@@ -1,21 +1,34 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
+{% block content %}
 
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
         <section>
             <div class="row">
-            {% for bonus_for_usk_agent in agent_bonus %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 pb-3 software-card-margin ">
-                    <a href="">
-                        <div class="card-bonus">
-                            <div class="card-body-bonus">
-                                <img src="{{bonus_for_usk_agent.image.crop.194x194}}" alt="">
-                            </div>
+                {% for bonus_for_usk_agent in agent_bonus %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
+                    <div class="card">
+                        <div class="card-body-bonus">
+                            <img src="{{bonus_for_usk_agent.image.url}}" alt="">
                         </div>
-                    </a>
+                        <div class="head-name">
+                            <h6>{{bonus_for_usk_agent.name}}</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="w-50 access-button mr-1">
+                            <a href="{{bonus_for_usk_agent.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">ACCESS</a>
+                        </div>
+                        <div class="w-50 access-button">
+                            <a href="{{bonus_for_usk_agent.detail_link}}" style="color: #fff;" rel="noopener noreferrer"
+                                target="_blank">DETAILS</a>
+                        </div>
+                    </div>
+
+                    {% comment %}
                     <div class='buttons'>
                         <div class='left-col'>
                             <a href="{{bonus_for_usk_agent.link}}" class="access-bonus" rel="noopener noreferrer"
@@ -26,15 +39,9 @@
                             <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
                         </div>
                     </div>
-                    <!-- <div>
-                        <a href="{{bonus_for_usk_agent.link}}" class="access-bonus" rel="noopener noreferrer" target="_blank">ACCESS</a>
-                        <a href="" class="name-bonus" rel="noopener noreferrer" target="_blank">{{bonus_for_usk_agent.name}}</a>
-                      </div> -->
-                    <!-- <a href="{{bonus_for_usk_agent.link}}">
-                        <button class="btn-hover-bonus color-6">{{bonus_for_usk_agent.name}}</button>
-                    </a> -->
+                    {% endcomment %}
                 </div>
-             {% endfor %}
+                {% endfor %}
             </div>
         </section>
     </div>

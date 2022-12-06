@@ -1,0 +1,4 @@
+1 Need to fix the problem profile page
+    when deleting branding_image and refresh the profile page branding_image is formed without image.
+
+need to check view     

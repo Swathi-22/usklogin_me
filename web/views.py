@@ -1,6 +1,5 @@
 import json
 import os
-import uuid
 from itertools import chain
 
 from accounts.models import User
@@ -9,11 +8,11 @@ from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
 from web.models import FAQ
+from web.models import AddonServices
 from web.models import AgencyPortal
 from web.models import AgentBonus
 from web.models import BackOfficeServices
 from web.models import CallSupport
-from web.models import ChangePassword
 from web.models import CommonServicesPoster
 from web.models import DownloadDocuments
 from web.models import DownloadForms
@@ -30,20 +29,15 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
-
+from web.models import OnloadPopup
 import razorpay
-
-# from .forms import BrandingImageUploadingForm
 from .forms import BrandingImageForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
 from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
-from .helper import send_forget_password_mail
 from .utils import PDFView
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -119,6 +113,7 @@ def callback(request, pk):
             order.status = PaymentStatus.SUCCESS
             order.payment_id = payment_id
             order.signature_id = signature_id
+            order.is_active = True
             order.save()
 
             order.user.is_active = True
@@ -136,6 +131,14 @@ def callback(request, pk):
                 Password: {password}
             """
             send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
+            subject = "Registration Completed on USKLOGIN.COM"
+            message = f"""
+                One more Agent on USKLOGIN.COM
+
+                Username: {phone}
+                Password: {password}
+            """
+            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
@@ -146,21 +149,6 @@ def callback(request, pk):
 
 
 def test(request):
-    request.user
-    email = "anfasperingavu@gmail.com"
-    # upgrade_reminder_mail(user.email, user)
-    phone = "1234567890"
-    password = "1234567890"
-    email = "anfasperingavu@gmail.com"
-    subject = "Registration Completed on USKLOGIN.COM"
-    message = f"""
-        Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
-        Use this username and password to login.
-
-        Username: {phone}
-        Password: {password}
-    """
-    send_mail(subject, message, "secure.gedexo@gmail.com", [email], fail_silently=False)
     return HttpResponse("Done")
 
 
@@ -175,10 +163,9 @@ class Certificate(PDFView, LoginRequiredMixin):
         return context
 
 
-
 def upgrade_plan_request(request):
     context = {}
-    return render(request, 'web/upgrade-request.html', context)
+    return render(request, "web/upgrade-request.html", context)
 
 
 @login_required
@@ -188,8 +175,7 @@ def upgrade_plan(request):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY,
-               "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
     return render(request, "web/payment.html", context)
 
 
@@ -217,9 +203,7 @@ def upgrade_callback(request):
 
             email = order.user.email
             subject = "Upgrade Plan"
-            message = f"""
-               The scheduled upgrade has been completed successfully.
-            """
+            message = "The scheduled upgrade has been completed successfully."
             send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
@@ -235,66 +219,36 @@ def verify_signature(response_data):
     return client.utility.verify_payment_signature(response_data)
 
 
-def forgot_password(request):
-    if request.method == "POST":
-        email = request.POST.get("email")
-        if not User.objects.filter(email=email).first():
-            messages.warning(request, "User Not Found...")
-            return redirect("web:forgot_password")
-        user_obj = User.objects.get(email=email)
-        token = str(uuid.uuid4())
-        ChangePassword.objects.create(user=user_obj, forgot_password_token=token)
-        send_forget_password_mail(user_obj.email, token)
-        messages.warning(request, "An email is sent")
-        return redirect("web:forgot_password")
-    context = {}
-    return render(request, "web/forgot-password.html", context)
-
-
-@login_required
-def change_password(request, token):
-    change_password_obj = ChangePassword.objects.filter(forgot_password_token=token).first()
-    if change_password_obj.status:
-        messages.warning(request, "Link expired...")
-        return redirect("web:forgot_password")
-    print(change_password_obj.user.email)
-    user_id = User.objects.filter(email=change_password_obj.user.email).first()
-    print(change_password_obj)
-    if request.method == "POST":
-        new_password = request.POST.get("new_pswd")
-        confirm_password = request.POST.get("confirm_pswd")
-        if user_id is None:
-            messages.warning(request, "User not found...")
-            return redirect(f"/change-password/{token}/")
-        if new_password != confirm_password:
-            messages.warning(request, "Your Password and confirm Password dosen't match")
-            return redirect(f"/change-password/{token}/")
-        user_obj = User.objects.get(email=change_password_obj.user.email)
-        user_obj.set_password(new_password)
-        user_obj.save()
-        ChangePassword.objects.filter(forgot_password_token=token).update(status=True)
-        messages.success(request, "Your password is updated")
-        return redirect("web:login_view")
-    context = {"user_id": change_password_obj.user.id}
-    return render(request, "web/change-password.html", context)
-
-
 @csrf_exempt
 @login_required
 def profile(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
-    instance, created = BrandingImage.objects.get_or_create(user=request.user)
-    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, instance=instance)
+    instance = BrandingImage.objects.filter(user=request.user)
+    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, )
     if request.method == "POST":
         if branding_image_form.is_valid():
             data = branding_image_form.save(commit=False)
             data.user = request.user
             data.save()
+            subject = "Need To Verify Branding Image "
+            message = f"""
+                Username: {request.user.phone}
+                Userid: {request.user.id}, Added a branding image. Please verify the branding image.
+            """
+            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
+            print("done")
         else:
             print(branding_image_form.errors)
-    uploaded_branding_image = BrandingImage.objects.get(user=request.user)
-    subscription_validity = Subscription.objects.filter(user=request.user).last()
-    context = {"is_profile": True, "user_form": user_form, "branding_image_form": branding_image_form, 'instance': instance, "uploaded_branding_image": uploaded_branding_image,'subscription_validity':subscription_validity}
+    uploaded_branding_image = BrandingImage.objects.filter(user=request.user).last()
+    subscription_validity = Subscription.objects.filter(user=request.user, is_active=True).last()
+    context = {
+        "is_profile": True,
+        "user_form": user_form,
+        "branding_image_form": branding_image_form,
+        "instance": instance,
+        "uploaded_branding_image": uploaded_branding_image,
+        "subscription_validity": subscription_validity,
+    }
     return render(request, "web/profile.html", context)
 
 
@@ -316,11 +270,12 @@ def settings_menu(request):
 
 @login_required
 def index(request):
-    service_head = ServiceHeads.objects.all()
+    service_head = ServiceHeads.objects.all()[:12]
     latest_news = LatestNews.objects.all().last()
-    new_service_poster = NewServicePoster.objects.all()
-    important_poster = ImportantPoster.objects.all()
+    new_service_poster = NewServicePoster.objects.all().order_by('-id')[0:2]
+    important_poster = ImportantPoster.objects.all().order_by('-id')[0:2]
     branding_image = BrandingImage.objects.filter(user=request.user).last()
+    on_load_popup = OnloadPopup.objects.all().order_by('-id')
     context = {
         "is_index": True,
         "service_head": service_head,
@@ -330,6 +285,7 @@ def index(request):
         "room_name": "broadcast",
         "branding_image": branding_image,
         "room_name": "broadcast",
+        "on_load_popup":on_load_popup
     }
     return render(request, "web/index.html", context)
 
@@ -341,8 +297,8 @@ def notes(request):
 
 
 def notification(request):
-    channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
+    # channel_layer = get_channel_layer()
+    # async_to_sync(channel_layer.group_send)("notification_broadcast", {"type": "send_notification", "message": json.dumps("Notification")})
     return HttpResponse("Done")
 
 
@@ -569,11 +525,24 @@ def certificate_view(request):
     return render(request, "web/certificate.html", context)
 
 
-def upgrade_plan_request(request):
-    context = {}
-    return render(request, "web/upgrade-request.html", context)
-
-
 def buy_now_branding_image(request):
     context = {}
     return render(request, "web/buy-now.html", context)
+
+
+def add_on_services(request):
+    addon_services = AddonServices.objects.all()
+    context = {"addon_services": addon_services}
+    return render(request, "web/add-on-services.html", context)
+
+
+def newly_added_services(request):
+    service_posters = NewServicePoster.objects.all()
+    context = {"service_posters":service_posters}
+    return render(request,'web/newly-addedd-services.html',context)
+
+
+def important_services(request):
+    important_posters = ImportantPoster.objects.all()
+    context = {"important_posters":important_posters}
+    return render(request,'web/important-posters.html',context)

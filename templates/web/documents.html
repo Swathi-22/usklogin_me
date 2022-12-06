@@ -1,7 +1,6 @@
 {% extends 'web/base.html' %}
-{% block content %}
 {% load static %}
-
+{% block content %}
 
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
@@ -11,8 +10,11 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin" >
                     <div class="file-upload-box">
                         <a href="">
+                            <div class="text-center ">
+                                <span class="form-name">{{docs.title}}</span>
+                            </div>
                             <div>
-                                <h6 class="text-center form-name pt-3">{{docs.name}}</h6>
+                                <h6 class="text-center form-name pt-1">{{docs.name}}</h6>
                             </div>
                             <div class="py-1 text-center">
                                 <img src="{{docs.image.crop.100x100}}" class="form-image">
@@ -21,10 +23,10 @@
                         </a>
                         <a href="{{docs.file.url}}"  download="{{docs.file.url}}">
                             <div class="text-center">
-                                <!-- <div class="download-button text-center ">
-                                    <span class="text-center">Download File</span>
-                                </div> -->
                                 <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{docs.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
                             </div>
                             
                         </a>
@@ -35,7 +37,5 @@
         </section>
     </div>
 </div>
-
-
 
 {% endblock %}

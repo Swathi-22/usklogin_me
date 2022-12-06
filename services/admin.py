@@ -18,4 +18,4 @@ class ServicesAdmin(admin.ModelAdmin):
 
 @admin.register(BrandingImage)
 class BrandingImageAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
+    list_display = ("id", "user", "image", "is_verified")

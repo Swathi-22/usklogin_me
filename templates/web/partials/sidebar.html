@@ -4,12 +4,12 @@
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item nav-profile">
+    <!-- <li class="nav-item nav-profile">
       <a href="#" class="nav-link">
         <div class="nav-profile-image">
           <img src="{% static 'web/images/faces/face1.jpg' %}" alt="profile">
           <span class="login-status online"></span>
-          <!--change to offline or busy as needed-->
+          
         </div>
         <div class="nav-profile-text d-flex flex-column">
           <span class="font-weight-bold mb-2">David Grey. H</span>
@@ -17,7 +17,7 @@
         </div>
         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
       </a>
-    </li>
+    </li> -->
     <li class="nav-item {% if is_index %} active {% endif %}">
       <a class="nav-link" href="{% url 'web:index' %}">
         <span class="menu-title">Dashboard</span>
@@ -109,7 +109,7 @@
     </li>
     <li class="nav-item {% if is_idea %} active {% endif %}">
       <a class="nav-link" href="{% url 'web:otherIdea' %}">
-        <span class="menu-title">Other Ideas</span>
+        <span class="menu-title">Add to the Business</span>
         <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
         <i class="fa-solid fa-lightbulb menu-icon"></i>
       </a>

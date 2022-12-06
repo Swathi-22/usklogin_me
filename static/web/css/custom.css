@@ -1,0 +1,251 @@
+.head-name {
+    text-align: center;
+    color: #fff;
+    height: auto;
+    margin-top: 11px;
+}
+
+.form-detail {
+    padding: 6px 39px;
+}
+
+.row-width {
+    width: 75%;
+    margin: auto 0px;
+}
+
+.access-button {
+    background-color: #24a17d;
+    border: 1px solid #24a17d;
+    padding: 4px 0px;
+    font-size: 13px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detail-button {
+    background-color: #008b92;
+    border: 1px solid #008b92;
+    border-radius: 4px;
+    padding: 5px 0px;
+    margin: 2px auto;
+}
+
+.branding_image_uploading {
+    background: #f2edf3 !important;
+    width: 100%;
+    margin: 23px 0px;
+    height: auto;
+}
+
+.buynow_button {
+    background-color: #00409f;
+    color: #fff;
+    padding: 8px 10px;
+    margin: 0px 9px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 13px
+}
+
+.save_button {
+    background-color: #00409f !important;
+    border: 1px solid #00409f !important;
+    color: #fff;
+    padding: 9px 10px !important;
+    margin: auto !important;
+    font-size: 14px !important;
+    text-align: center !important;
+    border-radius: 13px !important;
+}
+
+
+.label-file {
+    display: block;
+    padding: 7px 10px;
+    background-color: #00409f;
+    color: #fff;
+    border-radius: 13px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.label-file:hover {
+    background-color: rgb(5, 73, 199);
+}
+
+.label-file:active {
+    background-color: rgb(1, 119, 80);
+}
+
+.get-input {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.whats-link {
+    position: fixed !important;
+    display: inline-block;
+    bottom: 6%;
+    right: -225px;
+    color: rgb(243, 243, 243) !important;
+    border-radius: 20px 0px 0 20px;
+    padding: 5px;
+    font-size: 11px !important;
+
+}
+.whatsapp-icon{
+    width: 8%;
+}
+
+.poster-view-more ,.poster-view-more:hover{
+    background-color: #008000;
+    border: 1px solid #008000;
+    padding: 10px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.div-margin{
+    margin-top: 5px;
+}
+.WHATS-APP-NOW , .WHATS-APP-NOW:hover{
+    background-color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 50%;
+    color: #fff;
+
+}
+
+
+@media only screen and (min-width:320px) and (max-width:567px) {
+    .whatsapp-icon {
+        width: 6% !important;
+    }
+    .whats-link {
+        position: fixed !important;
+        display: inline-block;
+        bottom: 2%;
+        right: -239px;
+        color: rgb(243, 243, 243) !important;
+        border-radius: 20px 0px 0 20px;
+        padding: 5px;
+        font-size: 11px !important;
+    }
+    .expiry_date {
+        margin-left: 0px !important;
+    }
+
+    .label-file {
+        margin-left: 30px;
+    }
+
+    .save_button {
+        background-color: #00409f;
+        border: 1px solid #00409f;
+        color: #fff;
+        font-size: 10px;
+        padding: 7px 10px;
+        margin: auto;
+        text-align: center;
+        border-radius: 13px
+    }
+
+    .buynow_button {
+        background-color: #00409f;
+        color: #fff;
+        padding: 9px 10px;
+        font-size: 14px;
+        /* margin: 0px 20px; */
+        margin-left: 27px;
+        text-align: center;
+        border-radius: 13px;
+    }
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+.tooltip {
+    display: contents;
+    border-bottom: 1px dotted black;
+}
+input[type="submit"] {
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    outline: 0;
+    outline-offset: 0;
+    text-decoration: none;
+    -webkit-appearance: button;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.875rem 2.5rem;
+    border-radius: 0.1875rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    background-color: #e6603d;
+    border-color: #e6603d;
+    box-shadow: none;
+    font-size: 0.875rem;
+    line-height: 1;
+    font-family: "ubuntu-bold", sans-serif;
+    color: #ffffff;
+    cursor: pointer;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 760px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    margin-top: -2px;
+    margin-left: 102px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+canvas {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+@media only screen and (min-width: 320px) and (max-width:567px) {
+    .detail-button {
+        background-color: #008b92;
+        border: 1px solid #008b92;
+        border-radius: 4px;
+        width: 87% !important;
+        margin: 2px auto;
+    }
+
+    .row-width {
+        width: 100%;
+        margin: auto 0px;
+    }
+}
+
+@media only screen and (min-width: 568px) and (max-width:768px) {
+    .detail-button {
+        background-color: #008b92;
+        border: 1px solid #008b92;
+        border-radius: 4px;
+        width: 76% !important;
+        margin: 2px auto;
+    }
+}

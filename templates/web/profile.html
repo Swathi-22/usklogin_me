@@ -2,141 +2,6 @@
 {% block content %}
 {% load static %}
 
-<style>
-    .branding_image_uploading {
-        background: #f2edf3 !important;
-        width: 100%;
-        margin: 23px 0px;
-        height: auto;
-    }
-
-    .buynow_button {
-        background-color: #00409f;
-        color: #fff;
-        padding: 7px 10px;
-        margin: 0px 9px;
-        font-size: 14px;
-        text-align: center;
-        border-radius: 13px
-    }
-
-    .save_button {
-        background-color: #00409f;
-        border: 1px solid #00409f;
-        color: #fff;
-        padding: 7px 10px;
-        margin: auto;
-        font-size: 14px;
-        text-align: center;
-        border-radius: 13px
-    }
-
-
-    .label-file {
-        display: block;
-        margin: 0 auto;
-        padding: 7px 10px;
-        background-color: #00409f;
-        color: #fff;
-        border-radius: 13px;
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .label-file:hover {
-        background-color: rgb(5, 73, 199);
-    }
-
-    .label-file:active {
-        background-color: rgb(1, 119, 80);
-    }
-
-    .get-input {
-        border: 0;
-        clip: rect(1px, 1px, 1px, 1px);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-    
-    @media only screen and (min-width:320px) and (max-width:567px) {
-        .expiry_date{
-        margin-left: 0px !important;
-    }
-        .label-file {
-        display: block;
-        margin: 0 auto;
-        padding: 7px 10px;
-        background-color: #00409f;
-        color: #fff;
-        border-radius: 13px;
-        font-size: 10px;
-        text-align: center;
-    }
-
-    .save_button {
-        background-color: #00409f;
-        border: 1px solid #00409f;
-        color: #fff;
-        font-size: 10px;
-        padding: 7px 10px;
-        margin: auto;
-        text-align: center;
-        border-radius: 13px
-    }
-    .buynow_button {
-        background-color: #00409f;
-        color: #fff;
-        padding: 7px 10px;
-        font-size: 10px;
-        margin: 0px 8px;
-        text-align: center;
-        border-radius: 13px
-    }
-    }
-
-    @media only screen and (min-width:1044px){
-        /* .buynow_button {
-        background-color: #00409f;
-        color: #fff;
-        padding: 7px 10px;
-        margin: 0px 9px;
-        text-align: center;
-        font-size: 14px;
-        border-radius: 13px
-    }
-
-    .save_button {
-        background-color: #00409f;
-        border: 1px solid #00409f;
-        color: #fff;
-        padding: 7px 10px;
-        margin: auto;
-        text-align: center;
-        font-size: 14px;
-        border-radius: 13px
-    }
-
-
-    .label-file {
-        display: block;
-        margin: 0 auto;
-        padding: 7px 10px;
-        background-color: #00409f;
-        color: #fff;
-        border-radius: 13px;
-        font-size: 14px;
-        text-align: center;
-    } */
-    .responsive-size{
-        height: 90px;
-    }
-    }
-</style>
-
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
 
@@ -149,8 +14,7 @@
                         {% else %}
                         <img class="rounded-circle mt-5" width="150px" src="{% static 'web/images/deafult-01.jpg' %}">
                         {% endif %}
-                        <span class="font-weight-bold">{{request.user.name}}</span>
-                        <span class="text-black-50">{{request.user.category}}</span>
+                        <span class="text-black-50"></span>
                         <span> </span>
                     </div>
                 </div>
@@ -163,7 +27,6 @@
                             <div class="col-md-12"><label class="labels">Name</label>
                                 <input type="text" class="form-control" value="{{request.user.name}}">
                             </div>
-
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"><label class="labels">Mobile Number</label>
@@ -171,6 +34,9 @@
                             </div>
                             <div class="col-md-12"><label class="labels">Email Id</label>
                                 <input type="text" class="form-control" value="{{request.user.email}}">
+                            </div>
+                            <div class="col-md-12"><label class="labels">Category</label>
+                                <input type="text" class="form-control" value="{{request.user.category}}">
                             </div>
                             <div class="col-md-12"><label class="labels">Shop Name</label>
                                 <input type="text" class="form-control" value="{{request.user.shop_name}}">
@@ -206,17 +72,18 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-3 col-3">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-6">
                                 <div class="d-flex justify-content-between align-items-center experience">
-                                    <a href="{% url 'web:upgrade_plan' %}">
-                                        <button class="editbtn" id="chatBtn"><i class="fa-solid fa-sack-dollar"></i>
-                                            Plan</button>
+                                    <a href="{% url 'web:add_on_services' %}">
+                                        <button class="certificate" id="chatBtn"><i
+                                                class="fa-solid fa-person-circle-plus"></i>
+                                            Add-on Services</button>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-6 col-6">
                                 <div class="d-flex justify-content-between align-items-center experience">
-                                    <a href="{% url 'web:certificate_view' %}">
+                                    <a href="{% url 'web:pdf_certificate' %}" target="_blank">
                                         <button class="certificate" id="chatBtn"><i class="fa-solid fa-download"></i>
                                             Download Certificate</button>
                                     </a>
@@ -230,6 +97,41 @@
                                     </a>
                                 </div>
                             </div>
+                            {% if upgraded %}
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-6">
+                                <div class="d-flex justify-content-between align-items-center experience">
+                                    <a href="{% url 'web:call_support' %}">
+                                        <button class="certificate" id="chatBtn"><i class="fa-solid fa-phone"></i>
+                                            Call</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-6">
+                                <div class="d-flex justify-content-between align-items-center experience">
+                                    <a href="{% url 'web:whatsapp_support' %}">
+                                        <button class="certificate" id="chatBtn"><i class="fa-brands fa-whatsapp"></i>
+                                            Whatsapp</button>
+                                    </a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-6">
+                                <div class="d-flex justify-content-between align-items-center experience">
+                                    <a href="{% url 'web:upgrade_plan_request' %}">
+                                        <button class="certificate" id="chatBtn"><i
+                                                class="fa-solid fa-phone"></i>Call</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-6">
+                                <div class="d-flex justify-content-between align-items-center experience">
+                                    <a href="{% url 'web:upgrade_plan_request' %}">
+                                        <button class="certificate" id="chatBtn"><i class="fa-brands fa-whatsapp"></i>
+                                            Whatsapp</button>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -238,36 +140,78 @@
         <div class="row">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="branding_image_uploading">
-                    {% if uploaded_branding_image.image %}
-                    <img src="{{uploaded_branding_image.image.crop.1000x100}}" style="width: 100%;" class="responsive-size">
+                <div class="branding_image_uploading ">
+                    {% if uploaded_branding_image.is_verified == True %}
+                    <h3>Image Verified By Admin</h3>
+                    <img src="{{uploaded_branding_image.image.crop.1080x222}}" style="width: 100%;"
+                        class="responsive-size">
+                    {% elif uploaded_branding_image.is_verified == False %}
+                    <h3>Image not Verified By Admin</h3>
+                    <img src="{{uploaded_branding_image.image.crop.1080x222}}" style="width: 100%;"
+                        class="responsive-size">
                     {% else %}
-                    <h5 style="text-align: center;color: rgb(77, 3, 3);padding: 40px 0px;">Upload Your Branding Image</h5>
+                    <h5 style="text-align: center;color: rgb(77, 3, 3);padding: 40px 0px;">Upload Your Branding Image
+                    </h5>
                     {% endif %}
                 </div>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
-                            <label class="label-file">{{branding_image_form.image}} Upload Image</label>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
-                            <input type="submit" value="Save Uploaded Image" class="save_button">
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-4">
+
+            <div class="col-lg-12">
+                <div class="row">
+                    {% if uploaded_branding_image.image %}
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-4 tooltip">
+                        <span class="tooltiptext">To change branding image you need to contact admin.
+                        </span>
+                        <a href="{% url 'web:buy_now_branding_image' %}">
+                            <div class="buynow_button">
+                                Change Image
+                            </div>
+                        </a>
+                    </div>
+
+                    {% else %}
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            {% csrf_token %}
+
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-4 tooltip">
+                                <span class="tooltiptext">To download a poster with branding of your organization,
+                                    upload an image size of (222 PX * 1080 PX ) <br>
+                                    നിങ്ങളുചട സ്ഥാപനത്തിന്ചറ ത് ാൻേിംഗ് ഉള്ള ഒരു ഡപാസ്റ്റർ േൗൺഡലാഡ് ചെയ്യാൻ,
+                                    (222 PX * 1080 PX ) സസസ് ഒരു ഇഡേജ് അപ്ഡലാഡ് ചെയ്യുക
+                                </span>
+                                <label class="label-file">{{branding_image_form.image}} Upload Image</label>
+
+                            </div>
+
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-4">
+                                <input type="submit" value="Save Uploaded Image" class="save_button">
+                            </div>
+
+
+                            {% endif %}
+
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-4">
                                 <a href="{% url 'web:buy_now_branding_image' %}">
                                     <div class="buynow_button">
                                         Buy Now
                                     </div>
                                 </a>
+                            </div>
                         </div>
-                    </div>
                 </div>
-            </form>
 
+            </div>
+            </form>
+            <div class="row pt-3">
+                <div class="col-lg-12 col-12">
+                    <span>*To know how to edit the image <a
+                            href="https://upabokthasevanakendram.com/usk-login-brand-image.html" target="_blank"
+                            rel="noopener noreferrer">Click Here</a></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
