@@ -152,5 +152,5 @@ MAILGUN_FROM_EMAIL = "secure.gedexo@gmail.com"
 
 
 # For development
-# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
 # CSRF_TRUSTED_ORIGINS = ["https://pvanfas-humble-computing-machine-5x49x4p74vj2vrj5-8000.preview.app.github.dev"]
