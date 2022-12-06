@@ -1,3 +1,16 @@
+<style> 
+.pop-up-image{
+    height: 300px;
+    margin: 0px auto;
+}
+@media only screen and (min-width:320px) and (max-width:567px) {
+   .pop-up-image{
+    width: 100%;
+   }
+
+}
+
+</style>
 <!-- Button trigger modal -->
 <button type="button" class="btn d-none" id="modal_toggler" data-toggle="modal" data-target="#staticBackdrop" style="">
     Launch
@@ -5,7 +18,7 @@
 
 <!-- Modal -->
 <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" style="padding-right:0px;">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,8 +30,8 @@
             <div class="modal-body">
 
                 {% for onload_popup in on_load_popup|slice:":1" %}
-                <div style="height: auto;width: 400px;" class="mx-auto">
-                    <img src="{{onload_popup.image.url}}" class="onload-image">
+                <div class="mx-auto popup-image text-center">
+                    <img src="{{onload_popup.image.url}}" class="pop-up-image">
                 </div>
                 <div class="text-center py-3">
                     <span class="modal-desc">
