@@ -30,7 +30,7 @@
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
-            <button class="btn-sm btn btn-primary generate" target="_blank" rel="noopener noreferrer"
+            <button class="btn-sm btn btn-primary generate" target="_blank"
               data-source="{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
@@ -56,7 +56,7 @@
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
-            <button class="btn-sm btn btn-primary generate" target="_blank" rel="noopener noreferrer"
+            <button class="btn-sm btn btn-primary generate" target="_blank"
               data-source="{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
@@ -71,7 +71,7 @@
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
-            <button class="btn-sm btn btn-primary generate" target="_blank" rel="noopener noreferrer"
+            <button class="btn-sm btn btn-primary generate" target="_blank"
               data-source="{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
@@ -91,7 +91,7 @@
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
-            <button class="btn-sm btn btn-primary generate" target="_blank" rel="noopener noreferrer"
+            <button class="btn-sm btn btn-primary generate" target="_blank"
               data-source="{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
@@ -111,7 +111,7 @@
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
-            <button class="btn-sm btn btn-primary generate" target="_blank" rel="noopener noreferrer"
+            <button class="btn-sm btn btn-primary generate" target="_blank"
               data-source="{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
@@ -131,7 +131,7 @@
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
-            <button class="btn-sm btn btn-primary generate" target="_blank" rel="noopener noreferrer"
+            <button class="btn-sm btn btn-primary generate" target="_blank"
               data-source="{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
@@ -153,7 +153,7 @@
       </div>
       <div class="modal-body">
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="modalFooter">
 
       </div>
     </div>
@@ -180,19 +180,9 @@
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
-    
-    image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-    // create a a tag inside modal-footer
-    var link = document.createElement('a');
-    link.setAttribute('href', image);
-    link.setAttribute('download', 'image.png');
-    link.setAttribute('class', 'btn btn-primary');
-    link.innerHTML = 'Download';
-    var modalFooter = document.querySelector('.modal-footer');
-    modalFooter.appendChild(link);
   }
 
-  var buttons = document.querySelectorAll('button.generate');
+  var buttons = document.querySelectorAll('.generate');
   var Width = 1080; //> same width to both images
   var headerImageHeight = 1080;
   var footerImageHeight = 222;
@@ -203,7 +193,6 @@
       $('.modal-body').empty();
       $('#exampleModalCenter').modal('show');
       generateImage(this);
-
     });
   });
 

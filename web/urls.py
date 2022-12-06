@@ -6,8 +6,8 @@ from django.views.static import serve
 app_name = "web"
 
 urlpatterns = [
-    # path("", views.login_view, name="login_view"),
     path("", views.index, name="index"),
+    path("expired/", views.expired, name="expired"),
     path("start/", views.start, name="start"),
     path("register/", views.register, name="register"),
     path("profile/", views.profile, name="profile"),
@@ -41,11 +41,7 @@ urlpatterns = [
     path("callback/<str:pk>/", views.callback, name="callback"),
     path("plan_upgrading/", views.upgrade_plan, name="upgrade_plan"),
     path("upgrade-callback/", views.upgrade_callback, name="upgrade_callback"),
-    path("download-certificate/", views.certificate_view, name="certificate_view"),
     path("download-pdf-certificate/", views.Certificate.as_view(), name="pdf_certificate"),
-    # path('download-certificate-download/', PDFView.as_view(template_name="web/certificate.html"),name="certificate"),
-    # path("logout/", views.logout_view, name="logout"),
-    path("test/", views.test, name="test"),
     path("buynow-branding-image/", views.buy_now_branding_image, name="buy_now_branding_image"),
     path("add-on_services/", views.add_on_services, name="add_on_services"),
     path("newly-addedd-services/", views.newly_added_services, name="newly_added_services"),

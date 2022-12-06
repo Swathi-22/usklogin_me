@@ -58,6 +58,10 @@ RAZOR_PAY_KEY = "rzp_test_gmilUW5MZmHsEK"
 RAZOR_PAY_SECRET = "z7rD3fi8O6rS8vsVMRvmbGkW"
 
 
+def expired(request):
+    return render(request, "web/expired.html")
+
+
 def start(request):
     if request.method == "POST":
         mobile = request.POST.get("mobile", None)
@@ -146,10 +150,6 @@ def callback(request, pk):
         return render(request, "web/callback.html", context={"status": order_status})
     else:
         return render(request, "web/payment.html")
-
-
-def test(request):
-    return HttpResponse("Done")
 
 
 class Certificate(PDFView, LoginRequiredMixin):
