@@ -7,13 +7,13 @@
         <div class="container">
             <div class="row ">
                 {% for each_tools in tools %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
-                    <div class="card card-body">
+                <div class="col-lg-2 col-md-4 col-sm-6 col-6 grid-margin">
+                    <div class="card">
                         <div class="card-image">
                             <img src="{{each_tools.image.url}}" alt="">
                         </div>
                         <div class="head-name">
-                            <h6>{{each_tools.name}}</h6>
+                            <h6 style="color:#000 ;">{{each_tools.name}}</h6>
                         </div>
                     </div>
                     <div class="d-flex">

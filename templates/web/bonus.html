@@ -8,13 +8,13 @@
         <section>
             <div class="row">
                 {% for bonus_for_usk_agent in agent_bonus %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
+                <div class="col-lg-2 col-md-4 col-sm-6 col-6 grid-margin">
                     <div class="card">
                         <div class="card-body-bonus">
                             <img src="{{bonus_for_usk_agent.image.url}}" alt="">
                         </div>
                         <div class="head-name">
-                            <h6>{{bonus_for_usk_agent.name}}</h6>
+                            <h6 style="color:#000 ;">{{bonus_for_usk_agent.name}}</h6>
                         </div>
                     </div>
                     <div class="d-flex">

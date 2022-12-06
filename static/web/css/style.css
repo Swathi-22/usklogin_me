@@ -15228,7 +15228,7 @@ code {
 /* Utilities */
 .grid-margin,
 .purchase-popup {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (min-width: 576px) {
@@ -17648,8 +17648,11 @@ code {
 /* Cards */
 .card {
   border: 0;
-  background: #fff;
   margin-bottom: 1rem;
+  width: 100% !important;
+  background-color: #abd1c6 !important;
+  padding: 14px 7px;
+  border-radius: 5px;
 }
 
 .card .card-body {
@@ -20618,7 +20621,7 @@ a:hover {
   .card {
     width: 100% !important;
     background-color: #abd1c6 !important;
-    padding: 23px 23px;
+    padding: 14px 7px;
     border-radius: 5px;
     box-shadow: 3px 3px 10px #000 85;
   }
