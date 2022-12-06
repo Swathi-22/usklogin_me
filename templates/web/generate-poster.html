@@ -179,6 +179,17 @@
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
+
+    var modalFooter = document.querySelector('.modal-footer');
+    modalFooter.empty();
+
+    image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+    var link = document.createElement('a');
+    link.setAttribute('href', image);
+    link.setAttribute('download', 'image.png');
+    link.setAttribute('class', 'btn btn-primary d-block');
+    link.innerHTML = 'Download';
+    modalFooter.appendChild(link);
   }
 
   var buttons = document.querySelectorAll('.generate');
