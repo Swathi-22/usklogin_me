@@ -283,7 +283,7 @@ def index(request):
     on_load_popup = OnloadPopup.objects.all().order_by('-id')
     context = {
         "is_index": True,
-        "service_head": service_head,
+        "service_head": service_head,   
         "latest_news": latest_news,
         "new_service_poster": new_service_poster,
         "important_poster": important_poster,
@@ -548,12 +548,14 @@ def add_on_services(request):
 # @subscription_required
 def newly_added_services(request):
     service_posters = NewServicePoster.objects.all()
-    context = {"service_posters":service_posters}
+    branding_image = BrandingImage.objects.filter(user=request.user).last()
+    context = {"service_posters":service_posters , 'branding_image':branding_image}
     return render(request,'web/newly-addedd-services.html',context)
 
 @login_required
 # @subscription_required
 def important_services(request):
     important_posters = ImportantPoster.objects.all()
-    context = {"important_posters":important_posters}
+    branding_image = BrandingImage.objects.filter(user=request.user).last()
+    context = {"important_posters":important_posters,'branding_image':branding_image}
     return render(request,'web/important-posters.html',context)
