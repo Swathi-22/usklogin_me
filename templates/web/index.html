@@ -74,7 +74,6 @@
         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
           <h6 class="pb-2 service-heading">NEWLY ADDED SERVICES</h6>
           <div class="container">
-           
               <div class="row">
                 {% for obj in new_service_poster %}
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
@@ -89,13 +88,13 @@
                   </div>
                 </div>
                 {% endfor %}
-                <div class="row">
+               
                   <div class="col-lg-12 col-12 mt-3">
                     <a href="{% url 'web:newly_added_services' %}" class="poster-view-more d-inline-block">
                       View More
                     </a>
                   </div>
-                </div>
+               
                 <div class="img-popup">
                   <div class="container" id="resultContainer" style="display: none;">
   
@@ -110,14 +109,11 @@
                   </div>
                 </div>
               </div>
-           
-            
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
           <h6 class="pb-2 service-heading">IMPORTANT</h6>
           <div class="container">
-            
               <div class="row">
                 {% for obj in important_poster %}
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
@@ -132,16 +128,14 @@
                   </div>
                 </div>
                 {% endfor %}
-                <div class="row">
+               
                   <div class="col-lg-12 col-12 mt-3">
                     <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
                       View More
                     </a>
                   </div>
-                </div>
+               
               </div>
-           
-           
           </div>
         </div>
       </div>
