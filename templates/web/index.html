@@ -187,9 +187,7 @@
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
 
     var modalFooter = document.querySelector('.modal-footer');
-    modalFooter.empty({
-      
-    });
+    modalFooter.innerHTML = '';
 
     image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
     var link = document.createElement('a');
