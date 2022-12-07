@@ -239,6 +239,7 @@ def profile(request):
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.filter(user=request.user).last()
     subscription_validity = Subscription.objects.filter(user=request.user, is_active=True).last()
+
     context = {
         "is_profile": True,
         "user_form": user_form,
@@ -435,14 +436,7 @@ def bonus(request):
 @login_required
 def support(request):
     user = request.user
-    upgraded = False
-    subscription = Subscription.objects.filter(user=user, is_active=True)
-    print(subscription)
-    for subs in subscription:
-        # get subscription that falls between current time period, check wheher it is active or not
-        print(upgraded = subs.is_active)
-        print(valid= subs.is_valid)
-    context = {"is_support": True, "upgraded": upgraded, "room_name": "broadcast"}
+    context = {"is_support": True, "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
 
