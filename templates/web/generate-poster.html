@@ -177,6 +177,8 @@
     var footerImage = document.getElementById('footerImage');
     var source = elm.getAttribute('data-source');
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
+    console.log(dataImage);
+
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
 
