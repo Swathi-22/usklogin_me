@@ -13,15 +13,15 @@
   
           <div class="row">
   
-            {% for posters in service_posters %}
+            {% for obj in service_posters %}
             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
               <div class="card card-body w-100">
-                <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-                <span>{{posters.title}}</span>
-
-                <div class="text-center mt-3">
-                  <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{posters.id | apnumber }}">Download</button>
-                  <a href="{{posters.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+                <p class="my-1">{{obj.title}}</p>
+                <div class="text-center">
+                  <button class="btn-sm btn btn-primary generate" target="_blank"
+                    data-source="{{obj.id | apnumber }}">Download</button>
+                  <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
                 </div>
               </div>
             </div>
