@@ -10,6 +10,19 @@
     <section class="pt-3">
         <h6 class="pb-4 service-heading">IMPORTANT</h6>
         <div class="container">
+          <div class="d-none">
+            <div class="service-heading">
+              <h5>Branding Image</h5>
+            </div>
+            <div class="container">
+              {% if branding_image.image %}
+              <img src="{{branding_image.image.crop.1000x100}}" id="footerImage" alt="Image">
+              {% else %}
+              <h4>....</h4>
+              {% endif %}
+            </div>
+          </div>
+      
   
           <div class="row">
             {% for obj in important_posters %}
