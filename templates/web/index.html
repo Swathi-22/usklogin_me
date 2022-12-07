@@ -78,11 +78,11 @@
               {% for obj in new_service_poster %}
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
-                  <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+                  <img src="{{obj.image.url}}" data-id="new_service_poster-{{obj.id | apnumber }}" alt="Image">
                   <p class="my-1">{{obj.title}}</p>
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
-                      data-source="{{obj.id | apnumber }}">Download</button>
+                      data-source="new_service_poster-{{obj.id | apnumber }}">Download</button>
                     <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
                   </div>
                 </div>
@@ -118,22 +118,20 @@
               {% for obj in important_poster %}
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
-                  <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+                  <img src="{{obj.image.url}}" data-id="important-poster-{{obj.id | apnumber }}" alt="Image">
                   <p class="my-1">{{obj.title}}</p>
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
-                      data-source="{{obj.id | apnumber }}">Download</button>
+                      data-source="important-poster-{{obj.id | apnumber }}">Download</button>
                     <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
                   </div>
                 </div>
               </div>
               {% endfor %}
-              <div class="row">
-                <div class="col-lg-12 col-12 mt-3">
-                  <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
-                    View More
-                  </a>
-                </div>
+              <div class="col-lg-12 col-12 mt-3">
+                <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
+                  View More
+                </a>
               </div>
             </div>
           </div>
@@ -183,6 +181,7 @@
     var footerImage = document.getElementById('footerImage');
     var source = elm.getAttribute('data-source');
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
+    console.log(dataImage);
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
 
