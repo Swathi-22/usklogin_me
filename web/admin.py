@@ -117,7 +117,7 @@ class FAQAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("user", "status")
+    list_display = ("user", "amount", "is_active", "status", "valid_from", "valid_upto")
 
 
 @admin.register(CallSupport)

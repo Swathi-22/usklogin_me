@@ -117,7 +117,6 @@ def callback(request, pk):
             order.status = PaymentStatus.SUCCESS
             order.payment_id = payment_id
             order.signature_id = signature_id
-            order.is_active = True
             order.save()
 
             order.user.is_active = True
@@ -171,7 +170,7 @@ def upgrade_plan_request(request):
 @login_required
 def upgrade_plan(request):
     user = request.user
-    amount = 4000
+    amount = 400
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
@@ -198,7 +197,6 @@ def upgrade_callback(request):
             order.signature_id = signature_id
             order.save()
 
-            order.user.is_active = True
             order.user.save()
 
             email = order.user.email
@@ -439,9 +437,11 @@ def support(request):
     user = request.user
     upgraded = False
     subscription = Subscription.objects.filter(user=user, is_active=True)
+    print(subscription)
     for subs in subscription:
         # get subscription that falls between current time period, check wheher it is active or not
-        upgraded = subs.is_active
+        print(upgraded = subs.is_active)
+        print(valid= subs.is_valid)
     context = {"is_support": True, "upgraded": upgraded, "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
