@@ -18,11 +18,16 @@ class Order(models.Model):
     valid_from = models.DateTimeField(default=timezone.now)
     valid_upto = models.DateTimeField(blank=True,null=True, editable=False)
     is_active = models.BooleanField("Mark as Active", default=False)
-    
+
+    @property
+    def is_valid(self):
+        return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
+
     def __str__(self):
         return f"{self.id}-{self.user}-{self.status}"
 
     def save(self, *args, **kwargs):
+        self.is_active = True if self.valid_from + timedelta(days=365) >= timezone.now() else False
         self.valid_upto = self.valid_from + timedelta(days=365)
         super().save(*args, **kwargs)
 
@@ -317,6 +322,7 @@ class Subscription(models.Model):
         return str(f"{self.user}- {self.is_active} - {self.valid_from} - {self.valid_upto}")
 
     def save(self, *args, **kwargs):
+        self.is_active = True if self.valid_from + timedelta(days=30) >= timezone.now() else False
         self.valid_upto = self.valid_from + timedelta(days=30)
         super().save(*args, **kwargs)
 
