@@ -38,6 +38,7 @@ from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
 from .utils import PDFView
+from .decorators import subscription_required
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -168,6 +169,7 @@ def upgrade_plan_request(request):
 
 
 @login_required
+@subscription_required
 def upgrade_plan(request):
     user = request.user
     amount = 400
@@ -179,6 +181,7 @@ def upgrade_plan(request):
 
 
 @login_required
+@subscription_required
 @csrf_exempt
 def upgrade_callback(request):
     user = request.user
@@ -219,6 +222,7 @@ def verify_signature(response_data):
 
 @csrf_exempt
 @login_required
+@subscription_required
 def profile(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
     instance = BrandingImage.objects.filter(user=request.user)
@@ -252,6 +256,7 @@ def profile(request):
 
 
 @login_required
+@subscription_required
 def profile_update(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
     context = {"user_form": user_form}
@@ -268,6 +273,7 @@ def settings_menu(request):
 
 
 @login_required
+@subscription_required
 def index(request):
     service_head = ServiceHeads.objects.all()[:12]
     latest_news = LatestNews.objects.all().last()
@@ -290,6 +296,7 @@ def index(request):
 
 
 @login_required
+@subscription_required
 def notes(request):
     context = {"room_name": "broadcast"}
     return render(request, "web/notes.html", context)
@@ -302,6 +309,7 @@ def notification(request):
 
 
 @login_required
+@subscription_required
 def generatePoster(request):
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
@@ -320,6 +328,7 @@ def generatePoster(request):
 
 @csrf_exempt
 @login_required
+@subscription_required
 def search_items(request):
     if request.POST:
         search_Key = request.POST["search_Key"]
@@ -337,6 +346,7 @@ def search_items(request):
 
 
 @login_required
+@subscription_required
 def generateBill(request):
     services = Services.objects.all()
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
@@ -345,6 +355,7 @@ def generateBill(request):
 
 @csrf_exempt
 @login_required
+@subscription_required
 def searching_invoice(request):
     search = ""
     invoice = ""
@@ -359,6 +370,7 @@ def searching_invoice(request):
 
 
 @login_required
+@subscription_required
 def generateForms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
@@ -366,6 +378,7 @@ def generateForms(request):
 
 
 @login_required
+@subscription_required
 def download(request, path):
     file_path = os.path.join(settings.MEDIA_ROOT, path)
     if os.path.exists(file_path):
@@ -377,6 +390,7 @@ def download(request, path):
 
 
 @login_required
+@subscription_required
 def documents(request):
     documents = DownloadDocuments.objects.all()
     context = {"is_document": True, "documents": documents, "room_name": "broadcast"}
@@ -384,6 +398,7 @@ def documents(request):
 
 
 @login_required
+@subscription_required
 def software(request):
     softwares = Softwares.objects.all()
     context = {"is_software": True, "softwares": softwares, "room_name": "broadcast"}
@@ -391,6 +406,7 @@ def software(request):
 
 
 @login_required
+@subscription_required
 def tools(request):
     tools = Tools.objects.all()
     context = {"is_tool": True, "tools": tools, "room_name": "broadcast"}
@@ -398,6 +414,7 @@ def tools(request):
 
 
 @login_required
+@subscription_required
 def marketingTip(request):
     marketing_tips = MarketingTips.objects.all()
     context = {"is_tip": True, "marketing_tips": marketing_tips, "room_name": "broadcast"}
@@ -406,6 +423,7 @@ def marketingTip(request):
 
 
 @login_required
+@subscription_required
 def otherIdea(request):
     other_ideas = OtherIdeas.objects.all()
     context = {"is_idea": True, "other_ideas": other_ideas, "room_name": "broadcast"}
@@ -413,6 +431,7 @@ def otherIdea(request):
 
 
 @login_required
+@subscription_required
 def agencyPortal(request):
     agency_portal = AgencyPortal.objects.all()
     context = {"is_portal": True, "agency_portal": agency_portal, "room_name": "broadcast"}
@@ -420,6 +439,7 @@ def agencyPortal(request):
 
 
 @login_required
+@subscription_required
 def backOfficeServices(request):
     back_office_services = BackOfficeServices.objects.all()
     context = {"is_backservice": True, "back_office_services": back_office_services, "room_name": "broadcast"}
@@ -427,6 +447,7 @@ def backOfficeServices(request):
 
 
 @login_required
+@subscription_required
 def bonus(request):
     agent_bonus = AgentBonus.objects.all()
     context = {"is_bonus": True, "agent_bonus": agent_bonus, "room_name": "broadcast"}
@@ -434,6 +455,7 @@ def bonus(request):
 
 
 @login_required
+@subscription_required
 def support(request):
     user = request.user
     context = {"is_support": True, "room_name": "broadcast"}
@@ -441,6 +463,7 @@ def support(request):
 
 
 @login_required
+@subscription_required
 def supportRequest(request):
     forms = SupportRequestForm(request.POST or None)
     if request.method == "POST":
@@ -457,6 +480,7 @@ def supportRequest(request):
 
 
 @login_required
+@subscription_required
 def F_A_Q(request):
     Frequently_Asked_Questions = FAQ.objects.all()
     context = {"Frequently_Asked_Questions": Frequently_Asked_Questions, "room_name": "broadcast"}
@@ -464,6 +488,7 @@ def F_A_Q(request):
 
 
 @login_required
+@subscription_required
 def supportTicket(request):
     forms = SupportTicketForm(request.POST or None)
     if request.method == "POST":
@@ -480,6 +505,7 @@ def supportTicket(request):
 
 
 @login_required
+@subscription_required
 def call_support(request):
     call_support = CallSupport.objects.all()
     context = {"call_support": call_support}
@@ -487,6 +513,7 @@ def call_support(request):
 
 
 @login_required
+@subscription_required
 def whatsapp_support(request):
     whatsapp_support = WhatsappSupport.objects.all()
     context = {"whatsapp_support": whatsapp_support}
@@ -498,44 +525,34 @@ def termsConditions(request):
     return render(request, "web/terms&conditions.html", context)
 
 
-def payment(request):
-    context = {}
-    return render(request, "web/payment.html", context)
-
-
-def paymentsuccess(request):
-    context = {}
-    return render(request, "web/paymentsuccess.html", context)
-
-
-def paymentfail(request):
-    context = {}
-    return render(request, "web/paymentfail.html", context)
-
-
 @login_required
+@subscription_required
 def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
 
-
+@login_required
+@subscription_required
 def buy_now_branding_image(request):
     context = {}
     return render(request, "web/buy-now.html", context)
 
-
+@login_required
+@subscription_required
 def add_on_services(request):
     addon_services = AddonServices.objects.all()
     context = {"addon_services": addon_services}
     return render(request, "web/add-on-services.html", context)
 
-
+@login_required
+@subscription_required
 def newly_added_services(request):
     service_posters = NewServicePoster.objects.all()
     context = {"service_posters":service_posters}
     return render(request,'web/newly-addedd-services.html',context)
 
-
+@login_required
+@subscription_required
 def important_services(request):
     important_posters = ImportantPoster.objects.all()
     context = {"important_posters":important_posters}
