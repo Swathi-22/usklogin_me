@@ -3,150 +3,11 @@
 {% block content %}
 
 {% csrf_token %}
-<style>
-  .popup a {
-    text-decoration: none;
-  }
 
-  .popup-onload {
-    width: 100%;
-    margin: 0 auto;
-    position: fixed;
-    z-index: 100;
-    background: #01010ebf;
-    height: 100vh;
-  }
-
-  .popup {
-    width: 800px;
-    min-width: 800px;
-    max-width: 90%;
-    min-height: 150px;
-    margin: 40px auto;
-    background: #fff;
-    opacity: 0.9;
-    position: relative;
-    z-index: 10;
-    padding: 15px 35px;
-    /* box-shadow: 0 2px 5px #000; */
-    border-radius: 29px;
-  }
-
-  .popup p {
-    color: #fff;
-    /* text-align: justify; */
-    font-size: 1.25rem;
-    line-height: 1.6;
-    font-weight: 400;
-    font-family: "Nunito Sans", sans-serif;
-  }
-
-  .popup p a {
-    color: #b18d73;
-    font-weight: 400;
-  }
-
-  .x {
-    color: #b18d73;
-    font-size: 2rem;
-    line-height: 1.6;
-    font-weight: 400;
-    font-family: "Nunito Sans", sans-serif;
-    text-decoration: none;
-    position: absolute;
-    right: 15px;
-    top: 0;
-  }
-
-  .x:hover {
-    cursor: pointer;
-  }
-
-  .popup-wrapper {
-    width: 100vw;
-    height: 100vh;
-    background-color: #efefef;
-
-    color: #b18d73;
-    font-size: 2rem;
-    line-height: 1.6;
-    font-weight: 400;
-    font-family: "Nunito Sans", sans-serif;
-    text-align: center;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  .onload-image {
-    width: 100%;
-    height: auto;
-  }
-  @media only screen and (min-width:320px) and (max-width:567px) {
-    .onload-image {
-    width: 80%;
-    height: auto;
-  }
-  .popup {
-    width: 690px;
-    min-width: 399px;
-    max-width: 40%;
-    min-height: 150px;
-    margin: 40px auto;
-    background: #fff;
-    opacity: 0.9;
-    position: relative;
-    z-index: 10;
-    padding: 15px 35px;
-    /* box-shadow: 0 2px 5px #000; */
-    border-radius: 29px;
-}
-  }
-  @media only screen and (min-width:568px) and (max-width:770px) {
-    .popup {
-    width: 800px;
-    min-width: 642px;
-    max-width: 74%;
-    min-height: 150px;
-    margin: 40px auto;
-    background: #fff;
-    opacity: 0.9;
-    position: relative;
-    z-index: 10;
-    padding: 15px 35px;
-    /* box-shadow: 0 2px 5px #000; */
-    border-radius: 29px;
-}
-  }
-</style>
-
- 
-<body>
-  <div class='popup-onload'>
-    <div class='popup'>
-      <a href='' class="x">x</a>
-      {% for onload_popup in on_load_popup|slice:":1" %}
-      <div style="height: auto;width: 400px;" class="mx-auto">
-        <img src="{{onload_popup.image.url}}" class="onload-image">
-      </div>
-      <div class="text-center py-3">
-        <span class="modal-desc">
-          {{onload_popup.title}}
-        </span>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</body>
 
 <div class="main-panel " id="demo">
 
   <div class="content-wrapper" id="demo2">
-
-
-    <!-- service head display -->
     <section>
       <div class="row">
 
@@ -159,8 +20,6 @@
         </div>
         {% endfor %}
 
-
-
         {% comment %}
         <div class="col-lg-3 col-md-2 col-sm-4 col-4 pb-4">
           <div class="service-main-head text-center bg-gradient-danger">
@@ -169,9 +28,12 @@
         </div>
         {% endcomment %}
       </div>
-      <!-- <div class="text-center py-5 ">
+
+      <!-- 
+        <div class="text-center py-5 ">
         <a href="{% url 'services:serviceHead' %}" class="show-more badge-gradient-info">Show More</a>
-      </div> -->
+      </div>
+     -->
     </section>
 
     <!--news scrolling  -->
@@ -179,11 +41,11 @@
       <div class="alert alert-info">
         <span class="text1">
 
-          <marquee><b>{{latest_news.news}}</b>
+          <marquee>{{latest_news.news}}
             {% if not latest_news.link %}
             <span></span>
             {% else %}
-            <span> <a href="{{latest_news.link}}" rel="noopener noreferrer" target="_blank" class="news">Click
+            <span> <a href="{{latest_news.link}}" target="_blank" class="news">Click
                 Here</a></span>
             {% endif %}
           </marquee>
@@ -202,9 +64,9 @@
         {% else %}
         <h4>....</h4>
         {% endif %}
-
       </div>
     </div>
+
 
 
     <section>
@@ -213,39 +75,24 @@
           <h6 class="pb-2 service-heading">NEWLY ADDED SERVICES</h6>
           <div class="container">
             <div class="row">
-              {% for posters in new_service_poster %}
+
+              {% for obj in new_service_poster %}
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
-                  <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-                  <span>{{posters.title}}</span>
-
-                  <div class="text-center mt-3">
-                    <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{posters.id | apnumber }}">Download</button>
-                    <a href="{{posters.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                  <img src="{{obj.image.url}}" data-id="new_service_poster-{{obj.id | apnumber }}" alt="Image">
+                  <p class="my-1">{{obj.title}}</p>
+                  <div class="text-center">
+                    <button class="btn-sm btn btn-primary generate" target="_blank"
+                      data-source="new_service_poster-{{obj.id | apnumber }}">Download</button>
+                    <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
                   </div>
-                  
                 </div>
               </div>
               {% endfor %}
-              <div class="row">
-                <div class="col-lg-12 col-12 mt-3">
-                  <a href="{% url 'web:newly_added_services' %}" class="poster-view-more d-inline-block">
-                    View More
-                  </a>
-                </div>
-              </div>
-              <div class="img-popup">
-                <div class="container" id="resultContainer" style="display: none;">
-
-                  <img class="img-responsive popup-imagea" id="result" src="">
-                  <div class="text-center mt-3 poster-download-button">
-                    <a id="download" class="btn-sm mx-auto btn btn-primary" download>Download</a>
-                  </div>
-                </div>
-                <div class="close-btn">
-                  <div class="bar"></div>
-                  <div class="bar"></div>
-                </div>
+              <div class="col-lg-12 col-12 mt-3">
+                <a href="{% url 'web:newly_added_services' %}" class="poster-view-more d-inline-block">
+                  View More
+                </a>
               </div>
             </div>
           </div>
@@ -254,152 +101,101 @@
           <h6 class="pb-2 service-heading">IMPORTANT</h6>
           <div class="container">
             <div class="row">
-              {% for posters in important_poster %}
+              {% for obj in important_poster %}
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
-                  <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-                  <span>{{posters.title}}</span>
-
-                  <div class="text-center mt-3">
-                    <button class="btn-sm btn btn-primary" target="_blank" rel="noopener noreferrer" data-source="{{posters.id | apnumber }}">Download</button>
-                    <a href="{{posters.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                  <img src="{{obj.image.url}}" data-id="important-poster-{{obj.id | apnumber }}" alt="Image">
+                  <p class="my-1">{{obj.title}}</p>
+                  <div class="text-center">
+                    <button class="btn-sm btn btn-primary generate" target="_blank"
+                      data-source="important-poster-{{obj.id | apnumber }}">Download</button>
+                    <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
                   </div>
-
                 </div>
               </div>
               {% endfor %}
-              <div class="row">
-                <div class="col-lg-12 col-12 mt-3">
-                  <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
-                    View More
-                  </a>
-                </div>
+              <div class="col-lg-12 col-12 mt-3">
+                <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
+                  View More
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
 
-
-
-
+    {% include 'web/partials/popup.html' %}
   </div>
   <!-- content-wrapper ends -->
-
 </div>
+
+
+<!-- Modal -->
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header pb-0">
+        <h5 class="modal-title" id="exampleModalLongTitle">Download Poster</h5>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer" id="modalFooter">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<img src="https://cdn.pixabay.com/photo/2022/01/17/06/52/nature-6944000_960_720.jpg" alt="" class="d-none"
+  id="footerImage" />
 
 
 {% endblock %}
 
 
-
-
 {% block js %}
 <script>
-  function downloadImage(elm) {
+  function generateImage(elm) {
     var canvas = document.createElement('canvas');
     canvas.width = Width;
     canvas.height = headerImageHeight + footerImageHeight + HeightAdjustment;
     var ctx = canvas.getContext('2d');
-
+    var modalBody = document.querySelector('.modal-body');
+    modalBody.appendChild(canvas);
     var footerImage = document.getElementById('footerImage');
     var source = elm.getAttribute('data-source');
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
-
+    console.log(dataImage);
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
 
-    var dataURL = canvas.toDataURL('image/png');
-    document.getElementById('result').src = dataURL;
-    document.getElementById('download').href = dataURL;
-    document.getElementById('resultContainer').style.display = 'block';
+    var modalFooter = document.querySelector('.modal-footer');
+    modalFooter.innerHTML = '';
+
+    image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+    var link = document.createElement('a');
+    link.setAttribute('href', image);
+    link.setAttribute('download', 'image.png');
+    link.setAttribute('class', 'btn btn-primary d-block');
+    link.innerHTML = 'Download';
+    modalFooter.appendChild(link);
   }
 
-  var buttons = document.querySelectorAll('button');
+  var buttons = document.querySelectorAll('.generate');
   var Width = 1080; //> same width to both images
-  var headerImageHeight = 1080;
+  var headerImageHeight = 858;
   var footerImageHeight = 222;
   var HeightAdjustment = 0;
 
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
-      downloadImage(this);
+      $('.modal-body').empty();
+      $('#exampleModalCenter').modal('show');
+      generateImage(this);
     });
   });
+
+
 </script>
-<script>
-  ! function (r, i) {
-    var n, o, s, l, d, e, t, a, c, u, f, m, p = ".ad902dd1",
-      y = r.head;
-    "function" == typeof [].indexOf && y && (i.a2a = i.a2a || {}, n = i.a2a_config = i.a2a_config || {}, e = (o = r.currentScript) && o.src ? o.src : "", NodeList && NodeList.prototype.forEach && (i.a2a.init = function (e, t) {
-      void 0 === t && (t = n);
-      var a = ":not([data-a2a-url]):not(.a2a_target)";
-      r.querySelectorAll(".a2a_dd" + a + ",.a2a_kit" + a).forEach(function (e) {
-        e.matches(".a2a_kit .a2a_dd");
-        e.a2a_index || null !== e.getAttribute("data-a2a-url") || e.matches(".a2a_kit .a2a_dd") || (e.dataset.a2aUrl = t.linkurl || "", t.linkname && (e.dataset.a2aTitle = t.linkname))
-      }), delete n.linkurl, delete n.linkname
-    }, i.a2a_init = i.a2a.init, !o || o.async || o.defer || i.a2a.init("page", {
-      linkurl: n.linkurl,
-      linkname: n.linkname
-    })), i.a2a.page || (i.a2a.page = !0, s = [], ["init_all", "svg_css"].forEach(function (a) {
-      i.a2a[a] = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        s.push([a, e])
-      }
-    }), a = (m = n.static_server) ? m + "/" : "https://static.addtoany.com/menu/", t = e && -1 !== e.split("/")[2].indexOf("addtoany"), l = (t = (l = !m && t ? e : a).match(/^[^?#]+\//)) ? t[0] : l, d = function (e, t, a) {
-      void 0 === e && (e = l + "eso" + p + ".js"), void 0 === t && (t = !1);
-      var n = r.createElement((a = void 0 === a ? !1 : a) ? "link" : "script"),
-        i = "module",
-        a = (a ? (a = "preload", n.href = e, n.rel = t ? i + a : a, t || (n.as = "script")) : (n.src = e, t && (n.type = i, n.onerror = function () {
-          return d()
-        })), o && o.nonce ? o.nonce : null);
-      a && (n.nonce = a), y.appendChild(n)
-    }, "function" == typeof (e = "".matchAll) && e.toString().includes("[native code]") ? (t = a + (m ? "" : "svg/"), d((e = l + (m ? "" : "modules/")) + "core" + p + ".js", !0), a = document.createElement("link").relList.supports(
-      "modulepreload"), n.overlays && n.overlays.length && a && d(e + "overlays" + p + ".js", !0, !0), r.querySelector('.a2a_dd:empty,.a2a_kit [class*="a2a_button_"]:empty') && d(t + "icons.31.svg.js", !1, !0)) : d(), u = function (
-        e) {
-        var t = i.a2a.core;
-        "function" != typeof t || e ? e ? e() : i.a2a.core = function (e) {
-          return u(e)
-        } : t()
-      }, m = function () {
-        var e, t, a, n;
-        f || (f = !0, t = "a2a_menu_container", e = r.getElementById(t), i.a2a.main = c = e || r.createElement("div"), c.id != t && (c.style.position = "static", r.body.insertBefore(c, null)), u(), s.forEach(function (e) {
-          var t;
-          (t = i.a2a)[e[0]].apply(t, e[1])
-        }), i.addEventListener("message", function (e) {
-          var t;
-          ".addtoany.com" === e.origin.substr(-13) && "object" == typeof (e = e.data) && e.a2a && ("function" == typeof (t = i.a2a.userServices) ? t(e.user_services) : i.a2a.userServices = e.user_services, r
-            .getElementById("a2a_sm_ifr").style.display = "none")
-        }), e = r.createElement("iframe"), t = r.createElement("div"), a = e.style, n = t.style, e.id = "a2a_sm_ifr", a.width = a.height = n.width = n.height = "1px", a.top = a.left = a.border = "0", a.position = n.position =
-        "absolute", a.zIndex = n.zIndex = "100000", e.title = "AddToAny Utility Frame", e.setAttribute("transparency", "true"), e.setAttribute("allowTransparency", "true"), e.setAttribute("frameBorder", "0"), e.src =
-          "https://static.addtoany.com/menu/sm.23.html#type=core&event=load", n.top = "0", n.visibility = "hidden", c.insertBefore(t, null), t.insertBefore(e, null))
-      }, "loading" !== r.readyState ? m() : (r.addEventListener("readystatechange", m), r.addEventListener("DOMContentLoaded", m))))
-  }(document, window);
-</script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-  integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>$(function () {
-    $(".popup-onload").show();
-    $(".close").click(function () {
-      $(".popup-onload").hide();
-      return false;
-    });
-    $(".x").click(function () {
-      $(".popup-onload").hide();
-      return false;
-    });
-    $(".popup-wrapper").click(function () {
-      $(".popup-onload").hide();
-      return false;
-    });
-  });
-</script>
-
-
 {% endblock %}

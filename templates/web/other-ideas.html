@@ -8,13 +8,13 @@
         <section>
             <div class="row">
                 {% for ideas in other_ideas %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 grid-margin">
-                    <div class="card card-body">
+                <div class="col-lg-2 col-md-4 col-sm-6 col-6 grid-margin">
+                    <div class="card">
                         <div class="card-image">
                             <img src="{{ideas.image.url}}" alt="">
                         </div>
                         <div class="head-name">
-                            <h6>{{ideas.name}}</h6>
+                            <h6 style="color:#000 ;">{{ideas.name}}</h6>
                         </div>
                     </div>
                     <div class="d-flex">

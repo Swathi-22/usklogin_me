@@ -1,0 +1,54 @@
+<style> 
+.pop-up-image{
+    height: 300px;
+    margin: 0px auto;
+}
+@media only screen and (min-width:320px) and (max-width:567px) {
+   .pop-up-image{
+    width: 100%;
+   }
+
+}
+
+</style>
+<!-- Button trigger modal -->
+<button type="button" class="btn d-none" id="modal_toggler" data-toggle="modal" data-target="#staticBackdrop" style="">
+    Launch
+</button>
+
+<!-- Modal -->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" style="padding-right:0px;">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                {% for onload_popup in on_load_popup|slice:":1" %}
+                <div class="mx-auto popup-image text-center">
+                    <img src="{{onload_popup.image.url}}" class="pop-up-image">
+                </div>
+                <div class="text-center py-3">
+                    <span class="modal-desc">
+                        {{onload_popup.title}}
+                    </span>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("hasCodeRunBefore") === null) {
+            document.querySelector("#modal_toggler").click();
+            localStorage.setItem("hasCodeRunBefore", true);
+        }
+    }
+</script>
