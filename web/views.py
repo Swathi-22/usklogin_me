@@ -243,12 +243,14 @@ def profile(request):
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.filter(user=request.user).last()
     subscription_validity = Subscription.objects.filter(user=request.user, is_active=True).last()
+    order_validity = Order.objects.filter(user=request.user, is_active=True).last()
 
     context = {
         "is_profile": True,
         "user_form": user_form,
         "branding_image_form": branding_image_form,
         "instance": instance,
+        "order_validity": order_validity,
         "uploaded_branding_image": uploaded_branding_image,
         "subscription_validity": subscription_validity,
     }
