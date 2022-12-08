@@ -172,17 +172,16 @@
     canvas.width = Width;
     canvas.height = headerImageHeight + footerImageHeight + HeightAdjustment;
     var ctx = canvas.getContext('2d');
-    var modalBody = document.querySelector('.modal-body');
+    var modalBody = document.getElementById('modalBody');
     modalBody.appendChild(canvas);
     var footerImage = document.getElementById('footerImage');
     var source = elm.getAttribute('data-source');
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
-    console.log(dataImage);
 
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
 
-    var modalFooter = document.querySelector('.modal-footer');
+    var modalFooter = document.getElementById('modalFooter');
     modalFooter.innerHTML = '';
 
     image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");

@@ -138,7 +138,7 @@
       <div class="modal-header pb-0">
         <h5 class="modal-title" id="exampleModalLongTitle">Download Poster</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="modalBody">
       </div>
       <div class="modal-footer" id="modalFooter">
 
@@ -161,17 +161,20 @@
     canvas.width = Width;
     canvas.height = headerImageHeight + footerImageHeight + HeightAdjustment;
     var ctx = canvas.getContext('2d');
-    var modalBody = document.querySelector('.modal-body');
+    var modalBody = document.getElementById('modalBody');
     modalBody.appendChild(canvas);
     var footerImage = document.getElementById('footerImage');
     var source = elm.getAttribute('data-source');
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
-    console.log(dataImage);
+
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
     ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
 
-    var modalFooter = document.querySelector('.modal-footer');
+    var modalFooter = document.getElementById('modalFooter');
     modalFooter.innerHTML = '';
+    
+    console.log("kooi")
+    console.log(dataImage);
 
     image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
     var link = document.createElement('a');

@@ -1,4 +1,0 @@
-commands
- cd backup/fixtures
- then
- python manage.py dumpdata appname
