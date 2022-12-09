@@ -26,7 +26,8 @@
           <div class="service-main-head text-center bg-gradient-danger">
             <a href="" class="serviec-main-head-a">{{service_heads.title}}</a>
           </div>
-          <div class="row pt-3">  
+          <div class="row pt-3">
+            
             {% for service in services|slice:"0:6" %} 
             {% if service.service_head == service_heads %}
             
