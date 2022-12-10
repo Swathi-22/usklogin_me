@@ -20,20 +20,8 @@
         </div>
         {% endfor %}
 
-        {% comment %}
-        <div class="col-lg-3 col-md-2 col-sm-4 col-4 pb-4">
-          <div class="service-main-head text-center bg-gradient-danger">
-            <a href="{% url 'services:service' %}" class="serviec-main-head-a">Service Heading 1</a>
-          </div>
-        </div>
-        {% endcomment %}
       </div>
 
-      <!-- 
-        <div class="text-center py-5 ">
-        <a href="{% url 'services:serviceHead' %}" class="show-more badge-gradient-info">Show More</a>
-      </div>
-     -->
     </section>
 
     <!--news scrolling  -->
@@ -81,6 +69,7 @@
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
                   <img src="{{obj.image.url}}" data-id="new_service_poster-{{obj.id | apnumber }}" alt="Image">
+                  <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
                   <p class="my-1">{{obj.title}}</p>
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -106,6 +95,8 @@
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
                   <img src="{{obj.image.url}}" data-id="important-poster-{{obj.id | apnumber }}" alt="Image">
+                  <img src="{{branding_image.image.url}}" alt="" />
+
                   <p class="my-1">{{obj.title}}</p>
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
