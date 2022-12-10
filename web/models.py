@@ -1,5 +1,7 @@
 from datetime import timedelta
+
 from accounts.models import User
+
 from .constants import PaymentStatus
 from .functions import generate_ticket_pk
 from django.db import models
@@ -16,7 +18,7 @@ class Order(models.Model):
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
     valid_from = models.DateTimeField(default=timezone.now)
-    valid_upto = models.DateTimeField(blank=True,null=True, editable=False)
+    valid_upto = models.DateTimeField(blank=True, null=True, editable=False)
     is_active = models.BooleanField("Mark as Active", default=False)
 
     @property
@@ -339,7 +341,6 @@ class AddonServices(models.Model):
 
     def __str__(self):
         return str(self.name)
-
 
 
 class OnloadPopup(models.Model):

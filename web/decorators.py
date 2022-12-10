@@ -1,10 +1,5 @@
+from .models import Order
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from . models import Order
-
 
 
 def subscription_required(func):
@@ -19,4 +14,5 @@ def subscription_required(func):
                 return redirect("web:expired")
         else:
             return redirect("web:login_view")
+
     return wrapper

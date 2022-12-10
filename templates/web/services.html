@@ -6,8 +6,10 @@
   <div class="content-wrapper" id="demo2">
     <div id="service-list">
       <div class="row">
+
+        
         {% for subservice in services %}
-        <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3" id="viewserviceDiv">
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3" id="viewserviceDiv_{{subserice.pk}}">
           <div class="serviceBox">
               <img src="{{subservice.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
               <h3 class="title">{{subservice.title}}</h3>
@@ -17,9 +19,9 @@
             </div>
           </div>
         </div>
+        {% endfor %}
 
         
-        {% endfor %}
   
         {% comment %}
         <div class="col-lg-3 col-md-3 col-sm-6 col-6">

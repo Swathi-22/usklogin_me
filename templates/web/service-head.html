@@ -26,9 +26,11 @@
           <div class="service-main-head text-center bg-gradient-danger">
             <a href="" class="serviec-main-head-a">{{service_heads.title}}</a>
           </div>
-          <div class="row pt-3">  
-            {% for service in services %} 
+          <div class="row pt-3">
+            
+            {% for service in services|slice:"0:6" %} 
             {% if service.service_head == service_heads %}
+            
             <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 serviceSee">
               <div class="serviceBox " >
                   <img src="{{service.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
@@ -41,8 +43,26 @@
             </div>
             
             {% endif %}
+            {% endfor %}
+           
+          </div>
+          <div class="row pt-3">  
+            {% for service in services %} 
+            {% if service.service_head == service_heads %}
             
-           {% endfor %}
+            <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 serviceSee">
+              <div class="serviceBox " >
+                  <img src="{{service.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
+                  <h3 class="title">{{service.title}}</h3>
+                <div>
+                  <a href="{{service.link_to_official_website}}" class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>
+                  <a href="{% url 'services:serviceDetails' service.slug %}" class="view-more" >DETAILS</a>
+                </div>
+              </div>
+            </div>
+            
+            {% endif %}
+            {% endfor %}
            <a href="" class="load-more">Load More</a>
           </div>
         </div>

@@ -21,6 +21,7 @@ from web.models import ImportantPoster
 from web.models import LatestNews
 from web.models import MarketingTips
 from web.models import NewServicePoster
+from web.models import OnloadPopup
 from web.models import Order
 from web.models import OtherIdeas
 from web.models import PaymentStatus
@@ -29,8 +30,9 @@ from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
 from web.models import WhatsappSupport
-from web.models import OnloadPopup
+
 import razorpay
+from .decorators import subscription_required
 from .forms import BrandingImageForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
@@ -38,7 +40,6 @@ from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
 from .utils import PDFView
-from .decorators import subscription_required
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -226,7 +227,7 @@ def verify_signature(response_data):
 def profile(request):
     user_form = UserUpdateForm(request.POST or None, request.FILES or None, instance=request.user)
     instance = BrandingImage.objects.filter(user=request.user)
-    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None, )
+    branding_image_form = BrandingImageForm(request.POST or None, request.FILES or None)
     if request.method == "POST":
         if branding_image_form.is_valid():
             data = branding_image_form.save(commit=False)
@@ -279,10 +280,10 @@ def settings_menu(request):
 def index(request):
     service_head = ServiceHeads.objects.all()[:12]
     latest_news = LatestNews.objects.all().last()
-    new_service_poster = NewServicePoster.objects.all().order_by('-id')[0:2]
-    important_poster = ImportantPoster.objects.all().order_by('-id')[0:2]
+    new_service_poster = NewServicePoster.objects.all().order_by("-id")[0:2]
+    important_poster = ImportantPoster.objects.all().order_by("-id")[0:2]
     branding_image = BrandingImage.objects.filter(user=request.user).last()
-    on_load_popup = OnloadPopup.objects.all().order_by('-id')
+    on_load_popup = OnloadPopup.objects.all().order_by("-id")
     context = {
         "is_index": True,
         "service_head": service_head,
@@ -292,7 +293,7 @@ def index(request):
         "room_name": "broadcast",
         "branding_image": branding_image,
         "room_name": "broadcast",
-        "on_load_popup":on_load_popup
+        "on_load_popup": on_load_popup,
     }
     return render(request, "web/index.html", context)
 
@@ -459,7 +460,7 @@ def bonus(request):
 @login_required
 @subscription_required
 def support(request):
-    user = request.user
+    request.user
     context = {"is_support": True, "room_name": "broadcast"}
     return render(request, "web/support.html", context)
 
@@ -533,11 +534,13 @@ def certificate_view(request):
     context = {"logined_user": request.user}
     return render(request, "web/certificate.html", context)
 
+
 @login_required
 @subscription_required
 def buy_now_branding_image(request):
     context = {}
     return render(request, "web/buy-now.html", context)
+
 
 @login_required
 @subscription_required
@@ -546,18 +549,20 @@ def add_on_services(request):
     context = {"addon_services": addon_services}
     return render(request, "web/add-on-services.html", context)
 
+
 @login_required
 @subscription_required
 def newly_added_services(request):
     service_posters = NewServicePoster.objects.all()
     branding_image = BrandingImage.objects.filter(user=request.user).last()
-    context = {"service_posters":service_posters , 'branding_image':branding_image}
-    return render(request,'web/newly-addedd-services.html',context)
+    context = {"service_posters": service_posters, "branding_image": branding_image}
+    return render(request, "web/newly-addedd-services.html", context)
+
 
 @login_required
 @subscription_required
 def important_services(request):
     important_posters = ImportantPoster.objects.all()
     branding_image = BrandingImage.objects.filter(user=request.user).last()
-    context = {"important_posters":important_posters,'branding_image':branding_image}
-    return render(request,'web/important-posters.html',context)
+    context = {"important_posters": important_posters, "branding_image": branding_image}
+    return render(request, "web/important-posters.html", context)

@@ -73,7 +73,11 @@
       <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
           <h6 class="pb-2 service-heading">NEWLY ADDED SERVICES</h6>
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> 58a166b3f1e63567cef4b805ebc9497dcbcf9ac3
           <div class="container">
             <div class="row">
 
@@ -126,10 +130,12 @@
     </section>
 
     {% include 'web/partials/popup.html' %}
+    {% include 'web/partials/poster.html' %}
   </div>
   <!-- content-wrapper ends -->
 </div>
 
+<<<<<<< HEAD
 
 <!-- Modal -->
 <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -154,54 +160,7 @@
 
 
 
+=======
+>>>>>>> 58a166b3f1e63567cef4b805ebc9497dcbcf9ac3
 {% endblock %}
 
-
-{% block js %}
-<script>
-  function generateImage(elm) {
-    var canvas = document.createElement('canvas');
-    canvas.width = Width;
-    canvas.height = headerImageHeight + footerImageHeight + HeightAdjustment;
-    var ctx = canvas.getContext('2d');
-    var modalBody = document.getElementById('modalBody');
-    modalBody.appendChild(canvas);
-    var footerImage = document.getElementById('footerImage');
-    var source = elm.getAttribute('data-source');
-    var dataImage = document.querySelector(`img[data-id="${source}"]`)
-
-    ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
-    ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
-
-    var modalFooter = document.getElementById('modalFooter');
-    modalFooter.innerHTML = '';
-    
-    console.log("kooi")
-    console.log(dataImage);
-
-    image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-    var link = document.createElement('a');
-    link.setAttribute('href', image);
-    link.setAttribute('download', 'image.png');
-    link.setAttribute('class', 'btn btn-primary d-block');
-    link.innerHTML = 'Download';
-    modalFooter.appendChild(link);
-  }
-
-  var buttons = document.querySelectorAll('.generate');
-  var Width = 1080; //> same width to both images
-  var headerImageHeight = 858;
-  var footerImageHeight = 222;
-  var HeightAdjustment = 0;
-
-  buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      $('.modal-body').empty();
-      $('#exampleModalCenter').modal('show');
-      generateImage(this);
-    });
-  });
-
-
-</script>
-{% endblock %}
