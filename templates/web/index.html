@@ -20,20 +20,8 @@
         </div>
         {% endfor %}
 
-        {% comment %}
-        <div class="col-lg-3 col-md-2 col-sm-4 col-4 pb-4">
-          <div class="service-main-head text-center bg-gradient-danger">
-            <a href="{% url 'services:service' %}" class="serviec-main-head-a">Service Heading 1</a>
-          </div>
-        </div>
-        {% endcomment %}
       </div>
 
-      <!-- 
-        <div class="text-center py-5 ">
-        <a href="{% url 'services:serviceHead' %}" class="show-more badge-gradient-info">Show More</a>
-      </div>
-     -->
     </section>
 
     <!--news scrolling  -->
@@ -73,7 +61,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
           <h6 class="pb-2 service-heading">NEWLY ADDED SERVICES</h6>
-          
+
           <div class="container">
             <div class="row">
 
@@ -81,6 +69,7 @@
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
                   <img src="{{obj.image.url}}" data-id="new_service_poster-{{obj.id | apnumber }}" alt="Image">
+                  <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
                   <p class="my-1">{{obj.title}}</p>
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -106,6 +95,8 @@
               <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="card card-body w-100">
                   <img src="{{obj.image.url}}" data-id="important-poster-{{obj.id | apnumber }}" alt="Image">
+                  <img src="{{branding_image.image.url}}" alt="" />
+
                   <p class="my-1">{{obj.title}}</p>
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -126,82 +117,9 @@
     </section>
 
     {% include 'web/partials/popup.html' %}
+    {% include 'web/partials/poster.html' %}
   </div>
   <!-- content-wrapper ends -->
 </div>
 
-
-<!-- Modal -->
-<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header pb-0">
-        <h5 class="modal-title" id="exampleModalLongTitle">Download Poster</h5>
-      </div>
-      <div class="modal-body" id="modalBody">
-      </div>
-      <div class="modal-footer" id="modalFooter">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<img src="{{branding_image.image.url}}" alt="" class="d-none"
-  id="footerImage" />
-
-
-
-{% endblock %}
-
-
-{% block js %}
-<script>
-  function generateImage(elm) {
-    var canvas = document.createElement('canvas');
-    canvas.width = Width;
-    canvas.height = headerImageHeight + footerImageHeight + HeightAdjustment;
-    var ctx = canvas.getContext('2d');
-    var modalBody = document.getElementById('modalBody');
-    modalBody.appendChild(canvas);
-    var footerImage = document.getElementById('footerImage');
-    var source = elm.getAttribute('data-source');
-    var dataImage = document.querySelector(`img[data-id="${source}"]`)
-
-    ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
-    ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
-
-    var modalFooter = document.getElementById('modalFooter');
-    modalFooter.innerHTML = '';
-    
-    console.log("kooi")
-    console.log(dataImage);
-
-    image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-    var link = document.createElement('a');
-    link.setAttribute('href', image);
-    link.setAttribute('download', 'image.png');
-    link.setAttribute('class', 'btn btn-primary d-block');
-    link.innerHTML = 'Download';
-    modalFooter.appendChild(link);
-  }
-
-  var buttons = document.querySelectorAll('.generate');
-  var Width = 1080; //> same width to both images
-  var headerImageHeight = 858;
-  var footerImageHeight = 222;
-  var HeightAdjustment = 0;
-
-  buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      $('.modal-body').empty();
-      $('#exampleModalCenter').modal('show');
-      generateImage(this);
-    });
-  });
-
-
-</script>
 {% endblock %}

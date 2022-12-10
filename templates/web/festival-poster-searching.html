@@ -7,6 +7,7 @@
   <div class="col-lg-3 col-md-4 col-sm-6 col-6">
     <div class="card card-body w-100">
       <img src="{{festive_poster.image.url}}" data-id="{{festive_poster.id | apnumber }}" alt="Image">
+      <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
 
       <div class="text-center mt-3">
         <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
@@ -18,4 +19,5 @@
   </div>
 
   {% endfor %}
+  {% include 'web/partials/poster.html' %}
 </div>

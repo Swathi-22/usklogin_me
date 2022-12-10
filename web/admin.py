@@ -12,6 +12,7 @@ from .models import ImportantPoster
 from .models import LatestNews
 from .models import MarketingTips
 from .models import NewServicePoster
+from .models import OnloadPopup
 from .models import Order
 from .models import OtherIdeas
 from .models import ProfessionalPoster
@@ -21,7 +22,6 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
-from .models import OnloadPopup
 from django.contrib import admin
 
 
@@ -32,27 +32,27 @@ class LatestNewsAdmin(admin.ModelAdmin):
 
 @admin.register(NewServicePoster)
 class NewServicePosterAdmin(admin.ModelAdmin):
-    list_display = ("id","title" , "image")
+    list_display = ("id", "title", "image")
 
 
 @admin.register(ImportantPoster)
 class ImportantPosterAdmin(admin.ModelAdmin):
-    list_display = ("id","title" ,"image")
+    list_display = ("id", "title", "image")
 
 
 @admin.register(CommonServicesPoster)
 class CommonServicesPosterAdmin(admin.ModelAdmin):
-    list_display = ("id","title" , "image")
+    list_display = ("id", "title", "image")
 
 
 @admin.register(FestivelPoster)
 class FestivelPosterAdmin(admin.ModelAdmin):
-    list_display = ("id","title" , "image")
+    list_display = ("id", "title", "image")
 
 
 @admin.register(ProfessionalPoster)
 class ProfessionalPosterAdmin(admin.ModelAdmin):
-    list_display = ("id","title" , "image")
+    list_display = ("id", "title", "image")
 
 
 @admin.register(DownloadForms)

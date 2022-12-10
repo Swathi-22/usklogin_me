@@ -7,99 +7,66 @@
 <div class="main-panel " id="demo">
   <div class="content-wrapper" id="demo2">
     <!-- service head display -->
-    <section>
+    <div class="container">
       <div class="row">
 
-        {% comment %}
+        {% for service_head in service_heads %}
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 pb-4 service_head">
 
-        {% for each_service_head in service_head %}
-        <div class="col-lg-3 col-md-2 col-sm-4 col-4 pb-4 ">
-          <div class="service-main-head text-center bg-gradient-danger" >
-            <a href="{% url 'services:service' each_service_head.slug %}" class="serviec-main-head-a">{{each_service_head.title}}</a>
-          </div>
-        </div>
-        {% endfor %}
-        {% endcomment %}
-
-        {% for service_heads in service_head %}
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12 pb-4 ">
           <div class="service-main-head text-center bg-gradient-danger">
-            <a href="" class="serviec-main-head-a">{{service_heads.title}}</a>
+            <a href="" class="serviec-main-head-a">{{service_head.title}}</a>
           </div>
+
           <div class="row pt-3">
-            
-            {% for service in services|slice:"0:6" %} 
-            {% if service.service_head == service_heads %}
-            
-            <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 serviceSee">
-              <div class="serviceBox " >
-                  <img src="{{service.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
-                  <h3 class="title">{{service.title}}</h3>
+            {% for service in service_head.get_services %}
+            <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 serviceContainer" style="display:none">
+              <div class="serviceBox">
+                <img src="{{service.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
+                <h3 class="title">{{service.title}}</h3>
                 <div>
-                  <a href="{{service.link_to_official_website}}" class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>
-                  <a href="{% url 'services:serviceDetails' service.slug %}" class="view-more" >DETAILS</a>
+                  <a href="{{service.link_to_official_website}}" class="access" rel="noopener noreferrer"
+                    target="_blank">ACCESS</a>
+                  <a href="{% url 'services:serviceDetails' service.slug %}" class="view-more">DETAILS</a>
                 </div>
               </div>
             </div>
-            
-            {% endif %}
-            {% endfor %}
-           
-          </div>
-          <div class="row pt-3">  
-            {% for service in services %} 
-            {% if service.service_head == service_heads %}
-            
-            <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3 serviceSee">
-              <div class="serviceBox " >
-                  <img src="{{service.image.crop.179x179}}" class="sub-service-img pb-2" alt="">
-                  <h3 class="title">{{service.title}}</h3>
-                <div>
-                  <a href="{{service.link_to_official_website}}" class="access" rel="noopener noreferrer" target="_blank">ACCESS</a>
-                  <a href="{% url 'services:serviceDetails' service.slug %}" class="view-more" >DETAILS</a>
-                </div>
-              </div>
+            {% empty %}
+            <div class="col-lg-2 col-md-3 col-sm-6 col-6 pb-3">
+              NO SERVICE FOUND
             </div>
-            
-            {% endif %}
+
             {% endfor %}
-           <a href="" class="load-more">Load More</a>
+            
+            {% if service_head.get_services|length > 6 %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+              <a href="" class="load-more btn btn-sm btn-primary">Load More</a>
+            </div>
+            {% endif %}
+
           </div>
+
         </div>
         {% endfor %}
-  
+
       </div>
-    </section>
+
+    </div>
   </div>
 </div>
-<style>
-  .serviceSee{
-    display: none;
-  }
-</style>
 
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  $(function () {
-      $(".serviceSee").slice(0, 6).show();
-      $("body").on('click touchstart', '.load-more', function (e) {
-          e.preventDefault();
-
-          $(".serviceSee:hidden").slice().slideDown();
-          if ($(".serviceSee:hidden").length == 0) {
-              $(".load-more").css('visibility', 'hidden');
-          }
-          $('html,body').animate({
-              scrollTop: $(this).offset().top
-          }, 1000);
+  $(document).ready(function () {
+    $('.service_head').each(function () {
+      $(this).find('.serviceContainer').slice(0, 6).show();
+      $(this).find('.load-more').on('click', function (e) {
+        e.preventDefault();
+        $(this).closest('.service_head').find('.serviceContainer:hidden').slideDown();
+        $(this).hide();
       });
+    });
   });
+
 </script>
 
-
-
-
 {% endblock %}
-
