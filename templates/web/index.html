@@ -149,8 +149,7 @@
 </div>
 
 
-<img src="{{branding_image.image.url}}" alt="" class="d-none"
-  id="footerImage" />
+
 
 
 
@@ -159,26 +158,28 @@
 
 {% block js %}
 <script>
+
+  var buttons = document.querySelectorAll('.generate');
+  var Width = 1080; //> same width to both images
+  var headerImageHeight = 858;
+  var footerImageHeight = 111;
+  var HeightAdjustment = 0;
+  var modalBody = document.getElementById('modalBody');
+  var footerImage = document.getElementById('footerImage');
+  var modalFooter = document.getElementById('modalFooter');
+  
   function generateImage(elm) {
     var canvas = document.createElement('canvas');
     canvas.width = Width;
     canvas.height = headerImageHeight + footerImageHeight + HeightAdjustment;
     var ctx = canvas.getContext('2d');
-    var modalBody = document.getElementById('modalBody');
-    modalBody.appendChild(canvas);
-    var footerImage = document.getElementById('footerImage');
     var source = elm.getAttribute('data-source');
     var dataImage = document.querySelector(`img[data-id="${source}"]`)
-
+    modalBody.appendChild(canvas);
     ctx.drawImage(dataImage, 0, 0, Width, headerImageHeight);
-    ctx.drawImage(footerImage, 0, headerImageHeight + HeightAdjustment, Width, footerImageHeight);
-
-    var modalFooter = document.getElementById('modalFooter');
+    ctx.drawImage(footerImage, 0, 858, Width, footerImageHeight);
     modalFooter.innerHTML = '';
-    
-    console.log("kooi")
-    console.log(dataImage);
-
+       
     image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
     var link = document.createElement('a');
     link.setAttribute('href', image);
@@ -188,11 +189,7 @@
     modalFooter.appendChild(link);
   }
 
-  var buttons = document.querySelectorAll('.generate');
-  var Width = 1080; //> same width to both images
-  var headerImageHeight = 858;
-  var footerImageHeight = 222;
-  var HeightAdjustment = 0;
+
 
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
