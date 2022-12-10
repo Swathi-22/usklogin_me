@@ -159,7 +159,12 @@ class Certificate(PDFView, LoginRequiredMixin):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["logged_user"] = self.request.user
-        context["content"] = "Gedexo Certificate"
+        context["content"] = self.request.user.name
+        context["shop_name"] = self.request.user.shop_name
+        context["district"] = self.request.user.district
+        context["pincode"] = self.request.user.pincode
+        context["created"] = self.request.user.created
+        context["id"] = self.request.user.id
         return context
 
 
