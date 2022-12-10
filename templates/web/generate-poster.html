@@ -28,6 +28,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -54,6 +55,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -69,6 +71,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -89,6 +92,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -109,6 +113,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -129,6 +134,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
           <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
@@ -142,4 +148,7 @@
 
   </div>
 </div>
+
+{% include 'web/partials/poster.html' %}
+
 {% endblock %}
