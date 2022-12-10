@@ -14,6 +14,9 @@ class ServiceHeads(models.Model):
     class Meta:
         verbose_name_plural = "Service Head"
 
+    def get_services(self):
+        return Services.objects.filter(service_head=self)
+        
     def __str__(self):
         return str(self.title)
 

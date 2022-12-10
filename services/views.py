@@ -6,12 +6,11 @@ from django.shortcuts import render
 
 
 def serviceHead(request):
-    service_head = ServiceHeads.objects.all()
-    services = Services.objects.all()
+    service_heads = ServiceHeads.objects.all()
     # phone = request.session["phone"]
     # logined_user = User.objects.get(phone=phone)
     user = request.user
-    context = {"is_service": True, "service_head": service_head, "services": services, "logined_user": user, "room_name": "broadcast"}
+    context = {"is_service": True, "service_heads": service_heads, "logined_user": user, "room_name": "broadcast"}
     return render(request, "web/service-head.html", context)
 
 
