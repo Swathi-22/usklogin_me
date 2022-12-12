@@ -71,6 +71,12 @@
 
           {% for i in notifications %}
           <li class="dropdown-item">{{i.message}}</li>
+          {% if not i.link %}
+          <li class="dropdown-item"></li>
+          {% else %}
+          <li class="dropdown-item"> <a href="{{i.link}}" target="_blank" class="news"  style="color: black;font-size: 13px;">Click
+              Here</a></li>
+          {% endif %}
           <hr class="dropdown-divider">
           {% endfor %}
           {% comment %} <li class='dropdown-item'>Hello</li>

@@ -56,8 +56,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 
-RAZOR_PAY_KEY = "rzp_test_gmilUW5MZmHsEK"
-RAZOR_PAY_SECRET = "z7rD3fi8O6rS8vsVMRvmbGkW"
+RAZOR_PAY_KEY = "rzp_live_oTpxycIg3EOxp1"
+RAZOR_PAY_SECRET = "0KJnbcEIPKBlFcIS4XW80mv3"
 
 
 def expired(request):

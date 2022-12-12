@@ -3,6 +3,7 @@ from django.db import models
 
 class BroadcastNotification(models.Model):
     message = models.TextField()
+    link = models.URLField(blank=True,null=True)
     broadcast_on = models.DateTimeField()
     sent = models.BooleanField(default=False)
 
