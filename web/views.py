@@ -95,7 +95,7 @@ def register(request):
 
 def order_payment(request, pk):
     user = get_object_or_404(User, id=pk)
-    amount = 200
+    amount = 1
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
@@ -175,7 +175,7 @@ def upgrade_plan_request(request):
 @subscription_required
 def upgrade_plan(request):
     user = request.user
-    amount = 400
+    amount = 500
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
