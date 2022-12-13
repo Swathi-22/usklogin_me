@@ -140,17 +140,17 @@ LOGIN_REDIRECT_URL = "/"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp-relay.sendinblue.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "loginusk@gmail.com"
-EMAIL_HOST_PASSWORD = "D2ja7rJgAnQFTS5Z"
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_BACKEND = config("EMAIL_BACKEND")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS")
+EMAIL_USE_SSL = config("EMAIL_USE_SSL")
 
-MAILGUN_FROM_EMAIL = "secure.gedexo@gmail.com"
+MAILGUN_FROM_EMAIL = config("MAILGUN_FROM_EMAIL")
+MAILGUN_DOMAIN_NAME = config("MAILGUN_DOMAIN_NAME")
+MAILGUN_API_KEY = config("MAILGUN_API_KEY")
 
-
-# For development
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
-CSRF_TRUSTED_ORIGINS = ["https://pvanfas-humble-computing-machine-5x49x4p74vj2vrj5-8000.preview.app.github.dev"]
+ONESIGNAL_APP_ID = config("ONESIGNAL_APP_ID")
+ONESIGNAL_SAFARI_WEB_ID = config("ONESIGNAL_SAFARI_WEB_ID")
