@@ -2,7 +2,6 @@ import random
 import string
 
 
-# custom user id generater function
 def generate_pk():
     number = random.randint(1000, 9999)
     return "USK0" + str(number)
