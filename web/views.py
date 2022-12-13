@@ -131,7 +131,7 @@ def callback(request, pk):
                 Username: {phone}
                 Password: {password}
             """
-            send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "websiteusk@gmail.com", [email], fail_silently=False)
             subject = "Registration Completed on USKLOGIN.COM"
             message = f"""
                 One more Agent on USKLOGIN.COM
@@ -139,9 +139,6 @@ def callback(request, pk):
                 Username: {phone}
                 Password: {password}
             """
-            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
-            print("Payment Successful")
-            messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
         return render(request, "web/callback.html", context={"status": order_status})
@@ -207,7 +204,7 @@ def upgrade_callback(request):
             email = order.user.email
             subject = "Upgrade Plan"
             message = "The scheduled upgrade has been completed successfully."
-            send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "websiteusk@gmail.com", [email], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
@@ -239,7 +236,7 @@ def profile(request):
                 Username: {request.user.phone}
                 Userid: {request.user.id}, Added a branding image. Please verify the branding image.
             """
-            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
+            send_mail(subject, message, "websiteusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
             print("done")
         else:
             print(branding_image_form.errors)
