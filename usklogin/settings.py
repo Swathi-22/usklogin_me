@@ -143,14 +143,14 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-relay.sendinblue.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "loginusk@gmail.com"
-EMAIL_HOST_PASSWORD = "D2ja7rJgAnQFTS5Z"
+EMAIL_HOST_USER = "websiteusk@gmail.com"
+EMAIL_HOST_PASSWORD = "nAf2VQBmHIy8RX9h"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-MAILGUN_FROM_EMAIL = "secure.gedexo@gmail.com"
+MAILGUN_FROM_EMAIL = "websiteusk@gmail.com"
 
 
 # For development
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
 CSRF_TRUSTED_ORIGINS = ["https://pvanfas-humble-computing-machine-5x49x4p74vj2vrj5-8000.preview.app.github.dev"]
