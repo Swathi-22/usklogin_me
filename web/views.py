@@ -56,10 +56,6 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 
-RAZOR_PAY_KEY = "rzp_live_oTpxycIg3EOxp1"
-RAZOR_PAY_SECRET = "0KJnbcEIPKBlFcIS4XW80mv3"
-
-
 def expired(request):
     return render(request, "web/expired.html")
 
@@ -99,7 +95,7 @@ def order_payment(request, pk):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/{pk}/"}
+    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/{pk}/"}
     return render(request, "web/payment.html", context)
 
 
@@ -179,7 +175,7 @@ def upgrade_plan(request):
     client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
     return render(request, "web/payment.html", context)
 
 
@@ -219,7 +215,7 @@ def upgrade_callback(request):
 
 
 def verify_signature(response_data):
-    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     return client.utility.verify_payment_signature(response_data)
 
 
