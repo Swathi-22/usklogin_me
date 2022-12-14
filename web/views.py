@@ -92,7 +92,7 @@ def register(request):
 def order_payment(request, pk):
     user = get_object_or_404(User, id=pk)
     amount = 1
-    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/{pk}/"}

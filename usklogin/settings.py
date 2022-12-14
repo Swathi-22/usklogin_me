@@ -133,7 +133,7 @@ SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
 REGISTRATION_OPEN = True
-LOGIN_URL = "/start/"
+LOGIN_URL = "app/login/"
 LOGOUT_URL = "app/logout/"
 LOGIN_REDIRECT_URL = "/"
 
@@ -157,3 +157,12 @@ ONESIGNAL_SAFARI_WEB_ID = config("ONESIGNAL_SAFARI_WEB_ID")
 
 RAZOR_PAY_KEY = config("RAZOR_PAY_KEY")
 RAZOR_PAY_SECRET = config("RAZOR_PAY_SECRET")
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
