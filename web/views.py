@@ -110,6 +110,7 @@ def callback(request, pk):
         print(response_data)
 
         if verify_signature(response_data):
+            print("Signature verification successful")
             order, _ = Order.objects.get_or_create(user=user, provider_order_id=provider_order_id)
             order_status = PaymentStatus.SUCCESS
             order.status = PaymentStatus.SUCCESS
@@ -140,9 +141,11 @@ def callback(request, pk):
                 Password: {password}
             """
         else:
+            print("Signature verification failed, please check the secret key")
             order_status = PaymentStatus.FAILURE
         return render(request, "web/callback.html", context={"status": order_status})
     else:
+        print("razorpay_signature is not present in request.POST ")
         return render(request, "web/payment.html")
 
 
