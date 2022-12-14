@@ -114,8 +114,9 @@ STATICFILES_DIRS = ((BASE_DIR / "static"),)
 STATIC_ROOT = BASE_DIR / "assets"
 
 AUTH_USER_MODEL = "accounts.User"
-# DOMAIN = "https://usklogin.com"
-DOMAIN = "http://127.0.0.1:7000"
+
+# DOMAIN = "http://127.0.0.1:7000"
+DOMAIN = "https://usklogin.com"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -146,7 +147,6 @@ EMAIL_PORT = config("EMAIL_PORT")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS")
-EMAIL_USE_SSL = config("EMAIL_USE_SSL")
 
 MAILGUN_FROM_EMAIL = config("MAILGUN_FROM_EMAIL")
 MAILGUN_DOMAIN_NAME = config("MAILGUN_DOMAIN_NAME")
