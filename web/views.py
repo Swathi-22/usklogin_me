@@ -143,7 +143,7 @@ def callback(request, pk):
             order_status = PaymentStatus.FAILURE
         return render(request, "web/callback.html", context={"status": order_status})
     else:
-        return render(request, "web/payment.html")
+        return render(request, "web/payment.html",context)
 
 
 class Certificate(PDFView, LoginRequiredMixin):
@@ -211,7 +211,7 @@ def upgrade_callback(request):
             order_status = PaymentStatus.FAILURE
         return render(request, "web/planupgrade-callback.html", context={"status": order_status})
     else:
-        return render(request, "web/payment.html")
+        return render(request, "web/payment.html",context)
 
 
 def verify_signature(response_data):
