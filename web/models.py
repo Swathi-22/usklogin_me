@@ -167,7 +167,7 @@ class Tools(models.Model):
         return str(self.name)
 
 
-class MarketingTips(models.Model):
+class marketing_tips(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Marketing_Tip/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -181,7 +181,7 @@ class MarketingTips(models.Model):
         return str(self.name)
 
 
-class OtherIdeas(models.Model):
+class other_ideas(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Other_Ideas/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -195,7 +195,7 @@ class OtherIdeas(models.Model):
         return str(self.name)
 
 
-class AgencyPortal(models.Model):
+class agency_portal(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Agency_Portal/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -209,7 +209,7 @@ class AgencyPortal(models.Model):
         return str(self.name)
 
 
-class BackOfficeServices(models.Model):
+class back_office_services(models.Model):
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Back_Office_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -237,7 +237,7 @@ class AgentBonus(models.Model):
         return str(self.name)
 
 
-class SupportRequest(models.Model):
+class support_request(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
     email = models.EmailField()
@@ -250,7 +250,7 @@ class SupportRequest(models.Model):
         return str(self.name)
 
 
-class SupportTicket(models.Model):
+class support_ticket(models.Model):
     ticket_id = models.CharField(default=generate_ticket_pk, primary_key=True, max_length=255, unique=True, blank=True)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)

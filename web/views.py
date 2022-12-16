@@ -1,7 +1,7 @@
 import json
 import os
 from itertools import chain
-
+from django.http import HttpResponseRedirect
 from accounts.models import User
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
@@ -9,9 +9,9 @@ from services.models import ServiceHeads
 from services.models import Services
 from web.models import FAQ
 from web.models import AddonServices
-from web.models import AgencyPortal
+from web.models import agency_portal
 from web.models import AgentBonus
-from web.models import BackOfficeServices
+from web.models import back_office_services
 from web.models import CallSupport
 from web.models import CommonServicesPoster
 from web.models import DownloadDocuments
@@ -19,11 +19,11 @@ from web.models import DownloadForms
 from web.models import FestivelPoster
 from web.models import ImportantPoster
 from web.models import LatestNews
-from web.models import MarketingTips
+from web.models import marketing_tips
 from web.models import NewServicePoster
 from web.models import OnloadPopup
 from web.models import Order
-from web.models import OtherIdeas
+from web.models import other_ideas
 from web.models import PaymentStatus
 from web.models import ProfessionalPoster
 from web.models import Softwares
@@ -34,8 +34,8 @@ from web.models import WhatsappSupport
 import razorpay
 from .decorators import subscription_required
 from .forms import BrandingImageForm
-from .forms import SupportRequestForm
-from .forms import SupportTicketForm
+from .forms import support_requestForm
+from .forms import support_ticketForm
 from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
 from .functions import generate_pw
@@ -77,6 +77,10 @@ def register(request):
     print(temp_pass)
     context = {"user_form": user_form}
     if request.method == "POST":
+        username = request.POST.get("phone")
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "User already exists!")
+            return HttpResponseRedirect("/app/login/")
         if user_form.is_valid():
             data = user_form.save(commit=False)
             data.username = request.POST.get("phone")
@@ -145,6 +149,7 @@ def callback(request, pk):
             order_status = PaymentStatus.FAILURE
         return render(request, "web/callback.html", context={"status": order_status})
     else:
+        context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html",context)
 
 
@@ -174,7 +179,7 @@ def upgrade_plan_request(request):
 def upgrade_plan(request):
     user = request.user
     amount = 500
-    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
@@ -213,6 +218,7 @@ def upgrade_callback(request):
             order_status = PaymentStatus.FAILURE
         return render(request, "web/planupgrade-callback.html", context={"status": order_status})
     else:
+        context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html",context)
 
 
@@ -313,7 +319,7 @@ def notification(request):
 
 @login_required
 @subscription_required
-def generatePoster(request):
+def generate_poster(request):
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
     professional_poster = ProfessionalPoster.objects.all()
@@ -350,7 +356,7 @@ def search_items(request):
 
 @login_required
 @subscription_required
-def generateBill(request):
+def generate_bill(request):
     services = Services.objects.all()
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
@@ -374,7 +380,7 @@ def searching_invoice(request):
 
 @login_required
 @subscription_required
-def generateForms(request):
+def generate_forms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
     return render(request, "web/generate-form.html", context)
@@ -418,8 +424,8 @@ def tools(request):
 
 @login_required
 @subscription_required
-def marketingTip(request):
-    marketing_tips = MarketingTips.objects.all()
+def marketing_tip(request):
+    marketing_tips = marketing_tips.objects.all()
     context = {"is_tip": True, "marketing_tips": marketing_tips, "room_name": "broadcast"}
 
     return render(request, "web/marketing-tip.html", context)
@@ -427,24 +433,24 @@ def marketingTip(request):
 
 @login_required
 @subscription_required
-def otherIdea(request):
-    other_ideas = OtherIdeas.objects.all()
+def other_idea(request):
+    other_ideas = other_ideas.objects.all()
     context = {"is_idea": True, "other_ideas": other_ideas, "room_name": "broadcast"}
     return render(request, "web/other-ideas.html", context)
 
 
 @login_required
 @subscription_required
-def agencyPortal(request):
-    agency_portal = AgencyPortal.objects.all()
+def agency_portal(request):
+    agency_portal = agency_portal.objects.all()
     context = {"is_portal": True, "agency_portal": agency_portal, "room_name": "broadcast"}
     return render(request, "web/agency-portal.html", context)
 
 
 @login_required
 @subscription_required
-def backOfficeServices(request):
-    back_office_services = BackOfficeServices.objects.all()
+def back_office_services(request):
+    back_office_services = back_office_services.objects.all()
     context = {"is_backservice": True, "back_office_services": back_office_services, "room_name": "broadcast"}
     return render(request, "web/back-office-services.html", context)
 
@@ -467,8 +473,8 @@ def support(request):
 
 @login_required
 @subscription_required
-def supportRequest(request):
-    forms = SupportRequestForm(request.POST or None)
+def support_request(request):
+    forms = support_requestForm(request.POST or None)
     if request.method == "POST":
         if forms.is_valid():
             data = forms.save(commit=False)
@@ -492,8 +498,8 @@ def F_A_Q(request):
 
 @login_required
 @subscription_required
-def supportTicket(request):
-    forms = SupportTicketForm(request.POST or None)
+def support_ticket(request):
+    forms = support_ticketForm(request.POST or None)
     if request.method == "POST":
         if forms.is_valid():
             data = forms.save(commit=False)

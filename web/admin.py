@@ -1,8 +1,8 @@
 from .models import FAQ
 from .models import AddonServices
-from .models import AgencyPortal
+from .models import agency_portal
 from .models import AgentBonus
-from .models import BackOfficeServices
+from .models import back_office_services
 from .models import CallSupport
 from .models import CommonServicesPoster
 from .models import DownloadDocuments
@@ -10,16 +10,16 @@ from .models import DownloadForms
 from .models import FestivelPoster
 from .models import ImportantPoster
 from .models import LatestNews
-from .models import MarketingTips
+from .models import marketing_tips
 from .models import NewServicePoster
 from .models import OnloadPopup
 from .models import Order
-from .models import OtherIdeas
+from .models import other_ideas
 from .models import ProfessionalPoster
 from .models import Softwares
 from .models import Subscription
-from .models import SupportRequest
-from .models import SupportTicket
+from .models import support_request
+from .models import support_ticket
 from .models import Tools
 from .models import WhatsappSupport
 from django.contrib import admin
@@ -56,7 +56,7 @@ class ProfessionalPosterAdmin(admin.ModelAdmin):
 
 
 @admin.register(DownloadForms)
-class GenerateFormsAdmin(admin.ModelAdmin):
+class generate_formsAdmin(admin.ModelAdmin):
     list_display = ("name", "file")
 
 
@@ -75,23 +75,23 @@ class ToolsAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(MarketingTips)
-class MarketingTipsAdmin(admin.ModelAdmin):
+@admin.register(marketing_tips)
+class marketing_tipsAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(OtherIdeas)
-class OtherIdeasAdmin(admin.ModelAdmin):
+@admin.register(other_ideas)
+class other_ideasAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(AgencyPortal)
-class AgencyPortalAdmin(admin.ModelAdmin):
+@admin.register(agency_portal)
+class agency_portalAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(BackOfficeServices)
-class BackOfficeServicesAdmin(admin.ModelAdmin):
+@admin.register(back_office_services)
+class back_office_servicesAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
@@ -100,13 +100,13 @@ class AgentBonusAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(SupportRequest)
-class SupportRequestAdmin(admin.ModelAdmin):
+@admin.register(support_request)
+class support_requestAdmin(admin.ModelAdmin):
     list_display = ("name", "email", "phone")
 
 
-@admin.register(SupportTicket)
-class SupportTicketAdmin(admin.ModelAdmin):
+@admin.register(support_ticket)
+class support_ticketAdmin(admin.ModelAdmin):
     list_display = ("ticket_id", "name", "email", "phone")
 
 

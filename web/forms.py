@@ -1,8 +1,8 @@
 from accounts.models import User
 from services.models import BrandingImage
 
-from .models import SupportRequest
-from .models import SupportTicket
+from .models import support_request
+from .models import support_ticket
 from django import forms
 from django.forms.widgets import EmailInput
 from django.forms.widgets import FileInput
@@ -26,9 +26,9 @@ class UserRegistrationForm(forms.ModelForm):
         }
 
 
-class SupportRequestForm(forms.ModelForm):
+class support_requestForm(forms.ModelForm):
     class Meta:
-        model = SupportRequest
+        model = support_request
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "name": "name", "id": "name", "required": "required", "autocomplete": "off"}),
@@ -38,9 +38,9 @@ class SupportRequestForm(forms.ModelForm):
         }
 
 
-class SupportTicketForm(forms.ModelForm):
+class support_ticketForm(forms.ModelForm):
     class Meta:
-        model = SupportTicket
+        model = support_ticket
         fields = "__all__"
         widgets = {
             "name": TextInput(attrs={"class": "form-control", "name": "name", "id": "name", "required": "required", "autocomplete": "off"}),
