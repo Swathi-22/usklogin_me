@@ -1,18 +1,21 @@
-from .models import Order
-from django.shortcuts import redirect
+from .models import Subscription
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.utils import timezone
 
 
 def subscription_required(func):
     def wrapper(request, *args, **kwargs):
         if request.user.is_authenticated:
-            subs = Order.objects.filter(user=request.user, is_active=True).last()
-            if request.user.is_superuser:
-                return func(request, *args, **kwargs)
-            elif subs.is_valid:
-                return func(request, *args, **kwargs)
+            if Subscription.objects.filter(user=request.user, status="Success").exists():
+                subscriptions = Subscription.objects.filter(user=request.user, status="Success")
+                subs = subscriptions.filter(valid_upto__gt=timezone.now())
+                if request.user.is_superuser or subs:
+                    return func(request, *args, **kwargs)
+                else:
+                    return redirect("web:expired")
             else:
-                return redirect("web:expired")
+                return redirect("web:order_payment")
         else:
             return HttpResponseRedirect("/start/")
 

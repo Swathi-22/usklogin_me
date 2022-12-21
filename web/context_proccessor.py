@@ -13,8 +13,8 @@ def main_context(request):
         "branding_image": branding_image,
         "ONESIGNAL_APP_ID": settings.ONESIGNAL_APP_ID,
         "ONESIGNAL_SAFARI_WEB_ID": settings.ONESIGNAL_SAFARI_WEB_ID,
-        "RAZOR_PAY_KEY" : settings.RAZOR_PAY_KEY,
-        "RAZOR_PAY_SECRET" : settings.RAZOR_PAY_SECRET,
+        "RAZOR_PAY_KEY": settings.RAZOR_PAY_KEY,
+        "RAZOR_PAY_SECRET": settings.RAZOR_PAY_SECRET,
     }
 
 

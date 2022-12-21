@@ -1,8 +1,8 @@
 from .models import FAQ
 from .models import AddonServices
-from .models import agency_portal
+from .models import AgencyPortal
 from .models import AgentBonus
-from .models import back_office_services
+from .models import BackOfficeServices
 from .models import CallSupport
 from .models import CommonServicesPoster
 from .models import DownloadDocuments
@@ -10,16 +10,16 @@ from .models import DownloadForms
 from .models import FestivelPoster
 from .models import ImportantPoster
 from .models import LatestNews
-from .models import marketing_tips
+from .models import MarketingTips
 from .models import NewServicePoster
 from .models import OnloadPopup
 from .models import Order
-from .models import other_ideas
+from .models import OtherIdeas
 from .models import ProfessionalPoster
 from .models import Softwares
 from .models import Subscription
-from .models import support_request
-from .models import support_ticket
+from .models import SupportRequest
+from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
 from django.contrib import admin
@@ -75,23 +75,23 @@ class ToolsAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(marketing_tips)
-class marketing_tipsAdmin(admin.ModelAdmin):
+@admin.register(MarketingTips)
+class MarketingTipsAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(other_ideas)
-class other_ideasAdmin(admin.ModelAdmin):
+@admin.register(OtherIdeas)
+class OtherIdeasAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(agency_portal)
-class agency_portalAdmin(admin.ModelAdmin):
+@admin.register(AgencyPortal)
+class AgencyPortalAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(back_office_services)
-class back_office_servicesAdmin(admin.ModelAdmin):
+@admin.register(BackOfficeServices)
+class BackOfficeServicesAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
@@ -100,13 +100,13 @@ class AgentBonusAdmin(admin.ModelAdmin):
     list_display = ("name", "link")
 
 
-@admin.register(support_request)
-class support_requestAdmin(admin.ModelAdmin):
+@admin.register(SupportRequest)
+class SupportRequestAdmin(admin.ModelAdmin):
     list_display = ("name", "email", "phone")
 
 
-@admin.register(support_ticket)
-class support_ticketAdmin(admin.ModelAdmin):
+@admin.register(SupportTicket)
+class SupportTicketAdmin(admin.ModelAdmin):
     list_display = ("ticket_id", "name", "email", "phone")
 
 
@@ -117,7 +117,7 @@ class FAQAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("user", "amount", "is_active", "status", "valid_from", "valid_upto")
+    list_display = ("user", "amount", "status")
 
 
 @admin.register(CallSupport)
@@ -132,7 +132,7 @@ class WhatsappSupportAdmin(admin.ModelAdmin):
 
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ("user", "amount", "is_active", "status", "valid_from", "valid_upto")
+    list_display = ("user", "amount", "status", "valid_from", "valid_upto")
 
 
 @admin.register(AddonServices)
