@@ -11,16 +11,18 @@ from versatileimagefield.fields import VersatileImageField
 
 
 PAYMENT_STATUS_CHOICES = (("Success", "Success"), ("Failure", "Failure"), ("Pending", "Pending"))
+TYPE_CHOICES = (("Access","Access"),("Support","Support"))
 
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.FloatField(("Amount"), null=False, blank=False)
     status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
+    types = models.CharField(("Type"),max_length=254, choices=TYPE_CHOICES)
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True, blank=True)
 
     def __str__(self):
         return f"{self.id}-{self.user}-{self.status}"
@@ -295,6 +297,7 @@ class Subscription(models.Model):
     valid_from = models.DateTimeField(default=timezone.now)
     valid_upto = models.DateTimeField(blank=True, editable=False)
     status = models.CharField("Payment Status", default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
+    types = models.CharField(("Type"),max_length=254, choices=TYPE_CHOICES,null=True, blank=True)
     provider_order_id = models.CharField("Order ID", max_length=40, null=True, blank=True)
     payment_id = models.CharField("Payment ID", max_length=36, null=True, blank=True)
     signature_id = models.CharField("Signature ID", max_length=128, null=True, blank=True)
