@@ -53,6 +53,8 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from registration.views import RegistrationView
+from django.utils import timezone
+
 
 # function
 def verify_signature(response_data):
@@ -87,11 +89,10 @@ def callback(request):
             order.status = PaymentStatus.SUCCESS
             order.payment_id = payment_id
             order.signature_id = signature_id
-            
             order.save()
-            
-            order.user.is_active = True
-            order.user.save()
+
+            subscriptions = Subscription.objects.filter(user=request.user, status="Success",types="Access")
+            subs = subscriptions.filter(valid_upto__gt=timezone.now())
 
             # email = order.user.email
             # phone = order.user.phone
@@ -114,7 +115,7 @@ def callback(request):
         else:
             print("Signature verification failed, please check the secret key")
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/callback.html", context={"status": order_status})
+        return render(request, "web/callback.html", context={"status": order_status,"subscriptions":subscriptions,"subs":subs})
     else:
         context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html", context)

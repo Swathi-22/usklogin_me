@@ -115,8 +115,8 @@ STATIC_ROOT = BASE_DIR / "assets"
 
 AUTH_USER_MODEL = "accounts.User"
 
-# DOMAIN = "http://127.0.0.1:7000"
-DOMAIN = "https://usklogin.com"
+DOMAIN = "http://127.0.0.1:8000"
+# DOMAIN = "https://usklogin.com"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
