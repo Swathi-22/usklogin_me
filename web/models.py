@@ -134,6 +134,7 @@ class DownloadDocuments(models.Model):
 
 
 class Softwares(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Softwares/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -148,6 +149,7 @@ class Softwares(models.Model):
 
 
 class Tools(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Tools/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -162,6 +164,7 @@ class Tools(models.Model):
 
 
 class MarketingTips(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Marketing_Tip/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -176,6 +179,7 @@ class MarketingTips(models.Model):
 
 
 class OtherIdeas(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Other_Ideas/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -190,6 +194,7 @@ class OtherIdeas(models.Model):
 
 
 class AgencyPortal(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Agency_Portal/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -204,6 +209,7 @@ class AgencyPortal(models.Model):
 
 
 class BackOfficeServices(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Back_Office_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -218,6 +224,7 @@ class BackOfficeServices(models.Model):
 
 
 class AgentBonus(models.Model):
+    title =  models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")

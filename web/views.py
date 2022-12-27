@@ -64,7 +64,7 @@ def verify_signature(response_data):
 
 def order_payment(request):
     user = request.user
-    amount = 1
+    amount = 1499
     client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
@@ -75,6 +75,7 @@ def order_payment(request):
 @csrf_exempt
 def callback(request):
     user = request.user
+    amount=1
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -91,7 +92,7 @@ def callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success",types="Access",valid_upto__gt=timezone.now())
+            subscriptions = Subscription.objects.create(user=request.user, status="Success",types="Access",valid_upto=timezone.now(),amount=amount)
 
 
             # email = order.user.email
@@ -245,8 +246,8 @@ def profile(request):
         else:
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.filter(user=request.user).last()
-    subscription_validity = Subscription.objects.filter(user=request.user, is_active=True).last()
-    order_validity = Order.objects.filter(user=request.user, is_active=True).last()
+    subscription_validity = Subscription.objects.filter(user=request.user).last()
+    order_validity = Order.objects.filter(user=request.user).last()
 
     context = {
         "is_profile": True,
