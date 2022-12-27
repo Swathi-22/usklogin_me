@@ -91,8 +91,8 @@ def callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.filter(user=request.user, status="Success",types="Access")
-            subs = subscriptions.filter(valid_upto__gt=timezone.now())
+            subscriptions = Subscription.objects.create(user=request.user, status="Success",types="Access",valid_upto__gt=timezone.now())
+
 
             # email = order.user.email
             # phone = order.user.phone
@@ -115,7 +115,7 @@ def callback(request):
         else:
             print("Signature verification failed, please check the secret key")
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/callback.html", context={"status": order_status,"subscriptions":subscriptions,"subs":subs})
+        return render(request, "web/callback.html", context={"status": order_status,"subscriptions":subscriptions,})
     else:
         context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html", context)
