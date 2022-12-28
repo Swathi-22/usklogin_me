@@ -316,6 +316,10 @@ class Subscription(models.Model):
 
     @property
     def is_valid(self):
+        return True if self.valid_from + timedelta(year=1) >= timezone.now() else False
+
+    @property
+    def is_active(self):
         return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
     def __str__(self):

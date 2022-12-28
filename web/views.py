@@ -131,15 +131,16 @@ def upgrade_plan(request):
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
     subscriptions = Subscription.objects.filter(user=request.user, status="Success",types="Support")
-    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
+    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade_callback/"}
     return render(request, "web/payment.html", context)
 
 
+@csrf_exempt
 @login_required
 @subscription_required
-@csrf_exempt
 def upgrade_callback(request):
     user = request.user
+    amount = 500
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -155,7 +156,7 @@ def upgrade_callback(request):
             order.signature_id = signature_id
             order.save()
 
-            order.user.save()
+            subscriptions = Subscription.objects.create(user=request.user, status="Success",types="Support",valid_upto=timezone.now(),amount=amount)
 
             email = order.user.email
             subject = "Upgrade Plan"
@@ -165,7 +166,7 @@ def upgrade_callback(request):
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/planupgrade-callback.html", context={"status": order_status})
+        return render(request, "web/planupgrade-callback.html", context={"status": order_status,"subscriptions":subscriptions})
     else:
         context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html", context)

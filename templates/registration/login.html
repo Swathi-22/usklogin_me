@@ -31,4 +31,9 @@
 <a href="https://api.whatsapp.com/send/?phone=917306502050&text=Hi%0AUSK+Login&type=phone_number&app_absent=0" class="whats-link">
     <img src="{% static 'web/images/whatsapp.png' %}" class="whatsapp-icon"> </a>
 
+<script>
+    var label = document.getElementById('div_id_username').getElementsByTagName('label')[0];
+    label.innerHTML = "Phone Number*";
+</script>
+
 {% endblock %}
