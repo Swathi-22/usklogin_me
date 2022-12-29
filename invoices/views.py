@@ -110,6 +110,13 @@ class InvoiceCreate(CreateView):
     fields = ["customer", "invoice_name", "invoice_no"]
     template_name = "invoice/invoice_form.html"
 
+    def form_class(self):
+        form_class = super().form_class()
+        form_class.base_fields["customer"].queryset = Customer.objects.filter(
+            created_by=self.request.user
+        )
+        return form_class
+
 
 class InvoiceItemCreate(CreateView):
     model = Invoice
