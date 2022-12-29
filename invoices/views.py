@@ -29,7 +29,7 @@ class CustomerCreate(CreateView):
     template_name = "invoice/customer_form.html"
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
+        form.instance.created_by = self.request.user    
         return super().form_valid(form)
 
 

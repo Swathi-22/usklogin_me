@@ -33,7 +33,7 @@ class Services(models.Model):
     service_charge = models.CharField(max_length=100)
     actual_service_charge = models.CharField(max_length=100)
     video_tutorial = models.CharField(max_length=100)
-    guidline = models.CharField(max_length=100)
+    guidline = models.URLField()
     upload_form = models.URLField()
     slug = models.SlugField(unique=True)
 
