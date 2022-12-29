@@ -361,10 +361,11 @@ def search_items(request):
         common_services_poster = CommonServicesPoster.objects.filter(Q(title__icontains=search_Key))
         festivel_poster = FestivelPoster.objects.filter(Q(title__icontains=search_Key))
         professional_poster = ProfessionalPoster.objects.filter(Q(title__icontains=search_Key))
+        branding_image = BrandingImage.objects.filter(user=request.user).last()
         result = chain(services, new_service_poster, important_poster, common_services_poster, festivel_poster, professional_poster)
         print(services.count())
         context = {}
-        context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
+        context["template"] = render_to_string("web/service-searching.html", {"result": result,"branding_image":branding_image}, request=request)
     return JsonResponse(context)
 
 

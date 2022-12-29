@@ -22,31 +22,31 @@
         {% else %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <div class="card card-body w-100">
-            <img src="{{posters.image.url}}" data-id="{{posters.id | apnumber }}" alt="Image">
-            <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
-    
-            <div class="text-center mt-3">
-              <button class="btn-sm mx-auto btn btn-primary" target="_blank" rel="noopener noreferrer"
-                data-source="{{posters.id | apnumber }}">Click to Download</button>
+            <img src="{{posters.image.url}}" data-id="important-poster-{{posters.id | apnumber }}" alt="Image">
+            <img src="{{branding_image.image.url}}" alt="" />
+
+            <p class="my-1">{{posters.title}}</p>
+            <div class="text-center">
+              <button class="btn-sm btn btn-primary generate" target="_blank"
+                data-source="important-poster-{{posters.id | apnumber }}">Download</button>
+              <a href="{{posters.detail_link}}" class="btn btn-info btn-sm" rel="noopener noreferrer" target="_blank">Details</a>
             </div>
-    
-            <span>{{posters.title}}</span>
           </div>
         </div>
         {% endif %}
         {% endwith %}
         {% endfor %}
-        <div class="img-popup">
-          <div class="container" id="resultContainer" style="display: none;">
-    
-            <img class="img-responsive popup-imagea" id="result" src="">
-            <div class="text-center mt-3 poster-download-button">
-              <a id="download" class="btn-sm mx-auto btn btn-primary" download>Download</a>
-            </div>
+       
+        <div class="d-none">
+          <div class="service-heading">
+            <h5>Branding Image</h5>
           </div>
-          <div class="close-btn">
-            <div class="bar"></div>
-            <div class="bar"></div>
+          <div class="container">
+            {% if branding_image.image %}
+            <img src="{{branding_image.image.crop.1000x100}}" id="footerImage" alt="Image">
+            {% else %}
+            <h4>....</h4>
+            {% endif %}
           </div>
         </div>
       </div>

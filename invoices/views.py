@@ -33,6 +33,7 @@ class CustomerInvoieCreate(CreateView):
     success_url = reverse_lazy("invoices:customer-list")
     template_name = "invoice/customer_form.html"
 
+
     def get_context_data(self, **kwargs):
         data = super(CustomerInvoieCreate, self).get_context_data(**kwargs)
         if self.request.POST:
@@ -42,7 +43,6 @@ class CustomerInvoieCreate(CreateView):
         return data
 
     def form_valid(self, form):
-        
         context = self.get_context_data()
         invoices = context["invoices"]
         with transaction.atomic():
