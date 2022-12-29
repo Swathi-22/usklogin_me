@@ -75,7 +75,7 @@ def order_payment(request):
 @csrf_exempt
 def callback(request):
     user = request.user
-    amount=1
+    amount=1499
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")

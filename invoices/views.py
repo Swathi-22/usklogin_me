@@ -42,6 +42,7 @@ class CustomerInvoieCreate(CreateView):
         return data
 
     def form_valid(self, form):
+        
         context = self.get_context_data()
         invoices = context["invoices"]
         with transaction.atomic():
