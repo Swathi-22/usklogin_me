@@ -27,6 +27,7 @@ class CustomerCreate(CreateView):
     model = Customer
     fields = ["name", "email", "phone_no", "address"]
     template_name = "invoice/customer_form.html"
+    success_url = reverse_lazy("invoices:customer-list")
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
