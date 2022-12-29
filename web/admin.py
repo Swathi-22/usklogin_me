@@ -57,47 +57,47 @@ class ProfessionalPosterAdmin(admin.ModelAdmin):
 
 @admin.register(DownloadForms)
 class generate_formsAdmin(admin.ModelAdmin):
-    list_display = ("name", "file",)
+    list_display = ("name", "file")
 
 
 @admin.register(DownloadDocuments)
 class DocumentsAdmin(admin.ModelAdmin):
-    list_display = ("name", "file",)
+    list_display = ("name", "file")
 
 
 @admin.register(Softwares)
 class SoftwaresAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(Tools)
 class ToolsAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(MarketingTips)
 class MarketingTipsAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(OtherIdeas)
 class OtherIdeasAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(AgencyPortal)
 class AgencyPortalAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(BackOfficeServices)
 class BackOfficeServicesAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(AgentBonus)
 class AgentBonusAdmin(admin.ModelAdmin):
-    list_display = ("name", "link","title",)
+    list_display = ("name", "link", "title")
 
 
 @admin.register(SupportRequest)

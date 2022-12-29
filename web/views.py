@@ -51,9 +51,9 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from registration.views import RegistrationView
-from django.utils import timezone
 
 
 # function
@@ -75,7 +75,7 @@ def order_payment(request):
 @csrf_exempt
 def callback(request):
     user = request.user
-    amount=1499
+    amount = 1499
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -92,8 +92,7 @@ def callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success",types="Access",valid_upto=timezone.now(),amount=amount)
-
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Access", valid_upto=timezone.now(), amount=amount)
 
             # email = order.user.email
             # phone = order.user.phone
@@ -116,7 +115,7 @@ def callback(request):
         else:
             print("Signature verification failed, please check the secret key")
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/callback.html", context={"status": order_status,"subscriptions":subscriptions,})
+        return render(request, "web/callback.html", context={"status": order_status, "subscriptions": subscriptions})
     else:
         context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html", context)
@@ -130,7 +129,7 @@ def upgrade_plan(request):
     client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    subscriptions = Subscription.objects.filter(user=request.user, status="Success",types="Support")
+    subscriptions = Subscription.objects.filter(user=request.user, status="Success", types="Support")
     context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade_callback/"}
     return render(request, "web/payment.html", context)
 
@@ -156,7 +155,7 @@ def upgrade_callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success",types="Support",valid_upto=timezone.now(),amount=amount)
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Support", valid_upto=timezone.now(), amount=amount)
 
             email = order.user.email
             subject = "Upgrade Plan"
@@ -166,7 +165,7 @@ def upgrade_callback(request):
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/planupgrade-callback.html", context={"status": order_status,"subscriptions":subscriptions})
+        return render(request, "web/planupgrade-callback.html", context={"status": order_status, "subscriptions": subscriptions})
     else:
         context = {"status": PaymentStatus.FAILURE}
         return render(request, "web/payment.html", context)
@@ -371,7 +370,7 @@ def search_items(request):
         result = chain(services, new_service_poster, important_poster, common_services_poster, festivel_poster, professional_poster)
         print(services.count())
         context = {}
-        context["template"] = render_to_string("web/service-searching.html", {"result": result,"branding_image":branding_image}, request=request)
+        context["template"] = render_to_string("web/service-searching.html", {"result": result, "branding_image": branding_image}, request=request)
     return JsonResponse(context)
 
 
