@@ -12,7 +12,8 @@ from django.views.generic import UpdateView
 
 
 class CustomerList(ListView):
-    model = Customer
+    def get_queryset(self):
+        return Customer.objects.filter(created_by=self.request.user)
     template_name = "invoice/customer_list.html"
 
     def get_context_data(self, *args, **kwargs):
