@@ -1,5 +1,4 @@
 import requests
-from .models import Subscription
 from django.conf import settings
 
 
