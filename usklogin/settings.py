@@ -67,7 +67,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "usklogin.wsgi.application"
-ASGI_APPLICATION = "usklogin.asgi.application"
+# ASGI_APPLICATION = "usklogin.asgi.application"
 
 DATABASES = {
     "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
@@ -114,8 +114,9 @@ STATICFILES_DIRS = ((BASE_DIR / "static"),)
 STATIC_ROOT = BASE_DIR / "assets"
 
 AUTH_USER_MODEL = "accounts.User"
-DOMAIN = "https://usklogin.geany.website"
-# DOMAIN = "http://127.0.0.1:8000"
+
+# DOMAIN = "http://127.0.0.1:7000"
+DOMAIN = "https://usklogin.com"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -133,24 +134,29 @@ SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
 
 REGISTRATION_OPEN = True
-LOGIN_URL = "/start/"
+LOGIN_URL = "app/login/"
 LOGOUT_URL = "app/logout/"
 LOGIN_REDIRECT_URL = "/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp-relay.sendinblue.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "loginusk@gmail.com"
-EMAIL_HOST_PASSWORD = "D2ja7rJgAnQFTS5Z"
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_BACKEND = config("EMAIL_BACKEND")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS")
 
-MAILGUN_FROM_EMAIL = "secure.gedexo@gmail.com"
+MAILGUN_FROM_EMAIL = config("MAILGUN_FROM_EMAIL")
+MAILGUN_DOMAIN_NAME = config("MAILGUN_DOMAIN_NAME")
+MAILGUN_API_KEY = config("MAILGUN_API_KEY")
+
+ONESIGNAL_APP_ID = config("ONESIGNAL_APP_ID")
+ONESIGNAL_SAFARI_WEB_ID = config("ONESIGNAL_SAFARI_WEB_ID")
+
+RAZOR_PAY_KEY = config("RAZOR_PAY_KEY")
+RAZOR_PAY_SECRET = config("RAZOR_PAY_SECRET")
 
 
-# For development
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
-CSRF_TRUSTED_ORIGINS = ["https://pvanfas-humble-computing-machine-5x49x4p74vj2vrj5-8000.preview.app.github.dev"]
+# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}

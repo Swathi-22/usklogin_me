@@ -2,6 +2,7 @@ import json
 import os
 from itertools import chain
 
+from accounts.forms import UserRegistrationForm
 from accounts.models import User
 from invoices.models import InvoiceItem
 from services.models import BrandingImage
@@ -36,9 +37,7 @@ from .decorators import subscription_required
 from .forms import BrandingImageForm
 from .forms import SupportRequestForm
 from .forms import SupportTicketForm
-from .forms import UserRegistrationForm
 from .forms import UserUpdateForm
-from .functions import generate_pw
 from .utils import PDFView
 from django.conf import settings
 from django.contrib import messages
@@ -49,63 +48,34 @@ from django.db.models import Q
 from django.http import Http404
 from django.http import HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
+from registration.views import RegistrationView
 
 
-RAZOR_PAY_KEY = "rzp_test_gmilUW5MZmHsEK"
-RAZOR_PAY_SECRET = "z7rD3fi8O6rS8vsVMRvmbGkW"
+# function
+def verify_signature(response_data):
+    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
+    return client.utility.verify_payment_signature(response_data)
 
 
-def expired(request):
-    return render(request, "web/expired.html")
-
-
-def start(request):
-    if request.method == "POST":
-        mobile = request.POST.get("mobile", None)
-        if mobile:
-            if User.objects.filter(username=mobile).exists():
-                return redirect("auth_login")
-            else:
-                return redirect("web:register")
-    return render(request, "web/start.html")
-
-
-def register(request):
-    user_form = UserRegistrationForm(request.POST or None)
-    temp_pass = generate_pw()
-    print(temp_pass)
-    context = {"user_form": user_form}
-    if request.method == "POST":
-        if user_form.is_valid():
-            data = user_form.save(commit=False)
-            data.username = request.POST.get("phone")
-            data.is_active = False
-            data.temp_password = temp_pass
-            data.set_password(temp_pass)
-            data.save()
-            messages.success(request, "You have successfully registered!")
-            return redirect("web:order_payment", pk=data.pk)
-    return render(request, "web/register.html", context)
-
-
-def order_payment(request, pk):
-    user = get_object_or_404(User, id=pk)
-    amount = 200
-    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+def order_payment(request):
+    user = request.user
+    amount = 1499
+    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/{pk}/"}
+    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/"}
     return render(request, "web/payment.html", context)
 
 
 @csrf_exempt
-def callback(request, pk):
-    user = get_object_or_404(User, id=pk)
+def callback(request):
+    user = request.user
+    amount = 1499
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -114,6 +84,7 @@ def callback(request, pk):
         print(response_data)
 
         if verify_signature(response_data):
+            print("Signature verification successful")
             order, _ = Order.objects.get_or_create(user=user, provider_order_id=provider_order_id)
             order_status = PaymentStatus.SUCCESS
             order.status = PaymentStatus.SUCCESS
@@ -121,71 +92,54 @@ def callback(request, pk):
             order.signature_id = signature_id
             order.save()
 
-            order.user.is_active = True
-            order.user.save()
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Access", valid_upto=timezone.now(), amount=amount)
 
-            email = order.user.email
-            phone = order.user.phone
-            password = order.user.temp_password
-            subject = "Registration Completed on USKLOGIN.COM"
-            message = f"""
-                Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
-                Use this username and password to login.
+            # email = order.user.email
+            # phone = order.user.phone
+            # subject = "Registration Completed on USKLOGIN.COM"
+            # message = f"""
+            #     Welcome to USKLOGIN.COM...Thank you for registered on USKLOGIN.COM.
+            #     Use this username and password to login.
 
-                Username: {phone}
-                Password: {password}
-            """
-            send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
-            subject = "Registration Completed on USKLOGIN.COM"
-            message = f"""
-                One more Agent on USKLOGIN.COM
+            #     Username: {phone}
+            #     Password: {password}
+            # """
+            # send_mail(subject, message, "websiteusk@gmail.com", [email], fail_silently=False)
+            # subject = "Registration Completed on USKLOGIN.COM"
+            # message = f"""
+            #     One more Agent on USKLOGIN.COM
 
-                Username: {phone}
-                Password: {password}
-            """
-            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
-            print("Payment Successful")
-            messages.success(request, "Payment Successful")
+            #     Username: {phone}
+            #     Password: {password}
+            # """
         else:
+            print("Signature verification failed, please check the secret key")
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/callback.html", context={"status": order_status})
+        return render(request, "web/callback.html", context={"status": order_status, "subscriptions": subscriptions})
     else:
-        return render(request, "web/payment.html")
-
-
-class Certificate(PDFView, LoginRequiredMixin):
-    template_name = "web/certificate-pdf.html"
-    pdfkit_options = {"page-height": "8.5in", "page-width": "11in", "encoding": "UTF-8", "margin-top": "0", "margin-bottom": "0", "margin-left": "0", "margin-right": "0"}
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context["logged_user"] = self.request.user
-        context["content"] = "Gedexo Certificate"
-        return context
-
-
-def upgrade_plan_request(request):
-    context = {}
-    return render(request, "web/upgrade-request.html", context)
+        context = {"status": PaymentStatus.FAILURE}
+        return render(request, "web/payment.html", context)
 
 
 @login_required
 @subscription_required
 def upgrade_plan(request):
     user = request.user
-    amount = 400
-    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
+    amount = 500
+    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
     razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
     order, created = Subscription.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade-callback/"}
+    subscriptions = Subscription.objects.filter(user=request.user, status="Success", types="Support")
+    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/upgrade_callback/"}
     return render(request, "web/payment.html", context)
 
 
+@csrf_exempt
 @login_required
 @subscription_required
-@csrf_exempt
 def upgrade_callback(request):
     user = request.user
+    amount = 500
     if "razorpay_signature" in request.POST:
         payment_id = request.POST.get("razorpay_payment_id", "")
         provider_order_id = request.POST.get("razorpay_order_id", "")
@@ -201,24 +155,73 @@ def upgrade_callback(request):
             order.signature_id = signature_id
             order.save()
 
-            order.user.save()
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Support", valid_upto=timezone.now(), amount=amount)
 
             email = order.user.email
             subject = "Upgrade Plan"
             message = "The scheduled upgrade has been completed successfully."
-            send_mail(subject, message, "loginusk@gmail.com", [email], fail_silently=False)
+            send_mail(subject, message, "websiteusk@gmail.com", [email], fail_silently=False)
             print("Payment Successful")
             messages.success(request, "Payment Successful")
         else:
             order_status = PaymentStatus.FAILURE
-        return render(request, "web/planupgrade-callback.html", context={"status": order_status})
+        return render(request, "web/planupgrade-callback.html", context={"status": order_status, "subscriptions": subscriptions})
     else:
-        return render(request, "web/payment.html")
+        context = {"status": PaymentStatus.FAILURE}
+        return render(request, "web/payment.html", context)
 
 
-def verify_signature(response_data):
-    client = razorpay.Client(auth=(RAZOR_PAY_KEY, RAZOR_PAY_SECRET))
-    return client.utility.verify_payment_signature(response_data)
+# verified views
+
+
+def start(request):
+    if request.method == "POST":
+        mobile = request.POST.get("mobile", None)
+        if mobile:
+            if User.objects.filter(username=mobile).exists():
+                return redirect("auth_login")
+            else:
+                return redirect("web:register")
+    else:
+        if request.user.is_authenticated:
+            return redirect("web:index")
+    return render(request, "web/start.html")
+
+
+class AuthRegistrationView(RegistrationView):
+    form_class = UserRegistrationForm
+
+    def register(self, form):
+        form = self.form_class(self.request.POST)
+        username = self.request.POST.get("phone")
+        if User.objects.filter(username=username).exists():
+            messages.error(self.request, "User already exists!")
+            return redirect("auth_login")
+        else:
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.username = self.request.POST.get("phone")
+                data.save()
+                messages.success(self.request, "You have successfully registered!")
+                return redirect("web:order_payment")
+            else:
+                messages.error(self.request, "Invalid form")
+                return redirect("auth_login")
+
+    def get_success_url(self, user=None):
+        return "/app/login/"
+
+
+# website pageviews
+
+
+def upgrade_plan_request(request):
+    context = {}
+    return render(request, "web/upgrade-request.html", context)
+
+
+def expired(request):
+    return render(request, "web/expired.html")
 
 
 @csrf_exempt
@@ -238,13 +241,13 @@ def profile(request):
                 Username: {request.user.phone}
                 Userid: {request.user.id}, Added a branding image. Please verify the branding image.
             """
-            send_mail(subject, message, "loginusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
+            send_mail(subject, message, "websiteusk@gmail.com", ["uskdemomail@gmail.com"], fail_silently=False)
             print("done")
         else:
             print(branding_image_form.errors)
     uploaded_branding_image = BrandingImage.objects.filter(user=request.user).last()
-    subscription_validity = Subscription.objects.filter(user=request.user, is_active=True).last()
-    order_validity = Order.objects.filter(user=request.user, is_active=True).last()
+    subscription_validity = Subscription.objects.filter(user=request.user).last()
+    order_validity = Order.objects.filter(user=request.user).last()
 
     context = {
         "is_profile": True,
@@ -256,6 +259,22 @@ def profile(request):
         "subscription_validity": subscription_validity,
     }
     return render(request, "web/profile.html", context)
+
+
+class Certificate(PDFView, LoginRequiredMixin):
+    template_name = "web/certificate-pdf.html"
+    pdfkit_options = {"page-height": "8.5in", "page-width": "11in", "encoding": "UTF-8", "margin-top": "0", "margin-bottom": "0", "margin-left": "0", "margin-right": "0"}
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["logged_user"] = self.request.user
+        context["content"] = self.request.user.name
+        context["shop_name"] = self.request.user.shop_name
+        context["district"] = self.request.user.district
+        context["pincode"] = self.request.user.pincode
+        context["created"] = self.request.user.created
+        context["id"] = self.request.user.id
+        return context
 
 
 @login_required
@@ -313,7 +332,10 @@ def notification(request):
 
 @login_required
 @subscription_required
-def generatePoster(request):
+def generate_poster(request):
+    recently_common_services_poster = CommonServicesPoster.objects.all().order_by('-id')[0:2]
+    recently_festivel_poster = FestivelPoster.objects.all().order_by('-id')[0:2]
+    recently_professional_poster = ProfessionalPoster.objects.all().order_by('-id')[0:2]
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
     professional_poster = ProfessionalPoster.objects.all()
@@ -325,6 +347,9 @@ def generatePoster(request):
         "professional_poster": professional_poster,
         "branding_image": branding_image,
         "room_name": "broadcast",
+        'recently_common_services_poster':recently_common_services_poster,
+        "recently_festivel_poster":recently_festivel_poster,
+        "recently_professional_poster":recently_professional_poster
     }
     return render(request, "web/generate-poster.html", context)
 
@@ -341,16 +366,17 @@ def search_items(request):
         common_services_poster = CommonServicesPoster.objects.filter(Q(title__icontains=search_Key))
         festivel_poster = FestivelPoster.objects.filter(Q(title__icontains=search_Key))
         professional_poster = ProfessionalPoster.objects.filter(Q(title__icontains=search_Key))
+        branding_image = BrandingImage.objects.filter(user=request.user).last()
         result = chain(services, new_service_poster, important_poster, common_services_poster, festivel_poster, professional_poster)
         print(services.count())
         context = {}
-        context["template"] = render_to_string("web/service-searching.html", {"result": result}, request=request)
+        context["template"] = render_to_string("web/service-searching.html", {"result": result, "branding_image": branding_image}, request=request)
     return JsonResponse(context)
 
 
 @login_required
 @subscription_required
-def generateBill(request):
+def generate_bill(request):
     services = Services.objects.all()
     context = {"is_bill": True, "services": services, "room_name": "broadcast"}
     return render(request, "web/generate-bill.html", context)
@@ -374,7 +400,7 @@ def searching_invoice(request):
 
 @login_required
 @subscription_required
-def generateForms(request):
+def generate_forms(request):
     generate_forms = DownloadForms.objects.all()
     context = {"is_form": True, "generate_forms": generate_forms, "room_name": "broadcast"}
     return render(request, "web/generate-form.html", context)
@@ -418,16 +444,15 @@ def tools(request):
 
 @login_required
 @subscription_required
-def marketingTip(request):
+def marketing_tip(request):
     marketing_tips = MarketingTips.objects.all()
     context = {"is_tip": True, "marketing_tips": marketing_tips, "room_name": "broadcast"}
-
     return render(request, "web/marketing-tip.html", context)
 
 
 @login_required
 @subscription_required
-def otherIdea(request):
+def other_idea(request):
     other_ideas = OtherIdeas.objects.all()
     context = {"is_idea": True, "other_ideas": other_ideas, "room_name": "broadcast"}
     return render(request, "web/other-ideas.html", context)
@@ -435,7 +460,7 @@ def otherIdea(request):
 
 @login_required
 @subscription_required
-def agencyPortal(request):
+def agency_portal(request):
     agency_portal = AgencyPortal.objects.all()
     context = {"is_portal": True, "agency_portal": agency_portal, "room_name": "broadcast"}
     return render(request, "web/agency-portal.html", context)
@@ -443,7 +468,7 @@ def agencyPortal(request):
 
 @login_required
 @subscription_required
-def backOfficeServices(request):
+def back_office_services(request):
     back_office_services = BackOfficeServices.objects.all()
     context = {"is_backservice": True, "back_office_services": back_office_services, "room_name": "broadcast"}
     return render(request, "web/back-office-services.html", context)
@@ -467,7 +492,7 @@ def support(request):
 
 @login_required
 @subscription_required
-def supportRequest(request):
+def support_request(request):
     forms = SupportRequestForm(request.POST or None)
     if request.method == "POST":
         if forms.is_valid():
@@ -492,7 +517,7 @@ def F_A_Q(request):
 
 @login_required
 @subscription_required
-def supportTicket(request):
+def support_ticket(request):
     forms = SupportTicketForm(request.POST or None)
     if request.method == "POST":
         if forms.is_valid():
@@ -523,7 +548,7 @@ def whatsapp_support(request):
     return render(request, "web/whatsapp-support.html", context)
 
 
-def termsConditions(request):
+def terms_and_conditions(request):
     context = {}
     return render(request, "web/terms&conditions.html", context)
 

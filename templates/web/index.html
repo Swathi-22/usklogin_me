@@ -2,7 +2,7 @@
 {% load static humanize %}
 {% block content %}
 
-{% csrf_token %}
+
 
 
 <div class="main-panel " id="demo">
@@ -74,7 +74,7 @@
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
                       data-source="new_service_poster-{{obj.id | apnumber }}">Download</button>
-                    <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                    <a href="{{obj.detail_link}}" class="btn btn-info btn-sm" rel="noopener noreferrer" target="_blank">Details</a>
                   </div>
                 </div>
               </div>
@@ -101,13 +101,13 @@
                   <div class="text-center">
                     <button class="btn-sm btn btn-primary generate" target="_blank"
                       data-source="important-poster-{{obj.id | apnumber }}">Download</button>
-                    <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+                    <a href="{{obj.detail_link}}" class="btn btn-info btn-sm" rel="noopener noreferrer" target="_blank">Details</a>
                   </div>
                 </div>
               </div>
               {% endfor %}
               <div class="col-lg-12 col-12 mt-3">
-                <a href="{% url 'web:add_on_services' %}" class="poster-view-more d-inline-block">
+                <a href="{% url 'web:important_services' %}" class="poster-view-more d-inline-block">
                   View More
                 </a>
               </div>

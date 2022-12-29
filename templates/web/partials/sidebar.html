@@ -40,7 +40,7 @@
         </div> -->
     </li>
     <li class="nav-item {% if is_poster %} active {% endif %}">
-      <a class="nav-link" href="{% url 'web:generatePoster' %}">
+      <a class="nav-link" href="{% url 'web:generate_poster' %}">
         <span class="menu-title">Generate Posters</span>
         <!-- <i class="mdi mdi-contacts menu-icon"></i> -->
         <i class="fa-solid fa-image menu-icon"></i>
@@ -61,7 +61,7 @@
       </a>
     </li>
     <li class="nav-item {% if is_form %} active {% endif %}">
-      <a class="nav-link" href="{% url 'web:generateForms' %}">
+      <a class="nav-link" href="{% url 'web:generate_forms' %}">
         <span class="menu-title">Download Forms</span>
         <!-- <i class="mdi mdi-chart-bar menu-icon"></i> -->
         <i class="fa-solid fa-file-contract menu-icon"></i>
@@ -101,28 +101,28 @@
     </li>
 
     <li class="nav-item {% if is_tip %} active {% endif %}">
-      <a class="nav-link" href="{% url 'web:marketingTip' %}">
+      <a class="nav-link" href="{% url 'web:marketing_tip' %}">
         <span class="menu-title">Marketing Tips</span>
         <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
         <i class="fa-solid fa-lines-leaning menu-icon"></i>
       </a>
     </li>
     <li class="nav-item {% if is_idea %} active {% endif %}">
-      <a class="nav-link" href="{% url 'web:otherIdea' %}">
+      <a class="nav-link" href="{% url 'web:other_idea' %}">
         <span class="menu-title">Add to the Business</span>
         <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
         <i class="fa-solid fa-lightbulb menu-icon"></i>
       </a>
     </li>
     <li class="nav-item {% if is_portal %} active {% endif %}">
-      <a class="nav-link" href="{% url 'web:agencyPortal' %}">
+      <a class="nav-link" href="{% url 'web:agency_portal' %}">
         <span class="menu-title">Agency Portals</span>
         <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
         <i class="fa-solid fa-globe menu-icon"></i>
       </a>
     </li>
     <li class="nav-item {% if is_backservice %} active {% endif %}">
-      <a class="nav-link" href="{% url 'web:backOfficeServices' %}">
+      <a class="nav-link" href="{% url 'web:back_office_services' %}">
         <span class="menu-title">Back Office Services</span>
         <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
         <i class="fa-solid fa-house-laptop menu-icon"></i>

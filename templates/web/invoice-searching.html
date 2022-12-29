@@ -28,7 +28,12 @@
                     <div class="tm_invoice_in">
                         <div class="tm_invoice_head tm_top_head tm_mb15 tm_align_center">
                             <div class="tm_invoice_left">
-                                <div class="tm_logo"><img src="{{request.user.profile_image.crop.105x80}}" alt="Logo">
+                                <div class="tm_logo">
+                                    {% if request.user.profile_image %}
+                                    <img src="{{request.user.profile_image.crop.105x80}}" alt="Logo">
+                                    {% else %}
+                                    <img class="rounded-circle mt-5" width="100px" src="{% static 'web/images/deafult-01.jpg' %}">
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="tm_invoice_right tm_text_right tm_mobile_hide">
@@ -91,9 +96,9 @@
                                                 <td class="tm_width_3">1. {{ item.services_name }}</td>
                                                 <td class="tm_width_3">{{item.username}}</td>
                                                 <td class="tm_width_3">{{item.password}}</td>
-                                                <td class="tm_width_2">${{item.services_charge}}</td>
+                                                <td class="tm_width_2">&#8377;{{item.services_charge}}</td>
                                                 <td class="tm_width_1">{{item.qty}}</td>
-                                                <td class="tm_width_2 tm_text_right">${{item.get_subtotal}}</td>
+                                                <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                             </tr>
                                             {% endif %}
                                             {% endfor %}
@@ -115,7 +120,7 @@
                                                     Total </td>
                                                 <td
                                                     class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
-                                                    ${{customer.invoice.get_total}}</td>
+                                                    &#8377;{{customer.invoice.get_total}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

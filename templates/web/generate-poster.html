@@ -1,6 +1,8 @@
 {% extends 'web/base.html' %}
-{% load static humanize %}
+{% load static %}
 {% block content %}
+{% load static humanize %}
+
 
 <div class="main-panel " id="demo">
   <div class="content-wrapper" id="demo2">
@@ -20,46 +22,35 @@
 
 
     <div class="row">
-      <div class="col-12">
+      
         <h5 class="service-heading">Recently Added</h5>
-      </div>
+ 
 
-      {% for obj in common_services_poster|slice:"0:2" %}
+      {% for obj in recently_common_services_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
-          <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{obj.image.url}}" data-id="recently_common_services_poster-{{obj.id | apnumber }}" alt="Image">
           <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
-              data-source="{{obj.id | apnumber }}">Download</button>
+              data-source="recently_common_services_poster-{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
         </div>
       </div>
       {% endfor %}
-      <div class="img-popup">
-        <div class="container" id="resultContainer" style="display: none;">
-          <img class="img-responsive popup-imagea" id="result" src="">
-          <div class="text-center mt-3 poster-download-button">
-            <a id="download" class="btn-sm mx-auto btn btn-warning " download>Download</a>
-          </div>
-        </div>
-        <div class="close-btn">
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      </div>
+     
 
-      {% for obj in festivel_poster|slice:"0:2" %}
+      {% for obj in recently_festivel_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
-          <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{obj.image.url}}" data-id="recently_festivel_poster-{{obj.id | apnumber }}" alt="Image">
           <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
-              data-source="{{obj.id | apnumber }}">Download</button>
+              data-source="recently_festivel_poster-{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
         </div>
@@ -67,15 +58,15 @@
       {% endfor %}
 
 
-      {% for obj in professional_poster|slice:"0:2" %}
+      {% for obj in recently_professional_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
-          <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{obj.image.url}}" data-id="recently_professional_poster-{{obj.id | apnumber }}" alt="Image">
           <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
-              data-source="{{obj.id | apnumber }}">Download</button>
+              data-source="recently_professional_poster-{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
         </div>
@@ -85,18 +76,18 @@
 
 
     <div class="row">
-      <div class="col-12">
+      
         <h5 class="service-heading">Common Services</h5>
-      </div>
-      {% for obj in obj_poster %}
+     
+      {% for obj in common_services_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
-          <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{obj.image.url}}" data-id="common_services_poster-{{obj.id | apnumber }}" alt="Image">
           <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
-              data-source="{{obj.id | apnumber }}">Download</button>
+              data-source="common_services_poster-{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
         </div>
@@ -106,18 +97,18 @@
 
 
     <div class="row">
-      <div class="col-12">
+     
         <h5 class="service-heading">Festivel Posters</h5>
-      </div>
+     
       {% for obj in festivel_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
-          <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{obj.image.url}}" data-id="festivel_poster-{{obj.id | apnumber }}" alt="Image">
           <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
-              data-source="{{obj.id | apnumber }}">Download</button>
+              data-source="festivel_poster-{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
         </div>
@@ -127,18 +118,18 @@
 
 
     <div class="row">
-      <div class="col-12">
+
         <h5 class="service-heading">Professional Services</h5>
-      </div>
+  
       {% for obj in professional_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
-          <img src="{{obj.image.url}}" data-id="{{obj.id | apnumber }}" alt="Image">
+          <img src="{{obj.image.url}}" data-id="professional_poster-{{obj.id | apnumber }}" alt="Image">
           <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
           <p class="my-1">{{obj.title}}</p>
           <div class="text-center">
             <button class="btn-sm btn btn-primary generate" target="_blank"
-              data-source="{{obj.id | apnumber }}">Download</button>
+              data-source="professional_poster-{{obj.id | apnumber }}">Download</button>
             <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
           </div>
         </div>

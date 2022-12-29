@@ -22,8 +22,8 @@ class User(AbstractUser):
     phone_regex = RegexValidator(regex=r"^\+?1?\d{9,15}$", message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
     id = models.CharField(default=generate_pk, primary_key=True, max_length=255, unique=True, blank=True)
-    phone = models.CharField(_("phone number"), validators=[phone_regex], max_length=17, unique=True)
-    temp_password = models.CharField("Temporary password", max_length=17, blank=True)
+    phone = models.CharField(_("phone number"), validators=[phone_regex], max_length=17)
+    created = models.DateField(auto_now_add=True, editable=False, null=True, blank=True)
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     shop_name = models.CharField(max_length=100)

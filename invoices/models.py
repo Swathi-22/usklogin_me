@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+from accounts.models import User
 from services.models import Services
 
 from django.db import models
@@ -9,6 +10,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Customer(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100, unique=True)
     phone_no = models.CharField(max_length=15, unique=True)

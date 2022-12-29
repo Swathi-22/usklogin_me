@@ -10,28 +10,22 @@ from versatileimagefield.fields import PPOIField
 from versatileimagefield.fields import VersatileImageField
 
 
+PAYMENT_STATUS_CHOICES = (("Success", "Success"), ("Failure", "Failure"), ("Pending", "Pending"))
+TYPE_CHOICES = (("Access", "Access"), ("Support", "Support"))
+
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.FloatField(("Amount"), null=False, blank=False)
-    status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254)
+    status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
+    types = models.CharField(("Type"), max_length=254, choices=TYPE_CHOICES)
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
-    valid_from = models.DateTimeField(default=timezone.now)
-    valid_upto = models.DateTimeField(blank=True, null=True, editable=False)
-    is_active = models.BooleanField("Mark as Active", default=False)
-
-    @property
-    def is_valid(self):
-        return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return f"{self.id}-{self.user}-{self.status}"
-
-    def save(self, *args, **kwargs):
-        self.is_active = True if self.valid_from + timedelta(days=365) >= timezone.now() else False
-        self.valid_upto = self.valid_from + timedelta(days=365)
-        super().save(*args, **kwargs)
 
 
 class LatestNews(models.Model):
@@ -140,6 +134,7 @@ class DownloadDocuments(models.Model):
 
 
 class Softwares(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Softwares/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -154,6 +149,7 @@ class Softwares(models.Model):
 
 
 class Tools(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Tools/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -168,6 +164,7 @@ class Tools(models.Model):
 
 
 class MarketingTips(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Marketing_Tip/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -182,6 +179,7 @@ class MarketingTips(models.Model):
 
 
 class OtherIdeas(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Other_Ideas/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -196,6 +194,7 @@ class OtherIdeas(models.Model):
 
 
 class AgencyPortal(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Agency_Portal/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -210,6 +209,7 @@ class AgencyPortal(models.Model):
 
 
 class BackOfficeServices(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Back_Office_Service/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -224,6 +224,7 @@ class BackOfficeServices(models.Model):
 
 
 class AgentBonus(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
@@ -300,10 +301,10 @@ class WhatsappSupport(models.Model):
 class Subscription(models.Model):
     user = models.ForeignKey(User, related_name="upgraded_user", on_delete=models.CASCADE)
     amount = models.FloatField("Amount", null=False, blank=False)
-    is_active = models.BooleanField("Mark as Active", default=False)
     valid_from = models.DateTimeField(default=timezone.now)
     valid_upto = models.DateTimeField(blank=True, editable=False)
-    status = models.CharField("Payment Status", default=PaymentStatus.PENDING, max_length=254)
+    status = models.CharField("Payment Status", default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
+    types = models.CharField(("Type"), max_length=254, choices=TYPE_CHOICES, null=True, blank=True)
     provider_order_id = models.CharField("Order ID", max_length=40, null=True, blank=True)
     payment_id = models.CharField("Payment ID", max_length=36, null=True, blank=True)
     signature_id = models.CharField("Signature ID", max_length=128, null=True, blank=True)
@@ -315,16 +316,16 @@ class Subscription(models.Model):
 
     @property
     def is_valid(self):
+        return True if self.valid_from + timedelta(year=1) >= timezone.now() else False
+
+    @property
+    def is_active(self):
         return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
-    def active(self):
-        return self.filter(is_active=True)
-
     def __str__(self):
-        return str(f"{self.user}- {self.is_active} - {self.valid_from} - {self.valid_upto}")
+        return str(f"{self.user} - {self.valid_from} - {self.valid_upto}")
 
     def save(self, *args, **kwargs):
-        self.is_active = True if self.valid_from + timedelta(days=30) >= timezone.now() else False
         self.valid_upto = self.valid_from + timedelta(days=30)
         super().save(*args, **kwargs)
 

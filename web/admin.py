@@ -56,7 +56,7 @@ class ProfessionalPosterAdmin(admin.ModelAdmin):
 
 
 @admin.register(DownloadForms)
-class GenerateFormsAdmin(admin.ModelAdmin):
+class generate_formsAdmin(admin.ModelAdmin):
     list_display = ("name", "file")
 
 
@@ -67,37 +67,37 @@ class DocumentsAdmin(admin.ModelAdmin):
 
 @admin.register(Softwares)
 class SoftwaresAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(Tools)
 class ToolsAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(MarketingTips)
 class MarketingTipsAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(OtherIdeas)
 class OtherIdeasAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(AgencyPortal)
 class AgencyPortalAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(BackOfficeServices)
 class BackOfficeServicesAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(AgentBonus)
 class AgentBonusAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "link", "title")
 
 
 @admin.register(SupportRequest)
@@ -117,7 +117,7 @@ class FAQAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("user", "amount", "is_active", "status", "valid_from", "valid_upto")
+    list_display = ("user", "amount", "status")
 
 
 @admin.register(CallSupport)
@@ -132,7 +132,7 @@ class WhatsappSupportAdmin(admin.ModelAdmin):
 
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ("user", "amount", "is_active", "status", "valid_from", "valid_upto")
+    list_display = ("user", "amount", "status", "valid_from", "valid_upto")
 
 
 @admin.register(AddonServices)
