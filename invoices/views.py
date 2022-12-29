@@ -12,9 +12,10 @@ from django.views.generic import UpdateView
 
 
 class CustomerList(ListView):
+    template_name = "invoice/customer_list.html"
+
     def get_queryset(self):
         return Customer.objects.filter(created_by=self.request.user)
-    template_name = "invoice/customer_list.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -27,13 +28,16 @@ class CustomerCreate(CreateView):
     fields = ["name", "email", "phone_no", "address"]
     template_name = "invoice/customer_form.html"
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
 
 class CustomerInvoieCreate(CreateView):
     model = Customer
     fields = ["name", "email", "phone_no", "address"]
     success_url = reverse_lazy("invoices:customer-list")
     template_name = "invoice/customer_form.html"
-
 
     def get_context_data(self, **kwargs):
         data = super(CustomerInvoieCreate, self).get_context_data(**kwargs)
