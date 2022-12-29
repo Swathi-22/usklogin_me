@@ -333,9 +333,12 @@ def notification(request):
 @login_required
 @subscription_required
 def generate_poster(request):
+<<<<<<< HEAD
     recently_common_services_poster = CommonServicesPoster.objects.all().order_by('-id')[0:2]
     recently_festivel_poster = FestivelPoster.objects.all().order_by('-id')[0:2]
     recently_professional_poster = ProfessionalPoster.objects.all().order_by('-id')[0:2]
+=======
+>>>>>>> 1ac754256905397280410060fe01da1da6717508
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
     professional_poster = ProfessionalPoster.objects.all()

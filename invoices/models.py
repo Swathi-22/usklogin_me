@@ -10,7 +10,11 @@ from django.utils import timezone
 
 # Create your models here.
 class Customer(models.Model):
+<<<<<<< HEAD
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
+=======
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+>>>>>>> 1ac754256905397280410060fe01da1da6717508
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100, unique=True)
     phone_no = models.CharField(max_length=15, unique=True)
