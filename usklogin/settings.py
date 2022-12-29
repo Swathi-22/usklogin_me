@@ -115,13 +115,8 @@ STATIC_ROOT = BASE_DIR / "assets"
 
 AUTH_USER_MODEL = "accounts.User"
 
-<<<<<<< HEAD
-# DOMAIN = "http://127.0.0.1:7000"
+# DOMAIN = "http://127.0.0.1:8000"
 DOMAIN = "https://usklogin.com"
-=======
-DOMAIN = "http://127.0.0.1:8000"
-# DOMAIN = "https://usklogin.com"
->>>>>>> 1ac754256905397280410060fe01da1da6717508
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -164,8 +159,4 @@ RAZOR_PAY_KEY = config("RAZOR_PAY_KEY")
 RAZOR_PAY_SECRET = config("RAZOR_PAY_SECRET")
 
 
-<<<<<<< HEAD
 # DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
-=======
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
->>>>>>> 1ac754256905397280410060fe01da1da6717508

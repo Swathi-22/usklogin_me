@@ -29,11 +29,7 @@ class CustomerCreate(CreateView):
     template_name = "invoice/customer_form.html"
 
     def form_valid(self, form):
-<<<<<<< HEAD
-        form.instance.created_by = self.request.user    
-=======
         form.instance.created_by = self.request.user
->>>>>>> 1ac754256905397280410060fe01da1da6717508
         return super().form_valid(form)
 
 
