@@ -22,7 +22,7 @@ class Customer(models.Model):
         verbose_name_plural = "Customers"
 
     def get_absolute_url(self):
-        return reverse("customer-update", kwargs={"pk": self.pk})
+        return reverse("invoices:customer-update", kwargs={"pk": self.pk})
 
     def __str__(self):
         return str(self.name)
@@ -48,7 +48,7 @@ class Invoice(models.Model):
         return Decimal(total) if total else 0
 
     def get_absolute_url(self):
-        return reverse("invoice-update", kwargs={"pk": self.pk})
+        return reverse("invoices:invoice-update", kwargs={"pk": self.pk})
 
     def __str__(self):
         return str(self.invoice_name)
@@ -70,7 +70,7 @@ class InvoiceItem(models.Model):
         verbose_name_plural = "Invoice Items"
 
     def get_absolute_url(self):
-        return reverse("invoice_download", kwargs={"pk": self.pk})
+        return reverse("invoices:invoice_download", kwargs={"pk": self.pk})
 
     def __str__(self):
         return str(self.services_name)
