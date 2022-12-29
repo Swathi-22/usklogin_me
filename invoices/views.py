@@ -40,19 +40,14 @@ class CustomerInvoieCreate(CreateView):
     template_name = "invoice/customer_form.html"
 
     def get_context_data(self, **kwargs):
-        data = super(CustomerInvoieCreate, self).get_context_data(**kwargs)
-        if self.request.POST:
-            data["invoices"] = CustomerForm(self.request.POST)
-        else:
-            data["invoices"] = CustomerForm()
+        data = super().get_context_data(**kwargs)
+        data["invoices"] = CustomerForm(self.request.POST or None)
         return data
 
     def form_valid(self, form):
-        context = self.get_context_data()
-        invoices = context["invoices"]
+        invoices = CustomerForm(self.request.POST or None)
         with transaction.atomic():
             self.object = form.save()
-
             if invoices.is_valid():
                 invoices.instance = self.object
                 invoices.save()
@@ -73,11 +68,8 @@ class CustomerInvoieUpdate(UpdateView):
     template_name = "invoice/customer_form.html"
 
     def get_context_data(self, **kwargs):
-        data = super(CustomerInvoieUpdate, self).get_context_data(**kwargs)
-        if self.request.POST:
-            data["invoices"] = CustomerForm(self.request.POST, instance=self.object)
-        else:
-            data["invoices"] = CustomerForm(instance=self.object)
+        data = super().get_context_data(**kwargs)
+        data["invoices"] = CustomerForm(self.request.POST or None, instance=self.object)
         return data
 
     def form_valid(self, form):
@@ -85,7 +77,6 @@ class CustomerInvoieUpdate(UpdateView):
         invoices = context["invoices"]
         with transaction.atomic():
             self.object = form.save()
-
             if invoices.is_valid():
                 invoices.instance = self.object
                 invoices.save()
@@ -96,8 +87,6 @@ class CustomerDelete(DeleteView):
     model = Customer
     success_url = reverse_lazy("invoices:customer-list")
     template_name = "invoice/customer_confirm_delete.html"
-
-    ### invoice items create ###
 
 
 class InvoiceList(ListView):
@@ -112,9 +101,7 @@ class InvoiceCreate(CreateView):
 
     def form_class(self):
         form_class = super().form_class()
-        form_class.base_fields["customer"].queryset = Customer.objects.filter(
-            created_by=self.request.user
-        )
+        form_class.base_fields["customer"].queryset = Customer.objects.filter(created_by=self.request.user)
         return form_class
 
 
@@ -125,11 +112,8 @@ class InvoiceItemCreate(CreateView):
     template_name = "invoice/invoice_form.html"
 
     def get_context_data(self, **kwargs):
-        context = super(InvoiceItemCreate, self).get_context_data(**kwargs)
-        if self.request.POST:
-            context["invoices_items"] = InvoiceItemFormset(self.request.POST)
-        else:
-            context["invoices_items"] = InvoiceItemFormset()
+        context = super().get_context_data(**kwargs)
+        context["invoices_items"] = InvoiceItemFormset(self.request.POST or None)
         return context
 
     def form_valid(self, form):
@@ -137,7 +121,6 @@ class InvoiceItemCreate(CreateView):
         invoices_items = context["invoices_items"]
         with transaction.atomic():
             self.object = form.save()
-
             if invoices_items.is_valid():
                 invoices_items.instance = self.object
                 invoices_items.save()
@@ -158,11 +141,8 @@ class InvoieItemUpdate(UpdateView):
     template_name = "invoice/invoice_form.html"
 
     def get_context_data(self, **kwargs):
-        data = super(InvoieItemUpdate, self).get_context_data(**kwargs)
-        if self.request.POST:
-            data["invoices_items"] = InvoiceItemFormset(self.request.POST, instance=self.object)
-        else:
-            data["invoices_items"] = InvoiceItemFormset(instance=self.object)
+        data = super().get_context_data(**kwargs)
+        data["invoices_items"] = InvoiceItemFormset(self.request.POST or None, instance=self.object)
         return data
 
     def form_valid(self, form):

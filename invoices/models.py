@@ -1,7 +1,7 @@
 from decimal import Decimal
 
-from services.models import Services
 from accounts.models import User
+from services.models import Services
 
 from django.db import models
 from django.urls import reverse

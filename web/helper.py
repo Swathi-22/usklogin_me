@@ -5,8 +5,9 @@ from django.conf import settings
 
 def upgrade_reminder_mail(email, user):
     # use mailgun scheduled email api
-    if Subscription.objects.filter(user=user).exists():
-        qs = Subscription.objects.get(user=user)
+    # if Subscription.objects.filter(user=user).exists():
+    #     qs = Subscription.objects.get(user=user)
+    pass
 
 
 def send_scheduled_message(data):
