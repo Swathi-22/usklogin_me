@@ -334,6 +334,9 @@ def notification(request):
 @login_required
 @subscription_required
 def generate_poster(request):
+    recently_common_services_poster = CommonServicesPoster.objects.all().order_by('-id')[0:2]
+    recently_festivel_poster = FestivelPoster.objects.all().order_by('-id')[0:2]
+    recently_professional_poster = ProfessionalPoster.objects.all().order_by('-id')[0:2]
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
     professional_poster = ProfessionalPoster.objects.all()
@@ -345,6 +348,9 @@ def generate_poster(request):
         "professional_poster": professional_poster,
         "branding_image": branding_image,
         "room_name": "broadcast",
+        'recently_common_services_poster':recently_common_services_poster,
+        "recently_festivel_poster":recently_festivel_poster,
+        "recently_professional_poster":recently_professional_poster
     }
     return render(request, "web/generate-poster.html", context)
 
