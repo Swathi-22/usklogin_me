@@ -22,13 +22,13 @@
         {% else %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <div class="card card-body w-100">
-            <img src="{{posters.image.url}}" data-id="important-poster-{{posters.id | apnumber }}" alt="Image">
+            <img src="{{posters.image.url}}" data-id="result-{{posters.id | apnumber }}" alt="Image">
             <img src="{{branding_image.image.url}}" alt="" />
 
             <p class="my-1">{{posters.title}}</p>
             <div class="text-center">
               <button class="btn-sm btn btn-primary generate" target="_blank"
-                data-source="important-poster-{{posters.id | apnumber }}">Download</button>
+                data-source="result-{{posters.id | apnumber }}">Download</button>
               <a href="{{posters.detail_link}}" class="btn btn-info btn-sm" rel="noopener noreferrer" target="_blank">Details</a>
             </div>
           </div>

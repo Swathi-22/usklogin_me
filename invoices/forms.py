@@ -17,6 +17,9 @@ class InvoiceForm(ModelForm):
     class Meta:
         model = Invoice
         fields = ("customer", "invoice_name", "invoice_no")
+        widgets = {
+            "customer":widgets.Select(attrs={"class": "js-states form-control","id":"single"}),
+        }
 
 
 class InvoiceItemForm(ModelForm):

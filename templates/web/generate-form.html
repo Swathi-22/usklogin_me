@@ -6,27 +6,190 @@
     <div class="content-wrapper" id="demo2">
         <section>
             <div class="row">
-                {% for forms in generate_forms %}
+                
+                <h5 class="service-heading">Village Services Related</h5>
+
+                {% for obj in village_services_related %}
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin">
                     <div class="file-upload-box">
+                        <div class="text-center ">
+                            <span class="form-name">{{obj.category}}</span>
+                        </div>
                             <div>
-                                <h6 class="text-center form-name pt-3">{{forms.name}}</h6>
+                                <h6 class="text-center form-name pt-3">{{obj.name}}</h6>
                             </div>
                             <div class="py-1 text-center">
-                                <img src="{{forms.image.url}}" class="form-image">
+                                <img src="{{obj.image.url}}" class="form-image">
                             </div>
-                        <a href="{{forms.file.url}}"  download="{{forms.file.url}}">
+                        <a href="{{obj.file.url}}"  download="{{obj.file.url}}">
                             <div class="text-center">
                                 <button class="btn-hover color-3">Download File</button>
                             </div>
                             <div class="text-center div-margin">
-                                <a href="{{forms.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                                <a href="{{obj.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
                             </div>
                             
                         </a>
                     </div>
                 </div>
                 {% endfor %}
+
+            </div>
+
+            <div class="row">
+                
+                <h5 class="service-heading mt-3">Panchayath Related</h5>
+
+                {% for obj in panchayath_related %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin">
+                    <div class="file-upload-box">
+                        <div class="text-center ">
+                            <span class="form-name">{{obj.category}}</span>
+                        </div>
+                            <div>
+                                <h6 class="text-center form-name pt-3">{{obj.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{obj.image.url}}" class="form-image">
+                            </div>
+                        <a href="{{obj.file.url}}"  download="{{obj.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{obj.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="row">
+                
+                <h5 class="service-heading mt-3">Students Related</h5>
+
+                {% for obj in student_related %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin">
+                    <div class="file-upload-box">
+                        <div class="text-center ">
+                            <span class="form-name">{{obj.category}}</span>
+                        </div>
+                            <div>
+                                <h6 class="text-center form-name pt-3">{{obj.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{obj.image.url}}" class="form-image">
+                            </div>
+                        <a href="{{obj.file.url}}"  download="{{obj.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{obj.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="row">
+                
+                <h5 class="service-heading mt-3">Pension Scheme Related</h5>
+
+                {% for obj in pension_scheme_related %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin">
+                    <div class="file-upload-box">
+                        <div class="text-center ">
+                            <span class="form-name">{{obj.category}}</span>
+                        </div>
+                            <div>
+                                <h6 class="text-center form-name pt-3">{{obj.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{obj.image.url}}" class="form-image">
+                            </div>
+                        <a href="{{obj.file.url}}"  download="{{obj.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{obj.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="row">
+                
+                <h5 class="service-heading mt-3">Income Tax Department</h5>
+
+                {% for obj in income_tax_department %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin">
+                    <div class="file-upload-box">
+                        <div class="text-center ">
+                            <span class="form-name">{{obj.category}}</span>
+                        </div>
+                            <div>
+                                <h6 class="text-center form-name pt-3">{{obj.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{obj.image.url}}" class="form-image">
+                            </div>
+                        <a href="{{obj.file.url}}"  download="{{obj.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{obj.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="row">
+                
+                <h5 class="service-heading mt-3">Others</h5>
+
+                {% for obj in others %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin">
+                    <div class="file-upload-box">
+                        <div class="text-center ">
+                            <span class="form-name">{{obj.category}}</span>
+                        </div>
+                            <div>
+                                <h6 class="text-center form-name pt-3">{{obj.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{obj.image.url}}" class="form-image">
+                            </div>
+                        <a href="{{obj.file.url}}"  download="{{obj.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{obj.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
             </div>
         </section>
     </div>

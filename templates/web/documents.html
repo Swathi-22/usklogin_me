@@ -6,12 +6,114 @@
     <div class="content-wrapper" id="demo2">
         <section>
             <div class="row">
-                {% for docs in documents %}
+
+                <h5 class="service-heading">CV Formats</h5>
+
+                {% for docs in cv_format %}
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin" >
                     <div class="file-upload-box">
                         <a href="">
                             <div class="text-center ">
-                                <span class="form-name">{{docs.title}}</span>
+                                <span class="form-name">{{docs.category}}</span>
+                            </div>
+                            <div>
+                                <h6 class="text-center form-name pt-1">{{docs.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{docs.image.crop.100x100}}" class="form-image">
+                            </div>
+                            <!-- <p class="text-center">{{docs.file}}</p class="text-center"> -->
+                        </a>
+                        <a href="{{docs.file.url}}"  download="{{docs.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{docs.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+
+                <h5 class="service-heading mt-3">Agreement Models</h5>
+                
+                {% for docs in agreement_model %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin" >
+                    <div class="file-upload-box">
+                        <a href="">
+                            <div class="text-center ">
+                                <span class="form-name">{{docs.category}}</span>
+                            </div>
+                            <div>
+                                <h6 class="text-center form-name pt-1">{{docs.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{docs.image.crop.100x100}}" class="form-image">
+                            </div>
+                            <!-- <p class="text-center">{{docs.file}}</p class="text-center"> -->
+                        </a>
+                        <a href="{{docs.file.url}}"  download="{{docs.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{docs.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+
+                <h5 class="service-heading mt-3">Business Related</h5>
+                
+                {% for docs in business_related %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin" >
+                    <div class="file-upload-box">
+                        <a href="">
+                            <div class="text-center ">
+                                <span class="form-name">{{docs.category}}</span>
+                            </div>
+                            <div>
+                                <h6 class="text-center form-name pt-1">{{docs.name}}</h6>
+                            </div>
+                            <div class="py-1 text-center">
+                                <img src="{{docs.image.crop.100x100}}" class="form-image">
+                            </div>
+                            <!-- <p class="text-center">{{docs.file}}</p class="text-center"> -->
+                        </a>
+                        <a href="{{docs.file.url}}"  download="{{docs.file.url}}">
+                            <div class="text-center">
+                                <button class="btn-hover color-3">Download File</button>
+                            </div>
+                            <div class="text-center div-margin">
+                                <a href="{{docs.detail_link}}" class="btn-hover color-3 form-detail" rel="noopener noreferrer" target="_blank">Details</a>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+
+                <h5 class="service-heading mt-3">Others</h5>
+                
+                {% for docs in others %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 form-dodument-card-margin" >
+                    <div class="file-upload-box">
+                        <a href="">
+                            <div class="text-center ">
+                                <span class="form-name">{{docs.category}}</span>
                             </div>
                             <div>
                                 <h6 class="text-center form-name pt-1">{{docs.name}}</h6>

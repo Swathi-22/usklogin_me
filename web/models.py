@@ -104,7 +104,75 @@ class ProfessionalPoster(models.Model):
         return str(self.image)
 
 
+class AgencyPortalService(models.Model):
+    title = models.CharField(max_length=150)
+    image = VersatileImageField("Image", upload_to="Agency_Portal_Services/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Agency Portal Services"
+
+    def __str__(self):
+        return str(self.image)
+
+
+class SeasonalService(models.Model):
+    title = models.CharField(max_length=150)
+    image = VersatileImageField("Image", upload_to="Seasonal_Services/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Seasonal Services"
+
+    def __str__(self):
+        return str(self.image)
+
+
+class UpdatesorInformation(models.Model):
+    title = models.CharField(max_length=150)
+    image = VersatileImageField("Image", upload_to="Updates_or_Information/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Updates/Information"
+
+    def __str__(self):
+        return str(self.image)
+
+
+class PromotionalPoster(models.Model):
+    title = models.CharField(max_length=150)
+    image = VersatileImageField("Image", upload_to="Promotional_Poster/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Promotional Poster"
+
+    def __str__(self):
+        return str(self.image)
+
+
+class Others(models.Model):
+    title = models.CharField(max_length=150)
+    image = VersatileImageField("Image", upload_to="Others/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    detail_link = models.URLField()
+
+    class Meta:
+        verbose_name_plural = "Others"
+
+    def __str__(self):
+        return str(self.image)
+
+
+
 class DownloadForms(models.Model):
+    CATEGORY_CHOICES = (("Village Services Related","Village Services Related"),("Panchayath Related","Panchayath Related"),("Students Related","Students Related"),("Pension Scheme Related","Pension Scheme Related"),("Income Tax Department","Income Tax Department"),("Others","Others"))
+    category = models.CharField(max_length=100,choices=CATEGORY_CHOICES,blank=True,null=True)
     file = models.FileField()
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Forms/", ppoi_field="ppoi")
@@ -119,8 +187,9 @@ class DownloadForms(models.Model):
 
 
 class DownloadDocuments(models.Model):
+    CATEGORY_CHOICES = (("CV Formats","CV Formats"),("Agreement Models","Agreement Models"),("Business Related","Business Related"),("Others","Others"))
+    category = models.CharField(max_length=100,choices=CATEGORY_CHOICES)
     file = models.FileField()
-    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Documents/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")

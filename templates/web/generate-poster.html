@@ -22,9 +22,24 @@
 
 
     <div class="row">
-      
-        <h5 class="service-heading">Recently Added</h5>
- 
+
+      <h5 class="service-heading">Recently Added</h5>
+
+
+      {% for obj in recently_new_service_poster %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="recently_new_service_poster-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="recently_new_service_poster-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
 
       {% for obj in recently_common_services_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
@@ -40,7 +55,7 @@
         </div>
       </div>
       {% endfor %}
-     
+
 
       {% for obj in recently_festivel_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
@@ -72,13 +87,113 @@
         </div>
       </div>
       {% endfor %}
+
+      {% for obj in recently_agency_portal_services %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="recently_agency_portal_services-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="recently_agency_portal_services-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+      {% for obj in recently_seasonal_service %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="recently_seasonal_service-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="recently_seasonal_service-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+      {% for obj in recently_updates_or_information %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="recently_updates_or_information-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="recently_updates_or_information-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+      {% for obj in recently_promotional_poster %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="recently_promotional_poster-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="recently_promotional_poster-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% for obj in recently_others %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="recently_others-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="recently_others-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
     </div>
 
 
     <div class="row">
-      
-        <h5 class="service-heading">Common Services</h5>
-     
+
+      <h5 class="service-heading">Newly Added Services</h5>
+
+      {% for obj in new_service_poster %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="common_services_poster-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="common_services_poster-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <div class="row">
+
+      <h5 class="service-heading">Common Services</h5>
+
       {% for obj in common_services_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
@@ -97,9 +212,9 @@
 
 
     <div class="row">
-     
-        <h5 class="service-heading">Festivel Posters</h5>
-     
+
+      <h5 class="service-heading">Festivel Posters</h5>
+
       {% for obj in festivel_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
@@ -119,8 +234,8 @@
 
     <div class="row">
 
-        <h5 class="service-heading">Professional Services</h5>
-  
+      <h5 class="service-heading">Professional Services</h5>
+
       {% for obj in professional_poster %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="card card-body w-100">
@@ -137,6 +252,106 @@
       {% endfor %}
     </div>
 
+    <div class="row">
+
+      <h5 class="service-heading">Agency Portal Services</h5>
+
+      {% for obj in agency_portal_services %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="agency_portal_services-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="agency_portal_services-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+
+      <h5 class="service-heading">Seasonal Services</h5>
+
+      {% for obj in seasonal_service %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="seasonal_service-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="seasonal_service-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+
+      <h5 class="service-heading">Updates/Information</h5>
+
+      {% for obj in updates_or_information %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="updates_or_information-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="updates_or_information-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <div class="row">
+
+      <h5 class="service-heading">Promotional Poster</h5>
+
+      {% for obj in promotional_poster %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="promotional_poster-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="promotional_poster-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+
+      <h5 class="service-heading">Others</h5>
+
+      {% for obj in others %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="card card-body w-100">
+          <img src="{{obj.image.url}}" data-id="others-{{obj.id | apnumber }}" alt="Image">
+          <img src="{{branding_image.image.url}}" alt="" class="branding_image" />
+          <p class="my-1">{{obj.title}}</p>
+          <div class="text-center">
+            <button class="btn-sm btn btn-primary generate" target="_blank"
+              data-source="others-{{obj.id | apnumber }}">Download</button>
+            <a href="{{obj.detail_link}}" class="btn btn-info btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
