@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-# from .models import AddonServices
-from .models import FAQ
-=======
 from .models import FAQ
 from .models import AddonServices
->>>>>>> 039498503478fb72fb6b4d551df1a821c43019fc
 from .models import AgencyPortal
 from .models import AgentBonus
 from .models import BackOfficeServices

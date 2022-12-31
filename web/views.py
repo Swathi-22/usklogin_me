@@ -8,14 +8,8 @@ from invoices.models import InvoiceItem
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
-<<<<<<< HEAD
-
-# from web.models import AddonServices
-from web.models import FAQ
-=======
 from web.models import FAQ
 from web.models import AddonServices
->>>>>>> 039498503478fb72fb6b4d551df1a821c43019fc
 from web.models import AgencyPortal
 from web.models import AgencyPortalService
 from web.models import AgentBonus
