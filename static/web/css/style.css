@@ -10339,7 +10339,7 @@ button.bg-dark:focus {
 
 .border,
 .loader-demo-box {
-  border: 1px solid #ebedf2 !important;
+  border: 1px solid #c8cad1 !important;
 }
 
 .border-top {
@@ -17655,9 +17655,6 @@ code {
   border-radius: 5px;
 }
 
-.card .card-body {
-  padding: 0rem 0rem;
-}
 
 .card .card-body+.card-body {
   padding-top: 1rem;

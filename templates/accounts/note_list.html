@@ -1,0 +1,93 @@
+{% extends 'web/base.html' %}
+{% load static crispy_forms_tags %}
+
+{% block content %}
+<div class="main-panel" id="demo">
+    <div class="content-wrapper" id="demo2">
+        <div class="container text-left">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="card-body border border-radius">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            <div class="form-group mt-3 mb-0">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        {% for note in notes %}
+                        <div class="col-md-4" data-id="{{note.id}}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title">{{note.title}}</div>
+                                    <div class="card-description">
+                                        <p>{{note.note}}</p>
+                                    </div>
+                                    <button class="action_button btn btn-sm btn-danger" data-key="{{note.id}}" data-url="{{note.get_delete_url}}">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block css %}
+<style>
+    .form-control,
+    .btn {
+        border-radius: 10px;
+    }
+    .border-radius {
+        border-radius: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).on("click", ".action_button", function (e) {
+        e.preventDefault();
+        $this = $(this);
+        var key = $this.attr("data-key");
+        var url = $this.attr("data-url");
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            data: { key: key },
+
+            success: function (data) {
+                var status = data.status;
+                var message = data.message;
+
+                if (status == "true") {
+                    $("[data-id=" + key + "]").remove();
+                    
+                } else {
+                    title ? (title = title) : (title = "An Error Occurred");
+                    Swal.fire({ title: title, html: message, icon: "error" });
+                }
+            },
+            error: function (data) {
+                var title = "An error occurred";
+                var message = "An error occurred. Please try again later.";
+                Swal.fire({ title: title, html: message, icon: "error" });
+            },
+        });
+    });
+</script>
+{% endblock %}

@@ -4,6 +4,8 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
+from .models import Note
+
 
 
 class MyUserChangeForm(UserChangeForm):
@@ -28,3 +30,14 @@ class MyUserAdmin(UserAdmin, ImportExportModelAdmin):
 
 
 admin.site.register(User, MyUserAdmin)
+
+
+@admin.register(Note)
+class NoteAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "note", "created_by", "created")
+    list_filter = ("created_by",)
+    search_fields = ("title", "note")
+    ordering = ("title",)
+    fieldsets = (
+        (_("Note"), {"fields": ("title", "note", "created_by")}),
+    )

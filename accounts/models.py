@@ -1,5 +1,5 @@
 from web.functions import generate_pk
-
+from django.urls import reverse_lazy
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
@@ -35,3 +35,17 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.id)
+
+
+class Note(models.Model):
+    id = models.CharField(default=generate_pk, primary_key=True, max_length=255, unique=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    note = models.TextField(blank=True, null=True)
+    created = models.DateField(auto_now_add=True, editable=False, null=True, blank=True)
+
+    def get_delete_url(self):
+        return reverse_lazy("accounts:note_delete", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return str(self.title)

@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
 from django.forms import widgets
+from .models import Note
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -21,4 +22,14 @@ class UserRegistrationForm(UserCreationForm):
             "shop_address": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
             "district": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
             "pincode": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
+        }
+
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ("title", "note")
+        widgets = {
+            "title": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
+            "note": widgets.Textarea(attrs={"class": "form-control", "required": "required"}),
         }
