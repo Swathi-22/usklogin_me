@@ -9,7 +9,7 @@ from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
 from web.models import FAQ
-from web.models import AddonServices
+# from web.models import AddonServices
 from web.models import AgencyPortal
 from web.models import AgencyPortalService
 from web.models import AgentBonus
@@ -617,9 +617,10 @@ def buy_now_branding_image(request):
 @login_required
 @subscription_required
 def add_on_services(request):
-    addon_services = AddonServices.objects.all()
-    context = {"addon_services": addon_services}
-    return render(request, "web/add-on-services.html", context)
+    pass
+    # addon_services = AddonServices.objects.all()
+    # context = {"addon_services": addon_services}
+    # return render(request, "web/add-on-services.html", context)
 
 
 @login_required
