@@ -11,6 +11,7 @@ from services.models import Services
 from web.models import FAQ
 from web.models import AddonServices
 from web.models import AgencyPortal
+from web.models import AgencyPortalService
 from web.models import AgentBonus
 from web.models import BackOfficeServices
 from web.models import CallSupport
@@ -25,17 +26,16 @@ from web.models import NewServicePoster
 from web.models import OnloadPopup
 from web.models import Order
 from web.models import OtherIdeas
+from web.models import Others
 from web.models import PaymentStatus
 from web.models import ProfessionalPoster
+from web.models import PromotionalPoster
+from web.models import SeasonalService
 from web.models import Softwares
 from web.models import Subscription
 from web.models import Tools
-from web.models import WhatsappSupport
-from web.models import AgencyPortalService
-from web.models import SeasonalService
 from web.models import UpdatesorInformation
-from web.models import PromotionalPoster
-from web.models import Others
+from web.models import WhatsappSupport
 
 import razorpay
 from .decorators import subscription_required
@@ -338,15 +338,15 @@ def notification(request):
 @login_required
 @subscription_required
 def generate_poster(request):
-    recently_common_services_poster = CommonServicesPoster.objects.all().order_by('-id')[0:2]
-    recently_festivel_poster = FestivelPoster.objects.all().order_by('-id')[0:2]
-    recently_professional_poster = ProfessionalPoster.objects.all().order_by('-id')[0:2]
-    recently_new_service_poster = NewServicePoster.objects.all().order_by('-id')[0:2]
-    recently_agency_portal_services = AgencyPortalService.objects.all().order_by('-id')[0:2]
-    recently_seasonal_service = SeasonalService.objects.all().order_by('-id')[0:2]
-    recently_updates_or_information = UpdatesorInformation.objects.all().order_by('-id')[0:2]
-    recently_promotional_poster = PromotionalPoster.objects.all().order_by('-id')[0:2]
-    recently_others = Others.objects.all().order_by('-id')[0:2]
+    recently_common_services_poster = CommonServicesPoster.objects.all().order_by("-id")[0:2]
+    recently_festivel_poster = FestivelPoster.objects.all().order_by("-id")[0:2]
+    recently_professional_poster = ProfessionalPoster.objects.all().order_by("-id")[0:2]
+    recently_new_service_poster = NewServicePoster.objects.all().order_by("-id")[0:2]
+    recently_agency_portal_services = AgencyPortalService.objects.all().order_by("-id")[0:2]
+    recently_seasonal_service = SeasonalService.objects.all().order_by("-id")[0:2]
+    recently_updates_or_information = UpdatesorInformation.objects.all().order_by("-id")[0:2]
+    recently_promotional_poster = PromotionalPoster.objects.all().order_by("-id")[0:2]
+    recently_others = Others.objects.all().order_by("-id")[0:2]
     common_services_poster = CommonServicesPoster.objects.all()
     festivel_poster = FestivelPoster.objects.all()
     professional_poster = ProfessionalPoster.objects.all()
@@ -364,22 +364,21 @@ def generate_poster(request):
         "professional_poster": professional_poster,
         "branding_image": branding_image,
         "room_name": "broadcast",
-        'recently_common_services_poster':recently_common_services_poster,
-        "recently_festivel_poster":recently_festivel_poster,
-        "recently_professional_poster":recently_professional_poster,
-        "new_service_poster":new_service_poster,
-        "recently_new_service_poster":recently_new_service_poster,
-        "recently_agency_portal_services":recently_agency_portal_services,
-        "recently_seasonal_service":recently_seasonal_service,
-        "recently_updates_or_information":recently_updates_or_information,
-        "recently_promotional_poster":recently_promotional_poster,
-        "recently_others":recently_others,
-        "agency_portal_services":agency_portal_services,
-        "seasonal_service":seasonal_service,
-        "updates_or_information":updates_or_information,
-        "promotional_poster":promotional_poster,
-        "others":others,
-
+        "recently_common_services_poster": recently_common_services_poster,
+        "recently_festivel_poster": recently_festivel_poster,
+        "recently_professional_poster": recently_professional_poster,
+        "new_service_poster": new_service_poster,
+        "recently_new_service_poster": recently_new_service_poster,
+        "recently_agency_portal_services": recently_agency_portal_services,
+        "recently_seasonal_service": recently_seasonal_service,
+        "recently_updates_or_information": recently_updates_or_information,
+        "recently_promotional_poster": recently_promotional_poster,
+        "recently_others": recently_others,
+        "agency_portal_services": agency_portal_services,
+        "seasonal_service": seasonal_service,
+        "updates_or_information": updates_or_information,
+        "promotional_poster": promotional_poster,
+        "others": others,
     }
     return render(request, "web/generate-poster.html", context)
 
@@ -437,7 +436,17 @@ def generate_forms(request):
     pension_scheme_related = DownloadForms.objects.filter(category="Pension Scheme Related")
     income_tax_department = DownloadForms.objects.filter(category="Income Tax Department")
     others = DownloadForms.objects.filter(category="Others")
-    context = {"is_form": True, "room_name": "broadcast","village_services_related":village_services_related,"panchayath_related":panchayath_related,"student_related":student_related,"pension_scheme_related":pension_scheme_related,"pension_scheme_related":pension_scheme_related,"income_tax_department":income_tax_department,"others":others}
+    context = {
+        "is_form": True,
+        "room_name": "broadcast",
+        "village_services_related": village_services_related,
+        "panchayath_related": panchayath_related,
+        "student_related": student_related,
+        "pension_scheme_related": pension_scheme_related,
+        "pension_scheme_related": pension_scheme_related,
+        "income_tax_department": income_tax_department,
+        "others": others,
+    }
     return render(request, "web/generate-form.html", context)
 
 
@@ -460,7 +469,7 @@ def documents(request):
     agreement_model = DownloadDocuments.objects.filter(category="Agreement Models")
     business_related = DownloadDocuments.objects.filter(category="Business Related")
     others = DownloadDocuments.objects.filter(category="Others")
-    context = {"is_document": True, "room_name": "broadcast","cv_format":cv_format,"agreement_model":agreement_model,"business_related":business_related,"others":others}
+    context = {"is_document": True, "room_name": "broadcast", "cv_format": cv_format, "agreement_model": agreement_model, "business_related": business_related, "others": others}
     return render(request, "web/documents.html", context)
 
 

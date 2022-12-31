@@ -169,10 +169,16 @@ class Others(models.Model):
         return str(self.image)
 
 
-
 class DownloadForms(models.Model):
-    CATEGORY_CHOICES = (("Village Services Related","Village Services Related"),("Panchayath Related","Panchayath Related"),("Students Related","Students Related"),("Pension Scheme Related","Pension Scheme Related"),("Income Tax Department","Income Tax Department"),("Others","Others"))
-    category = models.CharField(max_length=100,choices=CATEGORY_CHOICES,blank=True,null=True)
+    CATEGORY_CHOICES = (
+        ("Village Services Related", "Village Services Related"),
+        ("Panchayath Related", "Panchayath Related"),
+        ("Students Related", "Students Related"),
+        ("Pension Scheme Related", "Pension Scheme Related"),
+        ("Income Tax Department", "Income Tax Department"),
+        ("Others", "Others"),
+    )
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, blank=True, null=True)
     file = models.FileField()
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Forms/", ppoi_field="ppoi")
@@ -187,8 +193,8 @@ class DownloadForms(models.Model):
 
 
 class DownloadDocuments(models.Model):
-    CATEGORY_CHOICES = (("CV Formats","CV Formats"),("Agreement Models","Agreement Models"),("Business Related","Business Related"),("Others","Others"))
-    category = models.CharField(max_length=100,choices=CATEGORY_CHOICES)
+    CATEGORY_CHOICES = (("CV Formats", "CV Formats"), ("Agreement Models", "Agreement Models"), ("Business Related", "Business Related"), ("Others", "Others"))
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     file = models.FileField()
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Documents/", ppoi_field="ppoi")

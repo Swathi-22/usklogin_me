@@ -1,8 +1,9 @@
 from web.functions import generate_pk
-from django.urls import reverse_lazy
+
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from versatileimagefield.fields import VersatileImageField
 

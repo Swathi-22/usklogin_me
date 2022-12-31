@@ -30,7 +30,7 @@ class CustomerCreate(CreateView):
     success_url = reverse_lazy("invoices:customer-list")
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user    
+        form.instance.created_by = self.request.user
         return super().form_valid(form)
 
 
@@ -70,7 +70,7 @@ class InvoiceUpdate(UpdateView):
     fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
-    
+
 
 class InvoiceDelete(DeleteView):
     model = Invoice
@@ -133,21 +133,19 @@ class CustomerInvoieUpdate(UpdateView):
 
 class InvoiceItemCreate(CreateView):
     model = Invoice
-    fields = ["customer", "invoice_name", "invoice_no"]
+    # fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
-    def form_class(self):
-        form_class = super().form_class()
+    def form_class(self, *args, **kwargs):
+        form_class = super().form_class(*args, **kwargs)
         form_class.base_fields["customer"].queryset = Customer.objects.filter(created_by=self.request.user)
         return form_class
 
-        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["invoices_items"] = InvoiceItemFormset(self.request.POST or None)
         return context
-
 
     def form_valid(self, form):
         invoices_items = InvoiceItemFormset(self.request.POST or None)
