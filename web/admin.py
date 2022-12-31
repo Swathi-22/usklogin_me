@@ -1,5 +1,5 @@
 from .models import FAQ
-from .models import AddonServices
+# from .models import AddonServices
 from .models import AgencyPortal
 from .models import AgentBonus
 from .models import BackOfficeServices
@@ -135,9 +135,9 @@ class SubscriptionAdmin(admin.ModelAdmin):
     list_display = ("user", "amount", "status", "valid_from", "valid_upto")
 
 
-@admin.register(AddonServices)
-class AddonServicesAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+# @admin.register(AddonServices)
+# class AddonServicesAdmin(admin.ModelAdmin):
+#     list_display = ("name", "link")
 
 
 @admin.register(OnloadPopup)
