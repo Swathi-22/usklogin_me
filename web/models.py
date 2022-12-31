@@ -18,7 +18,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.FloatField(("Amount"), null=False, blank=False)
     status = models.CharField(("Payment Status"), default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
-    types = models.CharField(("Type"), max_length=254, choices=TYPE_CHOICES)
+#    types = models.CharField(("Type"), max_length=254, choices=TYPE_CHOICES)
     provider_order_id = models.CharField(("Order ID"), max_length=40, null=True, blank=True)
     payment_id = models.CharField(("Payment ID"), max_length=36, null=True, blank=True)
     signature_id = models.CharField(("Signature ID"), max_length=128, null=True, blank=True)
