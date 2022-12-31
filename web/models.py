@@ -400,6 +400,7 @@ class Subscription(models.Model):
 
 
 class AddonServices(models.Model):
+    title = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
     ppoi = PPOIField("Image PPOI")
