@@ -42,10 +42,17 @@
   {% block body %}
 
   <div class="container-scroller">
+    {% block header %}
     {% include 'web/partials/header.html' %}
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper" style="padding-right: 0px;padding-left:0px;">
+    {% endblock %}
+
+
+    <div class="container-fluid page-body-wrapper" class="px-0">
+
+      {% block sidebar %}
       {% include 'web/partials/sidebar.html' %}
+      {% endblock %}
+
       {% block content %}
 
       {% endblock %}
@@ -69,6 +76,7 @@
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.3/dist/sweetalert2.all.min.js"></script>
+  {% block js_plugins %}{% endblock js_plugins %}
   <script src="{% static 'web/js/main.js' %}"></script>
   <script src="{% static 'web/js/search.js' %}"></script>
   <script src="{% static 'web/js/invoice_search.js' %}"></script>

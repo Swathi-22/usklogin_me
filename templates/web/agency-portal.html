@@ -10,7 +10,9 @@
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6 grid-margin">
                     <div class="card">
                         <div class="card-image">
+                            {% if portals.image %}
                             <img src="{{portals.image.crop.194x194}}" alt="">
+                            {% endif %}
                         </div>
                         <div class="head-name">
                             <h5 style="color:#000 ;">{{portals.title}}</h5>
@@ -27,18 +29,6 @@
                                 target="_blank">DETAILS</a>
                         </div>
                     </div>
-                    {% comment %}
-                    <div class='buttons'>
-                        <div class='left-col'>
-                            <a href="{{portals.link}}" class="access-portal" rel="noopener noreferrer"
-                                target="_blank">ACCESS</a>
-                        </div>
-                        <div class='right-col-portal'>
-                            <span class="name-portal">{{portals.name}}</span>
-                            <!-- <a href=""  rel="noopener noreferrer" target="_blank"></a> -->
-                        </div>
-                    </div>
-                    {% endcomment %}
                 </div>
                 {% endfor %}
             </div>

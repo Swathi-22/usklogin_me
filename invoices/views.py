@@ -9,9 +9,10 @@ from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class CustomerList(ListView):
+class CustomerList(LoginRequiredMixin, ListView):
     template_name = "invoice/customer_list.html"
 
     def get_queryset(self):
@@ -23,7 +24,7 @@ class CustomerList(ListView):
         return context
 
 
-class CustomerCreate(CreateView):
+class CustomerCreate(LoginRequiredMixin,CreateView):
     model = Customer
     fields = ["name", "email", "phone_no", "address"]
     template_name = "invoice/customer_form.html"
@@ -34,27 +35,27 @@ class CustomerCreate(CreateView):
         return super().form_valid(form)
 
 
-class CustomerUpdate(UpdateView):
+class CustomerUpdate(LoginRequiredMixin, UpdateView):
     model = Customer
     success_url = reverse_lazy("invoices:customer-list")
     fields = ["name", "email", "phone_no"]
     template_name = "invoice/customer_form.html"
 
 
-class CustomerDelete(DeleteView):
+class CustomerDelete(LoginRequiredMixin, DeleteView):
     model = Customer
     success_url = reverse_lazy("invoices:customer-list")
     template_name = "invoice/customer_confirm_delete.html"
 
 
-class InvoiceList(ListView):
+class InvoiceList(LoginRequiredMixin, ListView):
     template_name = "invoice/invoice_list.html"
 
     def get_queryset(self):
         return Invoice.objects.filter(customer__created_by=self.request.user)
 
 
-class InvoiceCreate(CreateView):
+class InvoiceCreate(LoginRequiredMixin, CreateView):
     model = Invoice
     fields = ["customer", "invoice_name", "invoice_no"]
     template_name = "invoice/invoice_form.html"
@@ -65,20 +66,20 @@ class InvoiceCreate(CreateView):
         return form_class
 
 
-class InvoiceUpdate(UpdateView):
+class InvoiceUpdate(LoginRequiredMixin, UpdateView):
     model = Invoice
     fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
 
-class InvoiceDelete(DeleteView):
+class InvoiceDelete(LoginRequiredMixin, DeleteView):
     model = Invoice
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_confirm_delete.html"
 
 
-class InvoiceDetailView(DetailView):
+class InvoiceDetailView(LoginRequiredMixin, DetailView):
     model = Invoice
     template_name = "invoice/general_3.html"
 
@@ -88,7 +89,7 @@ class InvoiceDetailView(DetailView):
         return context
 
 
-class CustomerInvoieCreate(CreateView):
+class CustomerInvoieCreate(LoginRequiredMixin, CreateView):
     model = Customer
     fields = ["name", "email", "phone_no", "address"]
     success_url = reverse_lazy("invoices:customer-list")
@@ -109,7 +110,7 @@ class CustomerInvoieCreate(CreateView):
         return super().form_valid(form)
 
 
-class CustomerInvoieUpdate(UpdateView):
+class CustomerInvoieUpdate(LoginRequiredMixin, UpdateView):
     model = Customer
     fields = ["name", "email", "phone_no", "address"]
     success_url = reverse_lazy("invoices:customer-list")
@@ -131,16 +132,16 @@ class CustomerInvoieUpdate(UpdateView):
         return super().form_valid(form)
 
 
-class InvoiceItemCreate(CreateView):
+class InvoiceItemCreate(LoginRequiredMixin, CreateView):
     model = Invoice
-    # fields = ["customer", "invoice_name", "invoice_no"]
+    fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
     template_name = "invoice/invoice_form.html"
 
-    def form_class(self, *args, **kwargs):
-        form_class = super().form_class(*args, **kwargs)
-        form_class.base_fields["customer"].queryset = Customer.objects.filter(created_by=self.request.user)
-        return form_class
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+        form.fields["customer"].queryset = Customer.objects.filter(created_by=self.request.user)
+        return form
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -157,7 +158,7 @@ class InvoiceItemCreate(CreateView):
         return super().form_valid(form)
 
 
-class InvoieItemUpdate(UpdateView):
+class InvoieItemUpdate(LoginRequiredMixin, UpdateView):
     model = Invoice
     fields = ["customer", "invoice_name", "invoice_no"]
     success_url = reverse_lazy("invoices:invoice-list")
