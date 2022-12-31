@@ -1,0 +1,1 @@
+[{"model": "services.brandingimage", "pk": 15, "fields": {"user": "USK09417", "image": "service/USK_Bottom_tdkvHYF.jpg", "is_verified": false}}, {"model": "services.brandingimage", "pk": 20, "fields": {"user": "USK07595", "image": "service/WhatsApp_Image_2022-11-28_at_10.24.05_PM_0VRP3a4.jpeg", "is_verified": false}}]
