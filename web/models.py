@@ -405,19 +405,19 @@ class Subscription(models.Model):
         super().save(*args, **kwargs)
 
 
-# class AddonServices(models.Model):
-#     title = models.CharField(max_length=100)
-#     name = models.CharField(max_length=100)
-#     image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
-#     ppoi = PPOIField("Image PPOI")
-#     link = models.URLField()
-#     detail_link = models.URLField()
+class AddonServices(models.Model):
+    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    image = VersatileImageField("Image", upload_to="Agent_Bonus/", ppoi_field="ppoi")
+    ppoi = PPOIField("Image PPOI")
+    link = models.URLField()
+    detail_link = models.URLField()
 
-#     class Meta:
-#         verbose_name_plural = "Add-on Services"
+    class Meta:
+        verbose_name_plural = "Add-on Services"
 
-#     def __str__(self):
-#         return str(self.name)
+    def __str__(self):
+        return str(self.name)
 
 
 class OnloadPopup(models.Model):
