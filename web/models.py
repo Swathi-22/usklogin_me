@@ -377,7 +377,7 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, related_name="upgraded_user", on_delete=models.CASCADE)
     amount = models.FloatField("Amount", null=False, blank=False)
     valid_from = models.DateTimeField(default=timezone.now)
-    valid_upto = models.DateTimeField(blank=True, editable=False)
+    valid_upto = models.DateTimeField(blank=True, editable=True)
     status = models.CharField("Payment Status", default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
     types = models.CharField(("Type"), max_length=254, choices=TYPE_CHOICES, null=True, blank=True)
     provider_order_id = models.CharField("Order ID", max_length=40, null=True, blank=True)
@@ -391,7 +391,7 @@ class Subscription(models.Model):
 
     @property
     def is_valid(self):
-        return True if self.valid_from + timedelta(year=1) >= timezone.now() else False
+        return True if self.valid_from + timedelta(days=365) >= timezone.now() else False
 
     @property
     def is_active(self):

@@ -97,7 +97,7 @@ def callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Access", valid_upto=timezone.now(), amount=amount)
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Access", valid_upto=valid_from + timedelta(days=365), amount=amount)
 
             # email = order.user.email
             # phone = order.user.phone
@@ -160,7 +160,7 @@ def upgrade_callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Support", valid_upto=timezone.now(), amount=amount)
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Support",valid_upto=valid_from + timedelta(days=30), amount=amount)
 
             email = order.user.email
             subject = "Upgrade Plan"
