@@ -19886,18 +19886,17 @@ a:hover {
 
 .service-main-head-index {
   border-radius: 10px;
-  padding: 13px 0px;
+  padding: 10px 5px;
   width: 100%;
+  font-size: 12px;
 }
 
 .serviec-main-head-a {
   color: #fff;
-  font-size: 14px;
 }
 
 .serviec-main-head-a:hover {
   color: #fff;
-  font-size: 16px;
 }
 
 .show-more {

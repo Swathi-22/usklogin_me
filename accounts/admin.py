@@ -1,11 +1,10 @@
+from .models import Note
 from .models import User
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
-from .models import Note
-
 
 
 class MyUserChangeForm(UserChangeForm):
@@ -38,6 +37,4 @@ class NoteAdmin(admin.ModelAdmin):
     list_filter = ("created_by",)
     search_fields = ("title", "note")
     ordering = ("title",)
-    fieldsets = (
-        (_("Note"), {"fields": ("title", "note", "created_by")}),
-    )
+    fieldsets = ((_("Note"), {"fields": ("title", "note", "created_by")}),)

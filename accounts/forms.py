@@ -1,9 +1,9 @@
+from .models import Note
 from .models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
 from django.forms import widgets
-from .models import Note
 
 
 class UserRegistrationForm(UserCreationForm):

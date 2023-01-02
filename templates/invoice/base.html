@@ -1,28 +1,29 @@
 {% load static %}
 <html lang="en">
+
 <head>
     <title>{% block title %}USKLOGIN.COM {% endblock %}</title>
     <link rel="shortcut icon" href="{% static 'web/images/FAV.png' %}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
-    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext'  type='text/css'>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' type='text/css'>
+    {% block css_plugins %}{% endblock css_plugins %}
     <link rel="stylesheet" href="{% static 'invoice/css/style.css' %}">
-
-    
-    {% block custom_css %}
-    {% endblock custom_css %}
-    
-    
+    {% block css %}{% endblock css %}
 </head>
 
 <body>
-<div id="content" class="container">
-    
-        {% block content %}{% endblock %}
-    
+    <div id="content" class="container">
 
-</div>
+        {% block content %}{% endblock %}
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block js_plugins %}{% endblock js_plugins %}
+    {% block js %}{% endblock js %}
+
 </body>
+
 </html>

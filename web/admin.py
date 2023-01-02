@@ -22,6 +22,12 @@ from .models import SupportRequest
 from .models import SupportTicket
 from .models import Tools
 from .models import WhatsappSupport
+from .models import AgencyPortalService
+from .models import SeasonalService
+from .models import UpdatesorInformation
+from .models import PromotionalPoster
+from .models import Others
+
 from django.contrib import admin
 
 
@@ -52,6 +58,31 @@ class FestivelPosterAdmin(admin.ModelAdmin):
 
 @admin.register(ProfessionalPoster)
 class ProfessionalPosterAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "image")
+
+
+@admin.register(AgencyPortalService)
+class AgencyPortalServiceAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "image")
+
+
+@admin.register(SeasonalService)
+class SeasonalServiceAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "image")
+
+
+@admin.register(UpdatesorInformation)
+class UpdatesorInformationAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "image")
+
+
+@admin.register(PromotionalPoster)
+class PromotionalPosterAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "image")
+
+
+@admin.register(Others)
+class OthersAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "image")
 
 

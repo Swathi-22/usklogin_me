@@ -28,7 +28,7 @@ class InvoiceItemForm(ModelForm):
             "services_charge": widgets.NumberInput(attrs={"class": "form-control"}),
             "username": widgets.TextInput(attrs={"class": "form-control"}),
             "password": widgets.TextInput(attrs={"class": "form-control"}),
-            "descripton": widgets.Textarea(attrs={"class": "form-control"}),
+            "descripton": widgets.TextInput(attrs={"class": "form-control"}),
             "qty": widgets.NumberInput(attrs={"class": "form-control"}),
         }
 
