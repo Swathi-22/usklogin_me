@@ -391,17 +391,27 @@ class Subscription(models.Model):
 
     @property
     def is_valid(self):
-        return True if self.valid_from + timedelta(days=365) >= timezone.now() else False
+        if self.types == "Access":
+            return True if self.valid_from + timedelta(days=365) >= timezone.now() else False
+        elif self.types == "Support":
+            return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
     @property
     def is_active(self):
-        return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
+        if self.types == "Access":
+            return True if self.valid_from + timedelta(days=365) >= timezone.now() else False
+        elif self.types == "Support":
+            return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
     def __str__(self):
         return str(f"{self.user} - {self.valid_from} - {self.valid_upto}")
 
     def save(self, *args, **kwargs):
         self.valid_upto = self.valid_from + timedelta(days=30)
+        if self.types == "Access":
+            self.valid_upto = self.valid_from + timedelta(days=30)
+        elif self.types == "Support":
+            self.valid_upto = self.valid_from + timedelta(days=30)
         super().save(*args, **kwargs)
 
 
