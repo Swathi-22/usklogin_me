@@ -5,6 +5,7 @@ from itertools import chain
 from accounts.forms import UserRegistrationForm
 from accounts.models import User
 from invoices.models import InvoiceItem
+from invoices.models import Invoice
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -417,14 +418,47 @@ def generate_bill(request):
 def searching_invoice(request):
     search = ""
     invoice = ""
+    invoice_item  = ""
     if "search" in request.GET:
         search = request.GET["search"]
-        invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
+        invoice = Invoice.objects.get(customer__phone_no__icontains=search)
+        invoice_item = InvoiceItem.objects.filter(invoice=invoice)
+        context = {"invoice": invoice,"invoice_item":invoice_item}
     else:
-        invoice = InvoiceItem.objects.all()
-    context = {"is_search": True, "invoice": invoice}
+        invoice = Invoice.objects.filter(customer__created_by=request.user)
+        context = {"invoice": invoice,}
+    context = {"is_search": True, "invoice": invoice,"invoice_item":invoice_item}
     return render(request, "web/invoice-searching.html", context)
     return JsonResponse(context)
+
+
+# @csrf_exempt
+# @login_required
+# @subscription_required
+# def searching_invoice(request):
+#     search = ""
+#     invoice = ""
+#     if "search" in request.GET:
+#         search = request.GET["search"]
+#         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
+#     else:
+#         invoice = InvoiceItem.objects.filter(invoice__customer__created_by=request.user)
+#     context = {"is_search": True, "invoice": invoice}
+#     return render(request, "web/invoice-searching.html", context)
+#     return JsonResponse(context)
+
+
+
+@login_required
+@subscription_required
+def invoice_search_print(request,pk):
+    print(pk)
+    invoice = InvoiceItem.objects.filter(invoice__customer=pk)
+    invoices = InvoiceItem.objects.filter(invoice__customer=pk).last()
+    print(invoice)
+    context = {"invoice":invoice,"invoices":invoices}
+    return render(request,'web/invoice-search-print.html',context)
+
 
 
 @login_required
@@ -638,3 +672,5 @@ def important_services(request):
     branding_image = BrandingImage.objects.filter(user=request.user).last()
     context = {"important_posters": important_posters, "branding_image": branding_image}
     return render(request, "web/important-posters.html", context)
+
+

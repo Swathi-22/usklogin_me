@@ -11,7 +11,7 @@ from versatileimagefield.fields import VersatileImageField
 
 
 PAYMENT_STATUS_CHOICES = (("Success", "Success"), ("Failure", "Failure"), ("Pending", "Pending"))
-TYPE_CHOICES = (("Access", "Access"), ("Support", "Support"))
+TYPE_CHOICES = (("Access", "Access"),)
 
 
 class Order(models.Model):

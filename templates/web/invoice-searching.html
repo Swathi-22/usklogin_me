@@ -4,6 +4,15 @@
 
 {% block content %}
 
+<style>
+    @media print{
+        nav{
+            display: none;
+        }
+    }
+</style>
+
+
 <!-- partial -->
 <div class="main-panel " id="demo">
     <div class="content-wrapper" id="demo2">
@@ -21,7 +30,7 @@
                 </button>
             </form>
         </div>
-        {% for customer in invoice %}
+        
         <div class="tm_container_invoice mt-5 mx-4">
             <div class="tm_invoice_wrap">
                 <div class="tm_invoice tm_style1 tm_type1" id="tm_download_section">
@@ -37,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                                <div class="tm_f50 tm_text_uppercase tm_white_color">{{customer.invoice.invoice_no}}
+                                <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoice.invoice_no}}
                                 </div>
                             </div>
                             <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
@@ -46,9 +55,9 @@
                             <div class="tm_card_note tm_mobile_hide">
                             </div>
                             <div class="tm_invoice_info_list tm_white_color">
-                                <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ customer.invoice.invoice_no }}</b>
+                                <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ invoice.invoice_no }}</b>
                                 </p>
-                                <p class="tm_invoice_date tm_m0">Date: <b>{{customer.invoice.created}}</b></p>
+                                <p class="tm_invoice_date tm_m0">Date: <b>{{invoice.created}}</b></p>
                             </div>
                             <div class="tm_invoice_seperator tm_accent_bg"></div>
                         </div>
@@ -56,16 +65,16 @@
                             <div class="tm_invoice_left">
                                 <p class="tm_mb2"><b class="tm_primary_color">Invoice To:</b></p>
                                 <p>
-                                    {{customer.invoice.customer.name}} <br>
-                                    {{customer.invoice.customer.address}} <br> {{customer.invoice.customer.phone_no}}
+                                    {{invoice.customer.name}} <br>
+                                    {{invoice.customer.address}} <br> {{invoice.customer.phone_no}}
                                     <br>
-                                    {{customer.invoice.customer.email}}
+                                    {{invoice.customer.email}}
                                 </p>
                             </div>
                             <div class="tm_invoice_right tm_text_right">
                                 <p class="tm_mb2"><b class="tm_primary_color">Pay To:</b></p>
                                 <p>
-                                    {{request.user.name}} <br>
+                                    {{request.user.shop_name}} <br>
                                     {{request.user.shop_address}}<br>
                                     {{request.user.district}}<br>
                                     {{request.user.email}} <br>
@@ -90,18 +99,16 @@
                                         </thead>
                                         <tbody>
 
-                                            {% for item in invoice %}
-                                            {% if customer.invoice == item.invoice %}
+                                           
                                             <tr>
-                                                <td class="tm_width_3">1. {{ item.services_name }}</td>
+                                                <td class="tm_width_3">{{ item.services_name }}</td>
                                                 <td class="tm_width_3">{{item.username}}</td>
                                                 <td class="tm_width_3">{{item.password}}</td>
                                                 <td class="tm_width_2">&#8377;{{item.services_charge}}</td>
                                                 <td class="tm_width_1">{{item.qty}}</td>
                                                 <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                             </tr>
-                                            {% endif %}
-                                            {% endfor %}
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -147,7 +154,7 @@
                     </div>
                 </div>
                 <div class="tm_invoice_btns tm_hide_print">
-                    <a href="javascript:window.print()" class="tm_invoice_btn tm_color1">
+                    <a href="" class="tm_invoice_btn tm_color1">
                         <span class="tm_btn_icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                                 <path
@@ -176,7 +183,7 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+       
     </div>
 </div>
 

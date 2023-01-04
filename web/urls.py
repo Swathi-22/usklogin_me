@@ -19,6 +19,7 @@ urlpatterns = [
     path("generate_poster/", views.generate_poster, name="generate_poster"),
     path("generate_bill/", views.generate_bill, name="generate_bill"),
     path("search_invocie/", views.searching_invoice, name="searching_invoice"),
+    path("invoice_search_print/<int:pk>/", views.invoice_search_print, name="invoice_search_print"),
     path("search/", views.search_items, name="search_items"),
     path("generate_form/", views.generate_forms, name="generate_forms"),
     path("download/", serve, {"document_root": "settings.MEDIA_ROOT"}),

@@ -69,9 +69,9 @@ TEMPLATES = [
 WSGI_APPLICATION = "usklogin.wsgi.application"
 # ASGI_APPLICATION = "usklogin.asgi.application"
 
-DATABASES = {
-    "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
-}
+# DATABASES = {
+#     "default": {"ENGINE": config("DB_ENGINE"), "NAME": config("DB_NAME"), "USER": config("DB_USER"), "PASSWORD": config("DB_PASSWORD"), "HOST": config("DB_HOST"), "PORT": ""}
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -115,8 +115,8 @@ STATIC_ROOT = BASE_DIR / "assets"
 
 AUTH_USER_MODEL = "accounts.User"
 
-# DOMAIN = "http://127.0.0.1:8000"
-DOMAIN = "https://usklogin.com"
+DOMAIN = "http://127.0.0.1:8000"
+# DOMAIN = "https://usklogin.com"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -159,4 +159,4 @@ RAZOR_PAY_KEY = config("RAZOR_PAY_KEY")
 RAZOR_PAY_SECRET = config("RAZOR_PAY_SECRET")
 
 
-# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}

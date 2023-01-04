@@ -29,7 +29,7 @@
                             {% endif %}
                         </div>
                         <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                            <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoice.invoice_no}}</div>
+                            <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoices.invoice.invoice_no}}</div>
                         </div>
                         <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                     </div>
@@ -37,16 +37,16 @@
                         <div class="tm_card_note tm_mobile_hide">
                         </div>
                         <div class="tm_invoice_info_list tm_white_color">
-                            <p class="tm_invoice_number tm_m0">Invoice No: <b>{{ invoice.invoice_no }}</b></p>
-                            <p class="tm_invoice_date tm_m0">Date: <b>{{invoice.created}}</b></p>
+                            <p class="tm_invoice_number tm_m0">Invoice No: <b>{{customer.invoice.invoice_no}}</b></p>
+                            <p class="tm_invoice_date tm_m0">Date: <b>{{customer.invoice.created}}</b></p>
                         </div>
                         <div class="tm_invoice_seperator tm_accent_bg"></div>
                     </div>
                     <div class="tm_invoice_head tm_mb10">
                         <div class="tm_invoice_left">
                             <p class="tm_mb2"><b class="tm_primary_color">Invoice To:</b></p>
-                            <p>
-                                {{invoice.customer}} <br>
+                            <p> 
+                                {{invoice.customer.name}} <br>
                                 {{invoice.customer.address}} <br> {{invoice.customer.phone_no}} <br>
                                 {{invoice.customer.email}}
                             </p>
@@ -81,7 +81,8 @@
                                     </thead>
                                     <tbody>
 
-                                        {% for item in invoice.get_invoiceitem %}
+                                        {% for item in invoice_item %}
+                                        
                                         <tr>
                                             <td class="tm_width_3">{{item.services_name}}</td>
                                             <td class="tm_width_3">{{item.username}}</td>
@@ -91,6 +92,7 @@
                                             <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                         </tr>
 
+                                       
                                         {% endfor %}
                                         
                                     </tbody>

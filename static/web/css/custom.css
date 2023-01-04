@@ -128,6 +128,9 @@
 @media only screen and (min-width:320px) and (max-width:567px) {
     .whatsapp-icon {
         width: 5% !important;
+        width: 11% !important;
+        position: relative;
+        right: -313px;
     }
     .whats-link {
         position: fixed !important;
