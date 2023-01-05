@@ -427,12 +427,11 @@ def searching_invoice(request):
         search = request.GET["search"]
         invoice = Invoice.objects.get(customer__phone_no__icontains=search)
         invoice_item = InvoiceItem.objects.filter(invoice=invoice)
-        context = {"invoice": invoice,"invoice_item":invoice_item}
-    else:
-        invoice = Invoice.objects.filter(customer__created_by=request.user)
-        context = {"invoice": invoice,}
+        context = {"invoice": invoice,"invoice_item":invoice_item,"status":1}
+        return render(request, "web/invoice-searching.html", context)
     context = {"is_search": True, "invoice": invoice,"invoice_item":invoice_item}
-    return render(request, "web/invoice-searching.html", context)
+    return render(request, "web/invoice-searching.html")
+    
 
 
 # @csrf_exempt
@@ -455,11 +454,9 @@ def searching_invoice(request):
 @login_required
 @subscription_required
 def invoice_search_print(request,pk):
-    print(pk)
-    invoice = InvoiceItem.objects.filter(invoice__customer=pk)
-    invoices = InvoiceItem.objects.filter(invoice__customer=pk).last()
-    print(invoice)
-    context = {"invoice":invoice,"invoices":invoices}
+    invoice = get_object_or_404(Invoice,pk=pk)
+    invoice_item=InvoiceItem.objects.filter(invoice=invoice)
+    context = {"invoice":invoice,"invoice_item":invoice_item,}
     return render(request,'web/invoice-search-print.html',context)
 
 
