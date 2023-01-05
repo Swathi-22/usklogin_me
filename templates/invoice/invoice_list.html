@@ -81,7 +81,7 @@ tbody, td, tfoot, th, thead, tr {
                             {% for profile in object_list %}
                             <tr>
                                 <td>{{ profile.customer }}</td>
-                                <td>{{ profile.phone_no }}</td>
+                                <td>{{ profile.customer.phone_no }}</td>
                                 <td>{{ profile.invoice_no }}</td>
                                 <td>
                                     <a href="{% url 'invoices:invoice-update' profile.pk %}">

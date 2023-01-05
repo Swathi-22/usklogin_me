@@ -23,7 +23,7 @@
                     <div class="tm_invoice_head tm_top_head tm_mb15 tm_align_center">
                         <div class="tm_invoice_left">
                             {% if request.user.profile_image %}
-                            <div class="tm_logo"><img src="{{request.user.profile_image.crop.100x80}}" alt="Logo"></div>
+                            <div class="tm_logo"><img src="{{request.user.profile_image.crop.250x250}}" alt="Logo"></div>
                             {% else %}
                             <img class="rounded-circle mt-5" width="100px" src="{% static 'web/images/deafult-01.jpg' %}">
                             {% endif %}
@@ -57,7 +57,7 @@
                         <div class="tm_invoice_right tm_text_right">
                             <p class="tm_mb2"><b class="tm_primary_color">Pay To:</b></p>
                             <p>
-                                {{request.user.name}} <br>
+                                {{request.user.shop_name}} <br>
                                 {{request.user.shop_address}}<br>
                                 {{request.user.district}}<br>
                                 {{request.user.email}} <br>
@@ -83,7 +83,7 @@
 
                                         {% for item in invoice.get_invoiceitem %}
                                         <tr>
-                                            <td class="tm_width_3">1. {{ item.services_name }}</td>
+                                            <td class="tm_width_3">{{item.services_name}}</td>
                                             <td class="tm_width_3">{{item.username}}</td>
                                             <td class="tm_width_3">{{item.password}}</td>
                                             <td class="tm_width_2">&#8377;{{item.services_charge}}</td>

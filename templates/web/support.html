@@ -82,9 +82,7 @@
                     </div>
                 </div>
                  
-                {% comment %}
-                {% if upgraded %}
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="cards">
                         <a href="{% url 'web:call_support' %}">
                             <div class="cards-content">
@@ -93,7 +91,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="cards">
                         <a href="{% url 'web:whatsapp_support' %}">
                             <div class="cards-content">
@@ -102,31 +100,6 @@
                         </a>
                     </div>
                 </div>
-                {% else %}
-
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                    <div class="cards">
-                        <a href="{% url 'web:upgrade_plan_request' %}">
-                            <div class="cards-content">
-                                <span>CALL</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                    <div class="cards">
-                        <a href="{% url 'web:upgrade_plan_request' %}">
-                            <div class="cards-content">
-                                <span>WHATSAPP</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% endcomment %}
-            </div>
-            <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6 mx-auto">
                     <div class="text-center cards-faq">
                         <a href="{% url 'web:F_A_Q' %}">

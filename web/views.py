@@ -5,6 +5,7 @@ from itertools import chain
 from accounts.forms import UserRegistrationForm
 from accounts.models import User
 from invoices.models import InvoiceItem
+from invoices.models import Invoice
 from services.models import BrandingImage
 from services.models import ServiceHeads
 from services.models import Services
@@ -54,7 +55,9 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import render 
+from django.shortcuts import get_object_or_404
+
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -97,7 +100,7 @@ def callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Access", valid_upto=timezone.now(), amount=amount)
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Access", valid_upto=valid_from + timedelta(days=365), amount=amount)
 
             # email = order.user.email
             # phone = order.user.phone
@@ -160,7 +163,7 @@ def upgrade_callback(request):
             order.signature_id = signature_id
             order.save()
 
-            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Support", valid_upto=timezone.now(), amount=amount)
+            subscriptions = Subscription.objects.create(user=request.user, status="Success", types="Support",valid_upto=valid_from + timedelta(days=30), amount=amount)
 
             email = order.user.email
             subject = "Upgrade Plan"
@@ -417,14 +420,43 @@ def generate_bill(request):
 def searching_invoice(request):
     search = ""
     invoice = ""
+    invoice_item  = ""
     if "search" in request.GET:
         search = request.GET["search"]
-        invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
-    else:
-        invoice = InvoiceItem.objects.all()
-    context = {"is_search": True, "invoice": invoice}
-    return render(request, "web/invoice-searching.html", context)
-    return JsonResponse(context)
+        invoice = Invoice.objects.get(customer__phone_no__icontains=search)
+        invoice_item = InvoiceItem.objects.filter(invoice=invoice)
+        context = {"invoice": invoice,"invoice_item":invoice_item,"status":1}
+        return render(request, "web/invoice-searching.html", context)
+    context = {"is_search": True, "invoice": invoice,"invoice_item":invoice_item}
+    return render(request, "web/invoice-searching.html")
+    
+
+
+# @csrf_exempt
+# @login_required
+# @subscription_required
+# def searching_invoice(request):
+#     search = ""
+#     invoice = ""
+#     if "search" in request.GET:
+#         search = request.GET["search"]
+#         invoice = InvoiceItem.objects.filter(invoice__customer__phone_no__icontains=search)
+#     else:
+#         invoice = InvoiceItem.objects.filter(invoice__customer__created_by=request.user)
+#     context = {"is_search": True, "invoice": invoice}
+#     return render(request, "web/invoice-searching.html", context)
+#     return JsonResponse(context)
+
+
+
+@login_required
+@subscription_required
+def invoice_search_print(request,pk):
+    invoice = get_object_or_404(Invoice,pk=pk)
+    invoice_item=InvoiceItem.objects.filter(invoice=invoice)
+    context = {"invoice":invoice,"invoice_item":invoice_item,}
+    return render(request,'web/invoice-search-print.html',context)
+
 
 
 @login_required
@@ -638,3 +670,5 @@ def important_services(request):
     branding_image = BrandingImage.objects.filter(user=request.user).last()
     context = {"important_posters": important_posters, "branding_image": branding_image}
     return render(request, "web/important-posters.html", context)
+
+

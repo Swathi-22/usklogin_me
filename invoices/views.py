@@ -38,7 +38,7 @@ class CustomerCreate(LoginRequiredMixin,CreateView):
 class CustomerUpdate(LoginRequiredMixin, UpdateView):
     model = Customer
     success_url = reverse_lazy("invoices:customer-list")
-    fields = ["name", "email", "phone_no"]
+    fields = ["name", "email", "phone_no","address"]
     template_name = "invoice/customer_form.html"
 
 
@@ -150,6 +150,7 @@ class InvoiceItemCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         invoices_items = InvoiceItemFormset(self.request.POST or None)
+        print(invoices_items)
         with transaction.atomic():
             self.object = form.save()
             if invoices_items.is_valid():

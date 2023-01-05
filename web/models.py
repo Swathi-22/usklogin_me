@@ -11,7 +11,7 @@ from versatileimagefield.fields import VersatileImageField
 
 
 PAYMENT_STATUS_CHOICES = (("Success", "Success"), ("Failure", "Failure"), ("Pending", "Pending"))
-TYPE_CHOICES = (("Access", "Access"), ("Support", "Support"))
+TYPE_CHOICES = (("Access", "Access"),)
 
 
 class Order(models.Model):
@@ -377,7 +377,7 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, related_name="upgraded_user", on_delete=models.CASCADE)
     amount = models.FloatField("Amount", null=False, blank=False)
     valid_from = models.DateTimeField(default=timezone.now)
-    valid_upto = models.DateTimeField(blank=True, editable=False)
+    valid_upto = models.DateTimeField(blank=True, editable=True)
     status = models.CharField("Payment Status", default=PaymentStatus.PENDING, max_length=254, choices=PAYMENT_STATUS_CHOICES)
     types = models.CharField(("Type"), max_length=254, choices=TYPE_CHOICES, null=True, blank=True)
     provider_order_id = models.CharField("Order ID", max_length=40, null=True, blank=True)
@@ -391,17 +391,27 @@ class Subscription(models.Model):
 
     @property
     def is_valid(self):
-        return True if self.valid_from + timedelta(year=1) >= timezone.now() else False
+        if self.types == "Access":
+            return True if self.valid_from + timedelta(days=365) >= timezone.now() else False
+        elif self.types == "Support":
+            return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
     @property
     def is_active(self):
-        return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
+        if self.types == "Access":
+            return True if self.valid_from + timedelta(days=365) >= timezone.now() else False
+        elif self.types == "Support":
+            return True if self.valid_from + timedelta(days=30) >= timezone.now() else False
 
     def __str__(self):
         return str(f"{self.user} - {self.valid_from} - {self.valid_upto}")
 
     def save(self, *args, **kwargs):
         self.valid_upto = self.valid_from + timedelta(days=30)
+        if self.types == "Access":
+            self.valid_upto = self.valid_from + timedelta(days=30)
+        elif self.types == "Support":
+            self.valid_upto = self.valid_from + timedelta(days=30)
         super().save(*args, **kwargs)
 
 
