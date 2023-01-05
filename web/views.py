@@ -71,13 +71,15 @@ def verify_signature(response_data):
 
 
 def order_payment(request):
-    user = request.user
-    amount = 1499
-    client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
-    razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
-    order, created = Order.objects.get_or_create(user=user, amount=amount, provider_order_id=razorpay_order["id"])
-    context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/"}
-    return render(request, "web/payment.html", context)
+    if Subscription.objects.filter(user=request.user, status="Success", types="Access", valid_upto__gt=timezone.now()).exists():
+        return redirect("web:index")
+    else:
+        amount = 1499
+        client = razorpay.Client(auth=(settings.RAZOR_PAY_KEY, settings.RAZOR_PAY_SECRET))
+        razorpay_order = client.order.create({"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"})
+        order, created = Order.objects.get_or_create(user=request.user, amount=amount, provider_order_id=razorpay_order["id"])
+        context = {"order": order, "amount": amount, "razorpay_key": settings.RAZOR_PAY_KEY, "razorpay_order": razorpay_order, "callback_url": f"{settings.DOMAIN}/callback/"}
+        return render(request, "web/payment.html", context)
 
 
 @csrf_exempt

@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<<<<<<< HEAD
-=======
 <style>
     @media print {
         nav {
@@ -13,7 +11,6 @@
         }
     }
 </style>
->>>>>>> d35de8498af39fc9d87d7e7274a9d66d19d4fcb4
 
 
 <!-- partial -->
@@ -34,10 +31,6 @@
             </form>
         </div>
 
-<<<<<<< HEAD
-        {% if status %}
-=======
->>>>>>> d35de8498af39fc9d87d7e7274a9d66d19d4fcb4
         <div class="tm_container_invoice mt-5 mx-4">
             <div class="tm_invoice_wrap">
                 <div class="tm_invoice tm_style1 tm_type1" id="tm_download_section">
@@ -107,7 +100,7 @@
                                         </thead>
                                         <tbody>
 
-                                            {% for item in invoice_item %}
+
                                             <tr>
                                                 <td class="tm_width_3">{{ item.services_name }}</td>
                                                 <td class="tm_width_3">{{item.username}}</td>
@@ -116,7 +109,7 @@
                                                 <td class="tm_width_1">{{item.qty}}</td>
                                                 <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                             </tr>
-                                            {% endfor %}
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -163,7 +156,7 @@
                     </div>
                 </div>
                 <div class="tm_invoice_btns tm_hide_print">
-                    <a href="{% url 'web:invoice_search_print' invoice.pk %}" class="tm_invoice_btn tm_color1">
+                    <a href="" class="tm_invoice_btn tm_color1">
                         <span class="tm_btn_icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                                 <path
@@ -192,11 +185,7 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-        {% endif %}
-=======
 
->>>>>>> d35de8498af39fc9d87d7e7274a9d66d19d4fcb4
     </div>
 </div>
 

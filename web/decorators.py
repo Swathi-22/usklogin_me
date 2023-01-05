@@ -12,5 +12,5 @@ def subscription_required(func):
             else:
                 return redirect("web:order_payment")
         else:
-            return HttpResponseRedirect("/start/")
+            return redirect("web:start")
     return wrapper

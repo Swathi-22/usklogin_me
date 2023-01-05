@@ -82,6 +82,7 @@
                                     <tbody>
 
                                         {% for item in invoice_item %}
+                                        
                                         <tr>
                                             <td class="tm_width_3">{{item.services_name}}</td>
                                             <td class="tm_width_3">{{item.username}}</td>
@@ -91,7 +92,7 @@
                                             <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                         </tr>
 
-                                    
+                                       
                                         {% endfor %}
                                         
                                     </tbody>

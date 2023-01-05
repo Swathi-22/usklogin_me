@@ -9,7 +9,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("expired/", views.expired, name="expired"),
     path("start/", views.start, name="start"),
-    # path("register/", views.register, name="register"),
     path("register/", views.AuthRegistrationView.as_view(), name="register"),
     path("profile/", views.profile, name="profile"),
     path("profile_update/", views.profile_update, name="profile_update"),
