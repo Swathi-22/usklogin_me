@@ -164,7 +164,7 @@ class WhatsappSupportAdmin(admin.ModelAdmin):
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
     list_display = ("user", "amount", "status", "valid_from", "valid_upto")
-    list_filter = ("status",)
+    list_filter = ("status", "valid_from", "valid_upto")
 
 
 @admin.register(AddonServices)
