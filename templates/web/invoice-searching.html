@@ -4,13 +4,6 @@
 
 {% block content %}
 
-<style>
-    @media print{
-        nav{
-            display: none;
-        }
-    }
-</style>
 
 
 <!-- partial -->
@@ -30,7 +23,8 @@
                 </button>
             </form>
         </div>
-        
+
+        {% if status %}
         <div class="tm_container_invoice mt-5 mx-4">
             <div class="tm_invoice_wrap">
                 <div class="tm_invoice tm_style1 tm_type1" id="tm_download_section">
@@ -99,7 +93,7 @@
                                         </thead>
                                         <tbody>
 
-                                           
+                                            {% for item in invoice_item %}
                                             <tr>
                                                 <td class="tm_width_3">{{ item.services_name }}</td>
                                                 <td class="tm_width_3">{{item.username}}</td>
@@ -108,7 +102,7 @@
                                                 <td class="tm_width_1">{{item.qty}}</td>
                                                 <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                             </tr>
-                                            
+                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -127,7 +121,7 @@
                                                     Total </td>
                                                 <td
                                                     class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
-                                                    &#8377;{{customer.invoice.get_total}}</td>
+                                                    &#8377;{{invoice.get_total}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -154,7 +148,7 @@
                     </div>
                 </div>
                 <div class="tm_invoice_btns tm_hide_print">
-                    <a href="" class="tm_invoice_btn tm_color1">
+                    <a href="{% url 'web:invoice_search_print' invoice.pk %}" class="tm_invoice_btn tm_color1">
                         <span class="tm_btn_icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                                 <path
@@ -183,7 +177,7 @@
                 </div>
             </div>
         </div>
-       
+        {% endif %}
     </div>
 </div>
 
