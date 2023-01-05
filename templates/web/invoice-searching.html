@@ -4,6 +4,16 @@
 
 {% block content %}
 
+<<<<<<< HEAD
+=======
+<style>
+    @media print {
+        nav {
+            display: none;
+        }
+    }
+</style>
+>>>>>>> d35de8498af39fc9d87d7e7274a9d66d19d4fcb4
 
 
 <!-- partial -->
@@ -24,7 +34,10 @@
             </form>
         </div>
 
+<<<<<<< HEAD
         {% if status %}
+=======
+>>>>>>> d35de8498af39fc9d87d7e7274a9d66d19d4fcb4
         <div class="tm_container_invoice mt-5 mx-4">
             <div class="tm_invoice_wrap">
                 <div class="tm_invoice tm_style1 tm_type1" id="tm_download_section">
@@ -35,7 +48,8 @@
                                     {% if request.user.profile_image %}
                                     <img src="{{request.user.profile_image.crop.105x80}}" alt="Logo">
                                     {% else %}
-                                    <img class="rounded-circle mt-5" width="100px" src="{% static 'web/images/deafult-01.jpg' %}">
+                                    <img class="rounded-circle mt-5" width="100px"
+                                        src="{% static 'web/images/deafult-01.jpg' %}">
                                     {% endif %}
                                 </div>
                             </div>
@@ -143,7 +157,8 @@
                         <div class="tm_note tm_text_center tm_font_style_normal">
                             <hr class="tm_mb15">
                             <p class="tm_mb2"><b class="tm_primary_color">Terms & Conditions:</b></p>
-                            <p class="tm_m0">Please note :- You are responsible to safe the bill from lost and misuse by others</p>
+                            <p class="tm_m0">Please note :- You are responsible to safe the bill from lost and misuse by
+                                others</p>
                         </div><!-- .tm_note -->
                     </div>
                 </div>
@@ -177,7 +192,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         {% endif %}
+=======
+
+>>>>>>> d35de8498af39fc9d87d7e7274a9d66d19d4fcb4
     </div>
 </div>
 
