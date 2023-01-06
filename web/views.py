@@ -456,7 +456,7 @@ def searching_invoice(request):
 def invoice_search_print(request,pk):
     invoice = get_object_or_404(Invoice,pk=pk)
     invoice_item=InvoiceItem.objects.filter(invoice=invoice)
-    context = {"invoice":invoice,"invoice_item":invoice_item,}
+    context = {"invoice":invoice,"invoice_item":invoice_item,"status":1}
     return render(request,'web/invoice-search-print.html',context)
 
 

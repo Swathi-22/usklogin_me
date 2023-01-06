@@ -82,6 +82,8 @@
                                     <tbody>
 
                                         {% for item in invoice_item %}
+
+                                        {% if invoice_item.invoice.customer == item.invoice.customer%}
                                         
                                         <tr>
                                             <td class="tm_width_3">{{item.services_name}}</td>
@@ -91,6 +93,7 @@
                                             <td class="tm_width_1">{{item.qty}}</td>
                                             <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                         </tr>
+                                        {% endif %}
 
                                        
                                         {% endfor %}

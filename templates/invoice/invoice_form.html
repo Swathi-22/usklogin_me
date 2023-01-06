@@ -40,13 +40,12 @@
 {% block js %}
 <script type="text/javascript">
     $('.formset_row').formset({
+        prefix: '{{ invoices_items.prefix }}',
         addText: '<div style="color:black;"><i class="fa-solid fa-plus" style="color:green;border:1px solid green;border-radius:50%;padding:5px;margin-right:5px"></i>Add Service</div>',
         deleteText: '<i class="fa-solid fa-xmark" style="color: red;border: 1px solid red;border-radius: 50%;width: 24px;height: 24px;display: flex;align-items: center;justify-content: center;"></i>',
-        prefix: 'familymember_set'
     });
 </script>
 <script>
-
     $(".add-row, select").click(function () {
         $('select').select2();
     });
@@ -82,30 +81,27 @@
                             {{ invoices_items.management_form }}
 
                             {% for form in invoices_items.forms %}
+                            
                             {% if forloop.first %}
                             <thead>
                                 <tr>
                                     {% for field in form.visible_fields %}
                                     <th>{{ field.label|capfirst }}</th>
                                     {% endfor %}
-                                    <td></td>
+                                    <th></th>
                                 </tr>
                             </thead>
                             {% endif %}
+
                             <tr class="{% cycle row1 row2 %} formset_row">
                                 {% for field in form.visible_fields %}
                                 <td>
-                                    {# Include the hidden fields in the form #}
-                                    {% if forloop.first %}
-                                    {% for hidden in form.hidden_fields %}
-                                    {{ hidden }}
-                                    {% endfor %}
-                                    {% endif %}
                                     {{ field.errors.as_ul }}
                                     {{ field }}
                                 </td>
                                 {% endfor %}
                             </tr>
+
                             {% endfor %}
                         </table>
 
