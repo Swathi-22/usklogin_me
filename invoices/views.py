@@ -12,6 +12,7 @@ from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+
 class CustomerList(LoginRequiredMixin, ListView):
     template_name = "invoice/customer_list.html"
 

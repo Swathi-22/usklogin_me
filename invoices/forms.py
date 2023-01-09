@@ -22,14 +22,14 @@ class InvoiceForm(ModelForm):
 class InvoiceItemForm(ModelForm):
     class Meta:
         model = InvoiceItem
-        fields = ("invoice", "services_name", "services_charge", "username", "password", "descripton", "qty")
+        fields = ("invoice", "services_name", "services_charge", "username", "password", "descripton", "fees")
         widgets = {
             "services_name": widgets.Select(attrs={"class": "form-control"}),
             "services_charge": widgets.NumberInput(attrs={"class": "form-control"}),
             "username": widgets.TextInput(attrs={"class": "form-control"}),
             "password": widgets.TextInput(attrs={"class": "form-control"}),
             "descripton": widgets.TextInput(attrs={"class": "form-control"}),
-            "qty": widgets.NumberInput(attrs={"class": "form-control"}),
+            "fees": widgets.NumberInput(attrs={"class": "form-control"}),
         }
 
 

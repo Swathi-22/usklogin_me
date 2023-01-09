@@ -6,7 +6,7 @@ from services.models import Services
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-
+from num2words import num2words
 
 # Create your models here.
 class Customer(models.Model):
@@ -47,6 +47,14 @@ class Invoice(models.Model):
             total += item.sub_total
         return Decimal(total) if total else 0
 
+
+    def get_total_in_words(self):
+        total = 0
+        for item in InvoiceItem.objects.filter(invoice=self):
+            total += item.sub_total
+        return num2words(total) if total else 0
+        
+
     def get_absolute_url(self):
         return reverse("invoices:invoice-update", kwargs={"pk": self.pk})
 
@@ -62,7 +70,7 @@ class InvoiceItem(models.Model):
     username = models.CharField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
     descripton = models.TextField(blank=True, null=True)
-    qty = models.PositiveIntegerField("Quantity")
+    fees = models.CharField(max_length=100, blank=True, null=True)
     created = models.DateField(auto_now_add=True)
 
     class Meta:
@@ -76,5 +84,5 @@ class InvoiceItem(models.Model):
         return str(self.services_name)
 
     def save(self, *args, **kwargs):
-        self.sub_total = float(self.services_charge) * self.qty
+        self.sub_total = float(self.services_charge) + float(self.fees)
         super().save(*args, **kwargs)

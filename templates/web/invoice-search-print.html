@@ -23,13 +23,13 @@
                     <div class="tm_invoice_head tm_top_head tm_mb15 tm_align_center">
                         <div class="tm_invoice_left">
                             {% if request.user.profile_image %}
-                            <div class="tm_logo"><img src="{{request.user.profile_image.crop.250x250}}" alt="Logo"></div>
+                            <div class="tm_logo"><img src="{{request.user.profile_image.crop.500x500}}" alt="Logo"></div>
                             {% else %}
                             <img class="rounded-circle mt-5" width="100px" src="{% static 'web/images/deafult-01.jpg' %}">
                             {% endif %}
                         </div>
                         <div class="tm_invoice_right tm_text_right tm_mobile_hide">
-                            <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoices.invoice.invoice_no}}</div>
+                            <div class="tm_f50 tm_text_uppercase tm_white_color">{{invoice.invoice_no}}</div>
                         </div>
                         <div class="tm_shape_bg tm_accent_bg tm_mobile_hide"></div>
                     </div>
@@ -37,8 +37,8 @@
                         <div class="tm_card_note tm_mobile_hide">
                         </div>
                         <div class="tm_invoice_info_list tm_white_color">
-                            <p class="tm_invoice_number tm_m0">Invoice No: <b>{{customer.invoice.invoice_no}}</b></p>
-                            <p class="tm_invoice_date tm_m0">Date: <b>{{customer.invoice.created}}</b></p>
+                            <p class="tm_invoice_number tm_m0">Invoice No: <b>{{invoice.invoice_no}}</b></p>
+                            <p class="tm_invoice_date tm_m0">Date: <b>{{invoice.created}}</b></p>
                         </div>
                         <div class="tm_invoice_seperator tm_accent_bg"></div>
                     </div>
@@ -68,14 +68,17 @@
                     <div class="tm_table tm_style1">
                         <div class="">
                             <div class="tm_table_responsive">
+                                {% comment %}
                                 <table>
                                     <thead>
                                         <tr class="tm_accent_bg">
-                                            <th class="tm_width_3 tm_semi_bold tm_white_color">Item</th>
-                                            <th class="tm_width_4 tm_semi_bold tm_white_color">Username</th>
-                                            <th class="tm_width_4 tm_semi_bold tm_white_color">Password</th>
-                                            <th class="tm_width_2 tm_semi_bold tm_white_color">Price</th>
-                                            <th class="tm_width_1 tm_semi_bold tm_white_color">Qty</th>
+                                            <th class="tm_width_1 tm_semi_bold tm_white_color">No</th>
+                                            <th class="tm_width_3 tm_semi_bold tm_white_color">Particulars</th>
+                                            <th class="tm_width_3 tm_semi_bold tm_white_color">Username</th>
+                                            <th class="tm_width_3 tm_semi_bold tm_white_color">Password</th>
+                                            <th class="tm_width_4 tm_semi_bold tm_white_color">Description</th>
+                                            <th class="tm_width_2 tm_semi_bold tm_white_color">Fees</th>
+                                            <th class="tm_width_4 tm_semi_bold tm_white_color">Service Charge</th>
                                             <th class="tm_width_2 tm_semi_bold tm_white_color tm_text_right">Total</th>
                                         </tr>
                                     </thead>
@@ -83,14 +86,16 @@
 
                                         {% for item in invoice_item %}
 
-                                        {% if invoice_item.invoice.customer == item.invoice.customer%}
+                                        {% if invoice.customer == item.invoice.customer%}
                                         
                                         <tr>
+                                            <td class="tm_width_1">{{forloop.counter}}</td>
                                             <td class="tm_width_3">{{item.services_name}}</td>
                                             <td class="tm_width_3">{{item.username}}</td>
                                             <td class="tm_width_3">{{item.password}}</td>
-                                            <td class="tm_width_2">&#8377;{{item.services_charge}}</td>
-                                            <td class="tm_width_1">{{item.qty}}</td>
+                                            <td class="tm_width_4">{{item.descripton}}</td>
+                                            <td class="tm_width_1">{{item.fees}}</td>
+                                            <td class="tm_width_4">&#8377;{{item.services_charge}}</td>
                                             <td class="tm_width_2 tm_text_right">&#8377;{{item.sub_total}}</td>
                                         </tr>
                                         {% endif %}
@@ -100,6 +105,40 @@
                                         
                                     </tbody>
                                 </table>
+                                {% endcomment %}
+                                <table class="table">
+                                    <thead>
+                                      <tr style="background-color: #1b2559;color: #fff;">
+                                            <th>No</th>
+                                            <th>Particulars</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Description</th>
+                                            <th>Fees</th>
+                                            <th>Service Charge</th>
+                                            <th>Total</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        {% for item in invoice_item %}
+
+                                        {% if invoice.customer == item.invoice.customer%}
+                                        <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{item.services_name}}</td>
+                                        <td>{{item.username}}</td>
+                                        <td>{{item.password}}</td>
+                                        <td>{{item.descripton}}</td>
+                                        <td>&#8377;{{item.fees}}</td>
+                                        <td>&#8377;{{item.services_charge}}</td>
+                                        <td>&#8377;{{item.sub_total}}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                      </tr>
+                                    </tbody>
+                                  </table>
                             </div>
                         </div>
                         <div class="tm_invoice_footer tm_border_top tm_mb15 tm_m0_md">
@@ -114,6 +153,13 @@
                                             <td
                                                 class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
                                                 &#8377;{{invoice.get_total}}</td>
+                                        </tr>
+                                        <tr class="tm_accent_bg">
+                                            <td class="tm_width_5 tm_border_top_0 tm_bold tm_f14 tm_white_color">Grand
+                                                Total in Words</td>
+                                            <td
+                                                class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right">
+                                                {{invoice.get_total_in_words}} rupees only</td>
                                         </tr>
                                     </tbody>
                                 </table>
