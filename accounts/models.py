@@ -33,7 +33,7 @@ class User(AbstractUser):
     pincode = models.CharField(max_length=100)
     profile_image = VersatileImageField(upload_to="Profile", null=True, blank=True)
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
-    referal_code = models.CharField(max_length=20 , blank=True,null=True)
+    referral_code = models.CharField(max_length=20 , blank=True,null=True)
 
     def __str__(self):
         return str(self.id)

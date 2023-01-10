@@ -12,7 +12,7 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("name", "phone", "category", "email", "shop_name", "shop_address", "district", "pincode", "password1", "password2")
+        fields = ("name", "phone", "category", "email", "shop_name", "shop_address", "district", "pincode", "referral_code","password1", "password2")
         widgets = {
             "name": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
             "phone": widgets.TextInput(attrs={"class": "form-control", "required": "required", "type": "tel"}),
@@ -22,6 +22,7 @@ class UserRegistrationForm(UserCreationForm):
             "shop_address": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
             "district": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
             "pincode": widgets.TextInput(attrs={"class": "form-control", "required": "required"}),
+            "referral_code" :widgets.TextInput(attrs={"class": "form-control",}),
            
         }
 

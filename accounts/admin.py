@@ -14,7 +14,7 @@ class MyUserChangeForm(UserChangeForm):
 
 class MyUserAdmin(UserAdmin, ImportExportModelAdmin):
     form = MyUserChangeForm
-    list_display = ("id", "email", "phone", "shop_name", "district", "pincode", "category","referal_code",)
+    list_display = ("id", "email", "phone", "shop_name", "district", "pincode", "category","referral_code",)
     list_filter = ("is_active", "is_staff", "is_superuser",)
     autocomplete_fields = ("groups",)
     readonly_fields = ("last_login", "date_joined")
@@ -22,7 +22,7 @@ class MyUserAdmin(UserAdmin, ImportExportModelAdmin):
     ordering = ("email",)
     fieldsets = (
         (_("Authentication"), {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email", "name", "phone", "shop_name", "shop_address", "district", "pincode", "category", "profile_image","referal_code",)}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email", "name", "phone", "shop_name", "shop_address", "district", "pincode", "category", "profile_image","referral_code",)}),
         (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser", "groups")}),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
